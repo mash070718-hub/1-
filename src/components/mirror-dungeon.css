@@ -24,6 +24,8 @@
 .mirror-archive-heading h2 { color: #e5d4b2; font-family: var(--serif); font-size: 26px; font-weight: 400; line-height: 1.6; letter-spacing: -.7px; }
 .mirror-archive-heading p:not(.eyebrow) { margin-top: 4px; color: #b7a88e; font-size: 13px; line-height: 1.9; }
 .mirror-archive-heading > button { flex-shrink: 0; }
+.mirror-archive-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.mirror-dungeon-page .kind-tabs { margin-top: 22px; }
 .mirror-filter-bar { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 23px 0 19px; }
 .mirror-search { width: min(100%, 385px); }
 .mirror-filter-meta { display: flex; align-items: center; gap: 13px; flex-shrink: 0; color: #b6a387; font-size: 12px; }
@@ -126,6 +128,41 @@ textarea.mirror-input { min-height: 64px; resize: vertical; }
 .mirror-skill-counts dd .mirror-unrecorded { font-size: 12px; }
 .mirror-skill-detail-note { margin-top: 12px; color: var(--mirror-muted); font-size: 12px; }
 
+.mirror-deck-editor, .mirror-deck-details { min-width: 0; width: 100%; }
+.mirror-deck-ego-picker { padding: 16px; border: 1px solid #c4ae83; background: #eaddc2; }
+.mirror-deck-picker-heading { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 12px; }
+.mirror-deck-picker-heading h3 { justify-content: flex-start; }
+.mirror-deck-picker-heading svg { color: #936b36; }
+.mirror-deck-ego-options { max-height: 245px; overflow-y: auto; overscroll-behavior: contain; padding-right: 3px; scrollbar-width: thin; scrollbar-color: #b4a080 transparent; }
+.mirror-deck-ego-options .checkbox-option > span { min-width: 0; overflow-wrap: anywhere; line-height: 1.7; }
+.mirror-deck-heading { display: flex; align-items: center; gap: 21px; padding-bottom: 23px; }
+.mirror-deck-detail-cover { display: block; flex-shrink: 0; width: 115px; height: 146px; overflow: hidden; border: 1px solid #997547; background: #36291b; box-shadow: 0 3px 8px #38281220; }
+.mirror-deck-detail-cover img, .mirror-deck-member-art img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
+.mirror-deck-art-placeholder { display: grid; place-items: center; width: 100%; height: 100%; color: #c7a56b; background: linear-gradient(135deg, #3e2e1a, #201910); }
+.mirror-deck-heading-copy { min-width: 0; flex: 1; }
+.mirror-deck-heading-copy .mirror-small-kicker { color: #936b36; }
+.mirror-deck-heading-copy h3 { margin-top: 7px; color: #4d3824; font-family: var(--serif); font-size: 27px; line-height: 1.5; font-weight: 400; letter-spacing: -.7px; overflow-wrap: anywhere; }
+.mirror-deck-meta { margin-top: 8px; color: #816641; font-size: 12px; line-height: 1.8; }
+.mirror-deck-subtitle { margin-top: 8px; color: #6e5940; font-size: 13px; line-height: 1.8; white-space: pre-wrap; overflow-wrap: anywhere; }
+.mirror-deck-tier { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 16px; border: 1px solid #bea477; background: #e4d4b2; color: #72593a; font-size: 13px; }
+.mirror-deck-tier > strong { color: #744b26; font-family: var(--serif); font-size: 21px; font-weight: 400; }
+.mirror-deck-tier > strong[data-tier="S"] { color: #742d38; }
+.mirror-deck-tier > strong[data-tier="unrated"] { color: #8d7758; font-size: 16px; }
+.mirror-deck-formation { margin-bottom: 25px; }
+.mirror-deck-member-list { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.mirror-deck-member-list > li { min-width: 0; }
+.mirror-deck-member-list button { display: flex; align-items: center; gap: 11px; width: 100%; min-width: 0; padding: 10px 12px; border: 1px solid #c8b184; background: #ecdfc4; color: #654c2d; font-size: 13px; line-height: 1.7; text-align: left; }
+.mirror-deck-member-list button:hover { border-color: #927047; background: #ddcba8; }
+.mirror-deck-member-number { display: grid; place-items: center; flex-shrink: 0; width: 24px; color: #937140; font-family: Georgia, serif; font-size: 20px; }
+.mirror-deck-member-art { display: block; flex-shrink: 0; width: 44px; height: 56px; overflow: hidden; border: 1px solid #a28253; background: #36291b; }
+.mirror-deck-member-name { flex: 1; min-width: 0; color: #584126; overflow-wrap: anywhere; }
+.mirror-deck-member-name > strong { display: block; font-size: 13px; font-weight: 600; }
+.mirror-deck-member-name > small { display: inline-block; margin-top: 4px; padding: 2px 5px; border: 1px solid #b4935f; background: #dac59b; color: #715226; font-size: 10px; line-height: 1.6; }
+.mirror-deck-member-list button > svg { flex-shrink: 0; color: #937140; }
+.mirror-deck-code { margin-top: 13px; padding: 13px 14px; border: 1px dashed #ad8c59; background: #e7d8b8; }
+.mirror-deck-code h4 { margin-bottom: 7px; color: #715226; font-size: 12px; font-weight: 600; }
+.mirror-deck-code code { color: #6b4929; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 13px; line-height: 1.8; white-space: pre-wrap; overflow-wrap: anywhere; }
+
 @media (min-width: 1550px) {
   .mirror-card-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
@@ -165,10 +202,14 @@ textarea.mirror-input { min-height: 64px; resize: vertical; }
   .mirror-archive-heading { flex-wrap: wrap; gap: 13px; }
   .mirror-archive-heading h2 { font-size: 24px; }
   .mirror-archive-heading > button { width: 100%; }
+  .mirror-archive-actions { width: 100%; }
+  .mirror-archive-actions > button { flex: 1; justify-content: center; }
   .mirror-archive-heading p:not(.eyebrow) { font-size: 12px; }
   .mirror-gift-fields, .mirror-floor-grid { grid-template-columns: minmax(0, 1fr); }
   .mirror-plan-section { padding: 14px 12px; }
   .mirror-plan-intro { padding: 16px 14px; }
+  .mirror-deck-editor .form-grid { grid-template-columns: minmax(0, 1fr); }
+  .mirror-deck-details .two-column { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .mirror-page-footer { flex-wrap: wrap; }
   .mirror-page-footer > span:last-child { width: 100%; margin-left: 20px; }
 }
@@ -194,4 +235,12 @@ textarea.mirror-input { min-height: 64px; resize: vertical; }
   .mirror-floor-detail { gap: 10px; }
   .mirror-floor-label { min-width: 36px; }
   .mirror-state { font-size: 9px; }
+  .mirror-deck-heading { gap: 14px; }
+  .mirror-deck-detail-cover { width: 82px; height: 110px; }
+  .mirror-deck-heading-copy h3 { font-size: 22px; }
+  .mirror-deck-heading-copy .mirror-small-kicker { font-size: 8px; letter-spacing: .8px; }
+  .mirror-deck-member-list button { gap: 8px; padding: 9px; }
+  .mirror-deck-member-number { width: 19px; font-size: 18px; }
+  .mirror-deck-member-art { width: 38px; height: 49px; }
+  .mirror-deck-ego-picker { padding: 13px 11px; }
 }

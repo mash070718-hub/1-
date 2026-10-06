@@ -1,0 +1,44 @@
+.mirror-evaluation-collection { min-width: 0; --ink: #e4d0ac; --muted: #b8a484; --line: #6e5535; }
+.mirror-evaluation-topline { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; margin: 19px 0 15px; }
+.mirror-evaluation-topline > p { color: #c6b18e; font-size: 12px; line-height: 1.8; }
+.mirror-evaluation-topline > p > span { display: block; margin-top: 3px; color: #a88f6c; font-size: 11px; }
+.mirror-evaluation-views { display: flex; align-items: center; gap: 3px; padding: 3px; border: 1px solid #765b36; background: #1f1a13; }
+.mirror-evaluation-views > button { min-height: 34px; padding: 7px 13px; border: 1px solid transparent; background: transparent; color: #bca582; font-size: 12px; }
+.mirror-evaluation-views > button:hover { color: #eed5a7; background: #392c1c; }
+.mirror-evaluation-views > button[aria-pressed="true"] { border-color: #9a7948; background: #48351f; color: #efdab4; }
+.mirror-evaluation-sinners { margin-top: 0; }
+.mirror-evaluation-filters { padding-top: 19px; }
+.mirror-evaluation-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.mirror-evaluation-card { display: flex; flex-direction: column; overflow: hidden; }
+.mirror-evaluation-card .entry-card-button { flex: 1; }
+.mirror-evaluation-card .card-footer { min-height: 43px; }
+.mirror-evaluation-card .entry-tags { min-width: 0; }
+.mirror-evaluation-card .entry-tags .tag { overflow: hidden; max-width: 100%; text-overflow: ellipsis; white-space: nowrap; }
+.mirror-evaluation-card-tier { flex-shrink: 0; color: #d6b57e; font-size: 11px; white-space: nowrap; }
+.mirror-evaluation-card-tier[data-tier="S"] { color: #efb2a2; }
+.mirror-evaluation-card-tier[data-tier="A"] { color: #e5c182; }
+.mirror-evaluation-card-tier[data-tier="B"] { color: #bbc596; }
+.mirror-evaluation-card-tier[data-tier="C"] { color: #a9c4b9; }
+.mirror-evaluation-card-tier[data-tier="D"] { color: #c3aac2; }
+.mirror-evaluation-card-tier[data-tier="unrated"] { color: #a18d70; }
+.mirror-evaluation-edit { display: flex; align-items: center; justify-content: center; gap: 7px; width: 100%; min-height: 36px; padding: 9px 11px; border: 0; border-top: 1px solid #93734833; background: #b3955509; color: #c7ae83; font-size: 11px; }
+.mirror-evaluation-edit:hover { background: #b3955520; color: #f0d39d; }
+.mirror-evaluation-edit > svg:last-child { margin-left: auto; }
+.mirror-evaluation-edit > svg:first-child { margin-right: auto; }
+.mirror-evaluation-hidden { grid-column: 1 / -1; padding: 8px; color: #ae9672; font-size: 11px; line-height: 1.8; text-align: center; }
+.mirror-evaluation-more > button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; }
+@media (min-width: 1550px) {
+  .mirror-evaluation-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (max-width: 1100px) {
+  .mirror-evaluation-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .mirror-evaluation-board .tier-items { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 700px) {
+  .mirror-evaluation-topline { align-items: flex-start; }
+  .mirror-evaluation-views { flex-shrink: 0; }
+  .mirror-evaluation-grid, .mirror-evaluation-board .tier-items { grid-template-columns: minmax(0, 1fr); }
+  .mirror-evaluation-board .tier-label { width: 49px; }
+  .mirror-evaluation-board .tier-letter { font-size: 29px; }
+  .mirror-evaluation-board .tier-items { gap: 9px; padding: 9px; }
+}

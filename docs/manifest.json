@@ -3,8 +3,8 @@
   "entrypoint": "index.html",
   "language": "ko",
   "artifact": {
-    "bytes": 8960772,
-    "sha256": "a85d90b39324618efa360557cb0bc4fa348214f8bae7be5e0cadb25e27ea4b32",
+    "bytes": 9010379,
+    "sha256": "0e8f95cb90f2a2f90586d97adefbe2fe5f6ac457db1826f4e45a378b0a0be895",
     "embeddedArtworks": 305,
     "inlineScripts": 1
   },
@@ -34,13 +34,12 @@
     "deckCategories": [
       "luxcavation",
       "railway",
-      "mirror",
       "story"
     ],
     "gameTagPresets": 52,
     "mirrorDungeon": {
       "page": "#mirror-dungeon",
-      "recordScope": "per deck",
+      "recordScope": "independent deck, identity and E.G.O. records",
       "floors": 15,
       "startingGifts": true,
       "identitySkillCounts": [
@@ -48,7 +47,20 @@
         "skill2",
         "skill3"
       ],
-      "preserveRemovedMemberRecommendations": true
-    }
+      "preserveRemovedMemberRecommendations": true,
+      "formationPositions": 12,
+      "independentEditor": true,
+      "independentNotesAndTiers": true,
+      "independentRecommendations": true,
+      "legacyMigration": "once"
+    },
+    "generalContents": [
+      "story",
+      "luxcavation",
+      "simulation",
+      "railway1",
+      "railway2",
+      "railway6"
+    ]
   }
 }

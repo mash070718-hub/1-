@@ -1,30 +1,35 @@
 import { useMemo, useState } from "react";
 import { ArrowRight, BookMarked, Compass, Gift, Layers3, PenLine, Plus, Search, SlidersHorizontal, X } from "lucide-react";
 import { getCatalogRecord } from "../lib/catalog";
-import { isMirrorDeck, type LibraryEntry, type MirrorSkillChange } from "../lib/library";
+import { type LibraryEntry, type MirrorArchive, type MirrorDeck, type MirrorSkillChange } from "../lib/library";
 import { TagPicker } from "./TagPicker";
+import MirrorEvaluationCollection from "./MirrorEvaluationCollection";
 import "./mirror-dungeon.css";
 
 export interface MirrorDungeonPageProps {
   entries: LibraryEntry[];
+  archive: MirrorArchive;
   onNew: () => void;
   onOpen: (id: string) => void;
   onEdit: (id: string) => void;
+  onCopy: () => void;
+  onOpenEntry: (id: string) => void;
+  onEditEntry: (id: string) => void;
 }
 
 const hasSkillRecord = (change: MirrorSkillChange) =>
   change.skill1 !== null || change.skill2 !== null || change.skill3 !== null || Boolean(change.notes.trim());
 
-const hasPlanRecord = (entry: LibraryEntry) => Boolean(
-  entry.mirrorPlan?.startingGifts.trim()
-  || entry.mirrorPlan?.startingGiftNotes.trim()
-  || entry.mirrorPlan?.floors.some((floor) => floor.themePack.trim() || floor.notes.trim())
-  || entry.mirrorPlan?.skillChanges.some(hasSkillRecord)
+const hasPlanRecord = (entry: MirrorDeck) => Boolean(
+  entry.plan.startingGifts.trim()
+  || entry.plan.startingGiftNotes.trim()
+  || entry.plan.floors.some((floor) => floor.themePack.trim() || floor.notes.trim())
+  || entry.plan.skillChanges.some(hasSkillRecord)
   || entry.description.trim() || entry.strengths.trim() || entry.weaknesses.trim()
   || entry.operation.trim() || entry.subtitle.trim(),
 );
 
-function MirrorCover({ entry, entries }: { entry: LibraryEntry; entries: LibraryEntry[] }) {
+function MirrorCover({ entry, entries }: { entry: MirrorDeck; entries: LibraryEntry[] }) {
   const cover = entries.find((item) => item.id === entry.memberIds[0]);
   const image = cover ? getCatalogRecord(cover.id)?.thumbnail : undefined;
   const [failedImage, setFailedImage] = useState<string | undefined>();
@@ -45,21 +50,22 @@ function MirrorCover({ entry, entries }: { entry: LibraryEntry; entries: Library
   );
 }
 
-export default function MirrorDungeonPage({ entries, onNew, onOpen, onEdit }: MirrorDungeonPageProps) {
+export default function MirrorDungeonPage({ entries, archive, onNew, onOpen, onEdit, onCopy, onOpenEntry, onEditEntry }: MirrorDungeonPageProps) {
+  const [kind, setKind] = useState<"deck" | "identity" | "ego">("deck");
   const [query, setQuery] = useState("");
   const [recordFilter, setRecordFilter] = useState("all");
   const [filterTags, setFilterTags] = useState<string[]>([]);
-  const mirrorEntries = useMemo(() => entries.filter(isMirrorDeck), [entries]);
+  const mirrorEntries = archive.decks;
   const filtered = useMemo(() => {
     const needle = query.trim().toLocaleLowerCase("ko-KR");
     const entryById = new Map(entries.map((entry) => [entry.id, entry]));
     return mirrorEntries.filter((entry) => {
       if (!filterTags.every((tag) => entry.tags.includes(tag) || entry.affinity === tag)) return false;
       if (recordFilter === "noted" && !hasPlanRecord(entry)) return false;
-      if (recordFilter === "rated" && entry.tiers.mirror === "unrated") return false;
-      if (recordFilter === "unrated" && entry.tiers.mirror !== "unrated") return false;
+      if (recordFilter === "rated" && entry.tier === "unrated") return false;
+      if (recordFilter === "unrated" && entry.tier !== "unrated") return false;
       if (!needle) return true;
-      const plan = entry.mirrorPlan;
+      const plan = entry.plan;
       const searchable = [
         entry.name, entry.subtitle, entry.description, entry.strengths, entry.weaknesses,
         entry.operation, entry.formationCode, entry.affinity, ...entry.tags,
@@ -78,9 +84,9 @@ export default function MirrorDungeonPage({ entries, onNew, onOpen, onEdit }: Mi
     }).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
   }, [entries, mirrorEntries, query, recordFilter, filterTags]);
   const giftCount = mirrorEntries.filter((entry) =>
-    entry.mirrorPlan?.startingGifts.trim() || entry.mirrorPlan?.startingGiftNotes.trim()).length;
+    entry.plan.startingGifts.trim() || entry.plan.startingGiftNotes.trim()).length;
   const recordedFloorCount = mirrorEntries.reduce((sum, entry) => sum + (
-    entry.mirrorPlan?.floors.filter((floor) => floor.themePack.trim() || floor.notes.trim()).length ?? 0
+    entry.plan.floors.filter((floor) => floor.themePack.trim() || floor.notes.trim()).length
   ), 0);
 
   return (
@@ -108,11 +114,33 @@ export default function MirrorDungeonPage({ entries, onNew, onOpen, onEdit }: Mi
         <div className="mirror-archive-heading">
           <div>
             <p className="eyebrow">STRATEGY ARCHIVE</p>
-            <h2 id="mirror-archive-title">거울던전 공략</h2>
-            <p>덱별로 시작 기프트와 층별 경로를 쌓아 두세요.</p>
+            <h2 id="mirror-archive-title">{kind === "deck" ? "거울던전 공략" : `거울던전 ${kind === "identity" ? "인격" : "E.G.O"} 평가`}</h2>
+            <p>거울던전에서의 편성과 평가를 이 서가에 기록하세요.</p>
           </div>
-          <button className="primary-button" onClick={onNew}><Plus size={16} /> 새 거울던전 기록</button>
+          {kind === "deck" && <div className="mirror-archive-actions">
+            <button className="secondary-button" onClick={onCopy}>일반 덱에서 복사</button>
+            <button className="primary-button" onClick={onNew}><Plus size={16} /> 새 거울던전 기록</button>
+          </div>}
         </div>
+
+        <div className="tabs kind-tabs" role="tablist" aria-label="거울던전 기록 종류" onKeyDown={(event) => {
+          if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+          const tabs = Array.from(event.currentTarget.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+          const index = tabs.indexOf(document.activeElement as HTMLButtonElement);
+          const next = event.key === "Home" ? 0 : event.key === "End" ? tabs.length - 1
+            : (index + (event.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length;
+          event.preventDefault(); tabs[next]?.focus(); tabs[next]?.click();
+        }}>
+          {([['deck', '덱'], ['identity', '인격'], ['ego', 'E.G.O.']] as const).map(([id, label]) => (
+            <button type="button" role="tab" className={`tab ${kind === id ? "active" : ""}`} key={id} aria-selected={kind === id} tabIndex={kind === id ? 0 : -1}
+              onClick={() => setKind(id)}>{label}</button>
+          ))}
+        </div>
+
+        {kind !== "deck" ? (
+          <MirrorEvaluationCollection key={kind} kind={kind} entries={entries} evaluations={archive.evaluations}
+            onOpen={onOpenEntry} onEdit={onEditEntry} />
+        ) : <>
 
         <div className="mirror-filter-bar">
           <label className="search-field mirror-search">
@@ -142,7 +170,7 @@ export default function MirrorDungeonPage({ entries, onNew, onOpen, onEdit }: Mi
         {filtered.length > 0 ? (
           <div className="mirror-card-grid">
             {filtered.map((entry) => {
-              const plan = entry.mirrorPlan;
+              const plan = entry.plan;
               const floorCount = plan?.floors.filter((floor) => floor.themePack.trim() || floor.notes.trim()).length ?? 0;
               const skillCount = plan?.skillChanges.filter(hasSkillRecord).length ?? 0;
               const giftRecorded = Boolean(plan?.startingGifts.trim() || plan?.startingGiftNotes.trim());
@@ -151,7 +179,7 @@ export default function MirrorDungeonPage({ entries, onNew, onOpen, onEdit }: Mi
                   <button className="mirror-card-main" onClick={() => onOpen(entry.id)} aria-label={`${entry.name} 거울던전 상세 보기`}>
                     <MirrorCover entry={entry} entries={entries} />
                     <span className="mirror-card-copy">
-                      <span className="mirror-card-kicker">MIRROR DUNGEON <span>{entry.tiers.mirror === "unrated" ? "미평가" : `${entry.tiers.mirror} 티어`}</span></span>
+                      <span className="mirror-card-kicker">MIRROR DUNGEON <span>{entry.tier === "unrated" ? "미평가" : `${entry.tier} 티어`}</span></span>
                       <strong className="mirror-card-title">{entry.name}</strong>
                       <span className="mirror-card-subtitle">{entry.subtitle.trim() || `${entry.memberIds.length}명 편성 · 거울던전 공략 기록`}</span>
                       <span className="mirror-card-progress" aria-label={`${floorCount} / 15층 기록됨`}>
@@ -182,6 +210,7 @@ export default function MirrorDungeonPage({ entries, onNew, onOpen, onEdit }: Mi
             ) : null}
           </div>
         )}
+        </>}
       </section>
       <footer className="mirror-page-footer"><Compass size={13} /><span>선택한 경로는 나의 기록으로 남습니다.</span><span>1 — 15 FLOOR ARCHIVE</span></footer>
     </div>

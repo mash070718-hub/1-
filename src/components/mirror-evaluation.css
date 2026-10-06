@@ -1,0 +1,31 @@
+.mirror-evaluation { min-width: 0; }
+.mirror-evaluation-metadata { display: flex; align-items: center; gap: 15px; margin-bottom: 24px; padding: 15px; border: 1px solid #c2aa7f; border-left: 3px solid #936b36; background: #e9dcc0; }
+.mirror-evaluation-metadata > div { flex: 1; min-width: 0; }
+.mirror-evaluation-thumbnail { display: grid; place-items: center; flex-shrink: 0; width: 54px; height: 68px; overflow: hidden; border: 1px solid #a28253; color: #b99962; background: #36291b; }
+.mirror-evaluation-thumbnail img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
+.mirror-evaluation-kicker { display: block; color: #936b36; font-family: Georgia, serif; font-size: 9px; line-height: 1.8; letter-spacing: 1.2px; }
+.mirror-evaluation-metadata strong { display: block; margin-top: 5px; color: #4d3824; font-family: var(--serif); font-size: 20px; line-height: 1.6; font-weight: 400; overflow-wrap: anywhere; }
+.mirror-evaluation-metadata p { margin-top: 3px; color: #7c6646; font-size: 12px; line-height: 1.8; }
+.mirror-evaluation-name { margin-top: 7px; color: #4d3824; font-family: var(--serif); font-size: 27px; line-height: 1.5; font-weight: 400; letter-spacing: -.6px; overflow-wrap: anywhere; }
+.mirror-evaluation-tier { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-bottom: 24px; padding: 13px 17px; border: 1px solid #bea477; background: #e9ddc3; color: #72593a; font-size: 13px; line-height: 1.8; }
+.mirror-evaluation-tier strong { color: #744b26; font-family: Georgia, serif; font-size: 27px; font-weight: 400; line-height: 1.3; }
+.mirror-evaluation-tier[data-tier="unrated"] strong { color: #8d7758; font-family: inherit; font-size: 15px; }
+.mirror-evaluation-ego-picker { margin: 0; padding: 15px; border: 1px solid #c4ae83; border-radius: 2px; background: #eaddc2; }
+.mirror-evaluation-ego-picker legend { padding: 0 7px; }
+.mirror-evaluation-ego-picker legend svg { color: #976e39; stroke-width: 1.6; }
+.mirror-evaluation-ego-picker .checkbox-option span { overflow-wrap: anywhere; }
+.mirror-evaluation-ego-picker .checkbox-option:has(input:focus-visible) { outline: 2px solid #8b5d37; outline-offset: 2px; }
+.mirror-evaluation-retained { display: flex; flex-wrap: wrap; gap: 7px; padding-top: 10px; border-top: 1px dashed #c2aa7f; }
+.mirror-evaluation-retained > p { width: 100%; }
+.mirror-evaluation-retained-link { display: inline-flex; align-items: center; gap: 8px; min-width: 0; padding: 6px 8px; border: 1px solid #bba176; border-radius: 2px; background: #f0e5ce; color: #725631; font-size: 11px; line-height: 1.7; }
+.mirror-evaluation-retained-link > span { overflow-wrap: anywhere; }
+.mirror-evaluation-retained-link > svg { flex-shrink: 0; }
+.mirror-evaluation-retained-link:hover { border-color: #927047; background: #ddcba8; }
+.mirror-evaluation-link-meta { color: #856b48; font-size: 11px; line-height: 1.8; }
+.mirror-evaluation-unavailable { margin-top: 9px; }
+@media (max-width: 540px) {
+  .mirror-evaluation-metadata { gap: 12px; padding: 12px; }
+  .mirror-evaluation-name { font-size: 23px; }
+  .mirror-evaluation-ego-picker { padding: 13px 11px; }
+  .mirror-evaluation-ego-picker .checkbox-grid { grid-template-columns: minmax(0, 1fr); }
+}

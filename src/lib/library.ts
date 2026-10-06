@@ -64,6 +64,41 @@ export interface MirrorPlan {
   skillChanges: MirrorSkillChange[];
 }
 
+export interface MirrorDeck {
+  id: string;
+  name: string;
+  subtitle: string;
+  affinity: string;
+  tags: string[];
+  tier: Tier;
+  description: string;
+  strengths: string;
+  weaknesses: string;
+  operation: string;
+  recommendedEgoIds: string[];
+  memberIds: string[];
+  formationCode: string;
+  plan: MirrorPlan;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface MirrorEvaluation {
+  entryId: string;
+  tier: Tier;
+  subtitle: string;
+  description: string;
+  strengths: string;
+  weaknesses: string;
+  operation: string;
+  recommendedEgoIds: string[];
+}
+
+export interface MirrorArchive {
+  decks: MirrorDeck[];
+  evaluations: MirrorEvaluation[];
+}
+
 export interface LibraryEntry {
   id: string;
   kind: Kind;
@@ -91,6 +126,7 @@ export interface LibraryEntry {
 export interface LibraryData {
   version: 1;
   entries: LibraryEntry[];
+  mirrorArchive?: MirrorArchive;
 }
 
 const MAX_JSON_LENGTH = 5_000_000;
@@ -154,6 +190,45 @@ export function createEntry(kind: Kind): LibraryEntry {
   };
 }
 
+export function createMirrorDeck(): MirrorDeck {
+  const entry = createEntry('deck');
+  return {
+    id: `mirror-${entry.id}`,
+    name: '',
+    subtitle: '',
+    affinity: '',
+    tags: [],
+    tier: 'unrated',
+    description: '',
+    strengths: '',
+    weaknesses: '',
+    operation: '',
+    recommendedEgoIds: [],
+    memberIds: [],
+    formationCode: '',
+    plan: createMirrorPlan(),
+    createdAt: entry.createdAt,
+    updatedAt: entry.updatedAt,
+  };
+}
+
+export function createMirrorEvaluation(entryId: string): MirrorEvaluation {
+  return {
+    entryId,
+    tier: 'unrated',
+    subtitle: '',
+    description: '',
+    strengths: '',
+    weaknesses: '',
+    operation: '',
+    recommendedEgoIds: [],
+  };
+}
+
+export function getMirrorArchive(data: LibraryData): MirrorArchive {
+  return data.mirrorArchive ?? { decks: [], evaluations: [] };
+}
+
 function createCatalogEntry(record: CatalogRecord): LibraryEntry {
   return {
     ...createEntry(record.kind),
@@ -178,13 +253,86 @@ function cloneEntry(entry: LibraryEntry): LibraryEntry {
     deckIds: [...entry.deckIds],
     memberIds: [...entry.memberIds],
     contentIds: [...entry.contentIds],
-    mirrorPlan: entry.mirrorPlan == null ? null : {
-      ...entry.mirrorPlan,
-      floors: entry.mirrorPlan.floors.map((floor) => ({ ...floor })),
-      skillChanges: entry.mirrorPlan.skillChanges.map((change) => ({ ...change })),
-    },
+    mirrorPlan: entry.mirrorPlan == null ? null : cloneMirrorPlan(entry.mirrorPlan),
     tiers: { ...entry.tiers },
   };
+}
+
+function cloneMirrorPlan(plan: MirrorPlan): MirrorPlan {
+  return {
+    ...plan,
+    floors: plan.floors.map((floor) => ({ ...floor })),
+    skillChanges: plan.skillChanges.map((change) => ({ ...change })),
+  };
+}
+
+function cloneMirrorArchive(archive: MirrorArchive): MirrorArchive {
+  return {
+    decks: archive.decks.map((deck) => ({
+      ...deck,
+      tags: [...deck.tags],
+      recommendedEgoIds: [...deck.recommendedEgoIds],
+      memberIds: [...deck.memberIds],
+      plan: cloneMirrorPlan(deck.plan),
+    })),
+    evaluations: archive.evaluations.map((evaluation) => ({
+      ...evaluation, recommendedEgoIds: [...evaluation.recommendedEgoIds],
+    })),
+  };
+}
+
+/** Separate legacy mirror records once while preserving their general-content originals. */
+export function migrateMirrorArchive(data: LibraryData): LibraryData {
+  if (data.mirrorArchive !== undefined) {
+    return { version: 1, entries: data.entries.map(cloneEntry), mirrorArchive: cloneMirrorArchive(data.mirrorArchive) };
+  }
+  const isLegacyMirrorDeck = (entry: LibraryEntry) => entry.kind === 'deck' &&
+    (isMirrorDeck(entry) || entry.tiers.mirror !== 'unrated');
+  const decks: MirrorDeck[] = data.entries.filter(isLegacyMirrorDeck).map((entry) => ({
+    id: entry.id,
+    name: entry.name,
+    subtitle: entry.subtitle,
+    affinity: entry.affinity,
+    tags: [...entry.tags],
+    tier: entry.tiers.mirror,
+    description: entry.description,
+    strengths: entry.strengths,
+    weaknesses: entry.weaknesses,
+    operation: entry.operation,
+    recommendedEgoIds: [...new Set([
+      ...entry.recommendedEgoIds,
+      ...data.entries.filter((ego) => ego.kind === 'ego' && ego.deckIds.includes(entry.id)).map(({ id }) => id),
+    ])],
+    memberIds: [...new Set([
+      ...entry.memberIds,
+      ...data.entries.filter((identity) => identity.kind === 'identity' && identity.deckIds.includes(entry.id)).map(({ id }) => id),
+    ])],
+    formationCode: entry.formationCode,
+    plan: entry.mirrorPlan ? cloneMirrorPlan(entry.mirrorPlan) : createMirrorPlan(),
+    createdAt: entry.createdAt,
+    updatedAt: entry.updatedAt,
+  }));
+  const evaluations: MirrorEvaluation[] = data.entries
+    .filter((entry) => entry.kind !== 'deck' && entry.tiers.mirror !== 'unrated')
+    .map((entry) => ({
+      entryId: entry.id,
+      tier: entry.tiers.mirror,
+      subtitle: entry.subtitle,
+      description: entry.description,
+      strengths: entry.strengths,
+      weaknesses: entry.weaknesses,
+      operation: entry.operation,
+      recommendedEgoIds: [...entry.recommendedEgoIds],
+    }));
+  const movedIds = new Set(data.entries
+    .filter((entry) => isLegacyMirrorDeck(entry)
+      && !entry.contentIds.some((content) => content !== 'mirror')
+      && !CONTENTS.some(({ id }) => id !== 'mirror' && entry.tiers[id] !== 'unrated'))
+    .map(({ id }) => id));
+  const entries = data.entries.filter(({ id }) => !movedIds.has(id)).map((entry) => ({
+    ...cloneEntry(entry), deckIds: entry.deckIds.filter((id) => !movedIds.has(id)),
+  }));
+  return { version: 1, entries, mirrorArchive: { decks, evaluations } };
 }
 
 /** Clear a catalog record's evaluation while keeping existing deck connections. */
@@ -220,6 +368,15 @@ export function mergeCatalog(data: LibraryData): LibraryData {
     const example = demos.get(entry.id);
     return !example || !matchesDemo(entry, example);
   }).map((entry) => entry.id));
+  for (const id of [
+    ...(data.mirrorArchive?.decks.flatMap((deck) => [
+      ...deck.memberIds, ...deck.recommendedEgoIds,
+      ...deck.plan.skillChanges.map(({ identityId }) => identityId),
+    ]) ?? []),
+    ...(data.mirrorArchive?.evaluations.flatMap((evaluation) => [evaluation.entryId, ...evaluation.recommendedEgoIds]) ?? []),
+  ]) {
+    if (original.has(id)) keep.add(id);
+  }
   const pending = [...keep];
   while (pending.length) {
     const entry = original.get(pending.pop()!);
@@ -243,7 +400,8 @@ export function mergeCatalog(data: LibraryData): LibraryData {
   for (const record of CATALOG) {
     if (!existingIds.has(record.id)) entries.push(createCatalogEntry(record));
   }
-  return { version: 1, entries };
+  return migrateMirrorArchive({ version: 1, entries,
+    ...(data.mirrorArchive === undefined ? {} : { mirrorArchive: data.mirrorArchive }) });
 }
 
 /** These fictional examples demonstrate the notebook, not actual game evaluations. */
@@ -412,6 +570,72 @@ function requireMirrorPlan(value: unknown, path: string): MirrorPlan {
   return { startingGifts: plan.startingGifts, startingGiftNotes: plan.startingGiftNotes, floors, skillChanges };
 }
 
+function requireMirrorArchive(value: unknown, byId: Map<string, LibraryEntry>): MirrorArchive {
+  const archive = requireObject(value, 'mirrorArchive');
+  requireKeys(archive, ['decks', 'evaluations'], 'mirrorArchive');
+  for (const field of ['decks', 'evaluations']) {
+    if (!Array.isArray(archive[field]) || archive[field].length > MAX_ENTRIES) {
+      invalid(`mirrorArchive.${field}`, `최대 ${MAX_ENTRIES.toLocaleString('ko-KR')}개 기록의 배열이 필요합니다.`);
+    }
+  }
+  const requireTarget = (id: string, kind: 'identity' | 'ego', path: string) => {
+    if (byId.get(id)?.kind !== kind) invalid(path, '연결한 기록이 없거나 종류가 올바르지 않습니다.');
+  };
+  const requireRecommendations = (record: Record<string, unknown>, path: string) => {
+    requireList(record.recommendedEgoIds, `${path}.recommendedEgoIds`, MAX_ENTRIES, 100, true);
+    for (const id of record.recommendedEgoIds) requireTarget(id, 'ego', `${path}.recommendedEgoIds`);
+    return record.recommendedEgoIds;
+  };
+  const requireNotes = (record: Record<string, unknown>, path: string) => {
+    requireString(record.subtitle, `${path}.subtitle`, 300);
+    for (const field of ['description', 'strengths', 'weaknesses', 'operation']) {
+      requireString(record[field], `${path}.${field}`, MAX_NOTE_LENGTH);
+    }
+    if (!TIERS.includes(record.tier as Tier)) invalid(`${path}.tier`, '지원하지 않는 티어입니다.');
+  };
+  const seenDecks = new Set<string>();
+  const decks = (archive.decks as unknown[]).map((value, index): MirrorDeck => {
+    const path = `mirrorArchive.decks[${index}]`;
+    const deck = requireObject(value, path);
+    requireKeys(deck, [
+      'id', 'name', 'subtitle', 'affinity', 'tags', 'tier', 'description', 'strengths',
+      'weaknesses', 'operation', 'recommendedEgoIds', 'memberIds', 'formationCode', 'plan', 'createdAt', 'updatedAt',
+    ], path);
+    requireId(deck.id, `${path}.id`);
+    if (seenDecks.has(deck.id)) invalid('mirrorArchive.decks', '중복된 거울던전 덱 ID가 있습니다.');
+    seenDecks.add(deck.id);
+    requireString(deck.name, `${path}.name`, 200);
+    requireString(deck.affinity, `${path}.affinity`, 100);
+    requireString(deck.formationCode, `${path}.formationCode`, 2_000);
+    requireNotes(deck, path);
+    requireList(deck.tags, `${path}.tags`, 50, 100);
+    requireList(deck.memberIds, `${path}.memberIds`, MAX_ENTRIES, 100, true);
+    for (const id of deck.memberIds) requireTarget(id, 'identity', `${path}.memberIds`);
+    requireRecommendations(deck, path);
+    const plan = requireMirrorPlan(deck.plan, `${path}.plan`);
+    plan.skillChanges.forEach(({ identityId }, skillIndex) =>
+      requireTarget(identityId, 'identity', `${path}.plan.skillChanges[${skillIndex}].identityId`));
+    requireTimestamp(deck.createdAt, `${path}.createdAt`);
+    requireTimestamp(deck.updatedAt, `${path}.updatedAt`);
+    return { ...deck, plan } as unknown as MirrorDeck;
+  });
+  const seenEvaluations = new Set<string>();
+  const evaluations = (archive.evaluations as unknown[]).map((value, index): MirrorEvaluation => {
+    const path = `mirrorArchive.evaluations[${index}]`;
+    const evaluation = requireObject(value, path);
+    requireKeys(evaluation, ['entryId', 'tier', 'subtitle', 'description', 'strengths', 'weaknesses', 'operation', 'recommendedEgoIds'], path);
+    requireId(evaluation.entryId, `${path}.entryId`);
+    if (seenEvaluations.has(evaluation.entryId)) invalid('mirrorArchive.evaluations', '중복된 거울던전 평가 기록이 있습니다.');
+    seenEvaluations.add(evaluation.entryId);
+    const target = byId.get(evaluation.entryId);
+    if (!target || target.kind === 'deck') invalid(`${path}.entryId`, '평가할 인격 또는 E.G.O. 기록이 없습니다.');
+    requireNotes(evaluation, path);
+    requireRecommendations(evaluation, path);
+    return { ...evaluation } as unknown as MirrorEvaluation;
+  });
+  return { decks, evaluations };
+}
+
 /** Validate the entire import before replacing any locally stored records. */
 export function parseLibrary(json: string): LibraryData {
   if (typeof json !== 'string' || json.length > MAX_JSON_LENGTH) invalid('파일', '파일 크기가 허용 범위를 넘었습니다.');
@@ -422,7 +646,8 @@ export function parseLibrary(json: string): LibraryData {
     invalid('파일', '올바른 JSON 파일이 아닙니다.');
   }
   const data = requireObject(parsed, '파일');
-  requireKeys(data, ['version', 'entries'], '파일');
+  const hasMirrorArchive = Object.hasOwn(data, 'mirrorArchive');
+  requireKeys(data, hasMirrorArchive ? ['version', 'entries', 'mirrorArchive'] : ['version', 'entries'], '파일');
   if (data.version !== 1) invalid('version', '지원하지 않는 백업 버전입니다.');
   if (!Array.isArray(data.entries) || data.entries.length > MAX_ENTRIES) {
     invalid('entries', `최대 ${MAX_ENTRIES.toLocaleString('ko-KR')}개 기록의 배열이 필요합니다.`);
@@ -500,7 +725,8 @@ export function parseLibrary(json: string): LibraryData {
       }
     }
   });
-  return { version: 1, entries };
+  return { version: 1, entries,
+    ...(hasMirrorArchive ? { mirrorArchive: requireMirrorArchive(data.mirrorArchive, byId) } : {}) };
 }
 
 function browserStorage(): Storage | undefined {
@@ -510,7 +736,7 @@ function browserStorage(): Storage | undefined {
 export function loadLibrary(storage?: Pick<Storage, 'getItem'>): LibraryData {
   const source = storage ?? browserStorage();
   const json = source?.getItem(STORAGE_KEY);
-  return json === null || json === undefined ? createCatalogLibrary() : mergeCatalog(parseLibrary(json));
+  return json === null || json === undefined ? migrateMirrorArchive(createCatalogLibrary()) : mergeCatalog(parseLibrary(json));
 }
 
 export function exportLibrary(data: LibraryData): string {

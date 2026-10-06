@@ -38,13 +38,14 @@ import {
   TIERS,
   createCatalogLibrary,
   createEntry,
-  createMirrorPlan,
+  createMirrorDeck,
+  createMirrorEvaluation,
+  getMirrorArchive,
   exportLibrary,
   loadLibrary,
   parseLibrary,
   mergeCatalog,
   matchesDeckCategory,
-  isMirrorDeck,
   resetCatalogEntry,
   saveLibrary,
   type Content,
@@ -52,15 +53,20 @@ import {
   type Kind,
   type LibraryData,
   type LibraryEntry,
+  type MirrorDeck,
+  type MirrorEvaluation,
   type Tier,
 } from "./lib/library";
 import { CATALOG, CATALOG_METADATA, getCatalogRecord } from "./lib/catalog";
 import DeckFormationEditor from "./components/DeckFormationEditor";
 import { TagPicker } from "./components/TagPicker";
 import MirrorDungeonPage from "./components/MirrorDungeonPage";
-import MirrorPlanEditor from "./components/MirrorPlanEditor";
-import MirrorPlanDetails from "./components/MirrorPlanDetails";
+import MirrorDeckEditor from "./components/MirrorDeckEditor";
+import MirrorDeckDetails from "./components/MirrorDeckDetails";
+import MirrorEvaluationEditor from "./components/MirrorEvaluationEditor";
+import MirrorEvaluationDetails from "./components/MirrorEvaluationDetails";
 
+const GENERAL_CONTENTS = CONTENTS.filter(({ id }) => id !== "mirror");
 const kindIcon = { identity: BookMarked, ego: Sparkles, deck: Layers3 };
 const kindLabel = { identity: "인격", ego: "E.G.O", deck: "덱" };
 const tierLabel = (tier: Tier) =>
@@ -316,7 +322,7 @@ function EntryCard({
       </button>
       {entry.kind === "deck" && entry.contentIds.length > 0 && (
         <div className="deck-content-chips" aria-label="덱 사용 콘텐츠">
-          {CONTENTS.filter((item) => entry.contentIds.includes(item.id)).map((item) => (
+          {GENERAL_CONTENTS.filter((item) => entry.contentIds.includes(item.id)).map((item) => (
             <span className="deck-content-chip" key={item.id}>{item.shortLabel}</span>
           ))}
         </div>
@@ -334,7 +340,7 @@ function EntryCard({
         </span>
         {showTier && <select
           className="card-tier-select"
-          aria-label={`${displayName(entry)} ${CONTENTS.find((item) => item.id === content)?.label} 티어`}
+          aria-label={`${displayName(entry)} ${GENERAL_CONTENTS.find((item) => item.id === content)?.label} 티어`}
           value={entry.tiers[content]}
           onChange={(event) => onTier(entry.id, event.target.value as Tier)}
         >
@@ -464,11 +470,8 @@ function Detail({
           </div>
         </div>
       </div>
-      {isMirrorDeck(entry) && (
-        <MirrorPlanDetails plan={entry.mirrorPlan ?? createMirrorPlan()} memberIds={entry.memberIds} entries={entries} />
-      )}
       <div className="detail-tier-strip">
-        {CONTENTS.map((item) => (
+        {GENERAL_CONTENTS.map((item) => (
           <div
             className="detail-tier-cell"
             key={item.id}
@@ -483,7 +486,7 @@ function Detail({
       </div>
       <div className="detail-toolbar">
         <label className="field-label" htmlFor="detail-tier">
-          {CONTENTS.find((item) => item.id === content)?.label} 티어
+          {GENERAL_CONTENTS.find((item) => item.id === content)?.label} 티어
         </label>
         <select
           id="detail-tier"
@@ -568,7 +571,7 @@ function Detail({
           ) : <p className="detail-empty">편성 인격을 연결해 주세요.</p>}
           {entry.contentIds.length > 0 && (
             <div className="deck-content-chips" aria-label="덱 사용 콘텐츠">
-              {CONTENTS.filter((item) => entry.contentIds.includes(item.id)).map((item) => (
+              {GENERAL_CONTENTS.filter((item) => entry.contentIds.includes(item.id)).map((item) => (
                 <span className="deck-content-chip" key={item.id}>{item.label}</span>
               ))}
             </div>
@@ -644,14 +647,12 @@ function Editor({
   entry,
   entries,
   isNew,
-  mirrorMode = false,
   onClose,
   onSave,
 }: {
   entry: LibraryEntry;
   entries: LibraryEntry[];
   isNew: boolean;
-  mirrorMode?: boolean;
   onClose: () => void;
   onSave: (entry: LibraryEntry) => void;
 }) {
@@ -737,7 +738,7 @@ function Editor({
   );
   return (
     <Modal
-      title={`${isNew ? "새" : "수정할"} ${mirrorMode ? "거울던전" : kindLabel[entry.kind]} 기록`}
+      title={`${isNew ? "새" : "수정할"} ${kindLabel[entry.kind]} 기록`}
       eyebrow="WRITE YOUR OWN CHAPTER"
       onClose={close}
       wide
@@ -857,12 +858,6 @@ function Editor({
             {entry.kind === "deck" && (
               <DeckFormationEditor memberIds={draft.memberIds} entries={entries} onChange={(ids) => set("memberIds", ids)} />
             )}
-            {entry.kind === "deck" && (mirrorMode || isMirrorDeck(draft)) && (
-              <MirrorPlanEditor value={draft.mirrorPlan ?? createMirrorPlan()}
-                memberIds={draft.memberIds} entries={entries}
-                onChange={(plan) => setDraft((old) => ({ ...old, mirrorPlan: plan,
-                  contentIds: old.contentIds.includes("mirror") ? old.contentIds : [...old.contentIds, "mirror"] }))} />
-            )}
             <TagPicker value={draft.tags} onChange={(tags) => set("tags", tags)} />
           </div>
           {entry.kind === "deck" && (
@@ -870,7 +865,7 @@ function Editor({
               <legend className="field-label">사용 콘텐츠</legend>
               <p className="field-help">여러 콘텐츠를 선택할 수 있습니다. 왼쪽 콘텐츠 메뉴에서 이 덱을 바로 찾을 수 있어요.</p>
               <div className="deck-content-options">
-                {CONTENTS.map((item) => (
+                {GENERAL_CONTENTS.map((item) => (
                   <label className="deck-content-option" key={item.id}>
                     <input type="checkbox"
                       checked={draft.contentIds.includes(item.id)}
@@ -887,7 +882,7 @@ function Editor({
           <div className="form-field field-wide">
             <h3 className="detail-section-title">콘텐츠별 티어</h3>
             <div className="form-grid">
-              {CONTENTS.map((item) => (
+              {GENERAL_CONTENTS.map((item) => (
                 <label className="form-field" key={item.id}>
                   <span className="field-label">{item.label} 티어</span>
                   <select
@@ -1041,8 +1036,8 @@ function Backup({
           <ArrowDownToLine size={24} />
           <h3>나의 도서관 백업</h3>
           <p>
-            {data.entries.length}개의 기록과 모든 콘텐츠별 티어를 JSON 파일로
-            보관합니다.
+            일반 기록 {data.entries.length}개, 거울던전 덱 {getMirrorArchive(data).decks.length}개와
+            거울던전 평가 {getMirrorArchive(data).evaluations.length}개를 JSON 파일로 보관합니다.
           </p>
           <button className="secondary-button" onClick={() => download()}>
             백업 다운로드
@@ -1083,7 +1078,8 @@ function Backup({
       {pending && (
         <div className="confirm-box">
           <span>
-            {pending.entries.length}개의 기록을 가져옵니다. 현재 기록을
+            일반 기록 {pending.entries.length}개와 거울던전 덱 {getMirrorArchive(pending).decks.length}개,
+            거울던전 평가 {getMirrorArchive(pending).evaluations.length}개를 가져옵니다. 현재 기록을
             교체할까요?
           </span>
           <button className="primary-button" onClick={() => onImport(pending)}>
@@ -1110,6 +1106,45 @@ function Backup({
   );
 }
 
+function MirrorRecordEditor<T extends MirrorDeck | MirrorEvaluation>({ value, title, onClose, onSave, render }: {
+  value: T;
+  title: string;
+  onClose: () => void;
+  onSave: (value: T) => void;
+  render: (draft: T, onChange: (value: T) => void) => ReactNode;
+}) {
+  const [draft, setDraft] = useState<T>(() => structuredClone(value));
+  const [confirmClose, setConfirmClose] = useState(false);
+  const close = () => {
+    if (JSON.stringify(draft) !== JSON.stringify(value)) setConfirmClose(true);
+    else onClose();
+  };
+  return (
+    <Modal title={title} eyebrow="MIRROR DUNGEON / WRITE YOUR RECORD" onClose={close} wide footer={
+      confirmClose ? <div className="confirm-box editor-close-confirm" role="alert">
+        <span>작성 중인 내용을 닫을까요? 저장하지 않은 변경은 사라집니다.</span>
+        <div>
+          <button className="secondary-button" autoFocus onClick={() => setConfirmClose(false)}>계속 작성</button>
+          <button className="danger-button" onClick={onClose}>저장하지 않고 닫기</button>
+        </div>
+      </div> : <>
+        <button className="secondary-button" onClick={close}>취소</button>
+        <button type="submit" form="mirror-record-form" className="primary-button"><Check size={16} />기록 저장</button>
+      </>
+    }>
+      <form id="mirror-record-form" onSubmit={(event) => {
+        event.preventDefault();
+        if ("name" in draft && !draft.name.trim()) return;
+        onSave(draft);
+      }}>{render(draft, setDraft)}</form>
+    </Modal>
+  );
+}
+
+type MirrorSelection = { type: "deck" | "evaluation"; id: string };
+type MirrorEditing = { type: "deck"; deck: MirrorDeck; isNew: boolean }
+  | { type: "evaluation"; entry: LibraryEntry; evaluation: MirrorEvaluation };
+
 export default function App() {
   const [initial] = useState(initialLibrary);
   const [data, setData] = useState(initial.data);
@@ -1119,8 +1154,12 @@ export default function App() {
   );
   const [section, setSection] = useState<"library" | "mirror">(() => mirrorHash() ? "mirror" : "library");
   const [mirrorRevision, setMirrorRevision] = useState(0);
-  const [kind, setKind] = useState<Kind>(() => mirrorHash() ? "deck" : "identity");
-  const [content, setContent] = useState<Content>(() => mirrorHash() ? "mirror" : "story");
+  const [mirrorSelected, setMirrorSelected] = useState<MirrorSelection | null>(null);
+  const [mirrorEditing, setMirrorEditing] = useState<MirrorEditing | null>(null);
+  const [mirrorCopy, setMirrorCopy] = useState(false);
+  const [confirmMirrorDelete, setConfirmMirrorDelete] = useState(false);
+  const [kind, setKind] = useState<Kind>("identity");
+  const [content, setContent] = useState<Content>("story");
   const [view, setView] = useState<"tiers" | "all">("all");
   const [deckCategory, setDeckCategory] = useState<DeckCategory | null>(null);
   const [railwayRoute, setRailwayRoute] = useState<Content | "all">("all");
@@ -1148,18 +1187,20 @@ export default function App() {
     const handleHash = () => {
       const mirror = mirrorHash();
       setSection(mirror ? "mirror" : "library");
-      if (mirror) { setKind("deck"); setContent("mirror"); setDeckCategory(null); }
+
     };
     window.addEventListener("hashchange", handleHash);
     return () => window.removeEventListener("hashchange", handleHash);
   }, []);
   const showLibrary = () => {
     setSection("library");
+    setMirrorSelected(null); setMirrorEditing(null); setMirrorCopy(false);
     if (mirrorHash()) history.replaceState(null, "", location.pathname + location.search);
   };
   const showMirror = () => {
-    setSection("mirror"); setKind("deck"); setContent("mirror"); setDeckCategory(null);
+    setSection("mirror");
     setSelected(null); setEditing(null);
+    setConfirmMirrorDelete(false);
     if (!mirrorHash()) window.location.hash = "mirror-dungeon";
   };
   useEffect(() => {
@@ -1255,7 +1296,17 @@ export default function App() {
                 : item.memberIds.filter((id) => id !== saved.id),
             },
       );
-    if (persist({ ...data, entries }, message)) {
+    const archive = getMirrorArchive(data);
+    const mirrorArchive = {
+      decks: archive.decks.map((deck) => ({ ...deck,
+        memberIds: remap(deck.memberIds), recommendedEgoIds: remap(deck.recommendedEgoIds),
+        plan: { ...deck.plan, skillChanges: deck.plan.skillChanges.map((change) => ({ ...change,
+          identityId: change.identityId === entry.id ? saved.id : change.identityId })) } })),
+      evaluations: archive.evaluations.map((evaluation) => ({ ...evaluation,
+        entryId: evaluation.entryId === entry.id ? saved.id : evaluation.entryId,
+        recommendedEgoIds: remap(evaluation.recommendedEgoIds) })),
+    };
+    if (persist({ ...data, entries, mirrorArchive }, message)) {
       if (selected === entry.id) setSelected(saved.id);
       return true;
     }
@@ -1293,8 +1344,17 @@ export default function App() {
   };
   const removeEntries = (ids: string[], message: string) => {
     const deleted = ids.filter((id) => !getCatalogRecord(id));
+    const archive = getMirrorArchive(data);
     const next = {
       ...data,
+      mirrorArchive: {
+        decks: archive.decks.map((deck) => ({ ...deck,
+          memberIds: deck.memberIds.filter((id) => !deleted.includes(id)),
+          recommendedEgoIds: deck.recommendedEgoIds.filter((id) => !deleted.includes(id)),
+          plan: { ...deck.plan, skillChanges: deck.plan.skillChanges.filter((change) => !deleted.includes(change.identityId)) } })),
+        evaluations: archive.evaluations.filter((evaluation) => !deleted.includes(evaluation.entryId))
+          .map((evaluation) => ({ ...evaluation, recommendedEgoIds: evaluation.recommendedEgoIds.filter((id) => !deleted.includes(id)) })),
+      },
       entries: data.entries
         .filter((entry) => !deleted.includes(entry.id))
         .map((entry) => ({
@@ -1345,12 +1405,12 @@ export default function App() {
   );
   const rawCurrent = data.entries.find((entry) => entry.id === selected);
   const current = rawCurrent && withMembership(rawCurrent, data.entries);
-  const contentLabel = CONTENTS.find((item) => item.id === content)!.label;
+  const contentLabel = GENERAL_CONTENTS.find((item) => item.id === content)!.label;
   const category = DECK_CATEGORIES.find((item) => item.id === deckCategory);
   const allRailways = deckCategory === "railway" && railwayRoute === "all";
   const visibleContents = category
-    ? CONTENTS.filter((item) => category.contents.includes(item.id))
-    : CONTENTS;
+    ? GENERAL_CONTENTS.filter((item) => category.contents.includes(item.id))
+    : GENERAL_CONTENTS;
   const hasDemo = data.entries.some((entry) => entry.id.startsWith("demo-"));
   const rated = filtered.filter(isRated).length;
   const selectKind = (next: Kind) => {
@@ -1387,12 +1447,54 @@ export default function App() {
     return entry;
   };
   const newMirrorRecord = () => {
-    const entry = createEntry("deck");
-    entry.contentIds = ["mirror"];
-    entry.mirrorPlan = createMirrorPlan();
-    setSelected(null);
-    setEditing({ entry, isNew: true });
+    setMirrorSelected(null);
+    setMirrorEditing({ type: "deck", deck: createMirrorDeck(), isNew: true });
   };
+  const mirrorArchive = getMirrorArchive(data);
+  const openMirrorDeck = (id: string) => {
+    setConfirmMirrorDelete(false);
+    setMirrorSelected({ type: "deck", id });
+  };
+  const openMirrorEvaluation = (id: string) => {
+    setConfirmMirrorDelete(false);
+    setMirrorSelected({ type: "evaluation", id });
+  };
+  const editMirrorDeck = (id: string) => {
+    const deck = mirrorArchive.decks.find((item) => item.id === id);
+    if (deck) setMirrorEditing({ type: "deck", deck, isNew: false });
+  };
+  const editMirrorEvaluation = (id: string) => {
+    const entry = data.entries.find((item) => item.id === id && item.kind !== "deck");
+    if (entry) setMirrorEditing({ type: "evaluation", entry,
+      evaluation: mirrorArchive.evaluations.find((item) => item.entryId === id) ?? createMirrorEvaluation(id) });
+  };
+  const saveMirrorDeck = (draft: MirrorDeck) => {
+    const saved = { ...draft, name: draft.name.trim(), tags: [...new Set(draft.tags)], updatedAt: new Date().toISOString() };
+    const exists = mirrorArchive.decks.some((deck) => deck.id === saved.id);
+    const decks = exists ? mirrorArchive.decks.map((deck) => deck.id === saved.id ? saved : deck) : [...mirrorArchive.decks, saved];
+    if (persist({ ...data, mirrorArchive: { ...mirrorArchive, decks } }, "거울던전 기록을 저장했습니다.")) {
+      setMirrorEditing(null); setMirrorSelected(null); setMirrorRevision((old) => old + 1);
+    }
+  };
+  const saveMirrorEvaluation = (evaluation: MirrorEvaluation) => {
+    const exists = mirrorArchive.evaluations.some((item) => item.entryId === evaluation.entryId);
+    const evaluations = exists ? mirrorArchive.evaluations.map((item) => item.entryId === evaluation.entryId ? evaluation : item)
+      : [...mirrorArchive.evaluations, evaluation];
+    if (persist({ ...data, mirrorArchive: { ...mirrorArchive, evaluations } }, "거울던전 평가를 저장했습니다.")) {
+      setMirrorEditing(null); setMirrorSelected(null);
+    }
+  };
+  const removeMirrorRecord = () => {
+    if (!mirrorSelected) return;
+    const nextArchive = mirrorSelected.type === "deck"
+      ? { ...mirrorArchive, decks: mirrorArchive.decks.filter((deck) => deck.id !== mirrorSelected.id) }
+      : { ...mirrorArchive, evaluations: mirrorArchive.evaluations.filter((evaluation) => evaluation.entryId !== mirrorSelected.id) };
+    if (persist({ ...data, mirrorArchive: nextArchive }, mirrorSelected.type === "deck" ? "거울던전 덱을 삭제했습니다." : "거울던전 평가를 초기화했습니다.")) {
+      setMirrorSelected(null); setConfirmMirrorDelete(false);
+    }
+  };
+  const currentMirrorDeck = mirrorSelected?.type === "deck" ? mirrorArchive.decks.find((deck) => deck.id === mirrorSelected.id) : undefined;
+  const currentMirrorEntry = mirrorSelected?.type === "evaluation" ? data.entries.find((entry) => entry.id === mirrorSelected.id) : undefined;
   return (
     <div className="app-shell">
       <aside className="sidebar">
@@ -1480,7 +1582,7 @@ export default function App() {
             onClick={showMirror}>
             <Layers3 size={17} className="nav-icon" />
             <span>거울던전</span>
-            <span className="nav-count">{data.entries.filter(isMirrorDeck).length}</span>
+            <span className="nav-count">{getMirrorArchive(data).decks.length}</span>
           </button>
         </nav>
         <div className="sidebar-note">
@@ -1551,12 +1653,9 @@ export default function App() {
           </div>
         )}
         {section === "mirror" ? (
-          <MirrorDungeonPage key={mirrorRevision} entries={data.entries.map((entry) => withMembership(entry, data.entries))}
-            onNew={newMirrorRecord} onOpen={setSelected}
-            onEdit={(id) => {
-              const entry = data.entries.find((item) => item.id === id);
-              if (entry) { setSelected(id); setEditing({ entry: withMembership(entry, data.entries), isNew: false }); }
-            }} />
+          <MirrorDungeonPage key={mirrorRevision} entries={data.entries} archive={mirrorArchive}
+            onNew={newMirrorRecord} onOpen={openMirrorDeck} onEdit={editMirrorDeck}
+            onCopy={() => setMirrorCopy(true)} onOpenEntry={openMirrorEvaluation} onEditEntry={editMirrorEvaluation} />
         ) : <>
         <section className="hero">
           <div className="hero-copy">
@@ -1953,10 +2052,55 @@ export default function App() {
           entry={editing.entry}
           entries={data.entries}
           isNew={editing.isNew}
-          mirrorMode={section === "mirror" && isMirrorDeck(editing.entry)}
           onClose={() => setEditing(null)}
           onSave={saveEntry}
         />
+      )}
+      {section === "mirror" && !mirrorEditing && (currentMirrorDeck || currentMirrorEntry) && (
+        <Modal title={currentMirrorDeck?.name ?? `${displayName(currentMirrorEntry!)} · 거울던전 평가`}
+          eyebrow="MIRROR DUNGEON / RECORD" wide onClose={() => setMirrorSelected(null)}
+          footer={confirmMirrorDelete ? <div className="confirm-box" role="alert">
+            <span>{currentMirrorDeck ? "이 거울던전 덱 기록을 삭제할까요?" : "이 거울던전 평가를 초기화할까요?"}</span>
+            <button className="secondary-button" onClick={() => setConfirmMirrorDelete(false)}>취소</button>
+            <button className="danger-button" onClick={removeMirrorRecord}>{currentMirrorDeck ? "삭제 확인" : "초기화 확인"}</button>
+          </div> : <>
+            <button className="danger-button" onClick={() => setConfirmMirrorDelete(true)}><Trash2 size={15} />{currentMirrorDeck ? "기록 삭제" : "평가 초기화"}</button>
+            <button className="secondary-button" onClick={() => currentMirrorDeck ? editMirrorDeck(currentMirrorDeck.id) : editMirrorEvaluation(currentMirrorEntry!.id)}><Pencil size={15} />기록 수정</button>
+          </>}>
+          {currentMirrorDeck ? <MirrorDeckDetails deck={currentMirrorDeck} entries={data.entries}
+            onOpenIdentity={openMirrorEvaluation} onOpenEgo={openMirrorEvaluation} />
+            : <MirrorEvaluationDetails entry={currentMirrorEntry!}
+              evaluation={mirrorArchive.evaluations.find((item) => item.entryId === currentMirrorEntry!.id) ?? createMirrorEvaluation(currentMirrorEntry!.id)}
+              entries={data.entries} decks={mirrorArchive.decks} onOpenDeck={openMirrorDeck} onOpenEgo={openMirrorEvaluation} />}
+        </Modal>
+      )}
+      {mirrorEditing?.type === "deck" && (
+        <MirrorRecordEditor key={mirrorEditing.deck.id} value={mirrorEditing.deck}
+          title={mirrorEditing.isNew ? "새 거울던전 덱 기록" : "거울던전 덱 편집"}
+          onClose={() => setMirrorEditing(null)} onSave={saveMirrorDeck}
+          render={(draft, onChange) => <MirrorDeckEditor deck={draft} entries={data.entries} onChange={onChange} />} />
+      )}
+      {mirrorEditing?.type === "evaluation" && (
+        <MirrorRecordEditor key={mirrorEditing.entry.id} value={mirrorEditing.evaluation}
+          title={`${displayName(mirrorEditing.entry)} · 거울던전 평가`}
+          onClose={() => setMirrorEditing(null)} onSave={saveMirrorEvaluation}
+          render={(draft, onChange) => <MirrorEvaluationEditor entry={mirrorEditing.entry} value={draft} entries={data.entries} onChange={onChange} />} />
+      )}
+      {mirrorCopy && (
+        <Modal title="거울던전 시작 편성 선택" eyebrow="MIRROR DUNGEON / STARTING FORMATION" onClose={() => setMirrorCopy(false)}>
+          <p className="prose">일반 덱의 편성을 가져와 거울던전 공략을 시작하세요.</p>
+          <div className="linked-list">
+            {data.entries.filter((entry) => entry.kind === "deck").map((entry) => (
+              <button key={entry.id} className="linked-card" aria-label={`${entry.name} 편성 가져오기`} onClick={() => {
+                const members = withMembership(entry, data.entries).memberIds;
+                const deck = { ...createMirrorDeck(), name: entry.name, affinity: entry.affinity,
+                  tags: [...entry.tags], memberIds: [...members], recommendedEgoIds: [...entry.recommendedEgoIds], formationCode: entry.formationCode };
+                setMirrorCopy(false); setMirrorSelected(null); setMirrorEditing({ type: "deck", deck, isNew: true });
+              }}><Layers3 size={16} /><span>{entry.name}</span><ArrowRight size={15} /></button>
+            ))}
+            {!data.entries.some((entry) => entry.kind === "deck") && <p className="detail-empty">일반 덱 기록이 없습니다. 새 거울던전 기록으로 편성을 만들 수 있습니다.</p>}
+          </div>
+        </Modal>
       )}
       {backup && (
         <Backup
@@ -1968,6 +2112,7 @@ export default function App() {
               setBackup(false);
               setSelected(null);
               setEditing(null);
+              setMirrorEditing(null); setMirrorSelected(null); setMirrorCopy(false);
               setMirrorRevision((old) => old + 1);
             }
           }}
@@ -1994,6 +2139,8 @@ export default function App() {
               아래에서 티어를 바꾸거나, 기록 수정에서 모든 티어를 한 번에
               입력하세요. 티어는 S, A, B, C, D와 미평가로 구분합니다.
             </p>
+            <p className="prose">거울던전은 왼쪽 전용 메뉴에서 덱·인격·E.G.O별로 평가합니다.
+              거울던전의 편성, 티어, 설명, 추천 E.G.O는 전용 편집 창에서 저장합니다.</p>
           </div>
           <div className="detail-section">
             <h3 className="detail-section-title">03. 기록을 연결하기</h3>

@@ -7,10 +7,10 @@ import "./deck-formation.css";
 export interface DeckFormationEditorProps {
   memberIds: string[];
   entries: LibraryEntry[];
+  maxMembers?: number;
   onChange: (ids: string[]) => void;
 }
 
-const MAX_FORMATION_SIZE = 7;
 const identityName = (entry: LibraryEntry) =>
   getCatalogRecord(entry.id) ? `${entry.name} ${entry.sinner}` : entry.name;
 
@@ -38,6 +38,7 @@ function FormationArt({ entry }: { entry: LibraryEntry | undefined }) {
 export default function DeckFormationEditor({
   memberIds,
   entries,
+  maxMembers = 7,
   onChange,
 }: DeckFormationEditorProps) {
   const fieldId = useId();
@@ -56,8 +57,8 @@ export default function DeckFormationEditor({
     const searchable = `${entry.name} ${entry.sinner} ${entry.tags.join(" ")}`.toLocaleLowerCase();
     return searchTokens.every((token) => searchable.includes(token));
   });
-  const isFull = memberIds.length >= MAX_FORMATION_SIZE;
-  const formationSize = Math.max(MAX_FORMATION_SIZE, memberIds.length);
+  const isFull = memberIds.length >= maxMembers;
+  const formationSize = Math.max(maxMembers, memberIds.length);
 
   const remove = (id: string) => {
     const entry = entriesById.get(id);
@@ -86,16 +87,16 @@ export default function DeckFormationEditor({
           편성 인격 연결
         </span>
         <span className="deck-formation-count">
-          {memberIds.length} / {MAX_FORMATION_SIZE}명
+          {memberIds.length} / {maxMembers}명
         </span>
       </div>
       <p className="field-help" id={`${fieldId}-help`}>
-        1~7번 편성 순서로 저장됩니다. 1번 인격의 이미지가 덱 표지가 됩니다.
+        1~{maxMembers}번 편성 순서로 저장됩니다. 1번 인격의 이미지가 덱 표지가 됩니다.
         화살표 버튼으로 순서를 바꾸세요.
       </p>
-      {memberIds.length > MAX_FORMATION_SIZE && (
+      {memberIds.length > maxMembers && (
         <p className="deck-formation-notice" role="status">
-          기존에 저장한 {memberIds.length}명의 편성을 유지했습니다. 새 인격을 추가하려면 7명 미만으로 줄여 주세요.
+          기존에 저장한 {memberIds.length}명의 편성을 유지했습니다. 새 인격을 추가하려면 {maxMembers}명 미만으로 줄여 주세요.
         </p>
       )}
 
@@ -116,7 +117,7 @@ export default function DeckFormationEditor({
                 <strong>{position + 1}번 편성</strong>
                 {position === 0 ? (
                   <span className="deck-formation-cover-label">덱 표지</span>
-                ) : position >= MAX_FORMATION_SIZE ? (
+                ) : position >= maxMembers ? (
                   <span className="deck-formation-legacy-label">기존 추가 편성</span>
                 ) : null}
               </div>
@@ -192,7 +193,7 @@ export default function DeckFormationEditor({
       </div>
       <p className="field-help" id={`${fieldId}-limit`}>
         {isFull
-          ? "최대 7명까지 추가할 수 있습니다. 선택을 해제하면 다른 인격을 추가할 수 있습니다."
+          ? `최대 ${maxMembers}명까지 추가할 수 있습니다. 선택을 해제하면 다른 인격을 추가할 수 있습니다.`
           : "인격을 선택하면 마지막 순서에 추가됩니다. 검색해도 편성은 유지됩니다."}
       </p>
       <div className="deck-formation-options" aria-label="편성할 인격 선택">
@@ -215,7 +216,7 @@ export default function DeckFormationEditor({
                 onChange={(event) => {
                   if (!event.target.checked) {
                     remove(entry.id);
-                  } else if (!selectedIds.has(entry.id) && memberIds.length < MAX_FORMATION_SIZE) {
+                  } else if (!selectedIds.has(entry.id) && memberIds.length < maxMembers) {
                     onChange([...memberIds, entry.id]);
                     setAnnouncement(`${identityName(entry)}이 ${memberIds.length + 1}번 편성에 추가되었습니다.`);
                   }

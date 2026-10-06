@@ -11,6 +11,7 @@ import {
   loadLibrary,
   matchesDeckCategory,
   mergeCatalog,
+  migrateMirrorArchive,
   parseLibrary,
   resetCatalogEntry,
   saveLibrary,
@@ -187,7 +188,7 @@ test('saving and reloading preserve Korean notes, content ratings, and cross lin
   data.entries[0].tiers.railway6 = 'D';
   saveLibrary(data, storage);
   assert.ok(values.has(STORAGE_KEY));
-  assert.deepEqual(loadLibrary(storage), data);
+  assert.deepEqual(loadLibrary(storage), migrateMirrorArchive(data));
   assert.deepEqual(parseLibrary(exportLibrary(data)), data);
 });
 
