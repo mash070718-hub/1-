@@ -3,8 +3,8 @@
   "entrypoint": "index.html",
   "language": "ko",
   "artifact": {
-    "bytes": 8920944,
-    "sha256": "44d8b6afbab6ecd61d05bf4c5477fd6696842c4d5e80af1bc60612698ed64550",
+    "bytes": 8960772,
+    "sha256": "a85d90b39324618efa360557cb0bc4fa348214f8bae7be5e0cadb25e27ea4b32",
     "embeddedArtworks": 305,
     "inlineScripts": 1
   },
@@ -37,6 +37,18 @@
       "mirror",
       "story"
     ],
-    "gameTagPresets": 52
+    "gameTagPresets": 52,
+    "mirrorDungeon": {
+      "page": "#mirror-dungeon",
+      "recordScope": "per deck",
+      "floors": 15,
+      "startingGifts": true,
+      "identitySkillCounts": [
+        "skill1",
+        "skill2",
+        "skill3"
+      ],
+      "preserveRemovedMemberRecommendations": true
+    }
   }
 }

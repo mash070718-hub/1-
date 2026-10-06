@@ -43,6 +43,27 @@ export const SINNERS = [
 export const AFFINITIES = ['분노', '색욕', '나태', '탐식', '우울', '오만', '질투'];
 export const STORAGE_KEY = 'library-of-limbus:v1';
 
+export interface MirrorFloor {
+  floor: number;
+  themePack: string;
+  notes: string;
+}
+
+export interface MirrorSkillChange {
+  identityId: string;
+  skill1: number | null;
+  skill2: number | null;
+  skill3: number | null;
+  notes: string;
+}
+
+export interface MirrorPlan {
+  startingGifts: string;
+  startingGiftNotes: string;
+  floors: MirrorFloor[];
+  skillChanges: MirrorSkillChange[];
+}
+
 export interface LibraryEntry {
   id: string;
   kind: Kind;
@@ -60,6 +81,7 @@ export interface LibraryEntry {
   /** Member array order is the saved formation order; legacy large decks stay intact. */
   memberIds: string[];
   contentIds: Content[];
+  mirrorPlan: MirrorPlan | null;
   formationCode: string;
   tiers: Record<Content, Tier>;
   createdAt: string;
@@ -79,9 +101,21 @@ const ENTRY_KEYS = [
   'id', 'kind', 'name', 'sinner', 'subtitle', 'affinity', 'tags',
   'description', 'strengths', 'weaknesses', 'operation',
   'recommendedEgoIds', 'deckIds', 'memberIds', 'formationCode',
-  'contentIds', 'tiers', 'createdAt', 'updatedAt',
+  'contentIds', 'mirrorPlan', 'tiers', 'createdAt', 'updatedAt',
 ];
-const LEGACY_ENTRY_KEYS = ENTRY_KEYS.filter((key) => key !== 'contentIds');
+
+export function createMirrorPlan(): MirrorPlan {
+  return {
+    startingGifts: '',
+    startingGiftNotes: '',
+    floors: Array.from({ length: 15 }, (_, index) => ({ floor: index + 1, themePack: '', notes: '' })),
+    skillChanges: [],
+  };
+}
+
+export function isMirrorDeck(entry: LibraryEntry): boolean {
+  return entry.kind === 'deck' && (entry.contentIds.includes('mirror') || entry.mirrorPlan !== null);
+}
 
 export function matchesDeckCategory(entry: LibraryEntry, category: DeckCategory): boolean {
   return entry.kind === 'deck' && DECK_CATEGORIES.some(({ id, contents }) =>
@@ -112,6 +146,7 @@ export function createEntry(kind: Kind): LibraryEntry {
     deckIds: [],
     memberIds: [],
     contentIds: [],
+    mirrorPlan: null,
     formationCode: '',
     tiers: emptyTiers(),
     createdAt: now,
@@ -143,6 +178,11 @@ function cloneEntry(entry: LibraryEntry): LibraryEntry {
     deckIds: [...entry.deckIds],
     memberIds: [...entry.memberIds],
     contentIds: [...entry.contentIds],
+    mirrorPlan: entry.mirrorPlan == null ? null : {
+      ...entry.mirrorPlan,
+      floors: entry.mirrorPlan.floors.map((floor) => ({ ...floor })),
+      skillChanges: entry.mirrorPlan.skillChanges.map((change) => ({ ...change })),
+    },
     tiers: { ...entry.tiers },
   };
 }
@@ -163,7 +203,9 @@ export function resetCatalogEntry(entry: LibraryEntry): LibraryEntry {
 function matchesDemo(entry: LibraryEntry, example: LibraryEntry): boolean {
   return ENTRY_KEYS.every((key) => key === 'tiers'
     ? CONTENTS.every(({ id }) => entry.tiers[id] === example.tiers[id])
-    : JSON.stringify(entry[key as keyof LibraryEntry]) === JSON.stringify(example[key as keyof LibraryEntry]));
+    : key === 'mirrorPlan'
+      ? (entry.mirrorPlan ?? null) === example.mirrorPlan
+      : JSON.stringify(entry[key as keyof LibraryEntry]) === JSON.stringify(example[key as keyof LibraryEntry]));
 }
 
 /**
@@ -182,7 +224,10 @@ export function mergeCatalog(data: LibraryData): LibraryData {
   while (pending.length) {
     const entry = original.get(pending.pop()!);
     if (!entry) continue;
-    for (const id of [...entry.recommendedEgoIds, ...entry.deckIds, ...entry.memberIds]) {
+    for (const id of [
+      ...entry.recommendedEgoIds, ...entry.deckIds, ...entry.memberIds,
+      ...(entry.mirrorPlan?.skillChanges.map(({ identityId }) => identityId) ?? []),
+    ]) {
       if (!keep.has(id) && original.has(id)) {
         keep.add(id);
         pending.push(id);
@@ -316,6 +361,57 @@ function requireTimestamp(value: unknown, path: string): void {
   }
 }
 
+function requireMirrorPlan(value: unknown, path: string): MirrorPlan {
+  const plan = requireObject(value, path);
+  requireKeys(plan, ['startingGifts', 'startingGiftNotes', 'floors', 'skillChanges'], path);
+  requireString(plan.startingGifts, `${path}.startingGifts`, 5_000);
+  requireString(plan.startingGiftNotes, `${path}.startingGiftNotes`, MAX_NOTE_LENGTH);
+  if (!Array.isArray(plan.floors) || plan.floors.length !== 15) {
+    invalid(`${path}.floors`, '1층부터 15층까지 모두 기록한 배열이 필요합니다.');
+  }
+  const seenFloors = new Set<number>();
+  const floors = plan.floors.map((value, index): MirrorFloor => {
+    const floorPath = `${path}.floors[${index}]`;
+    const floor = requireObject(value, floorPath);
+    requireKeys(floor, ['floor', 'themePack', 'notes'], floorPath);
+    if (typeof floor.floor !== 'number' || !Number.isInteger(floor.floor) || floor.floor < 1 || floor.floor > 15) {
+      invalid(`${floorPath}.floor`, '층 번호는 1~15의 정수여야 합니다.');
+    }
+    if (seenFloors.has(floor.floor)) invalid(`${path}.floors`, '중복된 층 번호는 허용되지 않습니다.');
+    seenFloors.add(floor.floor);
+    requireString(floor.themePack, `${floorPath}.themePack`, 2_000);
+    requireString(floor.notes, `${floorPath}.notes`, MAX_NOTE_LENGTH);
+    return { floor: floor.floor, themePack: floor.themePack, notes: floor.notes };
+  }).sort((first, second) => first.floor - second.floor);
+  if (!Array.isArray(plan.skillChanges) || plan.skillChanges.length > MAX_ENTRIES) {
+    invalid(`${path}.skillChanges`, `최대 ${MAX_ENTRIES.toLocaleString('ko-KR')}개 기록의 배열이 필요합니다.`);
+  }
+  const seenIdentities = new Set<string>();
+  const skillChanges = plan.skillChanges.map((value, index): MirrorSkillChange => {
+    const skillPath = `${path}.skillChanges[${index}]`;
+    const change = requireObject(value, skillPath);
+    requireKeys(change, ['identityId', 'skill1', 'skill2', 'skill3', 'notes'], skillPath);
+    requireId(change.identityId, `${skillPath}.identityId`);
+    if (seenIdentities.has(change.identityId)) invalid(`${path}.skillChanges`, '중복된 인격 기록은 허용되지 않습니다.');
+    seenIdentities.add(change.identityId);
+    for (const skill of ['skill1', 'skill2', 'skill3']) {
+      const count = change[skill];
+      if (count !== null && (typeof count !== 'number' || !Number.isInteger(count) || count < 0 || count > 99)) {
+        invalid(`${skillPath}.${skill}`, '스킬 수는 0~99의 정수 또는 미지정 값이어야 합니다.');
+      }
+    }
+    requireString(change.notes, `${skillPath}.notes`, MAX_NOTE_LENGTH);
+    return {
+      identityId: change.identityId,
+      skill1: change.skill1 as number | null,
+      skill2: change.skill2 as number | null,
+      skill3: change.skill3 as number | null,
+      notes: change.notes,
+    };
+  });
+  return { startingGifts: plan.startingGifts, startingGiftNotes: plan.startingGiftNotes, floors, skillChanges };
+}
+
 /** Validate the entire import before replacing any locally stored records. */
 export function parseLibrary(json: string): LibraryData {
   if (typeof json !== 'string' || json.length > MAX_JSON_LENGTH) invalid('파일', '파일 크기가 허용 범위를 넘었습니다.');
@@ -335,7 +431,9 @@ export function parseLibrary(json: string): LibraryData {
     const path = `entries[${index}]`;
     const entry = requireObject(value, path);
     const hasContentIds = Object.hasOwn(entry, 'contentIds');
-    requireKeys(entry, hasContentIds ? ENTRY_KEYS : LEGACY_ENTRY_KEYS, path);
+    const hasMirrorPlan = Object.hasOwn(entry, 'mirrorPlan');
+    requireKeys(entry, ENTRY_KEYS.filter((key) =>
+      (key !== 'contentIds' || hasContentIds) && (key !== 'mirrorPlan' || hasMirrorPlan)), path);
     requireId(entry.id, `${path}.id`);
     if (!KINDS.some(({ id }) => id === entry.kind)) invalid(`${path}.kind`, '인격, E.G.O., 덱 중 하나여야 합니다.');
     requireString(entry.name, `${path}.name`, 200);
@@ -371,9 +469,14 @@ export function parseLibrary(json: string): LibraryData {
         ? CONTENTS.filter(({ id }) => tiers[id] !== 'unrated').map(({ id }) => id)
         : [];
     }
+    let mirrorPlan: MirrorPlan | null = null;
+    if (hasMirrorPlan && entry.mirrorPlan !== null) {
+      if (entry.kind !== 'deck') invalid(`${path}.mirrorPlan`, '거울던전 운영 계획은 덱에만 기록할 수 있습니다.');
+      mirrorPlan = requireMirrorPlan(entry.mirrorPlan, `${path}.mirrorPlan`);
+    }
     requireTimestamp(entry.createdAt, `${path}.createdAt`);
     requireTimestamp(entry.updatedAt, `${path}.updatedAt`);
-    return { ...entry, contentIds } as unknown as LibraryEntry;
+    return { ...entry, contentIds, mirrorPlan } as unknown as LibraryEntry;
   });
   const byId = new Map(entries.map((entry) => [entry.id, entry]));
   if (byId.size !== entries.length) invalid('entries', '중복된 기록 ID가 있습니다.');
@@ -388,6 +491,12 @@ export function parseLibrary(json: string): LibraryData {
         if (id === entry.id) invalid(`entries[${index}].${field}`, '기록은 자신을 연결할 수 없습니다.');
         const target = byId.get(id);
         if (!target || target.kind !== kind) invalid(`entries[${index}].${field}`, '연결한 기록이 없거나 종류가 올바르지 않습니다.');
+      }
+    }
+    for (const [skillIndex, change] of (entry.mirrorPlan?.skillChanges ?? []).entries()) {
+      const target = byId.get(change.identityId);
+      if (!target || target.kind !== 'identity') {
+        invalid(`entries[${index}].mirrorPlan.skillChanges[${skillIndex}].identityId`, '연결한 인격 기록이 없거나 종류가 올바르지 않습니다.');
       }
     }
   });

@@ -38,11 +38,13 @@ import {
   TIERS,
   createCatalogLibrary,
   createEntry,
+  createMirrorPlan,
   exportLibrary,
   loadLibrary,
   parseLibrary,
   mergeCatalog,
   matchesDeckCategory,
+  isMirrorDeck,
   resetCatalogEntry,
   saveLibrary,
   type Content,
@@ -55,6 +57,9 @@ import {
 import { CATALOG, CATALOG_METADATA, getCatalogRecord } from "./lib/catalog";
 import DeckFormationEditor from "./components/DeckFormationEditor";
 import { TagPicker } from "./components/TagPicker";
+import MirrorDungeonPage from "./components/MirrorDungeonPage";
+import MirrorPlanEditor from "./components/MirrorPlanEditor";
+import MirrorPlanDetails from "./components/MirrorPlanDetails";
 
 const kindIcon = { identity: BookMarked, ego: Sparkles, deck: Layers3 };
 const kindLabel = { identity: "인격", ego: "E.G.O", deck: "덱" };
@@ -70,6 +75,7 @@ const hasNotes = (entry: LibraryEntry) =>
   );
 const displayName = (entry: LibraryEntry) =>
   getCatalogRecord(entry.id) ? `${entry.name} ${entry.sinner}` : entry.name;
+const mirrorHash = () => window.location.hash === "#mirror-dungeon";
 
 function EntryArt({
   entry,
@@ -458,6 +464,9 @@ function Detail({
           </div>
         </div>
       </div>
+      {isMirrorDeck(entry) && (
+        <MirrorPlanDetails plan={entry.mirrorPlan ?? createMirrorPlan()} memberIds={entry.memberIds} entries={entries} />
+      )}
       <div className="detail-tier-strip">
         {CONTENTS.map((item) => (
           <div
@@ -635,12 +644,14 @@ function Editor({
   entry,
   entries,
   isNew,
+  mirrorMode = false,
   onClose,
   onSave,
 }: {
   entry: LibraryEntry;
   entries: LibraryEntry[];
   isNew: boolean;
+  mirrorMode?: boolean;
   onClose: () => void;
   onSave: (entry: LibraryEntry) => void;
 }) {
@@ -726,7 +737,7 @@ function Editor({
   );
   return (
     <Modal
-      title={`${isNew ? "새" : "수정할"} ${kindLabel[entry.kind]} 기록`}
+      title={`${isNew ? "새" : "수정할"} ${mirrorMode ? "거울던전" : kindLabel[entry.kind]} 기록`}
       eyebrow="WRITE YOUR OWN CHAPTER"
       onClose={close}
       wide
@@ -845,6 +856,12 @@ function Editor({
           <div className="form-field field-wide">
             {entry.kind === "deck" && (
               <DeckFormationEditor memberIds={draft.memberIds} entries={entries} onChange={(ids) => set("memberIds", ids)} />
+            )}
+            {entry.kind === "deck" && (mirrorMode || isMirrorDeck(draft)) && (
+              <MirrorPlanEditor value={draft.mirrorPlan ?? createMirrorPlan()}
+                memberIds={draft.memberIds} entries={entries}
+                onChange={(plan) => setDraft((old) => ({ ...old, mirrorPlan: plan,
+                  contentIds: old.contentIds.includes("mirror") ? old.contentIds : [...old.contentIds, "mirror"] }))} />
             )}
             <TagPicker value={draft.tags} onChange={(tags) => set("tags", tags)} />
           </div>
@@ -1100,8 +1117,10 @@ export default function App() {
   const [recoveryRequired, setRecoveryRequired] = useState(
     Boolean(initial.error),
   );
-  const [kind, setKind] = useState<Kind>("identity");
-  const [content, setContent] = useState<Content>("story");
+  const [section, setSection] = useState<"library" | "mirror">(() => mirrorHash() ? "mirror" : "library");
+  const [mirrorRevision, setMirrorRevision] = useState(0);
+  const [kind, setKind] = useState<Kind>(() => mirrorHash() ? "deck" : "identity");
+  const [content, setContent] = useState<Content>(() => mirrorHash() ? "mirror" : "story");
   const [view, setView] = useState<"tiers" | "all">("all");
   const [deckCategory, setDeckCategory] = useState<DeckCategory | null>(null);
   const [railwayRoute, setRailwayRoute] = useState<Content | "all">("all");
@@ -1125,6 +1144,24 @@ export default function App() {
   const [saveState, setSaveState] = useState<"initial" | "saved" | "error">(
     initial.error ? "error" : "initial",
   );
+  useEffect(() => {
+    const handleHash = () => {
+      const mirror = mirrorHash();
+      setSection(mirror ? "mirror" : "library");
+      if (mirror) { setKind("deck"); setContent("mirror"); setDeckCategory(null); }
+    };
+    window.addEventListener("hashchange", handleHash);
+    return () => window.removeEventListener("hashchange", handleHash);
+  }, []);
+  const showLibrary = () => {
+    setSection("library");
+    if (mirrorHash()) history.replaceState(null, "", location.pathname + location.search);
+  };
+  const showMirror = () => {
+    setSection("mirror"); setKind("deck"); setContent("mirror"); setDeckCategory(null);
+    setSelected(null); setEditing(null);
+    if (!mirrorHash()) window.location.hash = "mirror-dungeon";
+  };
   useEffect(() => {
     if (!toast) return;
     const timer = setTimeout(() => setToast(""), 4500);
@@ -1192,6 +1229,9 @@ export default function App() {
       recommendedEgoIds: remap(item.recommendedEgoIds),
       deckIds: remap(item.deckIds),
       memberIds: remap(item.memberIds),
+      mirrorPlan: item.mirrorPlan ? { ...item.mirrorPlan,
+        skillChanges: item.mirrorPlan.skillChanges.map((change) => ({ ...change,
+          identityId: change.identityId === entry.id ? saved.id : change.identityId })) } : null,
     }));
     if (syncMembership && saved.kind === "deck")
       entries = entries.map((item) =>
@@ -1242,6 +1282,7 @@ export default function App() {
       setQuery(entry.name);
       setSinner(entry.kind === "deck" ? "전체" : entry.sinner || "전체");
       setFilterTags([]);
+      if (section === "mirror") setMirrorRevision((old) => old + 1);
       if (entry.kind !== "deck" ||
           (deckCategory && !matchesDeckCategory(entry, deckCategory)) ||
           (deckCategory === "railway" && railwayRoute !== "all" && !entry.contentIds.includes(railwayRoute))) {
@@ -1265,6 +1306,8 @@ export default function App() {
           ),
           deckIds: entry.deckIds.filter((id) => !deleted.includes(id)),
           memberIds: entry.memberIds.filter((id) => !deleted.includes(id)),
+          mirrorPlan: entry.mirrorPlan ? { ...entry.mirrorPlan,
+            skillChanges: entry.mirrorPlan.skillChanges.filter((change) => !deleted.includes(change.identityId)) } : null,
         })),
     };
     if (persist(next, message)) {
@@ -1311,6 +1354,7 @@ export default function App() {
   const hasDemo = data.entries.some((entry) => entry.id.startsWith("demo-"));
   const rated = filtered.filter(isRated).length;
   const selectKind = (next: Kind) => {
+    showLibrary();
     setKind(next);
     setQuery("");
     setRecordFilter("all");
@@ -1319,6 +1363,8 @@ export default function App() {
     setFilterTags([]);
   };
   const selectCategory = (next: DeckCategory) => {
+    if (next === "mirror") { showMirror(); return; }
+    showLibrary();
     const selectedCategory = DECK_CATEGORIES.find((item) => item.id === next)!;
     setDeckCategory(next);
     setKind("deck");
@@ -1339,6 +1385,13 @@ export default function App() {
         : [...category.contents];
     }
     return entry;
+  };
+  const newMirrorRecord = () => {
+    const entry = createEntry("deck");
+    entry.contentIds = ["mirror"];
+    entry.mirrorPlan = createMirrorPlan();
+    setSelected(null);
+    setEditing({ entry, isNew: true });
   };
   return (
     <div className="app-shell">
@@ -1366,16 +1419,16 @@ export default function App() {
         <div className="sidebar-section-label">MY LIBRARY</div>
         <nav aria-label="도서관 메뉴">
           <button
-            className={`nav-item ${view === "tiers" && !deckCategory ? "active" : ""}`}
-            onClick={() => { setView("tiers"); setDeckCategory(null); setRailwayRoute("all"); }}
+            className={`nav-item ${section === "library" && view === "tiers" && !deckCategory ? "active" : ""}`}
+            onClick={() => { showLibrary(); setView("tiers"); setDeckCategory(null); setRailwayRoute("all"); }}
           >
             <Library size={18} className="nav-icon" />
             <span>티어리스트</span>
             <ChevronRight size={14} />
           </button>
           <button
-            className={`nav-item ${view === "all" && !deckCategory ? "active" : ""}`}
-            onClick={() => { setView("all"); setDeckCategory(null); setRailwayRoute("all"); }}
+            className={`nav-item ${section === "library" && view === "all" && !deckCategory ? "active" : ""}`}
+            onClick={() => { showLibrary(); setView("all"); setDeckCategory(null); setRailwayRoute("all"); }}
           >
             <FileText size={18} className="nav-icon" />
             <span>전체 기록</span>
@@ -1388,7 +1441,7 @@ export default function App() {
             const Icon = kindIcon[item.id];
             return (
               <button
-                className={`nav-item ${kind === item.id ? "collection-active" : ""}`}
+                className={`nav-item ${section === "library" && kind === item.id ? "collection-active" : ""}`}
                 key={item.id}
                 onClick={() => selectKind(item.id)}
               >
@@ -1406,7 +1459,7 @@ export default function App() {
         </nav>
         <div className="sidebar-section-label">CONTENTS</div>
         <nav className="deck-content-nav" aria-label="콘텐츠별 덱">
-          {DECK_CATEGORIES.map((item) => (
+          {DECK_CATEGORIES.filter((item) => item.id !== "mirror").map((item) => (
             <button
               key={item.id}
               className={`nav-item deck-content-link ${deckCategory === item.id ? "active" : ""}`}
@@ -1419,6 +1472,16 @@ export default function App() {
               <span className="nav-count">{data.entries.filter((entry) => matchesDeckCategory(entry, item.id)).length}</span>
             </button>
           ))}
+        </nav>
+        <div className="sidebar-section-label">MIRROR DUNGEON</div>
+        <nav className="deck-content-nav" aria-label="거울던전 메뉴">
+          <button className={`nav-item ${section === "mirror" ? "active" : ""}`}
+            aria-label="거울던전" aria-current={section === "mirror" ? "page" : undefined}
+            onClick={showMirror}>
+            <Layers3 size={17} className="nav-icon" />
+            <span>거울던전</span>
+            <span className="nav-count">{data.entries.filter(isMirrorDeck).length}</span>
+          </button>
         </nav>
         <div className="sidebar-note">
           <Feather size={23} />
@@ -1453,7 +1516,7 @@ export default function App() {
             <span className="mobile-wordmark">Library of Limbus</span>
             <span>나의 도서관</span>
             <ChevronRight size={13} />
-            <strong>{category ? `${category.label} 덱` : view === "tiers" ? "티어리스트" : "전체 기록"}</strong>
+            <strong>{section === "mirror" ? "거울던전 공략" : category ? `${category.label} 덱` : view === "tiers" ? "티어리스트" : "전체 기록"}</strong>
           </div>
           <div className="topbar-actions">
             <button
@@ -1464,7 +1527,7 @@ export default function App() {
             >
               <ArrowDownToLine size={19} />
             </button>
-            <button
+            {section !== "mirror" && <button
               className="primary-button"
               onClick={() => {
                 setSelected(null);
@@ -1473,7 +1536,7 @@ export default function App() {
               }}
             >
               <Plus size={17} />새 기록
-            </button>
+            </button>}
           </div>
         </header>
         {storageError && (
@@ -1487,6 +1550,14 @@ export default function App() {
             </button>
           </div>
         )}
+        {section === "mirror" ? (
+          <MirrorDungeonPage key={mirrorRevision} entries={data.entries.map((entry) => withMembership(entry, data.entries))}
+            onNew={newMirrorRecord} onOpen={setSelected}
+            onEdit={(id) => {
+              const entry = data.entries.find((item) => item.id === id);
+              if (entry) { setSelected(id); setEditing({ entry: withMembership(entry, data.entries), isNew: false }); }
+            }} />
+        ) : <>
         <section className="hero">
           <div className="hero-copy">
             <p className="eyebrow">
@@ -1848,6 +1919,7 @@ export default function App() {
               : "기본 도감은 모두 미평가로 시작합니다. 당신의 경험이 이 도서관의 기준입니다."}
           </p>
         </section>
+        </>}
         <footer className="library-footer">
           <span>
             LIBRARY OF LIMBUS<span> · </span>나의 여정을 위한 기록
@@ -1881,6 +1953,7 @@ export default function App() {
           entry={editing.entry}
           entries={data.entries}
           isNew={editing.isNew}
+          mirrorMode={section === "mirror" && isMirrorDeck(editing.entry)}
           onClose={() => setEditing(null)}
           onSave={saveEntry}
         />
@@ -1895,6 +1968,7 @@ export default function App() {
               setBackup(false);
               setSelected(null);
               setEditing(null);
+              setMirrorRevision((old) => old + 1);
             }
           }}
         />

@@ -10,7 +10,7 @@ const catalog = JSON.parse(await readFile(new URL('../src/data/catalog.json', im
 const storageKey = 'library-of-limbus:v1';
 const sinners = ['이상', '파우스트', '돈키호테', '료슈', '뫼르소', '홍루', '히스클리프', '이스마엘', '로쟈', '싱클레어', '오티스', '그레고르'];
 const identityName = '테스트 인격';
-const identityCard = (page: Page, name = identityName) => page.getByRole('button', { name: `${name} 상세 보기`, exact: true });
+const identityCard = (page: Page, name = identityName) => page.getByRole('button', { name: `${name} 상세 보기`, exact: true }).or(page.getByRole('button', { name: `${name} 거울던전 상세 보기`, exact: true }));
 const catalogCard = (page: Page, record: CatalogRecord) => page.getByRole('button', { name: `${record.name} ${record.sinner} 상세 보기`, exact: true });
 const search = (page: Page) => page.getByPlaceholder('이름, 수감자, 태그로 검색');
 const kindTab = (page: Page, kind: 'identity' | 'ego' | 'deck') => page.getByRole('tab', {
@@ -20,18 +20,18 @@ const kindTab = (page: Page, kind: 'identity' | 'ego' | 'deck') => page.getByRol
 function fixtureEntry(kind: LibraryEntry['kind'], id: string, name: string, changes: Partial<LibraryEntry> = {}): LibraryEntry {
   return {
     id, kind, name, sinner: kind === 'deck' ? '' : '이상', subtitle: '', affinity: '', tags: [],
-    description: '', strengths: '', weaknesses: '', operation: '', recommendedEgoIds: [], deckIds: [], memberIds: [], contentIds: [], formationCode: '',
+    description: '', strengths: '', weaknesses: '', operation: '', recommendedEgoIds: [], deckIds: [], memberIds: [], contentIds: [], mirrorPlan: null, formationCode: '',
     tiers: { story: 'unrated', luxcavation: 'unrated', mirror: 'unrated', simulation: 'unrated', railway1: 'unrated', railway2: 'unrated', railway6: 'unrated' },
     createdAt: '2026-10-01T00:00:00.000Z', updatedAt: '2026-10-01T00:00:00.000Z', ...changes,
   };
 }
 
-function legacyEntry(entry: LibraryEntry): Omit<LibraryEntry, 'contentIds'> {
-  const { contentIds: _contentIds, ...legacy } = entry;
+function legacyEntry(entry: LibraryEntry): Omit<LibraryEntry, 'contentIds' | 'mirrorPlan'> {
+  const { contentIds: _contentIds, mirrorPlan: _mirrorPlan, ...legacy } = entry;
   return legacy;
 }
 
-async function setNotebook(page: Page, entries: (LibraryEntry | Omit<LibraryEntry, 'contentIds'>)[]) {
+async function setNotebook(page: Page, entries: (LibraryEntry | Omit<LibraryEntry, 'contentIds' | 'mirrorPlan'>)[]) {
   await page.evaluate(({ key, data }) => localStorage.setItem(key, JSON.stringify(data)), { key: storageKey, data: { version: 1, entries } });
   await page.reload();
 }
@@ -531,8 +531,10 @@ test('덱의 사용 콘텐츠를 선택하면 콘텐츠 분류와 철도 호선�
     ['스토리', ['스토리 분류 덱', '중복 콘텐츠 덱']],
     ['거울굴절철도', ['1호선 분류 덱', '2호선 분류 덱', '6호선 분류 덱', '중복 콘텐츠 덱']],
   ] as [string, string[]][]) {
-    await nav.getByRole('button', { name: category, exact: true }).click();
-    await expect(kindTab(page, 'deck')).toHaveAttribute('aria-selected', 'true');
+    const categoryNav = category === '거울던전' ? page.getByRole('navigation', { name: '거울던전 메뉴', exact: true }) : nav;
+    await categoryNav.getByRole('button', { name: category, exact: true }).click();
+    if (category === '거울던전') await expect(page.getByRole('heading', { name: '거울던전', exact: true })).toBeVisible();
+    else await expect(kindTab(page, 'deck')).toHaveAttribute('aria-selected', 'true');
     await expect(page.getByRole('button', { name: / 상세 보기$/ })).toHaveCount(expectedNames.length);
     for (const name of expectedNames) await expect(identityCard(page, name)).toBeVisible();
   }
