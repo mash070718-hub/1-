@@ -1,0 +1,5476 @@
+{
+  "metadata": {
+    "verifiedAt": "2026-10-06T12:22:11.485757Z",
+    "asOf": "2026-10-06",
+    "sourceUpdatedAt": "2026-10-06T12:08:41Z",
+    "sourceCommit": "045dbb7679792fc4e5397fa53ecaf7e7ca0405b7",
+    "localizationCommit": "1924dfa59154736cd07a1e7d27ed7dd2e45f2391",
+    "latestReleaseDate": "2026-10-01",
+    "gameVersion": "1.116.0",
+    "counts": {
+      "identity": 189,
+      "ego": 116
+    },
+    "coverageNote": "공개 게임 데이터 미러의 출시 목록을 공식 한국어 로컬라이징 및 이미지와 대조했습니다. 미출시·테스트·적·연출 전용 기록은 제외하며, 평가는 사용자가 직접 작성합니다.",
+    "sources": [
+      {
+        "label": "공식 게임 한국어 로컬라이징 공개 미러",
+        "url": "https://github.com/x1bViolet/Limbus-Localization-Files/tree/1924dfa59154736cd07a1e7d27ed7dd2e45f2391"
+      },
+      {
+        "label": "출시 목록 및 공식 게임 이미지 공개 미러",
+        "url": "https://github.com/eldritchtools/limbus-assets/tree/045dbb7679792fc4e5397fa53ecaf7e7ca0405b7"
+      }
+    ],
+    "excludedUpcomingIds": [
+      "11016"
+    ],
+    "sinnerCounts": [
+      {
+        "sinner": "이상",
+        "identity": 16,
+        "ego": 9
+      },
+      {
+        "sinner": "파우스트",
+        "identity": 16,
+        "ego": 11
+      },
+      {
+        "sinner": "돈키호테",
+        "identity": 15,
+        "ego": 10
+      },
+      {
+        "sinner": "료슈",
+        "identity": 16,
+        "ego": 9
+      },
+      {
+        "sinner": "뫼르소",
+        "identity": 15,
+        "ego": 10
+      },
+      {
+        "sinner": "홍루",
+        "identity": 16,
+        "ego": 10
+      },
+      {
+        "sinner": "히스클리프",
+        "identity": 16,
+        "ego": 9
+      },
+      {
+        "sinner": "이스마엘",
+        "identity": 16,
+        "ego": 10
+      },
+      {
+        "sinner": "로쟈",
+        "identity": 17,
+        "ego": 10
+      },
+      {
+        "sinner": "싱클레어",
+        "identity": 15,
+        "ego": 9
+      },
+      {
+        "sinner": "오티스",
+        "identity": 15,
+        "ego": 9
+      },
+      {
+        "sinner": "그레고르",
+        "identity": 16,
+        "ego": 10
+      }
+    ],
+    "copyright": "게임 이미지 및 원문 © Project Moon. 커뮤니티 미러에서 가져온 공식 게임 자료이며 공식 호스팅이 아닙니다."
+  },
+  "entries": [
+    {
+      "id": "catalog-identity-10101",
+      "gameId": "10101",
+      "kind": "identity",
+      "name": "LCB 수감자",
+      "sinner": "이상",
+      "sinnerId": 1,
+      "rarity": "0",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-10101.webp",
+      "thumbnail": "/images/catalog/identity-10101-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10102",
+      "gameId": "10102",
+      "kind": "identity",
+      "name": "남부 세븐 협회 6과",
+      "sinner": "이상",
+      "sinnerId": 1,
+      "rarity": "00",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10102.webp",
+      "thumbnail": "/images/catalog/identity-10102-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10103",
+      "gameId": "10103",
+      "kind": "identity",
+      "name": "검계 살수",
+      "sinner": "이상",
+      "sinnerId": 1,
+      "rarity": "000",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-10103.webp",
+      "thumbnail": "/images/catalog/identity-10103-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10104",
+      "gameId": "10104",
+      "kind": "identity",
+      "name": "개화 E.G.O:: 동백",
+      "sinner": "이상",
+      "sinnerId": 1,
+      "rarity": "000",
+      "releaseDate": "2023-06-15",
+      "season": 2,
+      "tags": [
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-10104.webp",
+      "thumbnail": "/images/catalog/identity-10104-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10105",
+      "gameId": "10105",
+      "kind": "identity",
+      "name": "어금니 사무소 해결사",
+      "sinner": "이상",
+      "sinnerId": 1,
+      "rarity": "00",
+      "releaseDate": "2023-09-20",
+      "season": 2,
+      "tags": [
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10105.webp",
+      "thumbnail": "/images/catalog/identity-10105-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10106",
+      "gameId": "10106",
+      "kind": "identity",
+      "name": "W사 3등급 정리 요원",
+      "sinner": "이상",
+      "sinnerId": 1,
+      "rarity": "000",
+      "releaseDate": "2023-11-09",
+      "season": 0,
+      "tags": [
+        "충전",
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10106.webp",
+      "thumbnail": "/images/catalog/identity-10106-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10107",
+      "gameId": "10107",
+      "kind": "identity",
+      "name": "피쿼드호 일등 항해사",
+      "sinner": "이상",
+      "sinnerId": 1,
+      "rarity": "00",
+      "releaseDate": "2023-12-07",
+      "season": 3,
+      "tags": [
+        "출혈",
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-10107.webp",
+      "thumbnail": "/images/catalog/identity-10107-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10108",
+      "gameId": "10108",
+      "kind": "identity",
+      "name": "남부 디에치 협회 4과",
+      "sinner": "이상",
+      "sinnerId": 1,
+      "rarity": "00",
+      "releaseDate": "2024-01-25",
+      "season": 0,
+      "tags": [
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-10108.webp",
+      "thumbnail": "/images/catalog/identity-10108-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10109",
+      "gameId": "10109",
+      "kind": "identity",
+      "name": "약지 점묘파 스튜던트",
+      "sinner": "이상",
+      "sinnerId": 1,
+      "rarity": "000",
+      "releaseDate": "2024-05-16",
+      "season": 0,
+      "tags": [
+        "출혈"
+      ],
+      "image": "/images/catalog/identity-10109.webp",
+      "thumbnail": "/images/catalog/identity-10109-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10110",
+      "gameId": "10110",
+      "kind": "identity",
+      "name": "로보토미 E.G.O:: 엄숙한 애도",
+      "sinner": "이상",
+      "sinnerId": 1,
+      "rarity": "000",
+      "releaseDate": "2024-09-05",
+      "season": 9104,
+      "tags": [
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-10110.webp",
+      "thumbnail": "/images/catalog/identity-10110-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10111",
+      "gameId": "10111",
+      "kind": "identity",
+      "name": "LCE E.G.O:: 초롱",
+      "sinner": "이상",
+      "sinnerId": 1,
+      "rarity": "00",
+      "releaseDate": "2025-01-23",
+      "season": 5,
+      "tags": [
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10111.webp",
+      "thumbnail": "/images/catalog/identity-10111-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10112",
+      "gameId": "10112",
+      "kind": "identity",
+      "name": "남부 리우 협회 3과",
+      "sinner": "이상",
+      "sinnerId": 1,
+      "rarity": "000",
+      "releaseDate": "2025-02-20",
+      "season": 0,
+      "tags": [
+        "화상"
+      ],
+      "image": "/images/catalog/identity-10112.webp",
+      "thumbnail": "/images/catalog/identity-10112-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10113",
+      "gameId": "10113",
+      "kind": "identity",
+      "name": "N사 E.G.O:: 흉탄",
+      "sinner": "이상",
+      "sinnerId": 1,
+      "rarity": "000",
+      "releaseDate": "2025-07-03",
+      "season": 6,
+      "tags": [
+        "출혈",
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-10113.webp",
+      "thumbnail": "/images/catalog/identity-10113-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10114",
+      "gameId": "10114",
+      "kind": "identity",
+      "name": "흑수 - 오 필두",
+      "sinner": "이상",
+      "sinnerId": 1,
+      "rarity": "000",
+      "releaseDate": "2025-08-28",
+      "season": 6,
+      "tags": [
+        "파열",
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10114.webp",
+      "thumbnail": "/images/catalog/identity-10114-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10115",
+      "gameId": "10115",
+      "kind": "identity",
+      "name": "거미집 검지 아비",
+      "sinner": "이상",
+      "sinnerId": 1,
+      "rarity": "000",
+      "releaseDate": "2026-02-19",
+      "season": 7,
+      "tags": [
+        "호흡",
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-10115.webp",
+      "thumbnail": "/images/catalog/identity-10115-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10116",
+      "gameId": "10116",
+      "kind": "identity",
+      "name": "LCE E.G.O:: 차원찢개",
+      "sinner": "이상",
+      "sinnerId": 1,
+      "rarity": "000",
+      "releaseDate": "2026-07-23",
+      "season": 7,
+      "tags": [
+        "충전",
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10116.webp",
+      "thumbnail": "/images/catalog/identity-10116-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10201",
+      "gameId": "10201",
+      "kind": "identity",
+      "name": "LCB 수감자",
+      "sinner": "파우스트",
+      "sinnerId": 2,
+      "rarity": "0",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [],
+      "image": "/images/catalog/identity-10201.webp",
+      "thumbnail": "/images/catalog/identity-10201-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10202",
+      "gameId": "10202",
+      "kind": "identity",
+      "name": "W사 2등급 정리 요원",
+      "sinner": "파우스트",
+      "sinnerId": 2,
+      "rarity": "00",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "충전"
+      ],
+      "image": "/images/catalog/identity-10202.webp",
+      "thumbnail": "/images/catalog/identity-10202-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10203",
+      "gameId": "10203",
+      "kind": "identity",
+      "name": "살아남은 로보토미 직원",
+      "sinner": "파우스트",
+      "sinnerId": 2,
+      "rarity": "00",
+      "releaseDate": "2023-02-27",
+      "season": 1,
+      "tags": [
+        "호흡",
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10203.webp",
+      "thumbnail": "/images/catalog/identity-10203-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10204",
+      "gameId": "10204",
+      "kind": "identity",
+      "name": "쥐는 자",
+      "sinner": "파우스트",
+      "sinnerId": 2,
+      "rarity": "000",
+      "releaseDate": "2023-03-23",
+      "season": 1,
+      "tags": [
+        "출혈"
+      ],
+      "image": "/images/catalog/identity-10204.webp",
+      "thumbnail": "/images/catalog/identity-10204-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10205",
+      "gameId": "10205",
+      "kind": "identity",
+      "name": "남부 츠바이 협회 4과",
+      "sinner": "파우스트",
+      "sinnerId": 2,
+      "rarity": "00",
+      "releaseDate": "2023-08-10",
+      "season": 0,
+      "tags": [],
+      "image": "/images/catalog/identity-10205.webp",
+      "thumbnail": "/images/catalog/identity-10205-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10206",
+      "gameId": "10206",
+      "kind": "identity",
+      "name": "남부 세븐 협회 4과",
+      "sinner": "파우스트",
+      "sinnerId": 2,
+      "rarity": "000",
+      "releaseDate": "2023-09-07",
+      "season": 0,
+      "tags": [
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10206.webp",
+      "thumbnail": "/images/catalog/identity-10206-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10207",
+      "gameId": "10207",
+      "kind": "identity",
+      "name": "로보토미 E.G.O:: 후회",
+      "sinner": "파우스트",
+      "sinnerId": 2,
+      "rarity": "000",
+      "releaseDate": "2023-10-26",
+      "season": 9101,
+      "tags": [
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10207.webp",
+      "thumbnail": "/images/catalog/identity-10207-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10208",
+      "gameId": "10208",
+      "kind": "identity",
+      "name": "검계 살수",
+      "sinner": "파우스트",
+      "sinnerId": 2,
+      "rarity": "000",
+      "releaseDate": "2024-02-22",
+      "season": 3,
+      "tags": [
+        "출혈",
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-10208.webp",
+      "thumbnail": "/images/catalog/identity-10208-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10209",
+      "gameId": "10209",
+      "kind": "identity",
+      "name": "워더링하이츠 버틀러",
+      "sinner": "파우스트",
+      "sinnerId": 2,
+      "rarity": "00",
+      "releaseDate": "2024-04-04",
+      "season": 4,
+      "tags": [
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-10209.webp",
+      "thumbnail": "/images/catalog/identity-10209-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10210",
+      "gameId": "10210",
+      "kind": "identity",
+      "name": "멀티크랙 사무소 대표",
+      "sinner": "파우스트",
+      "sinnerId": 2,
+      "rarity": "000",
+      "releaseDate": "2024-08-08",
+      "season": 4,
+      "tags": [
+        "충전"
+      ],
+      "image": "/images/catalog/identity-10210.webp",
+      "thumbnail": "/images/catalog/identity-10210-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10211",
+      "gameId": "10211",
+      "kind": "identity",
+      "name": "LCE E.G.O:: 홍염살",
+      "sinner": "파우스트",
+      "sinnerId": 2,
+      "rarity": "000",
+      "releaseDate": "2025-01-23",
+      "season": 5,
+      "tags": [
+        "화상"
+      ],
+      "image": "/images/catalog/identity-10211.webp",
+      "thumbnail": "/images/catalog/identity-10211-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10212",
+      "gameId": "10212",
+      "kind": "identity",
+      "name": "흑수 - 묘 필두",
+      "sinner": "파우스트",
+      "sinnerId": 2,
+      "rarity": "000",
+      "releaseDate": "2025-05-22",
+      "season": 6,
+      "tags": [
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10212.webp",
+      "thumbnail": "/images/catalog/identity-10212-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10213",
+      "gameId": "10213",
+      "kind": "identity",
+      "name": "동부 시 협회 3과",
+      "sinner": "파우스트",
+      "sinnerId": 2,
+      "rarity": "000",
+      "releaseDate": "2025-10-09",
+      "season": 0,
+      "tags": [
+        "출혈",
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-10213.webp",
+      "thumbnail": "/images/catalog/identity-10213-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10214",
+      "gameId": "10214",
+      "kind": "identity",
+      "name": "검지 수행자: 【쪽지】",
+      "sinner": "파우스트",
+      "sinnerId": 2,
+      "rarity": "000",
+      "releaseDate": "2025-12-31",
+      "season": 7,
+      "tags": [
+        "호흡",
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-10214.webp",
+      "thumbnail": "/images/catalog/identity-10214-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10215",
+      "gameId": "10215",
+      "kind": "identity",
+      "name": "거미집 약지 제자",
+      "sinner": "파우스트",
+      "sinnerId": 2,
+      "rarity": "000",
+      "releaseDate": "2026-04-02",
+      "season": 7,
+      "tags": [
+        "출혈",
+        "충전"
+      ],
+      "image": "/images/catalog/identity-10215.webp",
+      "thumbnail": "/images/catalog/identity-10215-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10216",
+      "gameId": "10216",
+      "kind": "identity",
+      "name": "새벽 사무소 해결사",
+      "sinner": "파우스트",
+      "sinnerId": 2,
+      "rarity": "000",
+      "releaseDate": "2026-07-09",
+      "season": 9109,
+      "tags": [
+        "화상",
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10216.webp",
+      "thumbnail": "/images/catalog/identity-10216-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10301",
+      "gameId": "10301",
+      "kind": "identity",
+      "name": "LCB 수감자",
+      "sinner": "돈키호테",
+      "sinnerId": 3,
+      "rarity": "0",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "출혈"
+      ],
+      "image": "/images/catalog/identity-10301.webp",
+      "thumbnail": "/images/catalog/identity-10301-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10302",
+      "gameId": "10302",
+      "kind": "identity",
+      "name": "W사 3등급 정리 요원",
+      "sinner": "돈키호테",
+      "sinnerId": 3,
+      "rarity": "000",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "충전",
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10302.webp",
+      "thumbnail": "/images/catalog/identity-10302-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10303",
+      "gameId": "10303",
+      "kind": "identity",
+      "name": "남부 시 협회 5과 부장",
+      "sinner": "돈키호테",
+      "sinnerId": 3,
+      "rarity": "00",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-10303.webp",
+      "thumbnail": "/images/catalog/identity-10303-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10304",
+      "gameId": "10304",
+      "kind": "identity",
+      "name": "N사 중간 망치",
+      "sinner": "돈키호테",
+      "sinnerId": 3,
+      "rarity": "00",
+      "releaseDate": "2023-05-04",
+      "season": 1,
+      "tags": [
+        "출혈",
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10304.webp",
+      "thumbnail": "/images/catalog/identity-10304-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10305",
+      "gameId": "10305",
+      "kind": "identity",
+      "name": "남부 섕크 협회 5과 부장",
+      "sinner": "돈키호테",
+      "sinnerId": 3,
+      "rarity": "000",
+      "releaseDate": "2023-07-20",
+      "season": 0,
+      "tags": [],
+      "image": "/images/catalog/identity-10305.webp",
+      "thumbnail": "/images/catalog/identity-10305-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10306",
+      "gameId": "10306",
+      "kind": "identity",
+      "name": "중지 작은 아우",
+      "sinner": "돈키호테",
+      "sinnerId": 3,
+      "rarity": "000",
+      "releaseDate": "2023-11-23",
+      "season": 3,
+      "tags": [
+        "출혈"
+      ],
+      "image": "/images/catalog/identity-10306.webp",
+      "thumbnail": "/images/catalog/identity-10306-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10307",
+      "gameId": "10307",
+      "kind": "identity",
+      "name": "로보토미 E.G.O:: 초롱",
+      "sinner": "돈키호테",
+      "sinnerId": 3,
+      "rarity": "00",
+      "releaseDate": "2024-01-11",
+      "season": 9102,
+      "tags": [
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10307.webp",
+      "thumbnail": "/images/catalog/identity-10307-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10308",
+      "gameId": "10308",
+      "kind": "identity",
+      "name": "검계 살수",
+      "sinner": "돈키호테",
+      "sinnerId": 3,
+      "rarity": "00",
+      "releaseDate": "2024-02-22",
+      "season": 3,
+      "tags": [
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-10308.webp",
+      "thumbnail": "/images/catalog/identity-10308-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10309",
+      "gameId": "10309",
+      "kind": "identity",
+      "name": "T사 3등급 징수직 직원",
+      "sinner": "돈키호테",
+      "sinnerId": 3,
+      "rarity": "000",
+      "releaseDate": "2024-06-27",
+      "season": 0,
+      "tags": [
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10309.webp",
+      "thumbnail": "/images/catalog/identity-10309-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10310",
+      "gameId": "10310",
+      "kind": "identity",
+      "name": "라만차랜드 실장",
+      "sinner": "돈키호테",
+      "sinnerId": 3,
+      "rarity": "000",
+      "releaseDate": "2024-12-12",
+      "season": 5,
+      "tags": [
+        "출혈"
+      ],
+      "image": "/images/catalog/identity-10310.webp",
+      "thumbnail": "/images/catalog/identity-10310-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10311",
+      "gameId": "10311",
+      "kind": "identity",
+      "name": "동부 섕크 협회 3과",
+      "sinner": "돈키호테",
+      "sinnerId": 3,
+      "rarity": "000",
+      "releaseDate": "2025-03-06",
+      "season": 0,
+      "tags": [
+        "화상",
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-10311.webp",
+      "thumbnail": "/images/catalog/identity-10311-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10312",
+      "gameId": "10312",
+      "kind": "identity",
+      "name": "로보토미 E.G.O:: 사랑과 증오의 이름으로",
+      "sinner": "돈키호테",
+      "sinnerId": 3,
+      "rarity": "000",
+      "releaseDate": "2025-07-17",
+      "season": 9106,
+      "tags": [
+        "충전",
+        "파열",
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-10312.webp",
+      "thumbnail": "/images/catalog/identity-10312-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10313",
+      "gameId": "10313",
+      "kind": "identity",
+      "name": "흑수 - 미",
+      "sinner": "돈키호테",
+      "sinnerId": 3,
+      "rarity": "000",
+      "releaseDate": "2025-11-20",
+      "season": 6,
+      "tags": [
+        "파열",
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-10313.webp",
+      "thumbnail": "/images/catalog/identity-10313-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10314",
+      "gameId": "10314",
+      "kind": "identity",
+      "name": "검지 대행자 - 개화 E.G.O:: 대행",
+      "sinner": "돈키호테",
+      "sinnerId": 3,
+      "rarity": "000",
+      "releaseDate": "2026-01-08",
+      "season": 7,
+      "tags": [
+        "호흡",
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-10314.webp",
+      "thumbnail": "/images/catalog/identity-10314-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10315",
+      "gameId": "10315",
+      "kind": "identity",
+      "name": "오트쿠튀르:: 르누아르 브랜드 매니저",
+      "sinner": "돈키호테",
+      "sinnerId": 3,
+      "rarity": "000",
+      "releaseDate": "2026-10-01",
+      "season": 8,
+      "tags": [
+        "충전",
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10315.webp",
+      "thumbnail": "/images/catalog/identity-10315-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10401",
+      "gameId": "10401",
+      "kind": "identity",
+      "name": "LCB 수감자",
+      "sinner": "료슈",
+      "sinnerId": 4,
+      "rarity": "0",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-10401.webp",
+      "thumbnail": "/images/catalog/identity-10401-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10402",
+      "gameId": "10402",
+      "kind": "identity",
+      "name": "남부 세븐 협회 6과",
+      "sinner": "료슈",
+      "sinnerId": 4,
+      "rarity": "00",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10402.webp",
+      "thumbnail": "/images/catalog/identity-10402-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10403",
+      "gameId": "10403",
+      "kind": "identity",
+      "name": "흑운회 와카슈",
+      "sinner": "료슈",
+      "sinnerId": 4,
+      "rarity": "000",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "출혈"
+      ],
+      "image": "/images/catalog/identity-10403.webp",
+      "thumbnail": "/images/catalog/identity-10403-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10404",
+      "gameId": "10404",
+      "kind": "identity",
+      "name": "료. 고. 파. 주방장",
+      "sinner": "료슈",
+      "sinnerId": 4,
+      "rarity": "000",
+      "releaseDate": "2023-04-20",
+      "season": 1,
+      "tags": [
+        "출혈"
+      ],
+      "image": "/images/catalog/identity-10404.webp",
+      "thumbnail": "/images/catalog/identity-10404-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10405",
+      "gameId": "10405",
+      "kind": "identity",
+      "name": "W사 3등급 정리 요원",
+      "sinner": "료슈",
+      "sinnerId": 4,
+      "rarity": "000",
+      "releaseDate": "2023-08-24",
+      "season": 0,
+      "tags": [
+        "충전"
+      ],
+      "image": "/images/catalog/identity-10405.webp",
+      "thumbnail": "/images/catalog/identity-10405-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10406",
+      "gameId": "10406",
+      "kind": "identity",
+      "name": "LCCB 대리",
+      "sinner": "료슈",
+      "sinnerId": 4,
+      "rarity": "00",
+      "releaseDate": "2023-11-16",
+      "season": 3,
+      "tags": [
+        "호흡",
+        "파열",
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10406.webp",
+      "thumbnail": "/images/catalog/identity-10406-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10407",
+      "gameId": "10407",
+      "kind": "identity",
+      "name": "남부 리우 협회 4과",
+      "sinner": "료슈",
+      "sinnerId": 4,
+      "rarity": "00",
+      "releaseDate": "2024-03-07",
+      "season": 0,
+      "tags": [
+        "화상"
+      ],
+      "image": "/images/catalog/identity-10407.webp",
+      "thumbnail": "/images/catalog/identity-10407-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10408",
+      "gameId": "10408",
+      "kind": "identity",
+      "name": "에드가 가문 치프 버틀러",
+      "sinner": "료슈",
+      "sinnerId": 4,
+      "rarity": "000",
+      "releaseDate": "2024-04-18",
+      "season": 4,
+      "tags": [
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-10408.webp",
+      "thumbnail": "/images/catalog/identity-10408-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10409",
+      "gameId": "10409",
+      "kind": "identity",
+      "name": "20구 유로지비",
+      "sinner": "료슈",
+      "sinnerId": 4,
+      "rarity": "00",
+      "releaseDate": "2024-06-13",
+      "season": 4,
+      "tags": [
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10409.webp",
+      "thumbnail": "/images/catalog/identity-10409-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10410",
+      "gameId": "10410",
+      "kind": "identity",
+      "name": "로보토미 E.G.O:: 적안・참회",
+      "sinner": "료슈",
+      "sinnerId": 4,
+      "rarity": "000",
+      "releaseDate": "2024-09-05",
+      "season": 9104,
+      "tags": [
+        "출혈",
+        "충전"
+      ],
+      "image": "/images/catalog/identity-10410.webp",
+      "thumbnail": "/images/catalog/identity-10410-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10411",
+      "gameId": "10411",
+      "kind": "identity",
+      "name": "흑수 - 묘",
+      "sinner": "료슈",
+      "sinnerId": 4,
+      "rarity": "000",
+      "releaseDate": "2025-03-20",
+      "season": 5,
+      "tags": [
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10411.webp",
+      "thumbnail": "/images/catalog/identity-10411-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10412",
+      "gameId": "10412",
+      "kind": "identity",
+      "name": "N사 E.G.O:: 경멸, 경외",
+      "sinner": "료슈",
+      "sinnerId": 4,
+      "rarity": "000",
+      "releaseDate": "2025-09-11",
+      "season": 6,
+      "tags": [
+        "출혈",
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10412.webp",
+      "thumbnail": "/images/catalog/identity-10412-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10413",
+      "gameId": "10413",
+      "kind": "identity",
+      "name": "홍원 방랑무사",
+      "sinner": "료슈",
+      "sinnerId": 4,
+      "rarity": "000",
+      "releaseDate": "2025-12-04",
+      "season": 6,
+      "tags": [
+        "호흡",
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10413.webp",
+      "thumbnail": "/images/catalog/identity-10413-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10414",
+      "gameId": "10414",
+      "kind": "identity",
+      "name": "로보토미 E.G.O:: 잔향・외로움",
+      "sinner": "료슈",
+      "sinnerId": 4,
+      "rarity": "000",
+      "releaseDate": "2026-03-05",
+      "season": 9108,
+      "tags": [
+        "침잠",
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10414.webp",
+      "thumbnail": "/images/catalog/identity-10414-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10415",
+      "gameId": "10415",
+      "kind": "identity",
+      "name": "거미집의 검",
+      "sinner": "료슈",
+      "sinnerId": 4,
+      "rarity": "000",
+      "releaseDate": "2026-05-14",
+      "season": 7,
+      "tags": [
+        "출혈",
+        "화상",
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-10415.webp",
+      "thumbnail": "/images/catalog/identity-10415-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10416",
+      "gameId": "10416",
+      "kind": "identity",
+      "name": "오트쿠튀르:: 르누아르 신발관",
+      "sinner": "료슈",
+      "sinnerId": 4,
+      "rarity": "000",
+      "releaseDate": "2026-09-17",
+      "season": 8,
+      "tags": [
+        "충전",
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10416.webp",
+      "thumbnail": "/images/catalog/identity-10416-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10501",
+      "gameId": "10501",
+      "kind": "identity",
+      "name": "LCB 수감자",
+      "sinner": "뫼르소",
+      "sinnerId": 5,
+      "rarity": "0",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10501.webp",
+      "thumbnail": "/images/catalog/identity-10501-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10502",
+      "gameId": "10502",
+      "kind": "identity",
+      "name": "남부 리우 협회 6과",
+      "sinner": "뫼르소",
+      "sinnerId": 5,
+      "rarity": "00",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "화상"
+      ],
+      "image": "/images/catalog/identity-10502.webp",
+      "thumbnail": "/images/catalog/identity-10502-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10503",
+      "gameId": "10503",
+      "kind": "identity",
+      "name": "W사 2등급 정리 요원",
+      "sinner": "뫼르소",
+      "sinnerId": 5,
+      "rarity": "000",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "충전",
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10503.webp",
+      "thumbnail": "/images/catalog/identity-10503-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10504",
+      "gameId": "10504",
+      "kind": "identity",
+      "name": "N사 큰 망치",
+      "sinner": "뫼르소",
+      "sinnerId": 5,
+      "rarity": "000",
+      "releaseDate": "2023-03-09",
+      "season": 1,
+      "tags": [
+        "출혈"
+      ],
+      "image": "/images/catalog/identity-10504.webp",
+      "thumbnail": "/images/catalog/identity-10504-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10505",
+      "gameId": "10505",
+      "kind": "identity",
+      "name": "장미스패너 공방 해결사",
+      "sinner": "뫼르소",
+      "sinnerId": 5,
+      "rarity": "00",
+      "releaseDate": "2023-06-01",
+      "season": 2,
+      "tags": [
+        "충전",
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10505.webp",
+      "thumbnail": "/images/catalog/identity-10505-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10506",
+      "gameId": "10506",
+      "kind": "identity",
+      "name": "R사 제 4무리 코뿔소팀",
+      "sinner": "뫼르소",
+      "sinnerId": 5,
+      "rarity": "000",
+      "releaseDate": "2023-07-13",
+      "season": 0,
+      "tags": [
+        "출혈",
+        "충전"
+      ],
+      "image": "/images/catalog/identity-10506.webp",
+      "thumbnail": "/images/catalog/identity-10506-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10507",
+      "gameId": "10507",
+      "kind": "identity",
+      "name": "중지 작은 아우",
+      "sinner": "뫼르소",
+      "sinnerId": 5,
+      "rarity": "00",
+      "releaseDate": "2023-11-23",
+      "season": 3,
+      "tags": [
+        "출혈"
+      ],
+      "image": "/images/catalog/identity-10507.webp",
+      "thumbnail": "/images/catalog/identity-10507-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10508",
+      "gameId": "10508",
+      "kind": "identity",
+      "name": "검계 우두머리",
+      "sinner": "뫼르소",
+      "sinnerId": 5,
+      "rarity": "000",
+      "releaseDate": "2024-02-22",
+      "season": 3,
+      "tags": [
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-10508.webp",
+      "thumbnail": "/images/catalog/identity-10508-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10509",
+      "gameId": "10509",
+      "kind": "identity",
+      "name": "데드레빗츠 보스",
+      "sinner": "뫼르소",
+      "sinnerId": 5,
+      "rarity": "00",
+      "releaseDate": "2024-03-28",
+      "season": 4,
+      "tags": [
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10509.webp",
+      "thumbnail": "/images/catalog/identity-10509-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10510",
+      "gameId": "10510",
+      "kind": "identity",
+      "name": "남부 디에치 협회 4과 부장",
+      "sinner": "뫼르소",
+      "sinnerId": 5,
+      "rarity": "000",
+      "releaseDate": "2024-07-11",
+      "season": 0,
+      "tags": [
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-10510.webp",
+      "thumbnail": "/images/catalog/identity-10510-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10511",
+      "gameId": "10511",
+      "kind": "identity",
+      "name": "서부 섕크 협회 3과",
+      "sinner": "뫼르소",
+      "sinnerId": 5,
+      "rarity": "000",
+      "releaseDate": "2024-10-10",
+      "season": 5,
+      "tags": [
+        "호흡",
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10511.webp",
+      "thumbnail": "/images/catalog/identity-10511-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10512",
+      "gameId": "10512",
+      "kind": "identity",
+      "name": "동부 엄지 카포IIII",
+      "sinner": "뫼르소",
+      "sinnerId": 5,
+      "rarity": "000",
+      "releaseDate": "2025-06-19",
+      "season": 6,
+      "tags": [
+        "화상",
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10512.webp",
+      "thumbnail": "/images/catalog/identity-10512-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10513",
+      "gameId": "10513",
+      "kind": "identity",
+      "name": "라만차랜드 왕자",
+      "sinner": "뫼르소",
+      "sinnerId": 5,
+      "rarity": "000",
+      "releaseDate": "2025-10-30",
+      "season": 6,
+      "tags": [
+        "출혈",
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10513.webp",
+      "thumbnail": "/images/catalog/identity-10513-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10514",
+      "gameId": "10514",
+      "kind": "identity",
+      "name": "로보토미 E.G.O:: 호넷【변조】",
+      "sinner": "뫼르소",
+      "sinnerId": 5,
+      "rarity": "000",
+      "releaseDate": "2026-03-05",
+      "season": 9108,
+      "tags": [
+        "출혈",
+        "화상"
+      ],
+      "image": "/images/catalog/identity-10514.webp",
+      "thumbnail": "/images/catalog/identity-10514-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10515",
+      "gameId": "10515",
+      "kind": "identity",
+      "name": "약지 야수파 스튜던트",
+      "sinner": "뫼르소",
+      "sinnerId": 5,
+      "rarity": "000",
+      "releaseDate": "2026-04-16",
+      "season": 7,
+      "tags": [
+        "출혈",
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-10515.webp",
+      "thumbnail": "/images/catalog/identity-10515-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10601",
+      "gameId": "10601",
+      "kind": "identity",
+      "name": "LCB 수감자",
+      "sinner": "홍루",
+      "sinnerId": 6,
+      "rarity": "0",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "파열",
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-10601.webp",
+      "thumbnail": "/images/catalog/identity-10601-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10602",
+      "gameId": "10602",
+      "kind": "identity",
+      "name": "흑운회 와카슈",
+      "sinner": "홍루",
+      "sinnerId": 6,
+      "rarity": "00",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "출혈"
+      ],
+      "image": "/images/catalog/identity-10602.webp",
+      "thumbnail": "/images/catalog/identity-10602-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10603",
+      "gameId": "10603",
+      "kind": "identity",
+      "name": "콩콩이파 두목",
+      "sinner": "홍루",
+      "sinnerId": 6,
+      "rarity": "000",
+      "releaseDate": "2023-02-27",
+      "season": 1,
+      "tags": [
+        "출혈"
+      ],
+      "image": "/images/catalog/identity-10603.webp",
+      "thumbnail": "/images/catalog/identity-10603-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10604",
+      "gameId": "10604",
+      "kind": "identity",
+      "name": "남부 리우 협회 5과",
+      "sinner": "홍루",
+      "sinnerId": 6,
+      "rarity": "00",
+      "releaseDate": "2023-04-06",
+      "season": 0,
+      "tags": [
+        "화상"
+      ],
+      "image": "/images/catalog/identity-10604.webp",
+      "thumbnail": "/images/catalog/identity-10604-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10605",
+      "gameId": "10605",
+      "kind": "identity",
+      "name": "K사 3등급 적출직 직원",
+      "sinner": "홍루",
+      "sinnerId": 6,
+      "rarity": "000",
+      "releaseDate": "2023-06-29",
+      "season": 2,
+      "tags": [
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10605.webp",
+      "thumbnail": "/images/catalog/identity-10605-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10606",
+      "gameId": "10606",
+      "kind": "identity",
+      "name": "W사 2등급 정리 요원",
+      "sinner": "홍루",
+      "sinnerId": 6,
+      "rarity": "00",
+      "releaseDate": "2023-08-24",
+      "season": 0,
+      "tags": [
+        "충전",
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10606.webp",
+      "thumbnail": "/images/catalog/identity-10606-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10607",
+      "gameId": "10607",
+      "kind": "identity",
+      "name": "갈고리 사무소 해결사",
+      "sinner": "홍루",
+      "sinnerId": 6,
+      "rarity": "00",
+      "releaseDate": "2023-10-26",
+      "season": 9101,
+      "tags": [
+        "출혈"
+      ],
+      "image": "/images/catalog/identity-10607.webp",
+      "thumbnail": "/images/catalog/identity-10607-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10608",
+      "gameId": "10608",
+      "kind": "identity",
+      "name": "남부 디에치 협회 4과",
+      "sinner": "홍루",
+      "sinnerId": 6,
+      "rarity": "000",
+      "releaseDate": "2024-01-25",
+      "season": 0,
+      "tags": [
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-10608.webp",
+      "thumbnail": "/images/catalog/identity-10608-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10609",
+      "gameId": "10609",
+      "kind": "identity",
+      "name": "20구 유로지비",
+      "sinner": "홍루",
+      "sinnerId": 6,
+      "rarity": "000",
+      "releaseDate": "2024-06-13",
+      "season": 4,
+      "tags": [
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10609.webp",
+      "thumbnail": "/images/catalog/identity-10609-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10610",
+      "gameId": "10610",
+      "kind": "identity",
+      "name": "송곳니 사냥 사무소 해결사",
+      "sinner": "홍루",
+      "sinnerId": 6,
+      "rarity": "00",
+      "releaseDate": "2024-10-17",
+      "season": 5,
+      "tags": [
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10610.webp",
+      "thumbnail": "/images/catalog/identity-10610-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10611",
+      "gameId": "10611",
+      "kind": "identity",
+      "name": "마침표 사무소 대표",
+      "sinner": "홍루",
+      "sinnerId": 6,
+      "rarity": "000",
+      "releaseDate": "2025-01-09",
+      "season": 9105,
+      "tags": [
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-10611.webp",
+      "thumbnail": "/images/catalog/identity-10611-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10612",
+      "gameId": "10612",
+      "kind": "identity",
+      "name": "R사 제 4무리 순록팀",
+      "sinner": "홍루",
+      "sinnerId": 6,
+      "rarity": "000",
+      "releaseDate": "2025-04-30",
+      "season": 0,
+      "tags": [
+        "충전",
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-10612.webp",
+      "thumbnail": "/images/catalog/identity-10612-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10613",
+      "gameId": "10613",
+      "kind": "identity",
+      "name": "홍원 군주",
+      "sinner": "홍루",
+      "sinnerId": 6,
+      "rarity": "000",
+      "releaseDate": "2025-08-14",
+      "season": 6,
+      "tags": [
+        "호흡",
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10613.webp",
+      "thumbnail": "/images/catalog/identity-10613-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10614",
+      "gameId": "10614",
+      "kind": "identity",
+      "name": "거미집 약지 아비",
+      "sinner": "홍루",
+      "sinnerId": 6,
+      "rarity": "000",
+      "releaseDate": "2026-04-02",
+      "season": 7,
+      "tags": [
+        "출혈",
+        "충전"
+      ],
+      "image": "/images/catalog/identity-10614.webp",
+      "thumbnail": "/images/catalog/identity-10614-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10615",
+      "gameId": "10615",
+      "kind": "identity",
+      "name": "S사 추노꾼",
+      "sinner": "홍루",
+      "sinnerId": 6,
+      "rarity": "000",
+      "releaseDate": "2026-06-11",
+      "season": 7,
+      "tags": [
+        "출혈",
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-10615.webp",
+      "thumbnail": "/images/catalog/identity-10615-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10616",
+      "gameId": "10616",
+      "kind": "identity",
+      "name": "동부 섕크 협회 3과",
+      "sinner": "홍루",
+      "sinnerId": 6,
+      "rarity": "000",
+      "releaseDate": "2026-08-20",
+      "season": 0,
+      "tags": [
+        "화상",
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-10616.webp",
+      "thumbnail": "/images/catalog/identity-10616-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10701",
+      "gameId": "10701",
+      "kind": "identity",
+      "name": "LCB 수감자",
+      "sinner": "히스클리프",
+      "sinnerId": 7,
+      "rarity": "0",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10701.webp",
+      "thumbnail": "/images/catalog/identity-10701-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10702",
+      "gameId": "10702",
+      "kind": "identity",
+      "name": "남부 시 협회 5과",
+      "sinner": "히스클리프",
+      "sinnerId": 7,
+      "rarity": "00",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-10702.webp",
+      "thumbnail": "/images/catalog/identity-10702-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10703",
+      "gameId": "10703",
+      "kind": "identity",
+      "name": "R사 제 4무리 토끼팀",
+      "sinner": "히스클리프",
+      "sinnerId": 7,
+      "rarity": "000",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "출혈",
+        "충전",
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10703.webp",
+      "thumbnail": "/images/catalog/identity-10703-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10704",
+      "gameId": "10704",
+      "kind": "identity",
+      "name": "N사 작은 망치",
+      "sinner": "히스클리프",
+      "sinnerId": 7,
+      "rarity": "00",
+      "releaseDate": "2023-03-23",
+      "season": 1,
+      "tags": [
+        "출혈"
+      ],
+      "image": "/images/catalog/identity-10704.webp",
+      "thumbnail": "/images/catalog/identity-10704-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10705",
+      "gameId": "10705",
+      "kind": "identity",
+      "name": "로보토미 E.G.O:: 여우비",
+      "sinner": "히스클리프",
+      "sinnerId": 7,
+      "rarity": "000",
+      "releaseDate": "2023-06-08",
+      "season": 2,
+      "tags": [
+        "파열",
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-10705.webp",
+      "thumbnail": "/images/catalog/identity-10705-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10706",
+      "gameId": "10706",
+      "kind": "identity",
+      "name": "남부 세븐 협회 4과",
+      "sinner": "히스클리프",
+      "sinnerId": 7,
+      "rarity": "00",
+      "releaseDate": "2023-09-07",
+      "season": 0,
+      "tags": [
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10706.webp",
+      "thumbnail": "/images/catalog/identity-10706-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10707",
+      "gameId": "10707",
+      "kind": "identity",
+      "name": "피쿼드호 작살잡이",
+      "sinner": "히스클리프",
+      "sinnerId": 7,
+      "rarity": "000",
+      "releaseDate": "2023-12-07",
+      "season": 3,
+      "tags": [
+        "출혈",
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-10707.webp",
+      "thumbnail": "/images/catalog/identity-10707-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10708",
+      "gameId": "10708",
+      "kind": "identity",
+      "name": "남부 외우피 협회 3과",
+      "sinner": "히스클리프",
+      "sinnerId": 7,
+      "rarity": "000",
+      "releaseDate": "2024-03-21",
+      "season": 0,
+      "tags": [
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10708.webp",
+      "thumbnail": "/images/catalog/identity-10708-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10709",
+      "gameId": "10709",
+      "kind": "identity",
+      "name": "멀티크랙 사무소 해결사",
+      "sinner": "히스클리프",
+      "sinnerId": 7,
+      "rarity": "00",
+      "releaseDate": "2024-08-08",
+      "season": 4,
+      "tags": [
+        "충전"
+      ],
+      "image": "/images/catalog/identity-10709.webp",
+      "thumbnail": "/images/catalog/identity-10709-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10710",
+      "gameId": "10710",
+      "kind": "identity",
+      "name": "와일드헌트",
+      "sinner": "히스클리프",
+      "sinnerId": 7,
+      "rarity": "000",
+      "releaseDate": "2024-08-22",
+      "season": 4,
+      "tags": [
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-10710.webp",
+      "thumbnail": "/images/catalog/identity-10710-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10711",
+      "gameId": "10711",
+      "kind": "identity",
+      "name": "마침표 사무소 해결사",
+      "sinner": "히스클리프",
+      "sinnerId": 7,
+      "rarity": "000",
+      "releaseDate": "2025-01-09",
+      "season": 9105,
+      "tags": [
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-10711.webp",
+      "thumbnail": "/images/catalog/identity-10711-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10712",
+      "gameId": "10712",
+      "kind": "identity",
+      "name": "흑운회 와카슈",
+      "sinner": "히스클리프",
+      "sinnerId": 7,
+      "rarity": "000",
+      "releaseDate": "2025-02-06",
+      "season": 5,
+      "tags": [
+        "출혈"
+      ],
+      "image": "/images/catalog/identity-10712.webp",
+      "thumbnail": "/images/catalog/identity-10712-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10713",
+      "gameId": "10713",
+      "kind": "identity",
+      "name": "W사 4등급 정리 요원 - CCA",
+      "sinner": "히스클리프",
+      "sinnerId": 7,
+      "rarity": "000",
+      "releaseDate": "2025-10-23",
+      "season": 6,
+      "tags": [
+        "충전",
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10713.webp",
+      "thumbnail": "/images/catalog/identity-10713-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10714",
+      "gameId": "10714",
+      "kind": "identity",
+      "name": "흑수 - 유 필두",
+      "sinner": "히스클리프",
+      "sinnerId": 7,
+      "rarity": "000",
+      "releaseDate": "2025-11-20",
+      "season": 6,
+      "tags": [
+        "화상",
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10714.webp",
+      "thumbnail": "/images/catalog/identity-10714-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10715",
+      "gameId": "10715",
+      "kind": "identity",
+      "name": "중지 작은 형님",
+      "sinner": "히스클리프",
+      "sinnerId": 7,
+      "rarity": "000",
+      "releaseDate": "2026-04-30",
+      "season": 7,
+      "tags": [
+        "출혈",
+        "화상"
+      ],
+      "image": "/images/catalog/identity-10715.webp",
+      "thumbnail": "/images/catalog/identity-10715-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10716",
+      "gameId": "10716",
+      "kind": "identity",
+      "name": "거미집 엄지 제자",
+      "sinner": "히스클리프",
+      "sinnerId": 7,
+      "rarity": "000",
+      "releaseDate": "2026-06-25",
+      "season": 7,
+      "tags": [
+        "화상",
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10716.webp",
+      "thumbnail": "/images/catalog/identity-10716-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10801",
+      "gameId": "10801",
+      "kind": "identity",
+      "name": "LCB 수감자",
+      "sinner": "이스마엘",
+      "sinnerId": 8,
+      "rarity": "0",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10801.webp",
+      "thumbnail": "/images/catalog/identity-10801-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10802",
+      "gameId": "10802",
+      "kind": "identity",
+      "name": "R사 제 4무리 순록팀",
+      "sinner": "이스마엘",
+      "sinnerId": 8,
+      "rarity": "000",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "충전",
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-10802.webp",
+      "thumbnail": "/images/catalog/identity-10802-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10803",
+      "gameId": "10803",
+      "kind": "identity",
+      "name": "남부 시 협회 5과",
+      "sinner": "이스마엘",
+      "sinnerId": 8,
+      "rarity": "00",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-10803.webp",
+      "thumbnail": "/images/catalog/identity-10803-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10804",
+      "gameId": "10804",
+      "kind": "identity",
+      "name": "LCCB 대리",
+      "sinner": "이스마엘",
+      "sinnerId": 8,
+      "rarity": "00",
+      "releaseDate": "2023-02-27",
+      "season": 1,
+      "tags": [
+        "파열",
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10804.webp",
+      "thumbnail": "/images/catalog/identity-10804-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10805",
+      "gameId": "10805",
+      "kind": "identity",
+      "name": "로보토미 E.G.O:: 출렁임",
+      "sinner": "이스마엘",
+      "sinnerId": 8,
+      "rarity": "00",
+      "releaseDate": "2023-06-15",
+      "season": 2,
+      "tags": [
+        "파열",
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10805.webp",
+      "thumbnail": "/images/catalog/identity-10805-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10806",
+      "gameId": "10806",
+      "kind": "identity",
+      "name": "남부 리우 협회 4과",
+      "sinner": "이스마엘",
+      "sinnerId": 8,
+      "rarity": "000",
+      "releaseDate": "2023-07-06",
+      "season": 0,
+      "tags": [
+        "화상"
+      ],
+      "image": "/images/catalog/identity-10806.webp",
+      "thumbnail": "/images/catalog/identity-10806-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10807",
+      "gameId": "10807",
+      "kind": "identity",
+      "name": "어금니 보트 센터 해결사",
+      "sinner": "이스마엘",
+      "sinnerId": 8,
+      "rarity": "000",
+      "releaseDate": "2023-07-27",
+      "season": 2,
+      "tags": [
+        "침잠",
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10807.webp",
+      "thumbnail": "/images/catalog/identity-10807-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10808",
+      "gameId": "10808",
+      "kind": "identity",
+      "name": "피쿼드호 선장",
+      "sinner": "이스마엘",
+      "sinnerId": 8,
+      "rarity": "000",
+      "releaseDate": "2024-02-08",
+      "season": 3,
+      "tags": [
+        "출혈",
+        "화상",
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-10808.webp",
+      "thumbnail": "/images/catalog/identity-10808-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10809",
+      "gameId": "10809",
+      "kind": "identity",
+      "name": "에드가 가문 버틀러",
+      "sinner": "이스마엘",
+      "sinnerId": 8,
+      "rarity": "00",
+      "releaseDate": "2024-04-18",
+      "season": 4,
+      "tags": [
+        "호흡",
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-10809.webp",
+      "thumbnail": "/images/catalog/identity-10809-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10810",
+      "gameId": "10810",
+      "kind": "identity",
+      "name": "서부 츠바이 협회 3과",
+      "sinner": "이스마엘",
+      "sinnerId": 8,
+      "rarity": "000",
+      "releaseDate": "2024-10-03",
+      "season": 0,
+      "tags": [
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10810.webp",
+      "thumbnail": "/images/catalog/identity-10810-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10811",
+      "gameId": "10811",
+      "kind": "identity",
+      "name": "흑운회 부조장",
+      "sinner": "이스마엘",
+      "sinnerId": 8,
+      "rarity": "000",
+      "releaseDate": "2025-02-06",
+      "season": 5,
+      "tags": [
+        "출혈"
+      ],
+      "image": "/images/catalog/identity-10811.webp",
+      "thumbnail": "/images/catalog/identity-10811-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10812",
+      "gameId": "10812",
+      "kind": "identity",
+      "name": "가주 후보",
+      "sinner": "이스마엘",
+      "sinnerId": 8,
+      "rarity": "000",
+      "releaseDate": "2025-06-05",
+      "season": 6,
+      "tags": [
+        "호흡",
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10812.webp",
+      "thumbnail": "/images/catalog/identity-10812-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10813",
+      "gameId": "10813",
+      "kind": "identity",
+      "name": "정사무소 대표",
+      "sinner": "이스마엘",
+      "sinnerId": 8,
+      "rarity": "000",
+      "releaseDate": "2025-11-06",
+      "season": 9107,
+      "tags": [
+        "침잠",
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10813.webp",
+      "thumbnail": "/images/catalog/identity-10813-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10814",
+      "gameId": "10814",
+      "kind": "identity",
+      "name": "거미집 중지 제자",
+      "sinner": "이스마엘",
+      "sinnerId": 8,
+      "rarity": "000",
+      "releaseDate": "2026-01-22",
+      "season": 7,
+      "tags": [
+        "출혈",
+        "화상"
+      ],
+      "image": "/images/catalog/identity-10814.webp",
+      "thumbnail": "/images/catalog/identity-10814-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10815",
+      "gameId": "10815",
+      "kind": "identity",
+      "name": "LCD 현장추리팀",
+      "sinner": "이스마엘",
+      "sinnerId": 8,
+      "rarity": "000",
+      "releaseDate": "2026-06-11",
+      "season": 7,
+      "tags": [
+        "출혈",
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-10815.webp",
+      "thumbnail": "/images/catalog/identity-10815-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10816",
+      "gameId": "10816",
+      "kind": "identity",
+      "name": "오트쿠튀르:: 르루주 부티크",
+      "sinner": "이스마엘",
+      "sinnerId": 8,
+      "rarity": "000",
+      "releaseDate": "2026-09-17",
+      "season": 8,
+      "tags": [
+        "출혈",
+        "충전"
+      ],
+      "image": "/images/catalog/identity-10816.webp",
+      "thumbnail": "/images/catalog/identity-10816-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10901",
+      "gameId": "10901",
+      "kind": "identity",
+      "name": "LCB 수감자",
+      "sinner": "로쟈",
+      "sinnerId": 9,
+      "rarity": "0",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "출혈"
+      ],
+      "image": "/images/catalog/identity-10901.webp",
+      "thumbnail": "/images/catalog/identity-10901-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10902",
+      "gameId": "10902",
+      "kind": "identity",
+      "name": "흑운회 와카슈",
+      "sinner": "로쟈",
+      "sinnerId": 9,
+      "rarity": "000",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "출혈",
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-10902.webp",
+      "thumbnail": "/images/catalog/identity-10902-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10903",
+      "gameId": "10903",
+      "kind": "identity",
+      "name": "LCCB 대리",
+      "sinner": "로쟈",
+      "sinnerId": 9,
+      "rarity": "00",
+      "releaseDate": "2023-02-27",
+      "season": 1,
+      "tags": [],
+      "image": "/images/catalog/identity-10903.webp",
+      "thumbnail": "/images/catalog/identity-10903-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10904",
+      "gameId": "10904",
+      "kind": "identity",
+      "name": "N사 중간 망치",
+      "sinner": "로쟈",
+      "sinnerId": 9,
+      "rarity": "00",
+      "releaseDate": "2023-03-09",
+      "season": 1,
+      "tags": [
+        "출혈"
+      ],
+      "image": "/images/catalog/identity-10904.webp",
+      "thumbnail": "/images/catalog/identity-10904-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10905",
+      "gameId": "10905",
+      "kind": "identity",
+      "name": "장미스패너 공방 대표",
+      "sinner": "로쟈",
+      "sinnerId": 9,
+      "rarity": "000",
+      "releaseDate": "2023-06-01",
+      "season": 2,
+      "tags": [
+        "충전",
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10905.webp",
+      "thumbnail": "/images/catalog/identity-10905-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10906",
+      "gameId": "10906",
+      "kind": "identity",
+      "name": "남부 츠바이 협회 5과",
+      "sinner": "로쟈",
+      "sinnerId": 9,
+      "rarity": "00",
+      "releaseDate": "2023-07-13",
+      "season": 0,
+      "tags": [
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-10906.webp",
+      "thumbnail": "/images/catalog/identity-10906-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10907",
+      "gameId": "10907",
+      "kind": "identity",
+      "name": "남부 디에치 협회 4과",
+      "sinner": "로쟈",
+      "sinnerId": 9,
+      "rarity": "000",
+      "releaseDate": "2023-09-21",
+      "season": 0,
+      "tags": [
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-10907.webp",
+      "thumbnail": "/images/catalog/identity-10907-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10908",
+      "gameId": "10908",
+      "kind": "identity",
+      "name": "남부 리우 협회 4과 부장",
+      "sinner": "로쟈",
+      "sinnerId": 9,
+      "rarity": "000",
+      "releaseDate": "2024-03-07",
+      "season": 0,
+      "tags": [
+        "화상"
+      ],
+      "image": "/images/catalog/identity-10908.webp",
+      "thumbnail": "/images/catalog/identity-10908-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10909",
+      "gameId": "10909",
+      "kind": "identity",
+      "name": "T사 2등급 징수직 직원",
+      "sinner": "로쟈",
+      "sinnerId": 9,
+      "rarity": "00",
+      "releaseDate": "2024-06-27",
+      "season": 0,
+      "tags": [
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10909.webp",
+      "thumbnail": "/images/catalog/identity-10909-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10910",
+      "gameId": "10910",
+      "kind": "identity",
+      "name": "북부 제뱌찌 협회 3과",
+      "sinner": "로쟈",
+      "sinnerId": 9,
+      "rarity": "000",
+      "releaseDate": "2024-09-19",
+      "season": 0,
+      "tags": [
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10910.webp",
+      "thumbnail": "/images/catalog/identity-10910-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10911",
+      "gameId": "10911",
+      "kind": "identity",
+      "name": "라만차랜드 공주",
+      "sinner": "로쟈",
+      "sinnerId": 9,
+      "rarity": "000",
+      "releaseDate": "2024-11-14",
+      "season": 5,
+      "tags": [
+        "출혈",
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10911.webp",
+      "thumbnail": "/images/catalog/identity-10911-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10912",
+      "gameId": "10912",
+      "kind": "identity",
+      "name": "흑수 - 사",
+      "sinner": "로쟈",
+      "sinnerId": 9,
+      "rarity": "000",
+      "releaseDate": "2025-05-15",
+      "season": 6,
+      "tags": [
+        "호흡",
+        "파열"
+      ],
+      "image": "/images/catalog/identity-10912.webp",
+      "thumbnail": "/images/catalog/identity-10912-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10913",
+      "gameId": "10913",
+      "kind": "identity",
+      "name": "로보토미 E.G.O:: 눈물로 벼려낸 검",
+      "sinner": "로쟈",
+      "sinnerId": 9,
+      "rarity": "000",
+      "releaseDate": "2025-07-17",
+      "season": 9106,
+      "tags": [
+        "충전",
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-10913.webp",
+      "thumbnail": "/images/catalog/identity-10913-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10914",
+      "gameId": "10914",
+      "kind": "identity",
+      "name": "R사 제 4무리 순록팀",
+      "sinner": "로쟈",
+      "sinnerId": 9,
+      "rarity": "000",
+      "releaseDate": "2025-12-18",
+      "season": 0,
+      "tags": [
+        "충전",
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-10914.webp",
+      "thumbnail": "/images/catalog/identity-10914-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10915",
+      "gameId": "10915",
+      "kind": "identity",
+      "name": "약지 야수파 도슨트",
+      "sinner": "로쟈",
+      "sinnerId": 9,
+      "rarity": "000",
+      "releaseDate": "2026-04-16",
+      "season": 7,
+      "tags": [
+        "출혈",
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-10915.webp",
+      "thumbnail": "/images/catalog/identity-10915-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10916",
+      "gameId": "10916",
+      "kind": "identity",
+      "name": "거미집 엄지 아비",
+      "sinner": "로쟈",
+      "sinnerId": 9,
+      "rarity": "000",
+      "releaseDate": "2026-06-25",
+      "season": 7,
+      "tags": [
+        "화상",
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10916.webp",
+      "thumbnail": "/images/catalog/identity-10916-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-10917",
+      "gameId": "10917",
+      "kind": "identity",
+      "name": "오트쿠튀르:: 수선실",
+      "sinner": "로쟈",
+      "sinnerId": 9,
+      "rarity": "000",
+      "releaseDate": "2026-09-24",
+      "season": 8,
+      "tags": [
+        "충전",
+        "진동"
+      ],
+      "image": "/images/catalog/identity-10917.webp",
+      "thumbnail": "/images/catalog/identity-10917-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11001",
+      "gameId": "11001",
+      "kind": "identity",
+      "name": "LCB 수감자",
+      "sinner": "싱클레어",
+      "sinnerId": 10,
+      "rarity": "0",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "파열"
+      ],
+      "image": "/images/catalog/identity-11001.webp",
+      "thumbnail": "/images/catalog/identity-11001-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11002",
+      "gameId": "11002",
+      "kind": "identity",
+      "name": "검계 살수",
+      "sinner": "싱클레어",
+      "sinnerId": 10,
+      "rarity": "000",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "출혈",
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-11002.webp",
+      "thumbnail": "/images/catalog/identity-11002-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11003",
+      "gameId": "11003",
+      "kind": "identity",
+      "name": "남부 츠바이 협회 6과",
+      "sinner": "싱클레어",
+      "sinnerId": 10,
+      "rarity": "00",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "진동"
+      ],
+      "image": "/images/catalog/identity-11003.webp",
+      "thumbnail": "/images/catalog/identity-11003-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11004",
+      "gameId": "11004",
+      "kind": "identity",
+      "name": "마리아치 보스",
+      "sinner": "싱클레어",
+      "sinnerId": 10,
+      "rarity": "00",
+      "releaseDate": "2023-02-27",
+      "season": 1,
+      "tags": [
+        "호흡",
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-11004.webp",
+      "thumbnail": "/images/catalog/identity-11004-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11005",
+      "gameId": "11005",
+      "kind": "identity",
+      "name": "쥐어들 자",
+      "sinner": "싱클레어",
+      "sinnerId": 10,
+      "rarity": "000",
+      "releaseDate": "2023-05-04",
+      "season": 1,
+      "tags": [
+        "출혈",
+        "화상"
+      ],
+      "image": "/images/catalog/identity-11005.webp",
+      "thumbnail": "/images/catalog/identity-11005-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11006",
+      "gameId": "11006",
+      "kind": "identity",
+      "name": "로보토미 E.G.O:: 홍적",
+      "sinner": "싱클레어",
+      "sinnerId": 10,
+      "rarity": "00",
+      "releaseDate": "2023-06-29",
+      "season": 2,
+      "tags": [
+        "파열"
+      ],
+      "image": "/images/catalog/identity-11006.webp",
+      "thumbnail": "/images/catalog/identity-11006-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11007",
+      "gameId": "11007",
+      "kind": "identity",
+      "name": "어금니 보트 센터 해결사",
+      "sinner": "싱클레어",
+      "sinnerId": 10,
+      "rarity": "00",
+      "releaseDate": "2023-07-27",
+      "season": 2,
+      "tags": [
+        "진동"
+      ],
+      "image": "/images/catalog/identity-11007.webp",
+      "thumbnail": "/images/catalog/identity-11007-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11008",
+      "gameId": "11008",
+      "kind": "identity",
+      "name": "남부 섕크 협회 4과 부장",
+      "sinner": "싱클레어",
+      "sinnerId": 10,
+      "rarity": "000",
+      "releaseDate": "2023-12-21",
+      "season": 0,
+      "tags": [
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-11008.webp",
+      "thumbnail": "/images/catalog/identity-11008-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11009",
+      "gameId": "11009",
+      "kind": "identity",
+      "name": "새벽 사무소 해결사",
+      "sinner": "싱클레어",
+      "sinnerId": 10,
+      "rarity": "000",
+      "releaseDate": "2024-05-02",
+      "season": 9103,
+      "tags": [
+        "화상"
+      ],
+      "image": "/images/catalog/identity-11009.webp",
+      "thumbnail": "/images/catalog/identity-11009-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11010",
+      "gameId": "11010",
+      "kind": "identity",
+      "name": "서부 츠바이 협회 3과",
+      "sinner": "싱클레어",
+      "sinnerId": 10,
+      "rarity": "00",
+      "releaseDate": "2024-10-10",
+      "season": 5,
+      "tags": [
+        "진동"
+      ],
+      "image": "/images/catalog/identity-11010.webp",
+      "thumbnail": "/images/catalog/identity-11010-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11011",
+      "gameId": "11011",
+      "kind": "identity",
+      "name": "북부 제뱌찌 협회 3과",
+      "sinner": "싱클레어",
+      "sinnerId": 10,
+      "rarity": "000",
+      "releaseDate": "2024-11-28",
+      "season": 0,
+      "tags": [
+        "파열"
+      ],
+      "image": "/images/catalog/identity-11011.webp",
+      "thumbnail": "/images/catalog/identity-11011-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11012",
+      "gameId": "11012",
+      "kind": "identity",
+      "name": "중지 작은 아우",
+      "sinner": "싱클레어",
+      "sinnerId": 10,
+      "rarity": "000",
+      "releaseDate": "2025-04-03",
+      "season": 0,
+      "tags": [
+        "출혈"
+      ],
+      "image": "/images/catalog/identity-11012.webp",
+      "thumbnail": "/images/catalog/identity-11012-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11013",
+      "gameId": "11013",
+      "kind": "identity",
+      "name": "동부 엄지 솔다토II",
+      "sinner": "싱클레어",
+      "sinnerId": 10,
+      "rarity": "000",
+      "releaseDate": "2025-06-19",
+      "season": 6,
+      "tags": [
+        "화상",
+        "진동"
+      ],
+      "image": "/images/catalog/identity-11013.webp",
+      "thumbnail": "/images/catalog/identity-11013-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11014",
+      "gameId": "11014",
+      "kind": "identity",
+      "name": "흑수 - 유",
+      "sinner": "싱클레어",
+      "sinnerId": 10,
+      "rarity": "000",
+      "releaseDate": "2025-08-28",
+      "season": 6,
+      "tags": [
+        "화상",
+        "파열"
+      ],
+      "image": "/images/catalog/identity-11014.webp",
+      "thumbnail": "/images/catalog/identity-11014-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11015",
+      "gameId": "11015",
+      "kind": "identity",
+      "name": "거미집 소지 제자",
+      "sinner": "싱클레어",
+      "sinnerId": 10,
+      "rarity": "000",
+      "releaseDate": "2026-02-05",
+      "season": 7,
+      "tags": [
+        "출혈",
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-11015.webp",
+      "thumbnail": "/images/catalog/identity-11015-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11101",
+      "gameId": "11101",
+      "kind": "identity",
+      "name": "LCB 수감자",
+      "sinner": "오티스",
+      "sinnerId": 11,
+      "rarity": "0",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "파열"
+      ],
+      "image": "/images/catalog/identity-11101.webp",
+      "thumbnail": "/images/catalog/identity-11101-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11102",
+      "gameId": "11102",
+      "kind": "identity",
+      "name": "검계 살수",
+      "sinner": "오티스",
+      "sinnerId": 11,
+      "rarity": "00",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-11102.webp",
+      "thumbnail": "/images/catalog/identity-11102-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11103",
+      "gameId": "11103",
+      "kind": "identity",
+      "name": "G사 부장",
+      "sinner": "오티스",
+      "sinnerId": 11,
+      "rarity": "00",
+      "releaseDate": "2023-02-27",
+      "season": 1,
+      "tags": [
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-11103.webp",
+      "thumbnail": "/images/catalog/identity-11103-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11104",
+      "gameId": "11104",
+      "kind": "identity",
+      "name": "남부 세븐 협회 6과 부장",
+      "sinner": "오티스",
+      "sinnerId": 11,
+      "rarity": "000",
+      "releaseDate": "2023-04-06",
+      "season": 0,
+      "tags": [
+        "파열"
+      ],
+      "image": "/images/catalog/identity-11104.webp",
+      "thumbnail": "/images/catalog/identity-11104-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11105",
+      "gameId": "11105",
+      "kind": "identity",
+      "name": "어금니 사무소 해결사",
+      "sinner": "오티스",
+      "sinnerId": 11,
+      "rarity": "000",
+      "releaseDate": "2023-10-04",
+      "season": 2,
+      "tags": [
+        "진동"
+      ],
+      "image": "/images/catalog/identity-11105.webp",
+      "thumbnail": "/images/catalog/identity-11105-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11106",
+      "gameId": "11106",
+      "kind": "identity",
+      "name": "남부 섕크 협회 4과",
+      "sinner": "오티스",
+      "sinnerId": 11,
+      "rarity": "00",
+      "releaseDate": "2023-12-21",
+      "season": 0,
+      "tags": [
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-11106.webp",
+      "thumbnail": "/images/catalog/identity-11106-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11107",
+      "gameId": "11107",
+      "kind": "identity",
+      "name": "로보토미 E.G.O:: 마탄",
+      "sinner": "오티스",
+      "sinnerId": 11,
+      "rarity": "000",
+      "releaseDate": "2024-01-11",
+      "season": 9102,
+      "tags": [
+        "화상"
+      ],
+      "image": "/images/catalog/identity-11107.webp",
+      "thumbnail": "/images/catalog/identity-11107-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11108",
+      "gameId": "11108",
+      "kind": "identity",
+      "name": "워더링하이츠 치프 버틀러",
+      "sinner": "오티스",
+      "sinnerId": 11,
+      "rarity": "000",
+      "releaseDate": "2024-03-28",
+      "season": 4,
+      "tags": [
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-11108.webp",
+      "thumbnail": "/images/catalog/identity-11108-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11109",
+      "gameId": "11109",
+      "kind": "identity",
+      "name": "약지 점묘파 스튜던트",
+      "sinner": "오티스",
+      "sinnerId": 11,
+      "rarity": "00",
+      "releaseDate": "2024-05-16",
+      "season": 0,
+      "tags": [
+        "출혈"
+      ],
+      "image": "/images/catalog/identity-11109.webp",
+      "thumbnail": "/images/catalog/identity-11109-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11110",
+      "gameId": "11110",
+      "kind": "identity",
+      "name": "W사 3등급 정리 요원 팀장",
+      "sinner": "오티스",
+      "sinnerId": 11,
+      "rarity": "000",
+      "releaseDate": "2024-07-25",
+      "season": 0,
+      "tags": [
+        "충전",
+        "파열"
+      ],
+      "image": "/images/catalog/identity-11110.webp",
+      "thumbnail": "/images/catalog/identity-11110-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11111",
+      "gameId": "11111",
+      "kind": "identity",
+      "name": "라만차랜드 이발사",
+      "sinner": "오티스",
+      "sinnerId": 11,
+      "rarity": "000",
+      "releaseDate": "2024-10-17",
+      "season": 5,
+      "tags": [
+        "출혈"
+      ],
+      "image": "/images/catalog/identity-11111.webp",
+      "thumbnail": "/images/catalog/identity-11111-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11112",
+      "gameId": "11112",
+      "kind": "identity",
+      "name": "흑수 - 묘",
+      "sinner": "오티스",
+      "sinnerId": 11,
+      "rarity": "000",
+      "releaseDate": "2025-03-20",
+      "season": 5,
+      "tags": [
+        "파열"
+      ],
+      "image": "/images/catalog/identity-11112.webp",
+      "thumbnail": "/images/catalog/identity-11112-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11113",
+      "gameId": "11113",
+      "kind": "identity",
+      "name": "T사 3등급 강력징수직 직원",
+      "sinner": "오티스",
+      "sinnerId": 11,
+      "rarity": "000",
+      "releaseDate": "2025-07-31",
+      "season": 6,
+      "tags": [
+        "진동"
+      ],
+      "image": "/images/catalog/identity-11113.webp",
+      "thumbnail": "/images/catalog/identity-11113-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11114",
+      "gameId": "11114",
+      "kind": "identity",
+      "name": "LCA 우제트 선봉 3팀 팀장",
+      "sinner": "오티스",
+      "sinnerId": 11,
+      "rarity": "000",
+      "releaseDate": "2025-12-31",
+      "season": 7,
+      "tags": [
+        "침잠",
+        "진동"
+      ],
+      "image": "/images/catalog/identity-11114.webp",
+      "thumbnail": "/images/catalog/identity-11114-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11115",
+      "gameId": "11115",
+      "kind": "identity",
+      "name": "거미집 중지 아비",
+      "sinner": "오티스",
+      "sinnerId": 11,
+      "rarity": "000",
+      "releaseDate": "2026-05-28",
+      "season": 7,
+      "tags": [
+        "출혈",
+        "화상"
+      ],
+      "image": "/images/catalog/identity-11115.webp",
+      "thumbnail": "/images/catalog/identity-11115-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11201",
+      "gameId": "11201",
+      "kind": "identity",
+      "name": "LCB 수감자",
+      "sinner": "그레고르",
+      "sinnerId": 12,
+      "rarity": "0",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "파열"
+      ],
+      "image": "/images/catalog/identity-11201.webp",
+      "thumbnail": "/images/catalog/identity-11201-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11202",
+      "gameId": "11202",
+      "kind": "identity",
+      "name": "남부 리우 협회 6과",
+      "sinner": "그레고르",
+      "sinnerId": 12,
+      "rarity": "00",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "화상"
+      ],
+      "image": "/images/catalog/identity-11202.webp",
+      "thumbnail": "/images/catalog/identity-11202-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11203",
+      "gameId": "11203",
+      "kind": "identity",
+      "name": "G사 일등대리",
+      "sinner": "그레고르",
+      "sinnerId": 12,
+      "rarity": "000",
+      "releaseDate": "2023-02-27",
+      "season": 1,
+      "tags": [
+        "파열"
+      ],
+      "image": "/images/catalog/identity-11203.webp",
+      "thumbnail": "/images/catalog/identity-11203-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11204",
+      "gameId": "11204",
+      "kind": "identity",
+      "name": "료. 고. 파. 조수",
+      "sinner": "그레고르",
+      "sinnerId": 12,
+      "rarity": "00",
+      "releaseDate": "2023-04-20",
+      "season": 1,
+      "tags": [
+        "출혈"
+      ],
+      "image": "/images/catalog/identity-11204.webp",
+      "thumbnail": "/images/catalog/identity-11204-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11205",
+      "gameId": "11205",
+      "kind": "identity",
+      "name": "장미스패너 공방 해결사",
+      "sinner": "그레고르",
+      "sinnerId": 12,
+      "rarity": "00",
+      "releaseDate": "2023-06-08",
+      "season": 2,
+      "tags": [
+        "충전",
+        "파열",
+        "진동"
+      ],
+      "image": "/images/catalog/identity-11205.webp",
+      "thumbnail": "/images/catalog/identity-11205-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11206",
+      "gameId": "11206",
+      "kind": "identity",
+      "name": "남부 츠바이 협회 4과",
+      "sinner": "그레고르",
+      "sinnerId": 12,
+      "rarity": "000",
+      "releaseDate": "2023-08-10",
+      "season": 0,
+      "tags": [],
+      "image": "/images/catalog/identity-11206.webp",
+      "thumbnail": "/images/catalog/identity-11206-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11207",
+      "gameId": "11207",
+      "kind": "identity",
+      "name": "쌍갈고리 해적단 부선장",
+      "sinner": "그레고르",
+      "sinnerId": 12,
+      "rarity": "000",
+      "releaseDate": "2023-11-16",
+      "season": 3,
+      "tags": [
+        "출혈",
+        "호흡"
+      ],
+      "image": "/images/catalog/identity-11207.webp",
+      "thumbnail": "/images/catalog/identity-11207-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11208",
+      "gameId": "11208",
+      "kind": "identity",
+      "name": "흑운회 부조장",
+      "sinner": "그레고르",
+      "sinnerId": 12,
+      "rarity": "00",
+      "releaseDate": "2024-02-22",
+      "season": 3,
+      "tags": [
+        "출혈"
+      ],
+      "image": "/images/catalog/identity-11208.webp",
+      "thumbnail": "/images/catalog/identity-11208-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11209",
+      "gameId": "11209",
+      "kind": "identity",
+      "name": "에드가 가문 승계자",
+      "sinner": "그레고르",
+      "sinnerId": 12,
+      "rarity": "000",
+      "releaseDate": "2024-04-04",
+      "season": 4,
+      "tags": [
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-11209.webp",
+      "thumbnail": "/images/catalog/identity-11209-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11210",
+      "gameId": "11210",
+      "kind": "identity",
+      "name": "라만차랜드 신부",
+      "sinner": "그레고르",
+      "sinnerId": 12,
+      "rarity": "000",
+      "releaseDate": "2024-10-31",
+      "season": 5,
+      "tags": [
+        "출혈",
+        "파열"
+      ],
+      "image": "/images/catalog/identity-11210.webp",
+      "thumbnail": "/images/catalog/identity-11210-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11211",
+      "gameId": "11211",
+      "kind": "identity",
+      "name": "불주먹 사무소 생존자",
+      "sinner": "그레고르",
+      "sinnerId": 12,
+      "rarity": "000",
+      "releaseDate": "2025-03-06",
+      "season": 5,
+      "tags": [
+        "화상"
+      ],
+      "image": "/images/catalog/identity-11211.webp",
+      "thumbnail": "/images/catalog/identity-11211-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11212",
+      "gameId": "11212",
+      "kind": "identity",
+      "name": "흑수 - 사",
+      "sinner": "그레고르",
+      "sinnerId": 12,
+      "rarity": "000",
+      "releaseDate": "2025-05-15",
+      "season": 6,
+      "tags": [
+        "호흡",
+        "파열"
+      ],
+      "image": "/images/catalog/identity-11212.webp",
+      "thumbnail": "/images/catalog/identity-11212-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11213",
+      "gameId": "11213",
+      "kind": "identity",
+      "name": "밤의 송곳 카피타노",
+      "sinner": "그레고르",
+      "sinnerId": 12,
+      "rarity": "000",
+      "releaseDate": "2025-11-06",
+      "season": 9107,
+      "tags": [
+        "출혈",
+        "진동"
+      ],
+      "image": "/images/catalog/identity-11213.webp",
+      "thumbnail": "/images/catalog/identity-11213-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11214",
+      "gameId": "11214",
+      "kind": "identity",
+      "name": "로보토미 E.G.O:: 램프",
+      "sinner": "그레고르",
+      "sinnerId": 12,
+      "rarity": "000",
+      "releaseDate": "2026-02-05",
+      "season": 7,
+      "tags": [
+        "화상",
+        "침잠"
+      ],
+      "image": "/images/catalog/identity-11214.webp",
+      "thumbnail": "/images/catalog/identity-11214-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11215",
+      "gameId": "11215",
+      "kind": "identity",
+      "name": "LCE E.G.O:: AEDD",
+      "sinner": "그레고르",
+      "sinnerId": 12,
+      "rarity": "000",
+      "releaseDate": "2026-03-19",
+      "season": 7,
+      "tags": [
+        "충전",
+        "파열"
+      ],
+      "image": "/images/catalog/identity-11215.webp",
+      "thumbnail": "/images/catalog/identity-11215-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11216",
+      "gameId": "11216",
+      "kind": "identity",
+      "name": "새벽 사무소 대표",
+      "sinner": "그레고르",
+      "sinnerId": 12,
+      "rarity": "000",
+      "releaseDate": "2026-07-09",
+      "season": 9109,
+      "tags": [
+        "화상",
+        "진동"
+      ],
+      "image": "/images/catalog/identity-11216.webp",
+      "thumbnail": "/images/catalog/identity-11216-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+    },
+    {
+      "id": "catalog-ego-20101",
+      "gameId": "20101",
+      "kind": "ego",
+      "name": "오감도",
+      "sinner": "이상",
+      "sinnerId": 1,
+      "rarity": "ZAYIN",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "ZAYIN"
+      ],
+      "image": "/images/catalog/ego-20101.webp",
+      "thumbnail": "/images/catalog/ego-20101-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "나태"
+    },
+    {
+      "id": "catalog-ego-20102",
+      "gameId": "20102",
+      "kind": "ego",
+      "name": "4번째 성냥불",
+      "sinner": "이상",
+      "sinnerId": 1,
+      "rarity": "TETH",
+      "releaseDate": "2023-02-27",
+      "season": 1,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-20102.webp",
+      "thumbnail": "/images/catalog/ego-20102-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "분노"
+    },
+    {
+      "id": "catalog-ego-20103",
+      "gameId": "20103",
+      "kind": "ego",
+      "name": "소망석",
+      "sinner": "이상",
+      "sinnerId": 1,
+      "rarity": "TETH",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-20103.webp",
+      "thumbnail": "/images/catalog/ego-20103-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "나태"
+    },
+    {
+      "id": "catalog-ego-20104",
+      "gameId": "20104",
+      "kind": "ego",
+      "name": "차원찢개",
+      "sinner": "이상",
+      "sinnerId": 1,
+      "rarity": "HE",
+      "releaseDate": "2023-05-18",
+      "season": 0,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20104.webp",
+      "thumbnail": "/images/catalog/ego-20104-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "오만"
+    },
+    {
+      "id": "catalog-ego-20105",
+      "gameId": "20105",
+      "kind": "ego",
+      "name": "여우비",
+      "sinner": "이상",
+      "sinnerId": 1,
+      "rarity": "WAW",
+      "releaseDate": "2023-06-15",
+      "season": 2,
+      "tags": [
+        "WAW"
+      ],
+      "image": "/images/catalog/ego-20105.webp",
+      "thumbnail": "/images/catalog/ego-20105-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "나태"
+    },
+    {
+      "id": "catalog-ego-20106",
+      "gameId": "20106",
+      "kind": "ego",
+      "name": "지난 날",
+      "sinner": "이상",
+      "sinnerId": 1,
+      "rarity": "ZAYIN",
+      "releaseDate": "2024-04-04",
+      "season": 4,
+      "tags": [
+        "ZAYIN"
+      ],
+      "image": "/images/catalog/ego-20106.webp",
+      "thumbnail": "/images/catalog/ego-20106-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "우울"
+    },
+    {
+      "id": "catalog-ego-20107",
+      "gameId": "20107",
+      "kind": "ego",
+      "name": "흉탄",
+      "sinner": "이상",
+      "sinnerId": 1,
+      "rarity": "HE",
+      "releaseDate": "2024-11-14",
+      "season": 5,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20107.webp",
+      "thumbnail": "/images/catalog/ego-20107-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "오만"
+    },
+    {
+      "id": "catalog-ego-20108",
+      "gameId": "20108",
+      "kind": "ego",
+      "name": "삼천대세계 [三千大世界]",
+      "sinner": "이상",
+      "sinnerId": 1,
+      "rarity": "WAW",
+      "releaseDate": "2026-01-15",
+      "season": 7,
+      "tags": [
+        "WAW"
+      ],
+      "image": "/images/catalog/ego-20108.webp",
+      "thumbnail": "/images/catalog/ego-20108-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "분노"
+    },
+    {
+      "id": "catalog-ego-20109",
+      "gameId": "20109",
+      "kind": "ego",
+      "name": "엄숙한 애도",
+      "sinner": "이상",
+      "sinnerId": 1,
+      "rarity": "HE",
+      "releaseDate": "2026-07-09",
+      "season": 9109,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20109.webp",
+      "thumbnail": "/images/catalog/ego-20109-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "우울"
+    },
+    {
+      "id": "catalog-ego-20201",
+      "gameId": "20201",
+      "kind": "ego",
+      "name": "표상 방출기",
+      "sinner": "파우스트",
+      "sinnerId": 2,
+      "rarity": "ZAYIN",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "ZAYIN"
+      ],
+      "image": "/images/catalog/ego-20201.webp",
+      "thumbnail": "/images/catalog/ego-20201-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "오만"
+    },
+    {
+      "id": "catalog-ego-20202",
+      "gameId": "20202",
+      "kind": "ego",
+      "name": "물주머니",
+      "sinner": "파우스트",
+      "sinnerId": 2,
+      "rarity": "HE",
+      "releaseDate": "2023-02-27",
+      "season": 1,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20202.webp",
+      "thumbnail": "/images/catalog/ego-20202-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "우울"
+    },
+    {
+      "id": "catalog-ego-20203",
+      "gameId": "20203",
+      "kind": "ego",
+      "name": "저주못",
+      "sinner": "파우스트",
+      "sinnerId": 2,
+      "rarity": "TETH",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-20203.webp",
+      "thumbnail": "/images/catalog/ego-20203-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "질투"
+    },
+    {
+      "id": "catalog-ego-20204",
+      "gameId": "20204",
+      "kind": "ego",
+      "name": "전봇대",
+      "sinner": "파우스트",
+      "sinnerId": 2,
+      "rarity": "HE",
+      "releaseDate": "2023-04-06",
+      "season": 0,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20204.webp",
+      "thumbnail": "/images/catalog/ego-20204-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "질투"
+    },
+    {
+      "id": "catalog-ego-20205",
+      "gameId": "20205",
+      "kind": "ego",
+      "name": "9장 2절",
+      "sinner": "파우스트",
+      "sinnerId": 2,
+      "rarity": "TETH",
+      "releaseDate": "2023-11-23",
+      "season": 3,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-20205.webp",
+      "thumbnail": "/images/catalog/ego-20205-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "색욕"
+    },
+    {
+      "id": "catalog-ego-20206",
+      "gameId": "20206",
+      "kind": "ego",
+      "name": "영속",
+      "sinner": "파우스트",
+      "sinnerId": 2,
+      "rarity": "WAW",
+      "releaseDate": "2024-06-13",
+      "season": 4,
+      "tags": [
+        "WAW"
+      ],
+      "image": "/images/catalog/ego-20206.webp",
+      "thumbnail": "/images/catalog/ego-20206-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "나태"
+    },
+    {
+      "id": "catalog-ego-20207",
+      "gameId": "20207",
+      "kind": "ego",
+      "name": "올가미",
+      "sinner": "파우스트",
+      "sinnerId": 2,
+      "rarity": "TETH",
+      "releaseDate": "2024-10-17",
+      "season": 5,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-20207.webp",
+      "thumbnail": "/images/catalog/ego-20207-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "탐식"
+    },
+    {
+      "id": "catalog-ego-20208",
+      "gameId": "20208",
+      "kind": "ego",
+      "name": "흉통",
+      "sinner": "파우스트",
+      "sinnerId": 2,
+      "rarity": "HE",
+      "releaseDate": "2025-02-20",
+      "season": 5,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20208.webp",
+      "thumbnail": "/images/catalog/ego-20208-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "오만"
+    },
+    {
+      "id": "catalog-ego-20209",
+      "gameId": "20209",
+      "kind": "ego",
+      "name": "명령 : 용해",
+      "sinner": "파우스트",
+      "sinnerId": 2,
+      "rarity": "HE",
+      "releaseDate": "2025-09-25",
+      "season": 8000,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20209.webp",
+      "thumbnail": "/images/catalog/ego-20209-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "탐식"
+    },
+    {
+      "id": "catalog-ego-20210",
+      "gameId": "20210",
+      "kind": "ego",
+      "name": "홍염살",
+      "sinner": "파우스트",
+      "sinnerId": 2,
+      "rarity": "HE",
+      "releaseDate": "2026-03-19",
+      "season": 7,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20210.webp",
+      "thumbnail": "/images/catalog/ego-20210-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "분노"
+    },
+    {
+      "id": "catalog-ego-20211",
+      "gameId": "20211",
+      "kind": "ego",
+      "name": "구멍",
+      "sinner": "파우스트",
+      "sinnerId": 2,
+      "rarity": "WAW",
+      "releaseDate": "2026-10-01",
+      "season": 8,
+      "tags": [
+        "WAW"
+      ],
+      "image": "/images/catalog/ego-20211.webp",
+      "thumbnail": "/images/catalog/ego-20211-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "오만"
+    },
+    {
+      "id": "catalog-ego-20301",
+      "gameId": "20301",
+      "kind": "ego",
+      "name": "라 샹그레 데 산쵸",
+      "sinner": "돈키호테",
+      "sinnerId": 3,
+      "rarity": "ZAYIN",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "ZAYIN"
+      ],
+      "image": "/images/catalog/ego-20301.webp",
+      "thumbnail": "/images/catalog/ego-20301-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "색욕"
+    },
+    {
+      "id": "catalog-ego-20302",
+      "gameId": "20302",
+      "kind": "ego",
+      "name": "물주머니",
+      "sinner": "돈키호테",
+      "sinnerId": 3,
+      "rarity": "HE",
+      "releaseDate": "2023-02-27",
+      "season": 1,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20302.webp",
+      "thumbnail": "/images/catalog/ego-20302-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "우울"
+    },
+    {
+      "id": "catalog-ego-20303",
+      "gameId": "20303",
+      "kind": "ego",
+      "name": "전봇대",
+      "sinner": "돈키호테",
+      "sinnerId": 3,
+      "rarity": "HE",
+      "releaseDate": "2023-03-30",
+      "season": 0,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20303.webp",
+      "thumbnail": "/images/catalog/ego-20303-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "질투"
+    },
+    {
+      "id": "catalog-ego-20304",
+      "gameId": "20304",
+      "kind": "ego",
+      "name": "평생 스튜",
+      "sinner": "돈키호테",
+      "sinnerId": 3,
+      "rarity": "TETH",
+      "releaseDate": "2023-04-20",
+      "season": 1,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-20304.webp",
+      "thumbnail": "/images/catalog/ego-20304-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "색욕"
+    },
+    {
+      "id": "catalog-ego-20305",
+      "gameId": "20305",
+      "kind": "ego",
+      "name": "소망석",
+      "sinner": "돈키호테",
+      "sinnerId": 3,
+      "rarity": "TETH",
+      "releaseDate": "2024-02-15",
+      "season": 0,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-20305.webp",
+      "thumbnail": "/images/catalog/ego-20305-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "나태"
+    },
+    {
+      "id": "catalog-ego-20306",
+      "gameId": "20306",
+      "kind": "ego",
+      "name": "전기울음",
+      "sinner": "돈키호테",
+      "sinnerId": 3,
+      "rarity": "TETH",
+      "releaseDate": "2024-04-11",
+      "season": 4,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-20306.webp",
+      "thumbnail": "/images/catalog/ego-20306-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "질투"
+    },
+    {
+      "id": "catalog-ego-20307",
+      "gameId": "20307",
+      "kind": "ego",
+      "name": "갈망-미르칼라",
+      "sinner": "돈키호테",
+      "sinnerId": 3,
+      "rarity": "WAW",
+      "releaseDate": "2024-10-24",
+      "season": 5,
+      "tags": [
+        "WAW"
+      ],
+      "image": "/images/catalog/ego-20307.webp",
+      "thumbnail": "/images/catalog/ego-20307-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "색욕"
+    },
+    {
+      "id": "catalog-ego-20308",
+      "gameId": "20308",
+      "kind": "ego",
+      "name": "홍적",
+      "sinner": "돈키호테",
+      "sinnerId": 3,
+      "rarity": "HE",
+      "releaseDate": "2025-05-22",
+      "season": 6,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20308.webp",
+      "thumbnail": "/images/catalog/ego-20308-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "탐식"
+    },
+    {
+      "id": "catalog-ego-20309",
+      "gameId": "20309",
+      "kind": "ego",
+      "name": "사랑과 증오의 이름으로",
+      "sinner": "돈키호테",
+      "sinnerId": 3,
+      "rarity": "WAW",
+      "releaseDate": "2025-07-17",
+      "season": 9106,
+      "tags": [
+        "WAW"
+      ],
+      "image": "/images/catalog/ego-20309.webp",
+      "thumbnail": "/images/catalog/ego-20309-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "질투"
+    },
+    {
+      "id": "catalog-ego-20310",
+      "gameId": "20310",
+      "kind": "ego",
+      "name": "난 가위를 낼게, 너는?",
+      "sinner": "돈키호테",
+      "sinnerId": 3,
+      "rarity": "ZAYIN",
+      "releaseDate": "2026-08-06",
+      "season": 7,
+      "tags": [
+        "ZAYIN"
+      ],
+      "image": "/images/catalog/ego-20310.webp",
+      "thumbnail": "/images/catalog/ego-20310-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "질투"
+    },
+    {
+      "id": "catalog-ego-20401",
+      "gameId": "20401",
+      "kind": "ego",
+      "name": "삼라염상",
+      "sinner": "료슈",
+      "sinnerId": 4,
+      "rarity": "ZAYIN",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "ZAYIN"
+      ],
+      "image": "/images/catalog/ego-20401.webp",
+      "thumbnail": "/images/catalog/ego-20401-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "색욕"
+    },
+    {
+      "id": "catalog-ego-20402",
+      "gameId": "20402",
+      "kind": "ego",
+      "name": "4번째 성냥불",
+      "sinner": "료슈",
+      "sinnerId": 4,
+      "rarity": "HE",
+      "releaseDate": "2023-02-27",
+      "season": 1,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20402.webp",
+      "thumbnail": "/images/catalog/ego-20402-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "분노"
+    },
+    {
+      "id": "catalog-ego-20403",
+      "gameId": "20403",
+      "kind": "ego",
+      "name": "적안",
+      "sinner": "료슈",
+      "sinnerId": 4,
+      "rarity": "TETH",
+      "releaseDate": "2023-06-29",
+      "season": 0,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-20403.webp",
+      "thumbnail": "/images/catalog/ego-20403-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "색욕"
+    },
+    {
+      "id": "catalog-ego-20404",
+      "gameId": "20404",
+      "kind": "ego",
+      "name": "적안(開)",
+      "sinner": "료슈",
+      "sinnerId": 4,
+      "rarity": "HE",
+      "releaseDate": "2023-06-29",
+      "season": 0,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20404.webp",
+      "thumbnail": "/images/catalog/ego-20404-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "질투"
+    },
+    {
+      "id": "catalog-ego-20405",
+      "gameId": "20405",
+      "kind": "ego",
+      "name": "소다",
+      "sinner": "료슈",
+      "sinnerId": 4,
+      "rarity": "ZAYIN",
+      "releaseDate": "2023-07-27",
+      "season": 2,
+      "tags": [
+        "ZAYIN"
+      ],
+      "image": "/images/catalog/ego-20405.webp",
+      "thumbnail": "/images/catalog/ego-20405-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "우울"
+    },
+    {
+      "id": "catalog-ego-20406",
+      "gameId": "20406",
+      "kind": "ego",
+      "name": "맹목",
+      "sinner": "료슈",
+      "sinnerId": 4,
+      "rarity": "TETH",
+      "releaseDate": "2023-11-30",
+      "season": 3,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-20406.webp",
+      "thumbnail": "/images/catalog/ego-20406-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "오만"
+    },
+    {
+      "id": "catalog-ego-20407",
+      "gameId": "20407",
+      "kind": "ego",
+      "name": "경멸, 경외",
+      "sinner": "료슈",
+      "sinnerId": 4,
+      "rarity": "WAW",
+      "releaseDate": "2024-07-11",
+      "season": 4,
+      "tags": [
+        "WAW"
+      ],
+      "image": "/images/catalog/ego-20407.webp",
+      "thumbnail": "/images/catalog/ego-20407-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "색욕"
+    },
+    {
+      "id": "catalog-ego-20408",
+      "gameId": "20408",
+      "kind": "ego",
+      "name": "흉통",
+      "sinner": "료슈",
+      "sinnerId": 4,
+      "rarity": "HE",
+      "releaseDate": "2025-01-23",
+      "season": 5,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20408.webp",
+      "thumbnail": "/images/catalog/ego-20408-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "오만"
+    },
+    {
+      "id": "catalog-ego-20409",
+      "gameId": "20409",
+      "kind": "ego",
+      "name": "삼천대세계 [三千大世界]",
+      "sinner": "료슈",
+      "sinnerId": 4,
+      "rarity": "WAW",
+      "releaseDate": "2026-01-15",
+      "season": 7,
+      "tags": [
+        "WAW"
+      ],
+      "image": "/images/catalog/ego-20409.webp",
+      "thumbnail": "/images/catalog/ego-20409-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "분노"
+    },
+    {
+      "id": "catalog-ego-20501",
+      "gameId": "20501",
+      "kind": "ego",
+      "name": "타인의 사슬",
+      "sinner": "뫼르소",
+      "sinnerId": 5,
+      "rarity": "ZAYIN",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "ZAYIN"
+      ],
+      "image": "/images/catalog/ego-20501.webp",
+      "thumbnail": "/images/catalog/ego-20501-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "오만"
+    },
+    {
+      "id": "catalog-ego-20502",
+      "gameId": "20502",
+      "kind": "ego",
+      "name": "나사빠진 일격",
+      "sinner": "뫼르소",
+      "sinnerId": 5,
+      "rarity": "TETH",
+      "releaseDate": "2023-02-27",
+      "season": 1,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-20502.webp",
+      "thumbnail": "/images/catalog/ego-20502-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "질투"
+    },
+    {
+      "id": "catalog-ego-20503",
+      "gameId": "20503",
+      "kind": "ego",
+      "name": "집행",
+      "sinner": "뫼르소",
+      "sinnerId": 5,
+      "rarity": "HE",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20503.webp",
+      "thumbnail": "/images/catalog/ego-20503-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "나태"
+    },
+    {
+      "id": "catalog-ego-20504",
+      "gameId": "20504",
+      "kind": "ego",
+      "name": "카포테",
+      "sinner": "뫼르소",
+      "sinnerId": 5,
+      "rarity": "HE",
+      "releaseDate": "2023-06-01",
+      "season": 2,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20504.webp",
+      "thumbnail": "/images/catalog/ego-20504-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "분노"
+    },
+    {
+      "id": "catalog-ego-20505",
+      "gameId": "20505",
+      "kind": "ego",
+      "name": "후회",
+      "sinner": "뫼르소",
+      "sinnerId": 5,
+      "rarity": "TETH",
+      "releaseDate": "2023-10-26",
+      "season": 9101,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-20505.webp",
+      "thumbnail": "/images/catalog/ego-20505-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "분노"
+    },
+    {
+      "id": "catalog-ego-20506",
+      "gameId": "20506",
+      "kind": "ego",
+      "name": "전기울음",
+      "sinner": "뫼르소",
+      "sinnerId": 5,
+      "rarity": "TETH",
+      "releaseDate": "2024-04-11",
+      "season": 4,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-20506.webp",
+      "thumbnail": "/images/catalog/ego-20506-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "질투"
+    },
+    {
+      "id": "catalog-ego-20507",
+      "gameId": "20507",
+      "kind": "ego",
+      "name": "갈망-미르칼라",
+      "sinner": "뫼르소",
+      "sinnerId": 5,
+      "rarity": "WAW",
+      "releaseDate": "2024-10-24",
+      "season": 5,
+      "tags": [
+        "WAW"
+      ],
+      "image": "/images/catalog/ego-20507.webp",
+      "thumbnail": "/images/catalog/ego-20507-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "색욕"
+    },
+    {
+      "id": "catalog-ego-20508",
+      "gameId": "20508",
+      "kind": "ego",
+      "name": "분쇄될 과거",
+      "sinner": "뫼르소",
+      "sinnerId": 5,
+      "rarity": "WAW",
+      "releaseDate": "2025-07-31",
+      "season": 6,
+      "tags": [
+        "WAW"
+      ],
+      "image": "/images/catalog/ego-20508.webp",
+      "thumbnail": "/images/catalog/ego-20508-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "나태"
+    },
+    {
+      "id": "catalog-ego-20509",
+      "gameId": "20509",
+      "kind": "ego",
+      "name": "착영휘도[着影揮刀]",
+      "sinner": "뫼르소",
+      "sinnerId": 5,
+      "rarity": "HE",
+      "releaseDate": "2026-06-11",
+      "season": 7,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20509.webp",
+      "thumbnail": "/images/catalog/ego-20509-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "오만"
+    },
+    {
+      "id": "catalog-ego-20510",
+      "gameId": "20510",
+      "kind": "ego",
+      "name": "구멍",
+      "sinner": "뫼르소",
+      "sinnerId": 5,
+      "rarity": "WAW",
+      "releaseDate": "2026-10-01",
+      "season": 8,
+      "tags": [
+        "WAW"
+      ],
+      "image": "/images/catalog/ego-20510.webp",
+      "thumbnail": "/images/catalog/ego-20510-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "오만"
+    },
+    {
+      "id": "catalog-ego-20601",
+      "gameId": "20601",
+      "kind": "ego",
+      "name": "허환경",
+      "sinner": "홍루",
+      "sinnerId": 6,
+      "rarity": "ZAYIN",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "ZAYIN"
+      ],
+      "image": "/images/catalog/ego-20601.webp",
+      "thumbnail": "/images/catalog/ego-20601-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "우울"
+    },
+    {
+      "id": "catalog-ego-20602",
+      "gameId": "20602",
+      "kind": "ego",
+      "name": "분홍욕망",
+      "sinner": "홍루",
+      "sinnerId": 6,
+      "rarity": "TETH",
+      "releaseDate": "2023-02-27",
+      "season": 1,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-20602.webp",
+      "thumbnail": "/images/catalog/ego-20602-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "색욕"
+    },
+    {
+      "id": "catalog-ego-20603",
+      "gameId": "20603",
+      "kind": "ego",
+      "name": "차원찢개",
+      "sinner": "홍루",
+      "sinnerId": 6,
+      "rarity": "HE",
+      "releaseDate": "2023-05-18",
+      "season": 0,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20603.webp",
+      "thumbnail": "/images/catalog/ego-20603-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "오만"
+    },
+    {
+      "id": "catalog-ego-20604",
+      "gameId": "20604",
+      "kind": "ego",
+      "name": "소다",
+      "sinner": "홍루",
+      "sinnerId": 6,
+      "rarity": "TETH",
+      "releaseDate": "2023-07-27",
+      "season": 2,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-20604.webp",
+      "thumbnail": "/images/catalog/ego-20604-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "질투"
+    },
+    {
+      "id": "catalog-ego-20605",
+      "gameId": "20605",
+      "kind": "ego",
+      "name": "들끓는 부식",
+      "sinner": "홍루",
+      "sinnerId": 6,
+      "rarity": "HE",
+      "releaseDate": "2023-11-23",
+      "season": 3,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20605.webp",
+      "thumbnail": "/images/catalog/ego-20605-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "탐식"
+    },
+    {
+      "id": "catalog-ego-20606",
+      "gameId": "20606",
+      "kind": "ego",
+      "name": "낮은울음",
+      "sinner": "홍루",
+      "sinnerId": 6,
+      "rarity": "TETH",
+      "releaseDate": "2024-05-30",
+      "season": 0,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-20606.webp",
+      "thumbnail": "/images/catalog/ego-20606-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "나태"
+    },
+    {
+      "id": "catalog-ego-20607",
+      "gameId": "20607",
+      "kind": "ego",
+      "name": "올가미",
+      "sinner": "홍루",
+      "sinnerId": 6,
+      "rarity": "TETH",
+      "releaseDate": "2024-10-17",
+      "season": 5,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-20607.webp",
+      "thumbnail": "/images/catalog/ego-20607-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "탐식"
+    },
+    {
+      "id": "catalog-ego-20608",
+      "gameId": "20608",
+      "kind": "ego",
+      "name": "오혈읍루 [汚血泣淚]",
+      "sinner": "홍루",
+      "sinnerId": 6,
+      "rarity": "WAW",
+      "releaseDate": "2025-05-29",
+      "season": 6,
+      "tags": [
+        "WAW"
+      ],
+      "image": "/images/catalog/ego-20608.webp",
+      "thumbnail": "/images/catalog/ego-20608-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "탐식"
+    },
+    {
+      "id": "catalog-ego-20609",
+      "gameId": "20609",
+      "kind": "ego",
+      "name": "영작오 [宁作吾]",
+      "sinner": "홍루",
+      "sinnerId": 6,
+      "rarity": "HE",
+      "releaseDate": "2025-09-25",
+      "season": 8000,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20609.webp",
+      "thumbnail": "/images/catalog/ego-20609-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "오만"
+    },
+    {
+      "id": "catalog-ego-20610",
+      "gameId": "20610",
+      "kind": "ego",
+      "name": "거절선포",
+      "sinner": "홍루",
+      "sinnerId": 6,
+      "rarity": "ZAYIN",
+      "releaseDate": "2026-09-24",
+      "season": 8,
+      "tags": [
+        "ZAYIN"
+      ],
+      "image": "/images/catalog/ego-20610.webp",
+      "thumbnail": "/images/catalog/ego-20610-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "질투"
+    },
+    {
+      "id": "catalog-ego-20701",
+      "gameId": "20701",
+      "kind": "ego",
+      "name": "시체자루",
+      "sinner": "히스클리프",
+      "sinnerId": 7,
+      "rarity": "ZAYIN",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "ZAYIN"
+      ],
+      "image": "/images/catalog/ego-20701.webp",
+      "thumbnail": "/images/catalog/ego-20701-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "질투"
+    },
+    {
+      "id": "catalog-ego-20702",
+      "gameId": "20702",
+      "kind": "ego",
+      "name": "전봇대",
+      "sinner": "히스클리프",
+      "sinnerId": 7,
+      "rarity": "HE",
+      "releaseDate": "2023-02-27",
+      "season": 1,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20702.webp",
+      "thumbnail": "/images/catalog/ego-20702-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "질투"
+    },
+    {
+      "id": "catalog-ego-20703",
+      "gameId": "20703",
+      "kind": "ego",
+      "name": "AEDD",
+      "sinner": "히스클리프",
+      "sinnerId": 7,
+      "rarity": "TETH",
+      "releaseDate": "2023-06-08",
+      "season": 2,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-20703.webp",
+      "thumbnail": "/images/catalog/ego-20703-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "우울"
+    },
+    {
+      "id": "catalog-ego-20704",
+      "gameId": "20704",
+      "kind": "ego",
+      "name": "공즉시색",
+      "sinner": "히스클리프",
+      "sinnerId": 7,
+      "rarity": "HE",
+      "releaseDate": "2023-10-12",
+      "season": 0,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20704.webp",
+      "thumbnail": "/images/catalog/ego-20704-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "색욕"
+    },
+    {
+      "id": "catalog-ego-20705",
+      "gameId": "20705",
+      "kind": "ego",
+      "name": "홀리데이",
+      "sinner": "히스클리프",
+      "sinnerId": 7,
+      "rarity": "ZAYIN",
+      "releaseDate": "2023-12-28",
+      "season": 3,
+      "tags": [
+        "ZAYIN"
+      ],
+      "image": "/images/catalog/ego-20705.webp",
+      "thumbnail": "/images/catalog/ego-20705-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "탐식"
+    },
+    {
+      "id": "catalog-ego-20706",
+      "gameId": "20706",
+      "kind": "ego",
+      "name": "구속",
+      "sinner": "히스클리프",
+      "sinnerId": 7,
+      "rarity": "WAW",
+      "releaseDate": "2024-04-11",
+      "season": 4,
+      "tags": [
+        "WAW"
+      ],
+      "image": "/images/catalog/ego-20706.webp",
+      "thumbnail": "/images/catalog/ego-20706-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "우울"
+    },
+    {
+      "id": "catalog-ego-20707",
+      "gameId": "20707",
+      "kind": "ego",
+      "name": "흉탄",
+      "sinner": "히스클리프",
+      "sinnerId": 7,
+      "rarity": "TETH",
+      "releaseDate": "2024-07-25",
+      "season": 0,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-20707.webp",
+      "thumbnail": "/images/catalog/ego-20707-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "오만"
+    },
+    {
+      "id": "catalog-ego-20708",
+      "gameId": "20708",
+      "kind": "ego",
+      "name": "쏠린 관성",
+      "sinner": "히스클리프",
+      "sinnerId": 7,
+      "rarity": "HE",
+      "releaseDate": "2024-11-28",
+      "season": 0,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20708.webp",
+      "thumbnail": "/images/catalog/ego-20708-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "나태"
+    },
+    {
+      "id": "catalog-ego-20709",
+      "gameId": "20709",
+      "kind": "ego",
+      "name": "입주 신고",
+      "sinner": "히스클리프",
+      "sinnerId": 7,
+      "rarity": "TETH",
+      "releaseDate": "2026-01-08",
+      "season": 7,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-20709.webp",
+      "thumbnail": "/images/catalog/ego-20709-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "질투"
+    },
+    {
+      "id": "catalog-ego-20801",
+      "gameId": "20801",
+      "kind": "ego",
+      "name": "작살박이",
+      "sinner": "이스마엘",
+      "sinnerId": 8,
+      "rarity": "ZAYIN",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "ZAYIN"
+      ],
+      "image": "/images/catalog/ego-20801.webp",
+      "thumbnail": "/images/catalog/ego-20801-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "우울"
+    },
+    {
+      "id": "catalog-ego-20802",
+      "gameId": "20802",
+      "kind": "ego",
+      "name": "분홍욕망",
+      "sinner": "이스마엘",
+      "sinnerId": 8,
+      "rarity": "TETH",
+      "releaseDate": "2023-02-27",
+      "season": 1,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-20802.webp",
+      "thumbnail": "/images/catalog/ego-20802-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "색욕"
+    },
+    {
+      "id": "catalog-ego-20803",
+      "gameId": "20803",
+      "kind": "ego",
+      "name": "홍염살",
+      "sinner": "이스마엘",
+      "sinnerId": 8,
+      "rarity": "HE",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20803.webp",
+      "thumbnail": "/images/catalog/ego-20803-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "분노"
+    },
+    {
+      "id": "catalog-ego-20804",
+      "gameId": "20804",
+      "kind": "ego",
+      "name": "카포테",
+      "sinner": "이스마엘",
+      "sinnerId": 8,
+      "rarity": "TETH",
+      "releaseDate": "2023-06-01",
+      "season": 2,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-20804.webp",
+      "thumbnail": "/images/catalog/ego-20804-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "분노"
+    },
+    {
+      "id": "catalog-ego-20805",
+      "gameId": "20805",
+      "kind": "ego",
+      "name": "맹목",
+      "sinner": "이스마엘",
+      "sinnerId": 8,
+      "rarity": "WAW",
+      "releaseDate": "2023-11-30",
+      "season": 3,
+      "tags": [
+        "WAW"
+      ],
+      "image": "/images/catalog/ego-20805.webp",
+      "thumbnail": "/images/catalog/ego-20805-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "오만"
+    },
+    {
+      "id": "catalog-ego-20806",
+      "gameId": "20806",
+      "kind": "ego",
+      "name": "날갯짓",
+      "sinner": "이스마엘",
+      "sinnerId": 8,
+      "rarity": "HE",
+      "releaseDate": "2024-05-02",
+      "season": 9103,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20806.webp",
+      "thumbnail": "/images/catalog/ego-20806-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "탐식"
+    },
+    {
+      "id": "catalog-ego-20807",
+      "gameId": "20807",
+      "kind": "ego",
+      "name": "지난 날",
+      "sinner": "이스마엘",
+      "sinnerId": 8,
+      "rarity": "TETH",
+      "releaseDate": "2024-09-19",
+      "season": 0,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-20807.webp",
+      "thumbnail": "/images/catalog/ego-20807-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "우울"
+    },
+    {
+      "id": "catalog-ego-20808",
+      "gameId": "20808",
+      "kind": "ego",
+      "name": "크리스마스 악몽",
+      "sinner": "이스마엘",
+      "sinnerId": 8,
+      "rarity": "HE",
+      "releaseDate": "2024-12-26",
+      "season": 5,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20808.webp",
+      "thumbnail": "/images/catalog/ego-20808-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "나태"
+    },
+    {
+      "id": "catalog-ego-20809",
+      "gameId": "20809",
+      "kind": "ego",
+      "name": "즉저살 [蝍蛆殺]",
+      "sinner": "이스마엘",
+      "sinnerId": 8,
+      "rarity": "ZAYIN",
+      "releaseDate": "2025-05-22",
+      "season": 6,
+      "tags": [
+        "ZAYIN"
+      ],
+      "image": "/images/catalog/ego-20809.webp",
+      "thumbnail": "/images/catalog/ego-20809-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "우울"
+    },
+    {
+      "id": "catalog-ego-20810",
+      "gameId": "20810",
+      "kind": "ego",
+      "name": "파도의 만가",
+      "sinner": "이스마엘",
+      "sinnerId": 8,
+      "rarity": "HE",
+      "releaseDate": "2025-09-25",
+      "season": 8000,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20810.webp",
+      "thumbnail": "/images/catalog/ego-20810-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "우울"
+    },
+    {
+      "id": "catalog-ego-20901",
+      "gameId": "20901",
+      "kind": "ego",
+      "name": "던져지는 것",
+      "sinner": "로쟈",
+      "sinnerId": 9,
+      "rarity": "ZAYIN",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "ZAYIN"
+      ],
+      "image": "/images/catalog/ego-20901.webp",
+      "thumbnail": "/images/catalog/ego-20901-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "오만"
+    },
+    {
+      "id": "catalog-ego-20902",
+      "gameId": "20902",
+      "kind": "ego",
+      "name": "4번째 성냥불",
+      "sinner": "로쟈",
+      "sinnerId": 9,
+      "rarity": "HE",
+      "releaseDate": "2023-02-27",
+      "season": 1,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20902.webp",
+      "thumbnail": "/images/catalog/ego-20902-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "분노"
+    },
+    {
+      "id": "catalog-ego-20903",
+      "gameId": "20903",
+      "kind": "ego",
+      "name": "얼음다리",
+      "sinner": "로쟈",
+      "sinnerId": 9,
+      "rarity": "TETH",
+      "releaseDate": "2023-02-27",
+      "season": 1,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-20903.webp",
+      "thumbnail": "/images/catalog/ego-20903-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "우울"
+    },
+    {
+      "id": "catalog-ego-20904",
+      "gameId": "20904",
+      "kind": "ego",
+      "name": "들끓는 부식",
+      "sinner": "로쟈",
+      "sinnerId": 9,
+      "rarity": "TETH",
+      "releaseDate": "2023-11-30",
+      "season": 3,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-20904.webp",
+      "thumbnail": "/images/catalog/ego-20904-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "탐식"
+    },
+    {
+      "id": "catalog-ego-20905",
+      "gameId": "20905",
+      "kind": "ego",
+      "name": "집행",
+      "sinner": "로쟈",
+      "sinnerId": 9,
+      "rarity": "HE",
+      "releaseDate": "2023-12-14",
+      "season": 0,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20905.webp",
+      "thumbnail": "/images/catalog/ego-20905-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "나태"
+    },
+    {
+      "id": "catalog-ego-20906",
+      "gameId": "20906",
+      "kind": "ego",
+      "name": "핏빛욕망",
+      "sinner": "로쟈",
+      "sinnerId": 9,
+      "rarity": "WAW",
+      "releaseDate": "2024-05-02",
+      "season": 9103,
+      "tags": [
+        "WAW"
+      ],
+      "image": "/images/catalog/ego-20906.webp",
+      "thumbnail": "/images/catalog/ego-20906-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "색욕"
+    },
+    {
+      "id": "catalog-ego-20907",
+      "gameId": "20907",
+      "kind": "ego",
+      "name": "저주못",
+      "sinner": "로쟈",
+      "sinnerId": 9,
+      "rarity": "HE",
+      "releaseDate": "2024-10-24",
+      "season": 5,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-20907.webp",
+      "thumbnail": "/images/catalog/ego-20907-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "질투"
+    },
+    {
+      "id": "catalog-ego-20908",
+      "gameId": "20908",
+      "kind": "ego",
+      "name": "지정 재판",
+      "sinner": "로쟈",
+      "sinnerId": 9,
+      "rarity": "WAW",
+      "releaseDate": "2025-04-17",
+      "season": 5,
+      "tags": [
+        "WAW"
+      ],
+      "image": "/images/catalog/ego-20908.webp",
+      "thumbnail": "/images/catalog/ego-20908-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "분노"
+    },
+    {
+      "id": "catalog-ego-20909",
+      "gameId": "20909",
+      "kind": "ego",
+      "name": "노을 속으로",
+      "sinner": "로쟈",
+      "sinnerId": 9,
+      "rarity": "ZAYIN",
+      "releaseDate": "2026-04-30",
+      "season": 7,
+      "tags": [
+        "ZAYIN"
+      ],
+      "image": "/images/catalog/ego-20909.webp",
+      "thumbnail": "/images/catalog/ego-20909-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "색욕"
+    },
+    {
+      "id": "catalog-ego-20910",
+      "gameId": "20910",
+      "kind": "ego",
+      "name": "거울촉각",
+      "sinner": "로쟈",
+      "sinnerId": 9,
+      "rarity": "TETH",
+      "releaseDate": "2026-09-24",
+      "season": 8,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-20910.webp",
+      "thumbnail": "/images/catalog/ego-20910-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "나태"
+    },
+    {
+      "id": "catalog-ego-21001",
+      "gameId": "21001",
+      "kind": "ego",
+      "name": "지식나무의 가지",
+      "sinner": "싱클레어",
+      "sinnerId": 10,
+      "rarity": "ZAYIN",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "ZAYIN"
+      ],
+      "image": "/images/catalog/ego-21001.webp",
+      "thumbnail": "/images/catalog/ego-21001-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "탐식"
+    },
+    {
+      "id": "catalog-ego-21002",
+      "gameId": "21002",
+      "kind": "ego",
+      "name": "다가올날",
+      "sinner": "싱클레어",
+      "sinnerId": 10,
+      "rarity": "TETH",
+      "releaseDate": "2023-02-27",
+      "season": 1,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-21002.webp",
+      "thumbnail": "/images/catalog/ego-21002-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "분노"
+    },
+    {
+      "id": "catalog-ego-21003",
+      "gameId": "21003",
+      "kind": "ego",
+      "name": "평생 스튜",
+      "sinner": "싱클레어",
+      "sinnerId": 10,
+      "rarity": "TETH",
+      "releaseDate": "2023-04-20",
+      "season": 1,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-21003.webp",
+      "thumbnail": "/images/catalog/ego-21003-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "색욕"
+    },
+    {
+      "id": "catalog-ego-21004",
+      "gameId": "21004",
+      "kind": "ego",
+      "name": "초롱",
+      "sinner": "싱클레어",
+      "sinnerId": 10,
+      "rarity": "HE",
+      "releaseDate": "2023-10-05",
+      "season": 0,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-21004.webp",
+      "thumbnail": "/images/catalog/ego-21004-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "탐식"
+    },
+    {
+      "id": "catalog-ego-21005",
+      "gameId": "21005",
+      "kind": "ego",
+      "name": "9장 2절",
+      "sinner": "싱클레어",
+      "sinnerId": 10,
+      "rarity": "HE",
+      "releaseDate": "2023-11-30",
+      "season": 3,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-21005.webp",
+      "thumbnail": "/images/catalog/ego-21005-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "색욕"
+    },
+    {
+      "id": "catalog-ego-21006",
+      "gameId": "21006",
+      "kind": "ego",
+      "name": "낮은울음",
+      "sinner": "싱클레어",
+      "sinnerId": 10,
+      "rarity": "ZAYIN",
+      "releaseDate": "2024-05-30",
+      "season": 0,
+      "tags": [
+        "ZAYIN"
+      ],
+      "image": "/images/catalog/ego-21006.webp",
+      "thumbnail": "/images/catalog/ego-21006-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "우울"
+    },
+    {
+      "id": "catalog-ego-21007",
+      "gameId": "21007",
+      "kind": "ego",
+      "name": "저주못",
+      "sinner": "싱클레어",
+      "sinnerId": 10,
+      "rarity": "TETH",
+      "releaseDate": "2024-10-24",
+      "season": 5,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-21007.webp",
+      "thumbnail": "/images/catalog/ego-21007-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "질투"
+    },
+    {
+      "id": "catalog-ego-21008",
+      "gameId": "21008",
+      "kind": "ego",
+      "name": "오혈읍루 [汚血泣淚]",
+      "sinner": "싱클레어",
+      "sinnerId": 10,
+      "rarity": "WAW",
+      "releaseDate": "2025-05-29",
+      "season": 6,
+      "tags": [
+        "WAW"
+      ],
+      "image": "/images/catalog/ego-21008.webp",
+      "thumbnail": "/images/catalog/ego-21008-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "탐식"
+    },
+    {
+      "id": "catalog-ego-21009",
+      "gameId": "21009",
+      "kind": "ego",
+      "name": "하모니",
+      "sinner": "싱클레어",
+      "sinnerId": 10,
+      "rarity": "HE",
+      "releaseDate": "2026-03-05",
+      "season": 9108,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-21009.webp",
+      "thumbnail": "/images/catalog/ego-21009-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "분노"
+    },
+    {
+      "id": "catalog-ego-21101",
+      "gameId": "21101",
+      "kind": "ego",
+      "name": "토 파토스 마토스",
+      "sinner": "오티스",
+      "sinnerId": 11,
+      "rarity": "ZAYIN",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "ZAYIN"
+      ],
+      "image": "/images/catalog/ego-21101.webp",
+      "thumbnail": "/images/catalog/ego-21101-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "오만"
+    },
+    {
+      "id": "catalog-ego-21102",
+      "gameId": "21102",
+      "kind": "ego",
+      "name": "검은줄기",
+      "sinner": "오티스",
+      "sinnerId": 11,
+      "rarity": "HE",
+      "releaseDate": "2023-02-27",
+      "season": 1,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-21102.webp",
+      "thumbnail": "/images/catalog/ego-21102-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "탐식"
+    },
+    {
+      "id": "catalog-ego-21103",
+      "gameId": "21103",
+      "kind": "ego",
+      "name": "공즉시색",
+      "sinner": "오티스",
+      "sinnerId": 11,
+      "rarity": "TETH",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-21103.webp",
+      "thumbnail": "/images/catalog/ego-21103-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "색욕"
+    },
+    {
+      "id": "catalog-ego-21104",
+      "gameId": "21104",
+      "kind": "ego",
+      "name": "여우비",
+      "sinner": "오티스",
+      "sinnerId": 11,
+      "rarity": "TETH",
+      "releaseDate": "2023-06-08",
+      "season": 2,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-21104.webp",
+      "thumbnail": "/images/catalog/ego-21104-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "탐식"
+    },
+    {
+      "id": "catalog-ego-21105",
+      "gameId": "21105",
+      "kind": "ego",
+      "name": "홀리데이",
+      "sinner": "오티스",
+      "sinnerId": 11,
+      "rarity": "HE",
+      "releaseDate": "2023-12-28",
+      "season": 3,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-21105.webp",
+      "thumbnail": "/images/catalog/ego-21105-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "분노"
+    },
+    {
+      "id": "catalog-ego-21106",
+      "gameId": "21106",
+      "kind": "ego",
+      "name": "구속",
+      "sinner": "오티스",
+      "sinnerId": 11,
+      "rarity": "WAW",
+      "releaseDate": "2024-04-11",
+      "season": 4,
+      "tags": [
+        "WAW"
+      ],
+      "image": "/images/catalog/ego-21106.webp",
+      "thumbnail": "/images/catalog/ego-21106-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "오만"
+    },
+    {
+      "id": "catalog-ego-21107",
+      "gameId": "21107",
+      "kind": "ego",
+      "name": "차원찢개",
+      "sinner": "오티스",
+      "sinnerId": 11,
+      "rarity": "HE",
+      "releaseDate": "2024-08-08",
+      "season": 4,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-21107.webp",
+      "thumbnail": "/images/catalog/ego-21107-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "질투"
+    },
+    {
+      "id": "catalog-ego-21108",
+      "gameId": "21108",
+      "kind": "ego",
+      "name": "마탄",
+      "sinner": "오티스",
+      "sinnerId": 11,
+      "rarity": "HE",
+      "releaseDate": "2025-01-09",
+      "season": 9105,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-21108.webp",
+      "thumbnail": "/images/catalog/ego-21108-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "오만"
+    },
+    {
+      "id": "catalog-ego-21109",
+      "gameId": "21109",
+      "kind": "ego",
+      "name": "난 가위를 낼게, 너는?",
+      "sinner": "오티스",
+      "sinnerId": 11,
+      "rarity": "ZAYIN",
+      "releaseDate": "2026-01-08",
+      "season": 7,
+      "tags": [
+        "ZAYIN"
+      ],
+      "image": "/images/catalog/ego-21109.webp",
+      "thumbnail": "/images/catalog/ego-21109-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "질투"
+    },
+    {
+      "id": "catalog-ego-21201",
+      "gameId": "21201",
+      "kind": "ego",
+      "name": "어느날 갑자기",
+      "sinner": "그레고르",
+      "sinnerId": 12,
+      "rarity": "ZAYIN",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "ZAYIN"
+      ],
+      "image": "/images/catalog/ego-21201.webp",
+      "thumbnail": "/images/catalog/ego-21201-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "나태"
+    },
+    {
+      "id": "catalog-ego-21202",
+      "gameId": "21202",
+      "kind": "ego",
+      "name": "눈속임",
+      "sinner": "그레고르",
+      "sinnerId": 12,
+      "rarity": "ZAYIN",
+      "releaseDate": "2023-02-27",
+      "season": 1,
+      "tags": [
+        "ZAYIN"
+      ],
+      "image": "/images/catalog/ego-21202.webp",
+      "thumbnail": "/images/catalog/ego-21202-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "탐식"
+    },
+    {
+      "id": "catalog-ego-21203",
+      "gameId": "21203",
+      "kind": "ego",
+      "name": "초롱",
+      "sinner": "그레고르",
+      "sinnerId": 12,
+      "rarity": "TETH",
+      "releaseDate": "2023-02-27",
+      "season": 0,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-21203.webp",
+      "thumbnail": "/images/catalog/ego-21203-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "탐식"
+    },
+    {
+      "id": "catalog-ego-21204",
+      "gameId": "21204",
+      "kind": "ego",
+      "name": "AEDD",
+      "sinner": "그레고르",
+      "sinnerId": 12,
+      "rarity": "HE",
+      "releaseDate": "2023-06-15",
+      "season": 2,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-21204.webp",
+      "thumbnail": "/images/catalog/ego-21204-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "우울"
+    },
+    {
+      "id": "catalog-ego-21205",
+      "gameId": "21205",
+      "kind": "ego",
+      "name": "가시 화원",
+      "sinner": "그레고르",
+      "sinnerId": 12,
+      "rarity": "WAW",
+      "releaseDate": "2024-03-14",
+      "season": 3,
+      "tags": [
+        "WAW"
+      ],
+      "image": "/images/catalog/ego-21205.webp",
+      "thumbnail": "/images/catalog/ego-21205-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "색욕"
+    },
+    {
+      "id": "catalog-ego-21206",
+      "gameId": "21206",
+      "kind": "ego",
+      "name": "지난 날",
+      "sinner": "그레고르",
+      "sinnerId": 12,
+      "rarity": "TETH",
+      "releaseDate": "2024-04-04",
+      "season": 4,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-21206.webp",
+      "thumbnail": "/images/catalog/ego-21206-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "우울"
+    },
+    {
+      "id": "catalog-ego-21207",
+      "gameId": "21207",
+      "kind": "ego",
+      "name": "엄숙한 애도",
+      "sinner": "그레고르",
+      "sinnerId": 12,
+      "rarity": "HE",
+      "releaseDate": "2024-09-05",
+      "season": 9104,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-21207.webp",
+      "thumbnail": "/images/catalog/ego-21207-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "우울"
+    },
+    {
+      "id": "catalog-ego-21208",
+      "gameId": "21208",
+      "kind": "ego",
+      "name": "크리스마스 악몽",
+      "sinner": "그레고르",
+      "sinnerId": 12,
+      "rarity": "HE",
+      "releaseDate": "2024-12-26",
+      "season": 5,
+      "tags": [
+        "HE"
+      ],
+      "image": "/images/catalog/ego-21208.webp",
+      "thumbnail": "/images/catalog/ego-21208-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "나태"
+    },
+    {
+      "id": "catalog-ego-21209",
+      "gameId": "21209",
+      "kind": "ego",
+      "name": "눈부시지 않은 영광",
+      "sinner": "그레고르",
+      "sinnerId": 12,
+      "rarity": "WAW",
+      "releaseDate": "2025-09-25",
+      "season": 8000,
+      "tags": [
+        "WAW"
+      ],
+      "image": "/images/catalog/ego-21209.webp",
+      "thumbnail": "/images/catalog/ego-21209-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "나태"
+    },
+    {
+      "id": "catalog-ego-21210",
+      "gameId": "21210",
+      "kind": "ego",
+      "name": "입주 신고",
+      "sinner": "그레고르",
+      "sinnerId": 12,
+      "rarity": "TETH",
+      "releaseDate": "2026-09-03",
+      "season": 7,
+      "tags": [
+        "TETH"
+      ],
+      "image": "/images/catalog/ego-21210.webp",
+      "thumbnail": "/images/catalog/ego-21210-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "affinity": "질투"
+    }
+  ]
+}

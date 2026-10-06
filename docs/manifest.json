@@ -1,0 +1,31 @@
+{
+  "name": "Library of Limbus",
+  "entrypoint": "index.html",
+  "language": "ko",
+  "artifact": {
+    "bytes": 8895318,
+    "sha256": "d5f9a1ef1db960ee464512aef2c29692ade1ff32254201e0141a93ff6bafc11a",
+    "embeddedArtworks": 305,
+    "inlineScripts": 1
+  },
+  "catalog": {
+    "asOf": "2026-10-06",
+    "verifiedAt": "2026-10-06T12:22:11.485757Z",
+    "latestReleaseDate": "2026-10-01",
+    "gameVersion": "1.116.0",
+    "counts": {
+      "identity": 189,
+      "ego": 116
+    },
+    "sourceCommit": "045dbb7679792fc4e5397fa53ecaf7e7ca0405b7",
+    "localizationCommit": "1924dfa59154736cd07a1e7d27ed7dd2e45f2391"
+  },
+  "hosting": {
+    "format": "static single HTML",
+    "networkAssetsRequired": false
+  },
+  "storage": {
+    "kind": "browser localStorage",
+    "backupFormat": "JSON"
+  }
+}
