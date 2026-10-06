@@ -20,13 +20,18 @@ const kindTab = (page: Page, kind: 'identity' | 'ego' | 'deck') => page.getByRol
 function fixtureEntry(kind: LibraryEntry['kind'], id: string, name: string, changes: Partial<LibraryEntry> = {}): LibraryEntry {
   return {
     id, kind, name, sinner: kind === 'deck' ? '' : '이상', subtitle: '', affinity: '', tags: [],
-    description: '', strengths: '', weaknesses: '', operation: '', recommendedEgoIds: [], deckIds: [], memberIds: [], formationCode: '',
+    description: '', strengths: '', weaknesses: '', operation: '', recommendedEgoIds: [], deckIds: [], memberIds: [], contentIds: [], formationCode: '',
     tiers: { story: 'unrated', luxcavation: 'unrated', mirror: 'unrated', simulation: 'unrated', railway1: 'unrated', railway2: 'unrated', railway6: 'unrated' },
     createdAt: '2026-10-01T00:00:00.000Z', updatedAt: '2026-10-01T00:00:00.000Z', ...changes,
   };
 }
 
-async function setNotebook(page: Page, entries: LibraryEntry[]) {
+function legacyEntry(entry: LibraryEntry): Omit<LibraryEntry, 'contentIds'> {
+  const { contentIds: _contentIds, ...legacy } = entry;
+  return legacy;
+}
+
+async function setNotebook(page: Page, entries: (LibraryEntry | Omit<LibraryEntry, 'contentIds'>)[]) {
   await page.evaluate(({ key, data }) => localStorage.setItem(key, JSON.stringify(data)), { key: storageKey, data: { version: 1, entries } });
   await page.reload();
 }
@@ -42,7 +47,8 @@ async function createIdentity(page: Page, name = identityName) {
   await page.getByRole('textbox', { name: '이름', exact: true }).fill(name);
   await page.getByRole('combobox', { name: '수감자', exact: true }).selectOption({ label: '이상' });
   await page.getByRole('textbox', { name: '한 줄 소개', exact: true }).fill('개인 평가를 위한 기록');
-  await page.getByRole('textbox', { name: /^태그/ }).fill('개인 테스트, 조합 검토');
+  await page.getByRole('dialog').getByRole('region', { name: '게임 태그 선택', exact: true }).getByRole('button', { name: '참격', exact: true }).click();
+  await page.getByRole('dialog').getByRole('region', { name: '게임 태그 선택', exact: true }).getByRole('button', { name: '화상', exact: true }).click();
   await page.getByRole('textbox', { name: '기록 요약', exact: true }).fill('콘텐츠마다 다른 티어를 저장한 기록입니다.');
   await page.getByRole('textbox', { name: '장점', exact: true }).fill('장점 기록');
   await page.getByRole('textbox', { name: '단점', exact: true }).fill('단점 기록');
@@ -59,7 +65,18 @@ async function closeDialog(page: Page) {
 }
 
 async function openTierArchive(page: Page) {
-  await page.getByRole('navigation', { name: '도서관 메뉴', exact: true }).getByRole('button', { name: '티어 아카이브', exact: true }).click();
+  await page.getByRole('navigation', { name: '도서관 메뉴', exact: true }).getByRole('button', { name: '티어리스트', exact: true }).click();
+}
+
+async function downloadNotebook(page: Page, path: string): Promise<LibraryData> {
+  if (await page.getByRole('dialog').count()) await closeDialog(page);
+  await page.getByRole('button', { name: '백업과 복원', exact: true }).click();
+  const downloadPromise = page.waitForEvent('download');
+  await page.getByRole('button', { name: '백업 다운로드', exact: true }).click();
+  await (await downloadPromise).saveAs(path);
+  const data: LibraryData = JSON.parse(await readFile(path, 'utf8'));
+  await closeDialog(page);
+  return data;
 }
 
 test.beforeEach(async ({ page }) => { await page.goto('/'); });
@@ -110,7 +127,7 @@ test('공식 인격을 평가하고 수정한 뒤 초기화해도 공식 목록�
   await page.getByRole('textbox', { name: '장점', exact: true }).fill('공식 인격에 대한 나의 장점 평가');
   await page.getByRole('textbox', { name: '단점', exact: true }).fill('공식 인격에 대한 주의점');
   await page.getByRole('textbox', { name: '운용 방법', exact: true }).fill('매 턴 자원을 확인한다');
-  await page.getByRole('textbox', { name: /^태그/ }).fill('개인 공식 평가');
+  await page.getByRole('dialog').getByRole('region', { name: '게임 태그 선택', exact: true }).getByRole('button', { name: '분노', exact: true }).click();
   await page.getByRole('combobox', { name: '스토리 티어', exact: true }).selectOption('S');
   await page.getByRole('combobox', { name: '거울던전 티어', exact: true }).selectOption('B');
   await page.getByRole('button', { name: '기록 저장', exact: true }).click();
@@ -142,15 +159,27 @@ test('공식 인격을 평가하고 수정한 뒤 초기화해도 공식 목록�
   await expect(page.getByRole('dialog').getByText('KEEP-DECK-01', { exact: true })).toBeVisible();
 });
 
-test('기존 v1 개인 메모와 티어와 덱 연결을 보존하면서 공식 목록을 추가한다', async ({ page }) => {
+test('contentIds 없는 기존 v1 메모와 티어와 덱 편성 순서를 보존한다', async ({ page }, testInfo) => {
   const identityId = 'demo-identity-1';
   const deckId = 'legacy-my-deck';
+  const secondId = 'legacy-second-identity';
+  const thirdId = 'legacy-third-identity';
+  const memberIds = [thirdId, identityId, secondId];
   const identity = fixtureEntry('identity', identityId, '이전 개인 인격', {
-    strengths: '이전 버전에서 작성한 장점', deckIds: [deckId],
+    strengths: '이전 버전에서 작성한 장점', tags: ['이전 자유 태그'], deckIds: [deckId],
     tiers: { story: 'A', luxcavation: 'unrated', mirror: 'S', simulation: 'unrated', railway1: 'B', railway2: 'unrated', railway6: 'unrated' },
   });
-  await setNotebook(page, [identity, fixtureEntry('deck', deckId, '이전 개인 덱', { memberIds: [identityId], formationCode: 'LEGACY-KEEP-01' })]);
-  await expect(kindTab(page, 'identity')).toContainText('190');
+  const oldDeck = fixtureEntry('deck', deckId, '이전 개인 덱', {
+    memberIds, formationCode: 'LEGACY-KEEP-01', strengths: '이전 덱의 장점 메모',
+    tiers: { story: 'A', luxcavation: 'unrated', mirror: 'S', simulation: 'unrated', railway1: 'unrated', railway2: 'unrated', railway6: 'unrated' },
+  });
+  await setNotebook(page, [
+    identity,
+    fixtureEntry('identity', secondId, '이전 두 번째 인격', { deckIds: [deckId] }),
+    fixtureEntry('identity', thirdId, '이전 세 번째 인격', { deckIds: [deckId] }),
+    oldDeck,
+  ].map(legacyEntry));
+  await expect(kindTab(page, 'identity')).toContainText('192');
   await expect(kindTab(page, 'ego')).toContainText('116');
   await search(page).fill(identity.name);
   await openTierArchive(page);
@@ -161,6 +190,7 @@ test('기존 v1 개인 메모와 티어와 덱 연결을 보존하면서 공식 
   await expect(page.getByRole('dialog').getByText(identity.strengths, { exact: true })).toBeVisible();
   await page.getByRole('dialog').getByRole('button', { name: /이전 개인 덱/ }).click();
   await expect(page.getByRole('dialog').getByText('LEGACY-KEEP-01', { exact: true })).toBeVisible();
+  await expect(page.getByRole('dialog').getByText(oldDeck.strengths, { exact: true })).toBeVisible();
   await page.getByRole('dialog').getByRole('button', { name: /이전 개인 인격/ }).click();
   await expect(page.getByRole('dialog').getByRole('heading', { name: identity.name, exact: true })).toBeVisible();
   await closeDialog(page);
@@ -172,6 +202,16 @@ test('기존 v1 개인 메모와 티어와 덱 연결을 보존하면서 공식 
   await search(page).fill(identity.name);
   await identityCard(page, identity.name).click();
   await expect(page.getByRole('dialog').getByText(identity.strengths, { exact: true })).toBeVisible();
+  await page.getByRole('dialog').getByRole('button', { name: /이전 개인 덱/ }).click();
+  await page.getByRole('button', { name: '기록 수정', exact: true }).click();
+  const order = page.getByRole('list', { name: '인격 편성 순서', exact: true });
+  expect(await order.locator('li[data-entry-id]').evaluateAll(items => items.map(item => item.getAttribute('data-entry-id')))).toEqual(memberIds);
+  await expect(page.getByRole('checkbox', { name: '스토리 덱으로 분류', exact: true })).toBeChecked();
+  await expect(page.getByRole('checkbox', { name: '거울던전 덱으로 분류', exact: true })).toBeChecked();
+  await closeDialog(page);
+  const backup = await downloadNotebook(page, testInfo.outputPath('migrated-v1-notebook.json'));
+  expect(backup.entries.find(entry => entry.id === identityId)).toMatchObject({ strengths: identity.strengths, tags: identity.tags, tiers: identity.tiers });
+  expect(backup.entries.find(entry => entry.id === deckId)).toMatchObject({ memberIds, strengths: oldDeck.strengths, formationCode: oldDeck.formationCode, contentIds: ['story', 'mirror'] });
 });
 
 test('개인 인격 기록과 콘텐츠별 티어는 새로고침 뒤에도 유지된다', async ({ page }) => {
@@ -221,7 +261,7 @@ test('검색과 기록 종류와 일곱 콘텐츠별 티어를 함께 적용한�
   await kindTab(page, 'deck').click();
   await expect(identityCard(page)).toHaveCount(0);
   await kindTab(page, 'identity').click();
-  await search(page).fill('개인 테스트');
+  await search(page).fill('참격 화상');
   await expect(identityCard(page)).toBeVisible();
   await expect(page.getByRole('button', { name: / 상세 보기$/ })).toHaveCount(1);
   await search(page).fill('존재하지 않는 검색 결과');
@@ -324,7 +364,7 @@ test('백업 복원은 확인 뒤 실행하고 잘못된 JSON은 기존 기록�
   await expect(identityCard(page)).toBeVisible();
   expect((await storedNotebook(page)).entries).toHaveLength(306);
   await page.getByRole('button', { name: '백업과 복원', exact: true }).click();
-  const oldBackup: LibraryData = { version: 1, entries: backup.entries.filter(entry => !entry.id.startsWith('catalog-')) };
+  const oldBackup = { version: 1, entries: backup.entries.filter(entry => !entry.id.startsWith('catalog-')).map(legacyEntry) };
   await page.getByLabel('백업 파일 선택', { exact: true }).setInputFiles({
     name: 'legacy-v1-backup.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(oldBackup)),
   });
@@ -398,4 +438,181 @@ test('작성 중 닫기 확인에서 계속 작성하거나 변경을 버릴 수
   await page.reload();
   await search(page).fill('저장하지 않은 인격');
   await expect(identityCard(page, '저장하지 않은 인격')).toHaveCount(0);
+});
+
+test('게임 태그를 분류별로 선택하고 기타 두 태그와 기존 태그를 보존한다', async ({ page }) => {
+  const name = '게임 태그 선택 테스트';
+  await setNotebook(page, [fixtureEntry('identity', 'custom-tags-test', name, { tags: ['이전 자유 태그'] })]);
+  await search(page).fill(name);
+  await identityCard(page, name).click();
+  await page.getByRole('button', { name: '기록 수정', exact: true }).click();
+  const picker = page.getByRole('dialog').getByRole('region', { name: '게임 태그 선택', exact: true });
+  await expect(page.getByRole('textbox', { name: /^태그/ })).toHaveCount(0);
+  const existingTag = picker.getByRole('group', { name: '기존 태그', exact: true }).getByRole('button', { name: '이전 자유 태그', exact: true });
+  await expect(existingTag).toHaveAttribute('aria-pressed', 'true');
+  await picker.getByRole('group', { name: '유형', exact: true }).getByRole('button', { name: '참격', exact: true }).click();
+  await picker.getByRole('group', { name: '속성', exact: true }).getByRole('button', { name: '분노', exact: true }).click();
+  await picker.getByRole('group', { name: '스킬키워드', exact: true }).getByRole('button', { name: '화상', exact: true }).click();
+  const other = picker.getByRole('group', { name: '기타', exact: true });
+  await expect(other.getByRole('button')).toHaveCount(35);
+  expect((await other.getByRole('button').allTextContents()).slice(-2)).toEqual(['르루주', '르누아르']);
+  await expect(other.getByRole('button', { name: '이전 자유 태그', exact: true })).toHaveCount(0);
+  for (const name of ['르루주', '르누아르']) await other.getByRole('button', { name, exact: true }).click();
+  await expect(picker.getByText('선택 6 / 최대 10개', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: '기록 저장', exact: true }).click();
+  await page.reload();
+  await search(page).fill(name);
+  await identityCard(page, name).click();
+  const tags = ['이전 자유 태그', '참격', '분노', '화상', '르루주', '르누아르'];
+  for (const tag of tags) await expect(page.getByRole('dialog').getByText(tag, { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: '기록 수정', exact: true }).click();
+  for (const tag of tags) await expect(picker.getByRole('button', { name: tag, exact: true })).toHaveAttribute('aria-pressed', 'true');
+  expect((await storedNotebook(page)).entries.find(entry => entry.name === name)?.tags).toEqual(tags);
+});
+
+test('공식 인격의 덱 편성 순서와 1번 표지는 저장과 새로고침과 백업에도 유지된다', async ({ page }, testInfo) => {
+  const name = '공식 인격 순서 테스트 덱';
+  const members = ['이상', '파우스트', '돈키호테'].map(sinner => catalog.entries.find(record => record.kind === 'identity' && record.sinner === sinner)!);
+  const ordered = [members[2], members[0], members[1]];
+  await kindTab(page, 'deck').click();
+  await page.getByRole('button', { name: '새 기록', exact: true }).first().click();
+  await page.getByRole('textbox', { name: '이름', exact: true }).fill(name);
+  for (const member of members) await page.getByRole('checkbox', { name: `${member.name} ${member.sinner}`, exact: true }).check();
+  const order = page.getByRole('list', { name: '인격 편성 순서', exact: true });
+  expect(await order.locator('li[data-entry-id]').evaluateAll(items => items.map(item => item.getAttribute('data-entry-id')))).toEqual(members.map(member => member.id));
+  const moveForward = page.getByRole('button', { name: `${members[2].name} ${members[2].sinner} 앞으로 이동`, exact: true });
+  await moveForward.click();
+  await moveForward.click();
+  await expect(order.locator('li[data-position="1"]')).toHaveAttribute('data-entry-id', members[2].id);
+  await expect(order.locator('li[data-position="1"]').getByText('덱 표지', { exact: true })).toBeVisible();
+  await page.getByRole('checkbox', { name: '거울던전 덱으로 분류', exact: true }).check();
+  await page.getByRole('textbox', { name: /^편성번호/ }).fill('ORDER-KEEP-01');
+  await page.getByRole('button', { name: '기록 저장', exact: true }).click();
+  const coverName = `${name} 덱 표지 · 1번 편성 ${members[2].sinner} ${members[2].name}`;
+  await expect(identityCard(page, name).getByRole('img', { name: coverName, exact: true })).toHaveAttribute('src', members[2].thumbnail);
+  expect((await storedNotebook(page)).entries.find(entry => entry.name === name)?.memberIds).toEqual(ordered.map(member => member.id));
+  await page.reload();
+  await kindTab(page, 'deck').click();
+  await search(page).fill(name);
+  await expect(identityCard(page, name).getByRole('img', { name: coverName, exact: true })).toHaveAttribute('src', members[2].thumbnail);
+  await identityCard(page, name).click();
+  await expect(page.getByRole('dialog').getByText('ORDER-KEEP-01', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: '기록 수정', exact: true }).click();
+  expect(await order.locator('li[data-entry-id]').evaluateAll(items => items.map(item => item.getAttribute('data-entry-id')))).toEqual(ordered.map(member => member.id));
+  await closeDialog(page);
+  const backup = await downloadNotebook(page, testInfo.outputPath('deck-order-backup.json'));
+  expect(backup.entries.find(entry => entry.name === name)).toMatchObject({ memberIds: ordered.map(member => member.id), contentIds: ['mirror'], formationCode: 'ORDER-KEEP-01' });
+});
+
+test('덱의 사용 콘텐츠를 선택하면 콘텐츠 분류와 철도 호선에 맞게 조회된다', async ({ page }) => {
+  test.setTimeout(60_000);
+  const decks = [
+    { name: '채광 분류 덱', contents: ['경험치 · 끈 채광'] },
+    { name: '거울던전 분류 덱', contents: ['거울던전'] },
+    { name: '스토리 분류 덱', contents: ['스토리'] },
+    { name: '1호선 분류 덱', contents: ['1호선'] },
+    { name: '2호선 분류 덱', contents: ['2호선'] },
+    { name: '6호선 분류 덱', contents: ['6호선'] },
+    { name: '중복 콘텐츠 덱', contents: ['스토리', '거울던전', '1호선'] },
+  ];
+  for (const deck of decks) {
+    await kindTab(page, 'deck').click();
+    await page.getByRole('button', { name: '새 기록', exact: true }).first().click();
+    await page.getByRole('textbox', { name: '이름', exact: true }).fill(deck.name);
+    const contents = page.getByRole('group', { name: '사용 콘텐츠', exact: true });
+    for (const content of deck.contents) await contents.getByRole('checkbox', { name: `${content} 덱으로 분류`, exact: true }).check();
+    await page.getByRole('button', { name: '기록 저장', exact: true }).click();
+    await expect(identityCard(page, deck.name)).toBeVisible();
+  }
+  const nav = page.getByRole('navigation', { name: '콘텐츠별 덱', exact: true });
+  for (const [category, expectedNames] of [
+    ['채광', ['채광 분류 덱']],
+    ['거울던전', ['거울던전 분류 덱', '중복 콘텐츠 덱']],
+    ['스토리', ['스토리 분류 덱', '중복 콘텐츠 덱']],
+    ['거울굴절철도', ['1호선 분류 덱', '2호선 분류 덱', '6호선 분류 덱', '중복 콘텐츠 덱']],
+  ] as [string, string[]][]) {
+    await nav.getByRole('button', { name: category, exact: true }).click();
+    await expect(kindTab(page, 'deck')).toHaveAttribute('aria-selected', 'true');
+    await expect(page.getByRole('button', { name: / 상세 보기$/ })).toHaveCount(expectedNames.length);
+    for (const name of expectedNames) await expect(identityCard(page, name)).toBeVisible();
+  }
+  const contentTabs = page.getByRole('tablist', { name: '콘텐츠', exact: true });
+  await expect(contentTabs.getByRole('tab', { name: '전체 호선', exact: true })).toHaveAttribute('aria-selected', 'true');
+  for (const [line, expectedNames] of [
+    ['1호선', ['1호선 분류 덱', '중복 콘텐츠 덱']],
+    ['2호선', ['2호선 분류 덱']],
+    ['6호선', ['6호선 분류 덱']],
+  ] as [string, string[]][]) {
+    await contentTabs.getByRole('tab', { name: line, exact: true }).click();
+    await expect(page.getByRole('button', { name: / 상세 보기$/ })).toHaveCount(expectedNames.length);
+    for (const name of expectedNames) await expect(identityCard(page, name)).toBeVisible();
+  }
+  await contentTabs.getByRole('tab', { name: '전체 호선', exact: true }).click();
+  await expect(page.getByRole('button', { name: / 상세 보기$/ })).toHaveCount(4);
+  await page.reload();
+  await nav.getByRole('button', { name: '채광', exact: true }).click();
+  await expect(identityCard(page, '채광 분류 덱')).toBeVisible();
+  await expect(page.getByRole('button', { name: / 상세 보기$/ })).toHaveCount(1);
+});
+
+test('철도 전체 호선의 평가 필터는 2호선과 6호선도 함께 확인한다', async ({ page }) => {
+  const railway2 = fixtureEntry('deck', 'rated-railway2', '2호선 평가 덱', { contentIds: ['railway2'] });
+  railway2.tiers.railway2 = 'S';
+  const railway6 = fixtureEntry('deck', 'unrated-railway6', '6호선 미평가 덱', { contentIds: ['railway6'] });
+  await setNotebook(page, [railway2, railway6]);
+  await page.getByRole('navigation', { name: '콘텐츠별 덱' }).getByRole('button', { name: '거울굴절철도', exact: true }).click();
+  await page.getByRole('combobox', { name: '기록 상태', exact: true }).selectOption('rated');
+  await expect(identityCard(page, railway2.name)).toBeVisible();
+  await expect(identityCard(page, railway6.name)).toHaveCount(0);
+  await page.getByRole('combobox', { name: '기록 상태', exact: true }).selectOption('unrated');
+  await expect(identityCard(page, railway2.name)).toHaveCount(0);
+  await expect(identityCard(page, railway6.name)).toBeVisible();
+});
+
+test('기존 한쪽 덱 연결의 표지는 목록과 상세에서 같은 인격을 사용한다', async ({ page }) => {
+  const member = catalog.entries.find(record => record.kind === 'identity')!;
+  const deck = fixtureEntry('deck', 'one-sided-cover', '이전 한쪽 연결 덱', { contentIds: ['story'] });
+  const identity = fixtureEntry('identity', member.id, member.name, { sinner: member.sinner, deckIds: [deck.id] });
+  await setNotebook(page, [legacyEntry(identity), legacyEntry(deck)]);
+  await kindTab(page, 'deck').click();
+  const coverName = `${deck.name} 덱 표지 · 1번 편성 ${member.sinner} ${member.name}`;
+  await expect(identityCard(page, deck.name).getByRole('img', { name: coverName, exact: true })).toHaveAttribute('src', member.thumbnail);
+  await identityCard(page, deck.name).click();
+  await expect(page.getByRole('dialog').getByRole('img', { name: coverName, exact: true })).toHaveAttribute('src', member.image);
+});
+
+test('덱과 인격 편집 양쪽에서 7명 편성의 신규 추가 제한이 적용된다', async ({ page }) => {
+  const members = sinners.slice(0, 8).map(sinner => catalog.entries.find(record => record.kind === 'identity' && record.sinner === sinner)!);
+  const deck = fixtureEntry('deck', 'full-seven-deck', '7명 편성 덱', { memberIds: members.slice(0, 7).map(member => member.id) });
+  await setNotebook(page, [deck, ...members.map((member, index) => fixtureEntry('identity', member.id, member.name, { sinner: member.sinner, deckIds: index < 7 ? [deck.id] : [] }))]);
+  await kindTab(page, 'deck').click();
+  await identityCard(page, deck.name).click();
+  await page.getByRole('button', { name: '기록 수정', exact: true }).click();
+  await expect(page.getByRole('checkbox', { name: `${members[7].name} ${members[7].sinner}`, exact: true })).toBeDisabled();
+  await closeDialog(page);
+  await closeDialog(page);
+  await kindTab(page, 'identity').click();
+  await search(page).fill(`${members[7].name} ${members[7].sinner}`);
+  await catalogCard(page, members[7]).click();
+  await page.getByRole('button', { name: '평가 작성', exact: true }).click();
+  await page.getByRole('textbox', { name: '사용 덱 연결 검색', exact: true }).fill(deck.name);
+  await expect(page.getByRole('checkbox', { name: deck.name, exact: true })).toBeDisabled();
+  expect((await storedNotebook(page)).entries.find(entry => entry.id === deck.id)?.memberIds).toEqual(members.slice(0, 7).map(member => member.id));
+});
+
+test('게임 태그 필터는 선택한 태그를 모두 가진 덱을 찾는다', async ({ page }) => {
+  const match = fixtureEntry('deck', 'tag-filter-match', '르루주 화상 덱', { tags: ['화상', '르루주'] });
+  const other = fixtureEntry('deck', 'tag-filter-other', '다른 화상 덱', { tags: ['화상'] });
+  await setNotebook(page, [match, other]);
+  await kindTab(page, 'deck').click();
+  await page.locator('.tag-filter-panel summary').click();
+  const picker = page.locator('.tag-filter-panel').getByRole('region', { name: '게임 태그 선택', exact: true });
+  await picker.getByRole('button', { name: '화상', exact: true }).click();
+  await expect(identityCard(page, match.name)).toBeVisible();
+  await expect(identityCard(page, other.name)).toBeVisible();
+  await picker.getByRole('button', { name: '르루주', exact: true }).click();
+  await expect(identityCard(page, match.name)).toBeVisible();
+  await expect(identityCard(page, other.name)).toHaveCount(0);
+  await page.getByRole('button', { name: '태그 필터 초기화', exact: true }).click();
+  await expect(identityCard(page, other.name)).toBeVisible();
 });

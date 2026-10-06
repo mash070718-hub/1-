@@ -1,4 +1,5 @@
 import { CATALOG, getCatalogRecord, type CatalogRecord } from './catalog';
+import { isGameTag } from './tags';
 
 export type Kind = 'identity' | 'ego' | 'deck';
 export type Content =
@@ -10,6 +11,7 @@ export type Content =
   | 'railway2'
   | 'railway6';
 export type Tier = 'S' | 'A' | 'B' | 'C' | 'D' | 'unrated';
+export type DeckCategory = 'luxcavation' | 'railway' | 'mirror' | 'story';
 
 export const CONTENTS: { id: Content; label: string; shortLabel: string }[] = [
   { id: 'story', label: '스토리', shortLabel: '스토리' },
@@ -19,6 +21,13 @@ export const CONTENTS: { id: Content; label: string; shortLabel: string }[] = [
   { id: 'railway1', label: '1호선', shortLabel: '1호선' },
   { id: 'railway2', label: '2호선', shortLabel: '2호선' },
   { id: 'railway6', label: '6호선', shortLabel: '6호선' },
+];
+
+export const DECK_CATEGORIES: { id: DeckCategory; label: string; contents: Content[] }[] = [
+  { id: 'luxcavation', label: '채광', contents: ['luxcavation'] },
+  { id: 'railway', label: '거울굴절철도', contents: ['railway1', 'railway2', 'railway6'] },
+  { id: 'mirror', label: '거울던전', contents: ['mirror'] },
+  { id: 'story', label: '스토리', contents: ['story'] },
 ];
 
 export const TIERS: Tier[] = ['S', 'A', 'B', 'C', 'D', 'unrated'];
@@ -48,7 +57,9 @@ export interface LibraryEntry {
   operation: string;
   recommendedEgoIds: string[];
   deckIds: string[];
+  /** Member array order is the saved formation order; legacy large decks stay intact. */
   memberIds: string[];
+  contentIds: Content[];
   formationCode: string;
   tiers: Record<Content, Tier>;
   createdAt: string;
@@ -68,8 +79,14 @@ const ENTRY_KEYS = [
   'id', 'kind', 'name', 'sinner', 'subtitle', 'affinity', 'tags',
   'description', 'strengths', 'weaknesses', 'operation',
   'recommendedEgoIds', 'deckIds', 'memberIds', 'formationCode',
-  'tiers', 'createdAt', 'updatedAt',
+  'contentIds', 'tiers', 'createdAt', 'updatedAt',
 ];
+const LEGACY_ENTRY_KEYS = ENTRY_KEYS.filter((key) => key !== 'contentIds');
+
+export function matchesDeckCategory(entry: LibraryEntry, category: DeckCategory): boolean {
+  return entry.kind === 'deck' && DECK_CATEGORIES.some(({ id, contents }) =>
+    id === category && contents.some((content) => entry.contentIds.includes(content)));
+}
 
 function emptyTiers(): Record<Content, Tier> {
   return Object.fromEntries(CONTENTS.map(({ id }) => [id, 'unrated'])) as Record<Content, Tier>;
@@ -94,6 +111,7 @@ export function createEntry(kind: Kind): LibraryEntry {
     recommendedEgoIds: [],
     deckIds: [],
     memberIds: [],
+    contentIds: [],
     formationCode: '',
     tiers: emptyTiers(),
     createdAt: now,
@@ -108,7 +126,7 @@ function createCatalogEntry(record: CatalogRecord): LibraryEntry {
     name: record.name,
     sinner: record.sinner,
     affinity: record.affinity ?? '',
-    tags: [...record.tags],
+    tags: record.tags.filter(isGameTag),
   };
 }
 
@@ -124,6 +142,7 @@ function cloneEntry(entry: LibraryEntry): LibraryEntry {
     recommendedEgoIds: [...entry.recommendedEgoIds],
     deckIds: [...entry.deckIds],
     memberIds: [...entry.memberIds],
+    contentIds: [...entry.contentIds],
     tiers: { ...entry.tiers },
   };
 }
@@ -207,6 +226,9 @@ export function createDemoLibrary(): LibraryData {
     weaknesses: '예시 단점: 주의할 점과 활용하기 어려운 상황을 적어 두세요.',
     operation: '예시 운영 메모: 첫 턴의 판단, 필요한 자원, 팀 안에서의 역할을 직접 정리해 보세요.',
     tiers: Object.fromEntries(CONTENTS.map(({ id: content }, position) => [content, tierPatterns[index % tierPatterns.length][position]])) as Record<Content, Tier>,
+    contentIds: kind === 'deck'
+      ? CONTENTS.filter((_, position) => tierPatterns[index % tierPatterns.length][position] !== 'unrated').map(({ id }) => id)
+      : [],
     createdAt: demoDate,
     updatedAt: demoDate,
   });
@@ -312,7 +334,8 @@ export function parseLibrary(json: string): LibraryData {
   const entries = data.entries.map((value, index) => {
     const path = `entries[${index}]`;
     const entry = requireObject(value, path);
-    requireKeys(entry, ENTRY_KEYS, path);
+    const hasContentIds = Object.hasOwn(entry, 'contentIds');
+    requireKeys(entry, hasContentIds ? ENTRY_KEYS : LEGACY_ENTRY_KEYS, path);
     requireId(entry.id, `${path}.id`);
     if (!KINDS.some(({ id }) => id === entry.kind)) invalid(`${path}.kind`, '인격, E.G.O., 덱 중 하나여야 합니다.');
     requireString(entry.name, `${path}.name`, 200);
@@ -332,9 +355,25 @@ export function parseLibrary(json: string): LibraryData {
     for (const { id } of CONTENTS) {
       if (!TIERS.includes(tiers[id] as Tier)) invalid(`${path}.tiers.${id}`, '지원하지 않는 티어입니다.');
     }
+    let contentIds: Content[];
+    if (hasContentIds) {
+      requireList(entry.contentIds, `${path}.contentIds`, CONTENTS.length, 100);
+      for (const id of entry.contentIds) {
+        if (!CONTENTS.some((content) => content.id === id)) {
+          invalid(`${path}.contentIds`, '지원하지 않는 콘텐츠입니다.');
+        }
+      }
+      contentIds = entry.contentIds as Content[];
+    } else {
+      // Older version 1 notebooks had only content tiers. Preserve those hints
+      // without assigning unrated decks or non-deck entries to any folders.
+      contentIds = entry.kind === 'deck'
+        ? CONTENTS.filter(({ id }) => tiers[id] !== 'unrated').map(({ id }) => id)
+        : [];
+    }
     requireTimestamp(entry.createdAt, `${path}.createdAt`);
     requireTimestamp(entry.updatedAt, `${path}.updatedAt`);
-    return entry as unknown as LibraryEntry;
+    return { ...entry, contentIds } as unknown as LibraryEntry;
   });
   const byId = new Map(entries.map((entry) => [entry.id, entry]));
   if (byId.size !== entries.length) invalid('entries', '중복된 기록 ID가 있습니다.');

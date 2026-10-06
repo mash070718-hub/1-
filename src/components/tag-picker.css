@@ -1,0 +1,21 @@
+.game-tag-picker { width: 100%; min-width: 0; margin: 8px 0 18px; color: var(--ink); }
+.game-tag-picker-heading { display: flex; align-items: baseline; flex-wrap: wrap; justify-content: space-between; gap: 6px 12px; margin-bottom: 13px; }
+.game-tag-picker-title { font-weight: 600; }
+.game-tag-picker-count { color: var(--muted); font-size: 12px; }
+.game-tag-group { min-width: 0; margin: 0 0 13px; padding: 10px 11px 11px; border: 1px solid var(--line); }
+.game-tag-group legend { padding: 0 6px; color: var(--ink); font-size: 12px; font-weight: 600; }
+.game-tag-options { display: flex; flex-wrap: wrap; gap: 6px; min-width: 0; }
+.game-tag-option { max-width: 100%; min-height: 34px; padding: 7px 10px; border: 1px solid #8e734c; border-radius: 1px; background: #30251a; color: #e0c49c; font-size: 12px; line-height: 1.45; overflow-wrap: anywhere; transition: background .15s, border-color .15s; }
+.game-tag-option:hover:not(:disabled) { border-color: #c8a46c; background: #493321; }
+.game-tag-option[aria-pressed="true"] { border-color: #c69851; background: #805026; color: #fff1d6; box-shadow: inset 0 0 0 1px #e0ba7455; }
+.game-tag-option:disabled { opacity: .45; }
+.game-tag-help, .game-tag-existing-help { color: var(--muted); font-size: 12px; line-height: 1.7; }
+.game-tag-existing-help { margin-top: 8px; }
+.modal .game-tag-option { border-color: #b69969; background: #f7eedb; color: #6b4e2d; }
+.modal .game-tag-option:hover:not(:disabled) { border-color: #9b713b; background: #e9d6af; }
+.modal .game-tag-option[aria-pressed="true"] { border-color: #86562b; background: #8a5b32; color: #fff1d6; box-shadow: inset 0 0 0 1px #e5bf7955; }
+@media (max-width: 480px) {
+  .game-tag-group { padding: 8px 8px 9px; }
+  .game-tag-options { gap: 5px; }
+  .game-tag-option { padding: 7px 8px; }
+}

@@ -31,6 +31,7 @@ import {
 import {
   AFFINITIES,
   CONTENTS,
+  DECK_CATEGORIES,
   KINDS,
   SINNERS,
   STORAGE_KEY,
@@ -41,15 +42,19 @@ import {
   loadLibrary,
   parseLibrary,
   mergeCatalog,
+  matchesDeckCategory,
   resetCatalogEntry,
   saveLibrary,
   type Content,
+  type DeckCategory,
   type Kind,
   type LibraryData,
   type LibraryEntry,
   type Tier,
 } from "./lib/library";
 import { CATALOG, CATALOG_METADATA, getCatalogRecord } from "./lib/catalog";
+import DeckFormationEditor from "./components/DeckFormationEditor";
+import { TagPicker } from "./components/TagPicker";
 
 const kindIcon = { identity: BookMarked, ego: Sparkles, deck: Layers3 };
 const kindLabel = { identity: "인격", ego: "E.G.O", deck: "덱" };
@@ -68,21 +73,29 @@ const displayName = (entry: LibraryEntry) =>
 
 function EntryArt({
   entry,
+  entries = [],
   large = false,
 }: {
   entry: LibraryEntry;
+  entries?: LibraryEntry[];
   large?: boolean;
 }) {
-  const record = getCatalogRecord(entry.id);
+  const cover = entry.kind === "deck"
+    ? entries.find((item) => item.id === entry.memberIds[0])
+    : entry;
+  const record = getCatalogRecord(cover?.id ?? entry.id);
   const [failed, setFailed] = useState(false);
   const Icon = kindIcon[entry.kind];
   const image = large ? record?.image : record?.thumbnail;
+  useEffect(() => setFailed(false), [image]);
   return (
     <span className={large ? "detail-art" : "entry-art"} data-kind={entry.kind}>
       {image && !failed ? (
         <img
           src={image}
-          alt={`${entry.sinner} ${entry.name} 공식 게임 이미지`}
+          alt={entry.kind === "deck" && cover
+            ? `${entry.name} 덱 표지 · 1번 편성 ${cover.sinner} ${cover.name}`
+            : `${entry.sinner} ${entry.name} 공식 게임 이미지`}
           loading={large ? "eager" : "lazy"}
           decoding="async"
           onError={() => setFailed(true)}
@@ -250,12 +263,16 @@ function Modal({
 
 function EntryCard({
   entry,
+  entries,
   content,
+  showTier = true,
   onOpen,
   onTier,
 }: {
   entry: LibraryEntry;
+  entries: LibraryEntry[];
   content: Content;
+  showTier?: boolean;
   onOpen: (id: string) => void;
   onTier: (id: string, tier: Tier) => void;
 }) {
@@ -271,7 +288,7 @@ function EntryCard({
         onClick={() => onOpen(entry.id)}
         aria-label={`${displayName(entry)} 상세 보기`}
       >
-        <EntryArt entry={entry} />
+        <EntryArt entry={withMembership(entry, entries)} entries={entries} />
         <span className="entry-body">
           <span className="entry-kicker">
             {entry.kind === "deck"
@@ -291,6 +308,13 @@ function EntryCard({
         </span>
         <ChevronRight size={16} className="entry-arrow" />
       </button>
+      {entry.kind === "deck" && entry.contentIds.length > 0 && (
+        <div className="deck-content-chips" aria-label="덱 사용 콘텐츠">
+          {CONTENTS.filter((item) => entry.contentIds.includes(item.id)).map((item) => (
+            <span className="deck-content-chip" key={item.id}>{item.shortLabel}</span>
+          ))}
+        </div>
+      )}
       <div className="card-footer">
         <span className="entry-tags">
           {entry.tags.slice(0, 2).map((tag) => (
@@ -302,7 +326,7 @@ function EntryCard({
             <span className="subtle-text">{entry.affinity || "개인 기록"}</span>
           )}
         </span>
-        <select
+        {showTier && <select
           className="card-tier-select"
           aria-label={`${displayName(entry)} ${CONTENTS.find((item) => item.id === content)?.label} 티어`}
           value={entry.tiers[content]}
@@ -313,7 +337,7 @@ function EntryCard({
               {tierLabel(tier)}
             </option>
           ))}
-        </select>
+        </select>}
       </div>
     </article>
   );
@@ -404,7 +428,7 @@ function Detail({
       }
     >
       <div className="detail-heading">
-        <EntryArt entry={entry} large />
+        <EntryArt entry={entry} entries={entries} large />
         <div className="detail-heading-copy">
           <p className="detail-meta">
             {entry.sinner || "편성 기록"}
@@ -512,7 +536,34 @@ function Detail({
             <BookMarked size={17} />
             편성 인격
           </h3>
-          {linked(entry.memberIds, "편성 인격을 연결해 주세요.")}
+          {entry.memberIds.length ? (
+            <ol className="detail-formation-list" aria-label="덱 편성 순서">
+              {entry.memberIds.map((id, index) => {
+                const member = entries.find((item) => item.id === id);
+                return member && (
+                  <li className="detail-formation-member" key={id}>
+                    <button className="linked-card" onClick={() => onOpen(id)}>
+                      <span className="formation-number">{index + 1}</span>
+                      <EntryArt entry={member} />
+                      <span className="formation-name">
+                        <strong>{displayName(member)}</strong>
+                        {index === 0 && <small className="formation-cover-marker">덱 표지</small>}
+                        {index >= 7 && <small>기존 추가 편성</small>}
+                      </span>
+                      <ArrowRight size={16} />
+                    </button>
+                  </li>
+                );
+              })}
+            </ol>
+          ) : <p className="detail-empty">편성 인격을 연결해 주세요.</p>}
+          {entry.contentIds.length > 0 && (
+            <div className="deck-content-chips" aria-label="덱 사용 콘텐츠">
+              {CONTENTS.filter((item) => entry.contentIds.includes(item.id)).map((item) => (
+                <span className="deck-content-chip" key={item.id}>{item.label}</span>
+              ))}
+            </div>
+          )}
         </section>
       ) : (
         <section className="detail-section">
@@ -600,15 +651,11 @@ function Editor({
   const [draft, setDraft] = useState<LibraryEntry>(() =>
     structuredClone(entry),
   );
-  const [tags, setTags] = useState(entry.tags.join(", "));
   const [confirmClose, setConfirmClose] = useState(false);
   const set = <K extends keyof LibraryEntry>(key: K, value: LibraryEntry[K]) =>
     setDraft((old) => ({ ...old, [key]: value }));
   const close = () => {
-    if (
-      JSON.stringify(draft) !== JSON.stringify(entry) ||
-      tags !== entry.tags.join(", ")
-    )
+    if (JSON.stringify(draft) !== JSON.stringify(entry))
       setConfirmClose(true);
     else onClose();
   };
@@ -636,6 +683,7 @@ function Editor({
       <span className="field-help">
         {draft[field].length}개 선택됨 · 검색해도 선택한 연결은 유지됩니다.
       </span>
+      {kind === "deck" && <span className="field-help">이미 7명이 편성된 덱에는 새 인격을 추가할 수 없습니다.</span>}
       <div className="checkbox-grid">
         {entries
           .filter(
@@ -651,7 +699,11 @@ function Editor({
             <label className="checkbox-option" key={item.id}>
               <input
                 type="checkbox"
+                aria-label={displayName(item)}
                 checked={draft[field].includes(item.id)}
+                disabled={kind === "deck" && !draft[field].includes(item.id) &&
+                  withMembership(item, entries).memberIds.length >= 7 &&
+                  !withMembership(item, entries).memberIds.includes(entry.id)}
                 onChange={(event) =>
                   set(
                     field,
@@ -719,14 +771,7 @@ function Editor({
           onSave({
             ...draft,
             name: draft.name.trim(),
-            tags: [
-              ...new Set(
-                tags
-                  .split(",")
-                  .map((tag) => tag.trim())
-                  .filter(Boolean),
-              ),
-            ],
+            tags: [...new Set(draft.tags)],
             updatedAt: new Date().toISOString(),
           });
         }}
@@ -797,19 +842,31 @@ function Editor({
               placeholder="이 기록을 한 문장으로 표현한다면?"
             />
           </label>
-          <label className="form-field field-wide">
-            <span className="field-label">태그</span>
-            <input
-              className="input"
-              maxLength={1000}
-              value={tags}
-              onChange={(event) => setTags(event.target.value)}
-              placeholder="출혈, 호흡, 합 위력 — 쉼표로 구분"
-            />
-            <span className="field-help">
-              키워드로 분류하고 검색할 수 있습니다.
-            </span>
-          </label>
+          <div className="form-field field-wide">
+            {entry.kind === "deck" && (
+              <DeckFormationEditor memberIds={draft.memberIds} entries={entries} onChange={(ids) => set("memberIds", ids)} />
+            )}
+            <TagPicker value={draft.tags} onChange={(tags) => set("tags", tags)} />
+          </div>
+          {entry.kind === "deck" && (
+            <fieldset className="form-field field-wide deck-content-picker">
+              <legend className="field-label">사용 콘텐츠</legend>
+              <p className="field-help">여러 콘텐츠를 선택할 수 있습니다. 왼쪽 콘텐츠 메뉴에서 이 덱을 바로 찾을 수 있어요.</p>
+              <div className="deck-content-options">
+                {CONTENTS.map((item) => (
+                  <label className="deck-content-option" key={item.id}>
+                    <input type="checkbox"
+                      checked={draft.contentIds.includes(item.id)}
+                      onChange={(event) => set("contentIds", event.target.checked
+                        ? [...draft.contentIds, item.id]
+                        : draft.contentIds.filter((id) => id !== item.id))}
+                    />
+                    <span>{item.label} 덱으로 분류</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+          )}
           <div className="form-field field-wide">
             <h3 className="detail-section-title">콘텐츠별 티어</h3>
             <div className="form-grid">
@@ -882,9 +939,7 @@ function Editor({
           </label>
           {entry.kind !== "ego" &&
             relationships("추천 E.G.O 연결", "ego", "recommendedEgoIds")}
-          {entry.kind === "deck"
-            ? relationships("편성 인격 연결", "identity", "memberIds")
-            : relationships("사용 덱 연결", "deck", "deckIds")}
+          {entry.kind !== "deck" && relationships("사용 덱 연결", "deck", "deckIds")}
           <label className="form-field field-wide">
             <span className="field-label">편성번호</span>
             <textarea
@@ -1048,6 +1103,9 @@ export default function App() {
   const [kind, setKind] = useState<Kind>("identity");
   const [content, setContent] = useState<Content>("story");
   const [view, setView] = useState<"tiers" | "all">("all");
+  const [deckCategory, setDeckCategory] = useState<DeckCategory | null>(null);
+  const [railwayRoute, setRailwayRoute] = useState<Content | "all">("all");
+  const [filterTags, setFilterTags] = useState<string[]>([]);
   const [sinner, setSinner] = useState("전체");
   const [recordFilter, setRecordFilter] = useState("all");
   const [visibleCount, setVisibleCount] = useState(24);
@@ -1075,7 +1133,7 @@ export default function App() {
   useEffect(() => {
     setVisibleCount(24);
     setTierLimits({});
-  }, [kind, sinner, query, recordFilter]);
+  }, [kind, sinner, query, recordFilter, deckCategory, railwayRoute, filterTags]);
   const persist = (
     next: LibraryData,
     message: string,
@@ -1114,6 +1172,15 @@ export default function App() {
     const saved = entry.id.startsWith("demo-")
       ? { ...entry, id: createEntry(entry.kind).id }
       : entry;
+    if (syncMembership && saved.kind === "identity") {
+      const fullDeck = data.entries.find((item) => item.kind === "deck" && saved.deckIds.includes(item.id) &&
+        !withMembership(item, data.entries).memberIds.includes(entry.id) &&
+        withMembership(item, data.entries).memberIds.length >= 7);
+      if (fullDeck) {
+        setToast(`${fullDeck.name}에는 이미 7명 이상이 편성되어 있습니다. 덱에서 편성을 조정한 뒤 추가해 주세요.`);
+        return false;
+      }
+    }
     const remap = (ids: string[]) =>
       ids.map((id) => (id === entry.id ? saved.id : id));
     let entries = (
@@ -1174,6 +1241,13 @@ export default function App() {
       setKind(entry.kind);
       setQuery(entry.name);
       setSinner(entry.kind === "deck" ? "전체" : entry.sinner || "전체");
+      setFilterTags([]);
+      if (entry.kind !== "deck" ||
+          (deckCategory && !matchesDeckCategory(entry, deckCategory)) ||
+          (deckCategory === "railway" && railwayRoute !== "all" && !entry.contentIds.includes(railwayRoute))) {
+        setDeckCategory(null);
+        setRailwayRoute("all");
+      }
     }
   };
   const removeEntries = (ids: string[], message: string) => {
@@ -1198,9 +1272,15 @@ export default function App() {
       setBackup(false);
     }
   };
+  const isRated = (entry: LibraryEntry) => deckCategory === "railway" && railwayRoute === "all"
+    ? ["railway1", "railway2", "railway6"].some((route) => entry.tiers[route as Content] !== "unrated")
+    : entry.tiers[content] !== "unrated";
   const filtered = data.entries.filter(
     (entry) =>
       entry.kind === kind &&
+      (!deckCategory || matchesDeckCategory(entry, deckCategory)) &&
+      (deckCategory !== "railway" || railwayRoute === "all" || entry.contentIds.includes(railwayRoute)) &&
+      filterTags.every((tag) => entry.tags.includes(tag) || entry.affinity === tag) &&
       (sinner === "전체" ||
         (entry.kind === "deck"
           ? withMembership(entry, data.entries).memberIds.some(
@@ -1213,8 +1293,8 @@ export default function App() {
         (recordFilter === "noted"
           ? hasNotes(entry)
           : recordFilter === "rated"
-            ? entry.tiers[content] !== "unrated"
-            : entry.tiers[content] === "unrated")) &&
+            ? isRated(entry)
+            : !isRated(entry))) &&
       (!query.trim() ||
         `${entry.name} ${entry.sinner} ${entry.subtitle} ${entry.tags.join(" ")}`
           .toLocaleLowerCase()
@@ -1223,14 +1303,42 @@ export default function App() {
   const rawCurrent = data.entries.find((entry) => entry.id === selected);
   const current = rawCurrent && withMembership(rawCurrent, data.entries);
   const contentLabel = CONTENTS.find((item) => item.id === content)!.label;
+  const category = DECK_CATEGORIES.find((item) => item.id === deckCategory);
+  const allRailways = deckCategory === "railway" && railwayRoute === "all";
+  const visibleContents = category
+    ? CONTENTS.filter((item) => category.contents.includes(item.id))
+    : CONTENTS;
   const hasDemo = data.entries.some((entry) => entry.id.startsWith("demo-"));
-  const rated = filtered.filter(
-    (entry) => entry.tiers[content] !== "unrated",
-  ).length;
+  const rated = filtered.filter(isRated).length;
   const selectKind = (next: Kind) => {
     setKind(next);
     setQuery("");
     setRecordFilter("all");
+    setDeckCategory(null);
+    setRailwayRoute("all");
+    setFilterTags([]);
+  };
+  const selectCategory = (next: DeckCategory) => {
+    const selectedCategory = DECK_CATEGORIES.find((item) => item.id === next)!;
+    setDeckCategory(next);
+    setKind("deck");
+    setView("all");
+    setSinner("전체");
+    setQuery("");
+    setFilterTags([]);
+    setRecordFilter("all");
+    setRailwayRoute("all");
+    setContent(selectedCategory.contents[0]);
+  };
+  const newEntry = () => {
+    const entry = createEntry(kind);
+    if (sinner !== "전체" && kind !== "deck") entry.sinner = sinner;
+    if (kind === "deck" && category) {
+      entry.contentIds = deckCategory === "railway" && railwayRoute !== "all"
+        ? [railwayRoute]
+        : [...category.contents];
+    }
+    return entry;
   };
   return (
     <div className="app-shell">
@@ -1258,16 +1366,16 @@ export default function App() {
         <div className="sidebar-section-label">MY LIBRARY</div>
         <nav aria-label="도서관 메뉴">
           <button
-            className={`nav-item ${view === "tiers" ? "active" : ""}`}
-            onClick={() => setView("tiers")}
+            className={`nav-item ${view === "tiers" && !deckCategory ? "active" : ""}`}
+            onClick={() => { setView("tiers"); setDeckCategory(null); setRailwayRoute("all"); }}
           >
             <Library size={18} className="nav-icon" />
-            <span>티어 아카이브</span>
+            <span>티어리스트</span>
             <ChevronRight size={14} />
           </button>
           <button
-            className={`nav-item ${view === "all" ? "active" : ""}`}
-            onClick={() => setView("all")}
+            className={`nav-item ${view === "all" && !deckCategory ? "active" : ""}`}
+            onClick={() => { setView("all"); setDeckCategory(null); setRailwayRoute("all"); }}
           >
             <FileText size={18} className="nav-icon" />
             <span>전체 기록</span>
@@ -1295,6 +1403,22 @@ export default function App() {
               </button>
             );
           })}
+        </nav>
+        <div className="sidebar-section-label">CONTENTS</div>
+        <nav className="deck-content-nav" aria-label="콘텐츠별 덱">
+          {DECK_CATEGORIES.map((item) => (
+            <button
+              key={item.id}
+              className={`nav-item deck-content-link ${deckCategory === item.id ? "active" : ""}`}
+              aria-label={item.label}
+              aria-current={deckCategory === item.id ? "page" : undefined}
+              onClick={() => selectCategory(item.id)}
+            >
+              <Swords size={17} className="nav-icon" />
+              <span>{item.label}</span>
+              <span className="nav-count">{data.entries.filter((entry) => matchesDeckCategory(entry, item.id)).length}</span>
+            </button>
+          ))}
         </nav>
         <div className="sidebar-note">
           <Feather size={23} />
@@ -1329,7 +1453,7 @@ export default function App() {
             <span className="mobile-wordmark">Library of Limbus</span>
             <span>나의 도서관</span>
             <ChevronRight size={13} />
-            <strong>{view === "tiers" ? "티어 아카이브" : "전체 기록"}</strong>
+            <strong>{category ? `${category.label} 덱` : view === "tiers" ? "티어리스트" : "전체 기록"}</strong>
           </div>
           <div className="topbar-actions">
             <button
@@ -1344,8 +1468,7 @@ export default function App() {
               className="primary-button"
               onClick={() => {
                 setSelected(null);
-                const entry = createEntry(kind);
-                if (sinner !== "전체" && kind !== "deck") entry.sinner = sinner;
+                const entry = newEntry();
                 setEditing({ entry, isNew: true });
               }}
             >
@@ -1450,9 +1573,11 @@ export default function App() {
             <div>
               <p className="eyebrow">THE COLLECTION</p>
               <h2 className="section-title">
-                {view === "tiers" ? "티어 아카이브" : "나의 모든 기록"}
+                {category ? `${category.label} 덱` : view === "tiers" ? "티어리스트" : "나의 모든 기록"}
                 <span className="section-caption">
-                  {view === "tiers"
+                  {category
+                    ? "콘텐츠에 맞춰 보관한 덱과 편성 순서를 바로 살펴보세요."
+                    : view === "tiers"
                     ? "같은 인격, 다른 무대. 콘텐츠마다 달라지는 나의 평가."
                     : "차곡차곡 모아 둔 평가와 운용 노트를 살펴보세요."}
                 </span>
@@ -1462,6 +1587,12 @@ export default function App() {
               {data.entries.filter(hasNotes).length}개의 개인 평가
             </span>
           </header>
+          {category && (
+            <div className="deck-category-heading">
+              <span className="deck-category-help">기록 수정의 ‘사용 콘텐츠’에서 이 덱을 여러 분류에 등록할 수 있습니다.</span>
+              <button className="deck-category-reset" onClick={() => selectKind("deck")}>모든 덱 보기</button>
+            </div>
+          )}
           <div
             className="tabs kind-tabs"
             role="tablist"
@@ -1519,14 +1650,19 @@ export default function App() {
             aria-label="콘텐츠"
             onKeyDown={navigateTabs}
           >
-            {CONTENTS.map((item) => (
+            {deckCategory === "railway" && (
+              <button className={`content-tab ${allRailways ? "active" : ""}`}
+                role="tab" aria-selected={allRailways} tabIndex={allRailways ? 0 : -1}
+                onClick={() => setRailwayRoute("all")}>전체 호선</button>
+            )}
+            {visibleContents.map((item) => (
               <button
                 key={item.id}
-                className={`content-tab ${content === item.id ? "active" : ""}`}
+                className={`content-tab ${content === item.id && !allRailways ? "active" : ""}`}
                 role="tab"
-                aria-selected={content === item.id}
-                tabIndex={content === item.id ? 0 : -1}
-                onClick={() => setContent(item.id)}
+                aria-selected={content === item.id && !allRailways}
+                tabIndex={content === item.id && !allRailways ? 0 : -1}
+                onClick={() => { setContent(item.id); if (deckCategory === "railway") setRailwayRoute(item.id); }}
               >
                 {item.label}
               </button>
@@ -1567,10 +1703,16 @@ export default function App() {
                 <strong>{filtered.length}</strong>개의 {kindLabel[kind]} 기록
               </span>
               <span className="view-label">
-                {contentLabel} 기준 · {rated}개 평가
+                {allRailways ? "1 · 2 · 6호선 전체 덱" : `${contentLabel} 기준 · ${rated}개 평가`}
               </span>
             </div>
           </div>
+          <details className="tag-filter-panel">
+            <summary>게임 태그로 찾기 {filterTags.length > 0 && `· ${filterTags.length}개 선택`}</summary>
+            <p className="deck-category-help">선택한 태그를 모두 가진 기록을 보여줍니다.</p>
+            <TagPicker value={filterTags} onChange={setFilterTags} />
+            {filterTags.length > 0 && <button className="secondary-button" onClick={() => setFilterTags([])}>태그 필터 초기화</button>}
+          </details>
           {view === "tiers" ? (
             <div
               className="tier-board"
@@ -1603,6 +1745,7 @@ export default function App() {
                         <EntryCard
                           key={entry.id}
                           entry={entry}
+                          entries={data.entries}
                           content={content}
                           onOpen={setSelected}
                           onTier={changeTier}
@@ -1649,7 +1792,9 @@ export default function App() {
                   <EntryCard
                     key={entry.id}
                     entry={entry}
+                    entries={data.entries}
                     content={content}
+                    showTier={!allRailways}
                     onOpen={setSelected}
                     onTier={changeTier}
                   />
@@ -1688,7 +1833,7 @@ export default function App() {
                 <button
                   className="primary-button"
                   onClick={() =>
-                    setEditing({ entry: createEntry(kind), isNew: true })
+                    setEditing({ entry: newEntry(), isNew: true })
                   }
                 >
                   <Plus size={16} />새 기록

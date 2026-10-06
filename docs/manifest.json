@@ -3,8 +3,8 @@
   "entrypoint": "index.html",
   "language": "ko",
   "artifact": {
-    "bytes": 8895318,
-    "sha256": "d5f9a1ef1db960ee464512aef2c29692ade1ff32254201e0141a93ff6bafc11a",
+    "bytes": 8920944,
+    "sha256": "44d8b6afbab6ecd61d05bf4c5477fd6696842c4d5e80af1bc60612698ed64550",
     "embeddedArtworks": 305,
     "inlineScripts": 1
   },
@@ -27,5 +27,16 @@
   "storage": {
     "kind": "browser localStorage",
     "backupFormat": "JSON"
+  },
+  "features": {
+    "formationPositions": 7,
+    "coverPosition": 1,
+    "deckCategories": [
+      "luxcavation",
+      "railway",
+      "mirror",
+      "story"
+    ],
+    "gameTagPresets": 52
   }
 }
