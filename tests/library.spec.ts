@@ -1,3 +1,4 @@
+import { prepareAdmin, draftKey } from "./mock-cloud";
 import { readFile } from 'node:fs/promises';
 import { expect, test, type Page } from '@playwright/test';
 import type { CatalogRecord } from '../src/lib/catalog';
@@ -7,7 +8,7 @@ const catalog = JSON.parse(await readFile(new URL('../src/data/catalog.json', im
   metadata: { counts: { identity: number; ego: number } };
   entries: CatalogRecord[];
 };
-const storageKey = 'library-of-limbus:v1';
+const storageKey = draftKey;
 const sinners = ['이상', '파우스트', '돈키호테', '료슈', '뫼르소', '홍루', '히스클리프', '이스마엘', '로쟈', '싱클레어', '오티스', '그레고르'];
 const identityName = '테스트 인격';
 const identityCard = (page: Page, name = identityName) => page.getByRole('button', { name: `${name} 상세 보기`, exact: true });
@@ -79,7 +80,7 @@ async function downloadNotebook(page: Page, path: string): Promise<LibraryData> 
   return data;
 }
 
-test.beforeEach(async ({ page }) => { await page.goto('/'); });
+test.beforeEach(async ({ page }) => { await prepareAdmin(page); await page.goto('/'); await expect(page.getByRole('button', { name: '로그아웃', exact: true })).toBeVisible(); });
 
 test('공식 목록은 인격 189개와 E.G.O 116개이며 모든 수감자의 이름과 이미지를 보여준다', async ({ page }) => {
   test.setTimeout(60_000);
@@ -393,7 +394,7 @@ test('손상된 저장소 원본을 보존하고 정상 백업으로 복구할 �
   await page.getByRole('button', { name: '저장하지 않고 닫기', exact: true }).click();
   await page.getByRole('button', { name: '백업과 복원', exact: true }).click();
   const rawDownload = page.waitForEvent('download');
-  await page.getByRole('button', { name: '저장소 원본 다운로드', exact: true }).click();
+  await page.getByRole('button', { name: '편집본 원본 다운로드', exact: true }).click();
   const rawPath = testInfo.outputPath('damaged-original.json');
   await (await rawDownload).saveAs(rawPath);
   expect(await readFile(rawPath, 'utf8')).toBe(corrupted);

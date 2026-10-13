@@ -1,3 +1,4 @@
+import { prepareAdmin, draftKey } from "./mock-cloud";
 import { readFile } from 'node:fs/promises';
 import { expect, test, type Page } from '@playwright/test';
 import type { CatalogRecord } from '../src/lib/catalog';
@@ -6,7 +7,7 @@ import type { LibraryData, LibraryEntry, MirrorPlan } from '../src/lib/library';
 const catalog = JSON.parse(await readFile(new URL('../src/data/catalog.json', import.meta.url), 'utf8')) as { entries: CatalogRecord[] };
 const members = ['이상', '파우스트'].map(sinner => catalog.entries.find(record => record.kind === 'identity' && record.sinner === sinner)!);
 const egos = catalog.entries.filter(record => record.kind === 'ego' && record.sinner === '이상').slice(0, 2);
-const storageKey = 'library-of-limbus:v1';
+const storageKey = draftKey;
 const memberName = (member: CatalogRecord) => `${member.name} ${member.sinner}`;
 const mirrorCard = (page: Page, name: string) => page.getByRole('button', { name: `${name} 거울던전 상세 보기`, exact: true });
 const skillCount = (page: Page, member: CatalogRecord, skill: number) => page.getByRole('spinbutton', { name: `${memberName(member)} ${skill}스킬 개수`, exact: true });
@@ -122,7 +123,7 @@ async function expectPlanInputs(page: Page, plan: MirrorPlan) {
   }
 }
 
-test.beforeEach(async ({ page }) => { await page.goto('/'); });
+test.beforeEach(async ({ page }) => { await prepareAdmin(page); await page.goto('/'); await expect(page.getByRole('button', { name: '로그아웃', exact: true })).toBeVisible(); });
 
 test('전용 거울던전 화면에서 편성과 기프트와 1~15층 공략 및 스킬 개수를 저장하고 백업으로 복원한다', async ({ page }, testInfo) => {
   test.setTimeout(60_000);

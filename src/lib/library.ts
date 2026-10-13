@@ -71,6 +71,7 @@ export interface MirrorDeck {
   affinity: string;
   tags: string[];
   tier: Tier;
+  score?: number | null;
   description: string;
   strengths: string;
   weaknesses: string;
@@ -86,6 +87,7 @@ export interface MirrorDeck {
 export interface MirrorEvaluation {
   entryId: string;
   tier: Tier;
+  score?: number | null;
   subtitle: string;
   description: string;
   strengths: string;
@@ -119,6 +121,7 @@ export interface LibraryEntry {
   mirrorPlan: MirrorPlan | null;
   formationCode: string;
   tiers: Record<Content, Tier>;
+  scores?: Partial<Record<Content, number | null>>;
   createdAt: string;
   updatedAt: string;
 }
@@ -255,6 +258,7 @@ function cloneEntry(entry: LibraryEntry): LibraryEntry {
     contentIds: [...entry.contentIds],
     mirrorPlan: entry.mirrorPlan == null ? null : cloneMirrorPlan(entry.mirrorPlan),
     tiers: { ...entry.tiers },
+    ...(entry.scores ? { scores: { ...entry.scores } } : {}),
   };
 }
 
@@ -295,6 +299,7 @@ export function migrateMirrorArchive(data: LibraryData): LibraryData {
     affinity: entry.affinity,
     tags: [...entry.tags],
     tier: entry.tiers.mirror,
+    ...(entry.scores && Object.hasOwn(entry.scores, 'mirror') ? { score: entry.scores.mirror } : {}),
     description: entry.description,
     strengths: entry.strengths,
     weaknesses: entry.weaknesses,
@@ -313,10 +318,11 @@ export function migrateMirrorArchive(data: LibraryData): LibraryData {
     updatedAt: entry.updatedAt,
   }));
   const evaluations: MirrorEvaluation[] = data.entries
-    .filter((entry) => entry.kind !== 'deck' && entry.tiers.mirror !== 'unrated')
+    .filter((entry) => entry.kind !== 'deck' && (entry.tiers.mirror !== 'unrated' || entry.scores?.mirror != null))
     .map((entry) => ({
       entryId: entry.id,
       tier: entry.tiers.mirror,
+      ...(entry.scores && Object.hasOwn(entry.scores, 'mirror') ? { score: entry.scores.mirror } : {}),
       subtitle: entry.subtitle,
       description: entry.description,
       strengths: entry.strengths,
@@ -349,7 +355,7 @@ export function resetCatalogEntry(entry: LibraryEntry): LibraryEntry {
 }
 
 function matchesDemo(entry: LibraryEntry, example: LibraryEntry): boolean {
-  return ENTRY_KEYS.every((key) => key === 'tiers'
+  return !Object.values(entry.scores ?? {}).some((score) => score != null) && ENTRY_KEYS.every((key) => key === 'tiers'
     ? CONTENTS.every(({ id }) => entry.tiers[id] === example.tiers[id])
     : key === 'mirrorPlan'
       ? (entry.mirrorPlan ?? null) === example.mirrorPlan
@@ -600,7 +606,8 @@ function requireMirrorArchive(value: unknown, byId: Map<string, LibraryEntry>): 
     requireKeys(deck, [
       'id', 'name', 'subtitle', 'affinity', 'tags', 'tier', 'description', 'strengths',
       'weaknesses', 'operation', 'recommendedEgoIds', 'memberIds', 'formationCode', 'plan', 'createdAt', 'updatedAt',
-    ], path);
+    ].concat(Object.hasOwn(deck, 'score') ? ['score'] : []), path);
+    if (Object.hasOwn(deck, 'score')) requireScore(deck.score, `${path}.score`);
     requireId(deck.id, `${path}.id`);
     if (seenDecks.has(deck.id)) invalid('mirrorArchive.decks', '중복된 거울던전 덱 ID가 있습니다.');
     seenDecks.add(deck.id);
@@ -623,7 +630,8 @@ function requireMirrorArchive(value: unknown, byId: Map<string, LibraryEntry>): 
   const evaluations = (archive.evaluations as unknown[]).map((value, index): MirrorEvaluation => {
     const path = `mirrorArchive.evaluations[${index}]`;
     const evaluation = requireObject(value, path);
-    requireKeys(evaluation, ['entryId', 'tier', 'subtitle', 'description', 'strengths', 'weaknesses', 'operation', 'recommendedEgoIds'], path);
+    requireKeys(evaluation, ['entryId', 'tier', 'subtitle', 'description', 'strengths', 'weaknesses', 'operation', 'recommendedEgoIds'].concat(Object.hasOwn(evaluation, 'score') ? ['score'] : []), path);
+    if (Object.hasOwn(evaluation, 'score')) requireScore(evaluation.score, `${path}.score`);
     requireId(evaluation.entryId, `${path}.entryId`);
     if (seenEvaluations.has(evaluation.entryId)) invalid('mirrorArchive.evaluations', '중복된 거울던전 평가 기록이 있습니다.');
     seenEvaluations.add(evaluation.entryId);
@@ -658,7 +666,14 @@ export function parseLibrary(json: string): LibraryData {
     const hasContentIds = Object.hasOwn(entry, 'contentIds');
     const hasMirrorPlan = Object.hasOwn(entry, 'mirrorPlan');
     requireKeys(entry, ENTRY_KEYS.filter((key) =>
-      (key !== 'contentIds' || hasContentIds) && (key !== 'mirrorPlan' || hasMirrorPlan)), path);
+      (key !== 'contentIds' || hasContentIds) && (key !== 'mirrorPlan' || hasMirrorPlan)).concat(Object.hasOwn(entry, 'scores') ? ['scores'] : []), path);
+    if (Object.hasOwn(entry, 'scores')) {
+      const scores = requireObject(entry.scores, `${path}.scores`);
+      for (const [key, score] of Object.entries(scores)) {
+        if (!CONTENTS.some(({ id }) => id === key)) invalid(`${path}.scores`, '지원하지 않는 콘텐츠입니다.');
+        requireScore(score, `${path}.scores.${key}`);
+      }
+    }
     requireId(entry.id, `${path}.id`);
     if (!KINDS.some(({ id }) => id === entry.kind)) invalid(`${path}.kind`, '인격, E.G.O., 덱 중 하나여야 합니다.');
     requireString(entry.name, `${path}.name`, 200);
@@ -750,4 +765,16 @@ export function saveLibrary(data: LibraryData, storage?: Pick<Storage, 'setItem'
   const target = storage ?? browserStorage();
   if (!target) throw new Error('브라우저 저장소를 사용할 수 없습니다. JSON 백업을 다운로드해 주세요.');
   target.setItem(STORAGE_KEY, exportLibrary(data));
+}
+
+export function compareScores(left: number | null | undefined, right: number | null | undefined): number {
+  if (left == null) return right == null ? 0 : 1;
+  if (right == null) return -1;
+  return right - left;
+}
+
+function requireScore(value: unknown, path: string): void {
+  if (value !== null && (typeof value !== 'number' || !Number.isFinite(value) || value < 0 || value > 100)) {
+    invalid(path, '점수는 0~100의 숫자 또는 미입력 값이어야 합니다.');
+  }
 }

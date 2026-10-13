@@ -29,6 +29,7 @@ import {
   X,
 } from "lucide-react";
 import {
+  compareScores,
   AFFINITIES,
   CONTENTS,
   DECK_CATEGORIES,
@@ -42,12 +43,10 @@ import {
   createMirrorEvaluation,
   getMirrorArchive,
   exportLibrary,
-  loadLibrary,
   parseLibrary,
   mergeCatalog,
   matchesDeckCategory,
   resetCatalogEntry,
-  saveLibrary,
   type Content,
   type DeckCategory,
   type Kind,
@@ -58,6 +57,9 @@ import {
   type Tier,
 } from "./lib/library";
 import { CATALOG, CATALOG_METADATA, getCatalogRecord } from "./lib/catalog";
+import * as cloud from "./lib/cloud";
+import { AdminAccess, useAdminAccess } from "./components/AdminAccess";
+import ScoreInput from "./components/ScoreInput";
 import DeckFormationEditor from "./components/DeckFormationEditor";
 import { TagPicker } from "./components/TagPicker";
 import MirrorDungeonPage from "./components/MirrorDungeonPage";
@@ -66,6 +68,7 @@ import MirrorDeckDetails from "./components/MirrorDeckDetails";
 import MirrorEvaluationEditor from "./components/MirrorEvaluationEditor";
 import MirrorEvaluationDetails from "./components/MirrorEvaluationDetails";
 
+const contentLabelForScore = (content: Content) => CONTENTS.find((item) => item.id === content)?.label;
 const GENERAL_CONTENTS = CONTENTS.filter(({ id }) => id !== "mirror");
 const kindIcon = { identity: BookMarked, ego: Sparkles, deck: Layers3 };
 const kindLabel = { identity: "인격", ego: "E.G.O", deck: "덱" };
@@ -175,17 +178,7 @@ function navigateTabs(event: ReactKeyboardEvent<HTMLDivElement>) {
   tabs[next]?.focus();
   tabs[next]?.click();
 }
-const initialLibrary = () => {
-  try {
-    return { data: loadLibrary(), error: "" };
-  } catch {
-    return {
-      data: { version: 1, entries: [] } as LibraryData,
-      error:
-        "저장된 기록을 읽지 못했습니다. 원본은 그대로 보존했습니다. 백업과 복원에서 원본을 내려받거나 정상 백업을 불러와 주세요.",
-    };
-  }
-};
+const initialLibrary = () => ({ data: mergeCatalog(createCatalogLibrary()), error: "" });
 
 function Modal({
   title,
@@ -288,6 +281,7 @@ function EntryCard({
   onOpen: (id: string) => void;
   onTier: (id: string, tier: Tier) => void;
 }) {
+  const canEdit = useAdminAccess();
   const catalog = getCatalogRecord(entry.id);
   return (
     <article
@@ -309,6 +303,7 @@ function EntryCard({
             {catalog && <span className="badge">{catalog.rarity}</span>}
           </span>
           <span className="entry-title">{entry.name}</span>
+          {entry.kind !== "ego" && <span className="score-label">{entry.scores?.[content] == null ? "점수 미입력" : `${entry.scores[content]}점`}</span>}
           <span className="entry-subtitle">
             {entry.subtitle ||
               (hasNotes(entry)
@@ -338,9 +333,11 @@ function EntryCard({
             <span className="subtle-text">{entry.affinity || "개인 기록"}</span>
           )}
         </span>
-        {showTier && <select
+        {showTier && !canEdit && <span>{tierLabel(entry.tiers[content])}</span>}
+        {showTier && canEdit && <select
           className="card-tier-select"
           aria-label={`${displayName(entry)} ${GENERAL_CONTENTS.find((item) => item.id === content)?.label} 티어`}
+          disabled={!canEdit}
           value={entry.tiers[content]}
           onChange={(event) => onTier(entry.id, event.target.value as Tier)}
         >
@@ -374,6 +371,7 @@ function Detail({
   onOpen: (id: string) => void;
   onTier: (id: string, tier: Tier) => void;
 }) {
+  const canEdit = useAdminAccess();
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
@@ -432,13 +430,14 @@ function Detail({
             수정일{" "}
             {new Intl.DateTimeFormat("ko-KR").format(new Date(entry.updatedAt))}
           </span>
-          <button className="secondary-button" onClick={onEdit}>
+          <button disabled={!canEdit} hidden={!canEdit} className="secondary-button admin-only" onClick={onEdit}>
             <Pencil size={15} />
             {catalog && !hasNotes(entry) ? "평가 작성" : "기록 수정"}
           </button>
         </>
       }
     >
+      {entry.kind !== "ego" && <p className="score-label">{entry.scores?.[content] == null ? "점수 미입력" : `${entry.scores[content]}점`} · {contentLabelForScore(content)}</p>}
       <div className="detail-heading">
         <EntryArt entry={entry} entries={entries} large />
         <div className="detail-heading-copy">
@@ -484,13 +483,14 @@ function Detail({
           </div>
         ))}
       </div>
-      <div className="detail-toolbar">
+      <div className="detail-toolbar" hidden={!canEdit}>
         <label className="field-label" htmlFor="detail-tier">
           {GENERAL_CONTENTS.find((item) => item.id === content)?.label} 티어
         </label>
         <select
           id="detail-tier"
           className="select"
+          disabled={!canEdit}
           value={entry.tiers[content]}
           onChange={(event) => onTier(entry.id, event.target.value as Tier)}
         >
@@ -611,7 +611,7 @@ function Detail({
           자동 복사를 사용할 수 없습니다. 편성번호를 선택해 직접 복사해 주세요.
         </p>
       )}
-      <div className="detail-toolbar">
+      <div className="detail-toolbar" hidden={!canEdit}>
         {confirmDelete ? (
           <div className="confirm-box">
             <span>
@@ -883,7 +883,8 @@ function Editor({
             <h3 className="detail-section-title">콘텐츠별 티어</h3>
             <div className="form-grid">
               {GENERAL_CONTENTS.map((item) => (
-                <label className="form-field" key={item.id}>
+                <div className="form-field" key={item.id}>
+                <label className="form-field">
                   <span className="field-label">{item.label} 티어</span>
                   <select
                     className="select"
@@ -902,6 +903,8 @@ function Editor({
                     ))}
                   </select>
                 </label>
+                  {draft.kind !== "ego" && <ScoreInput label={`${item.label} 점수`} value={draft.scores?.[item.id]} onChange={(score) => set("scores", { ...draft.scores, [item.id]: score })} />}
+                </div>
               ))}
             </div>
           </div>
@@ -975,19 +978,21 @@ function Backup({
   onClose,
   onImport,
   storageError,
+  canEdit,
 }: {
   data: LibraryData;
   onClose: () => void;
   onImport: (data: LibraryData) => void;
   storageError: boolean;
+  canEdit: boolean;
 }) {
   const [pending, setPending] = useState<LibraryData | null>(null);
   const [error, setError] = useState("");
-  const download = (raw = false) => {
+  const download = (raw: false | "legacy" | "draft" = false) => {
     let text = exportLibrary(data);
     if (raw) {
       try {
-        text = localStorage.getItem(STORAGE_KEY) || text;
+        text = localStorage.getItem(raw === "draft" ? cloud.DRAFT_KEY : STORAGE_KEY) || text;
       } catch {
         setError(
           "브라우저 저장소에 접근할 수 없습니다. 현재 기록 백업을 이용해 주세요.",
@@ -1027,9 +1032,7 @@ function Backup({
       onClose={onClose}
     >
       <p className="prose">
-        기록은 현재 브라우저에 저장됩니다. 다른 브라우저나 기기로 옮기려면 백업
-        파일을 내려받아 가져오세요. 브라우저 데이터를 삭제하기 전에도 백업해
-        주세요.
+        방문자는 공용 저장소의 게시된 기록을 읽습니다. 관리자 편집본은 이 브라우저에 임시 저장되며 게시하기 전에는 공개되지 않습니다. 기존 브라우저 원본은 수정하지 않습니다. 이전 기록을 가져오려면 관리자 로그인 후 백업 파일을 선택하세요.
       </p>
       <div className="backup-options">
         <section className="backup-card">
@@ -1042,18 +1045,18 @@ function Backup({
           <button className="secondary-button" onClick={() => download()}>
             백업 다운로드
           </button>
-          {storageError && (
-            <button className="secondary-button" onClick={() => download(true)}>
+        {(() => { try { return localStorage.getItem(STORAGE_KEY) !== null; } catch { return true; } })() && (
+            <button className="secondary-button" onClick={() => download("legacy")}>
               저장소 원본 다운로드
             </button>
           )}
+          {canEdit && storageError && <button className="secondary-button" onClick={() => download("draft")}>편집본 원본 다운로드</button>}
         </section>
-        <section className="backup-card">
+        {canEdit && <section className="backup-card">
           <ArrowUpFromLine size={24} />
           <h3>백업 가져오기</h3>
           <p>
-            파일 내용을 검사한 뒤 확인을 누르면 현재 기록을 교체합니다. 먼저
-            현재 기록을 백업해 주세요.
+            파일을 검사한 뒤 확인하면 임시 편집본을 교체합니다. 공개 기록은 게시하기 전까지 유지됩니다. 기존 편집본을 먼저 백업하세요.
           </p>
           <label className="field-label" htmlFor="backup-file">
             백업 파일 선택
@@ -1068,7 +1071,7 @@ function Backup({
               event.target.value = "";
             }}
           />
-        </section>
+        </section>}
       </div>
       {error && (
         <p className="warning-banner" role="alert">
@@ -1147,6 +1150,90 @@ type MirrorEditing = { type: "deck"; deck: MirrorDeck; isNew: boolean }
 
 export default function App() {
   const [initial] = useState(initialLibrary);
+  const [canEdit, setCanEdit] = useState(false);
+  const [cloudReady, setCloudReady] = useState(false);
+  const [cloudLoading, setCloudLoading] = useState(true);
+  const [cloudError, setCloudError] = useState("");
+  const [revision, setRevision] = useState(0);
+  const [dirty, setDirty] = useState(false);
+  const [publishing, setPublishing] = useState(false);
+  const [loginOpen, setLoginOpen] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [authBusy, setAuthBusy] = useState(false);
+  const [confirmPublish, setConfirmPublish] = useState(false);
+  const [confirmReload, setConfirmReload] = useState(false);
+  const publishedRef = useRef<LibraryData>(initial.data);
+  const applyPublic = async () => {
+    const result = await cloud.readPublished();
+    const current = result.data ?? mergeCatalog(createCatalogLibrary());
+    publishedRef.current = current;
+    setData(current); setRevision(result.revision); setDirty(false);
+    setCloudError(""); setConfirmReload(false);
+    return result.revision;
+  };
+  const restoreDraft = () => {
+    try {
+      const draft = cloud.readDraft();
+      if (draft) {
+        const changed = exportLibrary(draft) !== exportLibrary(publishedRef.current);
+        setData(draft); setDirty(changed);
+        if (changed) setRevision(cloud.readDraftRevision());
+      }
+    } catch { setStorageError("임시 편집본을 읽지 못했습니다. 원본은 그대로 보존했습니다. 백업을 가져와 주세요."); setRecoveryRequired(true); }
+  };
+  useEffect(() => {
+    let active = true;
+    (async () => {
+      try {
+        if (!await cloud.configureCloud()) {
+          if (active) setCloudError("공용 저장소 연결을 준비 중입니다. 기존 브라우저 기록은 보존되어 있습니다. 관리자 설정 안내를 확인해 주세요.");
+          return;
+        }
+        const [result, admin] = await Promise.all([cloud.readPublished(), cloud.isAdmin().catch(() => false)]);
+        if (!active) return;
+        const current = result.data ?? mergeCatalog(createCatalogLibrary());
+        publishedRef.current = current;
+        setData(current); setRevision(result.revision); setCloudReady(true); setCanEdit(admin);
+        if (admin) restoreDraft();
+      } catch (error) { if (active) setCloudError(error instanceof Error ? error.message : "공개 기록을 불러오지 못했습니다."); }
+      finally { if (active) setCloudLoading(false); }
+    })();
+    return () => { active = false; };
+  }, []);
+  useEffect(() => {
+    const warn = (event: BeforeUnloadEvent) => { if (dirty) event.preventDefault(); };
+    window.addEventListener("beforeunload", warn);
+    return () => window.removeEventListener("beforeunload", warn);
+  }, [dirty]);
+  const signIn = async () => {
+    setAuthBusy(true); setCloudError("");
+    try {
+      await cloud.login(email.trim(), password);
+      await applyPublic(); setCanEdit(true); restoreDraft(); setLoginOpen(false);
+    } catch (error) { setCloudError(error instanceof Error ? error.message : "로그인 실패"); }
+    finally { setPassword(""); setAuthBusy(false); }
+  };
+  const signOut = async () => {
+    setAuthBusy(true);
+    try { await cloud.logout(); }
+    catch { setToast("로그아웃 요청이 실패했지만 이 화면의 로그인 정보는 삭제했습니다."); }
+    finally {
+      setCanEdit(false); setData(publishedRef.current); setDirty(false); setStorageError(""); setRecoveryRequired(false);
+      setEditing(null); setSelected(null); setMirrorEditing(null); setMirrorSelected(null); setMirrorCopy(false); setBackup(false);
+      setAuthBusy(false);
+    }
+  };
+  const publishNow = async () => {
+    setPublishing(true); setCloudError("");
+    try {
+      const nextRevision = await cloud.publish(data, revision);
+      setRevision(nextRevision); publishedRef.current = structuredClone(data);
+      try { cloud.saveDraft(data, nextRevision); } catch { setStorageError("게시에는 성공했지만 이 브라우저의 임시 편집본 저장에 실패했습니다. 공개 기록은 유지됩니다."); }
+      setDirty(false); setConfirmPublish(false); setToast("게시했습니다. 방문자는 모든 기기에서 같은 공개 기록을 볼 수 있습니다.");
+    } catch (error) { setCloudError(error instanceof Error ? error.message : "게시 실패. 편집본은 유지됩니다."); }
+    finally { setPublishing(false); }
+  };
   const [data, setData] = useState(initial.data);
   const [storageError, setStorageError] = useState(initial.error);
   const [recoveryRequired, setRecoveryRequired] = useState(
@@ -1217,12 +1304,14 @@ export default function App() {
     message: string,
     allowRecovery = false,
   ) => {
+    if (!canEdit || !cloudReady || publishing) { setToast("관리자 로그인 후 편집할 수 있습니다."); return false; }
     if (recoveryRequired && !allowRecovery) {
       setToast("원본 기록을 먼저 백업한 뒤 정상 백업을 가져와 주세요.");
       return false;
     }
     try {
-      saveLibrary(next);
+      cloud.saveDraft(next, revision);
+      setDirty(true);
       setData(next);
       setStorageError("");
       setRecoveryRequired(false);
@@ -1233,7 +1322,7 @@ export default function App() {
       setSaveState("error");
       setStorageError(
         caught instanceof Error
-          ? `브라우저 저장 실패: ${caught.message}`
+          ? `임시 편집본 저장 실패: ${caught.message}`
           : "브라우저 저장에 실패했습니다.",
       );
       setToast("저장하지 못했습니다. 기존 기록은 그대로 유지됩니다.");
@@ -1403,6 +1492,7 @@ export default function App() {
           .toLocaleLowerCase()
           .includes(query.trim().toLocaleLowerCase())),
   );
+  filtered.sort((a, b) => TIERS.indexOf(a.tiers[content]) - TIERS.indexOf(b.tiers[content]) || compareScores(a.scores?.[content], b.scores?.[content]));
   const rawCurrent = data.entries.find((entry) => entry.id === selected);
   const current = rawCurrent && withMembership(rawCurrent, data.entries);
   const contentLabel = GENERAL_CONTENTS.find((item) => item.id === content)!.label;
@@ -1496,7 +1586,7 @@ export default function App() {
   const currentMirrorDeck = mirrorSelected?.type === "deck" ? mirrorArchive.decks.find((deck) => deck.id === mirrorSelected.id) : undefined;
   const currentMirrorEntry = mirrorSelected?.type === "evaluation" ? data.entries.find((entry) => entry.id === mirrorSelected.id) : undefined;
   return (
-    <div className="app-shell">
+    <AdminAccess.Provider value={canEdit}><div data-admin={canEdit} className="app-shell">
       <aside className="sidebar">
         <button
           className="brand"
@@ -1605,8 +1695,8 @@ export default function App() {
               {saveState === "error"
                 ? "저장 상태 확인 필요"
                 : saveState === "saved"
-                  ? "이 브라우저에 저장됨"
-                  : "개인 브라우저 저장소"}
+                  ? "임시 편집본 저장됨"
+                  : cloudLoading ? "공개 기록 불러오는 중" : canEdit ? "관리자 편집" : "공개 도서관"}
             </span>
             <ShieldCheck size={15} />
           </div>
@@ -1621,6 +1711,13 @@ export default function App() {
             <strong>{section === "mirror" ? "거울던전 공략" : category ? `${category.label} 덱` : view === "tiers" ? "티어리스트" : "전체 기록"}</strong>
           </div>
           <div className="topbar-actions">
+            {canEdit ? <>
+              <button className="primary-button" disabled={publishing || !dirty} onClick={() => setConfirmPublish(true)}>{publishing ? "게시 중…" : "게시하기"}</button>
+              <button className="secondary-button" disabled={authBusy || publishing} onClick={() => void signOut()}>로그아웃</button>
+            </> : <button className="secondary-button" disabled={cloudLoading} onClick={() => setLoginOpen(true)}>관리자 로그인</button>}
+            {cloudReady && <button className="secondary-button" disabled={publishing} onClick={() => {
+              if (dirty || recoveryRequired) setConfirmReload(true); else void applyPublic().catch((e) => setCloudError(e.message));
+            }}>공개 기록 새로고침</button>}
             <button
               className="icon-button"
               onClick={() => setBackup(true)}
@@ -1629,7 +1726,7 @@ export default function App() {
             >
               <ArrowDownToLine size={19} />
             </button>
-            {section !== "mirror" && <button
+            {canEdit && section !== "mirror" && <button
               className="primary-button"
               onClick={() => {
                 setSelected(null);
@@ -1641,6 +1738,8 @@ export default function App() {
             </button>}
           </div>
         </header>
+        {cloudError && <div className="warning-banner" role="alert">{cloudError} <a href="./ADMIN_SETUP.html" target="_blank" rel="noreferrer">관리자 설정 안내</a></div>}
+        {canEdit && <p className="admin-notice">{dirty ? "미게시 변경 있음" : "게시된 기록과 동일"} · 기록 저장은 임시 편집본입니다. ‘게시하기’를 눌러야 방문자에게 반영됩니다. 이전 기록은 백업과 복원에서 가져오세요.</p>}
         {storageError && (
           <div className="warning-banner" role="alert">
             {storageError}
@@ -1999,7 +2098,7 @@ export default function App() {
                   ? "다른 이름이나 태그로 검색해 보세요."
                   : "새 기록에서 나만의 평가와 운용 노트를 작성할 수 있어요."}
               </p>
-              {!query && (
+              {canEdit && !query && (
                 <button
                   className="primary-button"
                   onClick={() =>
@@ -2046,7 +2145,7 @@ export default function App() {
           onTier={changeTier}
         />
       )}
-      {editing && (
+      {canEdit && editing && (
         <Editor
           key={editing.entry.id}
           entry={editing.entry}
@@ -2059,7 +2158,7 @@ export default function App() {
       {section === "mirror" && !mirrorEditing && (currentMirrorDeck || currentMirrorEntry) && (
         <Modal title={currentMirrorDeck?.name ?? `${displayName(currentMirrorEntry!)} · 거울던전 평가`}
           eyebrow="MIRROR DUNGEON / RECORD" wide onClose={() => setMirrorSelected(null)}
-          footer={confirmMirrorDelete ? <div className="confirm-box" role="alert">
+          footer={!canEdit ? undefined : confirmMirrorDelete ? <div className="confirm-box" role="alert">
             <span>{currentMirrorDeck ? "이 거울던전 덱 기록을 삭제할까요?" : "이 거울던전 평가를 초기화할까요?"}</span>
             <button className="secondary-button" onClick={() => setConfirmMirrorDelete(false)}>취소</button>
             <button className="danger-button" onClick={removeMirrorRecord}>{currentMirrorDeck ? "삭제 확인" : "초기화 확인"}</button>
@@ -2074,19 +2173,19 @@ export default function App() {
               entries={data.entries} decks={mirrorArchive.decks} onOpenDeck={openMirrorDeck} onOpenEgo={openMirrorEvaluation} />}
         </Modal>
       )}
-      {mirrorEditing?.type === "deck" && (
+      {canEdit && mirrorEditing?.type === "deck" && (
         <MirrorRecordEditor key={mirrorEditing.deck.id} value={mirrorEditing.deck}
           title={mirrorEditing.isNew ? "새 거울던전 덱 기록" : "거울던전 덱 편집"}
           onClose={() => setMirrorEditing(null)} onSave={saveMirrorDeck}
           render={(draft, onChange) => <MirrorDeckEditor deck={draft} entries={data.entries} onChange={onChange} />} />
       )}
-      {mirrorEditing?.type === "evaluation" && (
+      {canEdit && mirrorEditing?.type === "evaluation" && (
         <MirrorRecordEditor key={mirrorEditing.entry.id} value={mirrorEditing.evaluation}
           title={`${displayName(mirrorEditing.entry)} · 거울던전 평가`}
           onClose={() => setMirrorEditing(null)} onSave={saveMirrorEvaluation}
           render={(draft, onChange) => <MirrorEvaluationEditor entry={mirrorEditing.entry} value={draft} entries={data.entries} onChange={onChange} />} />
       )}
-      {mirrorCopy && (
+      {canEdit && mirrorCopy && (
         <Modal title="거울던전 시작 편성 선택" eyebrow="MIRROR DUNGEON / STARTING FORMATION" onClose={() => setMirrorCopy(false)}>
           <p className="prose">일반 덱의 편성을 가져와 거울던전 공략을 시작하세요.</p>
           <div className="linked-list">
@@ -2102,11 +2201,31 @@ export default function App() {
           </div>
         </Modal>
       )}
+      {loginOpen && <Modal title="관리자 로그인" onClose={() => { setLoginOpen(false); setPassword(""); }}>
+        {cloudReady ? <form onSubmit={(event) => { event.preventDefault(); void signIn(); }}>
+          <label className="form-field">이메일<input className="input" type="email" autoComplete="username" required value={email} onChange={(e) => setEmail(e.target.value)} /></label>
+          <label className="form-field">비밀번호<input className="input" type="password" autoComplete="current-password" required value={password} onChange={(e) => setPassword(e.target.value)} /></label>
+          <button className="primary-button" disabled={authBusy}>{authBusy ? "로그인 중…" : "로그인"}</button>
+          <p className="field-help">관리자로 등록된 계정만 편집·게시할 수 있습니다. 계정은 Supabase에서 관리합니다.</p>
+        </form> : <p className="prose">공용 저장소 설정이 아직 완료되지 않았습니다. <a href="./ADMIN_SETUP.html" target="_blank" rel="noreferrer">관리자 설정 안내</a>를 따라 연결하세요. 방문자는 로그인하지 않습니다.</p>}
+        {cloudError && <p role="alert" className="warning-banner">{cloudError}</p>}
+      </Modal>}
+      {confirmPublish && <Modal title="공개 기록 게시" onClose={() => { if (!publishing) setConfirmPublish(false); }}>
+        <p className="prose">현재 임시 편집본의 일반 기록 {data.entries.length}개, 거울던전 덱 {getMirrorArchive(data).decks.length}개와 평가 {getMirrorArchive(data).evaluations.length}개를 공개합니다. 기존 공개 기록을 교체합니다. 먼저 백업을 보관하세요.</p>
+        <button className="primary-button" disabled={publishing} onClick={() => void publishNow()}>{publishing ? "게시 중…" : "공개 게시 확인"}</button>
+        {cloudError && <p role="alert" className="warning-banner">{cloudError}</p>}
+      </Modal>}
+      {confirmReload && <Modal title="공개 기록 다시 불러오기" onClose={() => setConfirmReload(false)}>
+        <p className="prose">미게시 편집본을 공개 기록으로 교체합니다. 현재 편집본을 먼저 백업하세요.</p>
+        <button className="secondary-button" onClick={() => setBackup(true)}>백업과 복원</button>
+        <button className="primary-button" onClick={() => void applyPublic().then((currentRevision) => { cloud.saveDraft(publishedRef.current, currentRevision); setStorageError(""); setRecoveryRequired(false); }).catch((e) => setCloudError(e.message))}>공개 기록으로 교체</button>
+      </Modal>}
       {backup && (
         <Backup
           data={data}
           onClose={() => setBackup(false)}
           storageError={Boolean(storageError)}
+          canEdit={canEdit}
           onImport={(next) => {
             if (persist(mergeCatalog(next), "백업을 가져왔습니다.", true)) {
               setBackup(false);
@@ -2154,11 +2273,7 @@ export default function App() {
           <div className="detail-section">
             <h3 className="detail-section-title">04. 오래 보관하기</h3>
             <p className="prose">
-              현재 버전은 이 브라우저에만 저장하며 계정이나 서버로 전송하지
-              않습니다. 백업과 복원에서 JSON 파일로 보관해 주세요. 정적 사이트를
-              배포하면 누구나 화면을 열 수 있으며 기록은 각자의 브라우저에 따로
-              저장됩니다. 로그인과 기기 간 동기화는 다음 단계로 추가할 수
-              있습니다.
+              관리자 로그인 → 기록 수정 → 기록 저장 → 게시하기 순서로 공개합니다. 방문자는 로그인 없이 같은 게시 내용을 읽습니다. 기존 JSON 백업은 관리자 로그인 후 가져올 수 있습니다. 원본 브라우저 기록은 보존됩니다.
             </p>
           </div>
           {!data.entries.length && (
@@ -2254,5 +2369,6 @@ export default function App() {
         </div>
       )}
     </div>
+    </AdminAccess.Provider>
   );
 }

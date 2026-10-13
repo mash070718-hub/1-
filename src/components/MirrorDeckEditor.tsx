@@ -1,3 +1,4 @@
+import ScoreInput from "./ScoreInput";
 import { useId, useMemo, useState } from "react";
 import { Search, Sparkles, X } from "lucide-react";
 import { getCatalogRecord } from "../lib/catalog";
@@ -79,6 +80,7 @@ export default function MirrorDeckEditor({ deck, entries, onChange }: MirrorDeck
           <MirrorPlanEditor value={deck.plan} memberIds={deck.memberIds} entries={entries} onChange={(plan) => set("plan", plan)} />
         </div>
 
+        <ScoreInput label="거울던전 점수" value={deck.score} onChange={(score) => set("score", score)} />
         <label className="form-field field-wide" htmlFor={`${fieldId}-description`}>
           <span className="field-label">거울던전 설명</span>
           <textarea id={`${fieldId}-description`} className="textarea" rows={3} maxLength={30000} value={deck.description} onChange={(event) => set("description", event.currentTarget.value)} placeholder="이 편성을 선택하는 이유와 공략의 목표를 기록하세요" />

@@ -1,4 +1,4 @@
-import catalog from '../data/catalog.json';
+import catalog from '../data/catalog.json' with { type: 'json' };
 
 /** Official game metadata stays separate from personal, version 1 notebook records. */
 export interface CatalogRecord {

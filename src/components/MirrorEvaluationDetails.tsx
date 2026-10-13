@@ -63,6 +63,7 @@ export default function MirrorEvaluationDetails({ entry, evaluation, entries, de
 
       <div className="mirror-evaluation-tier" data-tier={evaluation.tier} aria-label="거울던전 티어">
         <span>거울던전 티어</span>
+        {entry.kind === "identity" && <span className="score-label">{evaluation.score == null ? "점수 미입력" : `${evaluation.score}점`}</span>}
         <strong>{evaluation.tier === "unrated" ? "미평가" : evaluation.tier}</strong>
       </div>
 

@@ -40,6 +40,7 @@ export default function MirrorDeckDetails({ deck, entries, onOpenIdentity, onOpe
         <div className="mirror-deck-heading-copy">
           <p className="mirror-small-kicker">MIRROR DUNGEON / DECK</p>
           <h3>{deck.name}</h3>
+          <p className="score-label">{deck.score == null ? "점수 미입력" : `${deck.score}점`}</p>
           <p className="mirror-deck-meta">거울던전 · {deck.memberIds.length}명 편성{deck.affinity && ` · ${deck.affinity}`}</p>
           {deck.subtitle.trim() && <p className="mirror-deck-subtitle">{deck.subtitle}</p>}
           <div className="entry-tags">{deck.tags.map((tag) => <span className="tag" key={tag}>{tag}</span>)}</div>

@@ -1,8 +1,9 @@
+import { useAdminAccess } from "./AdminAccess";
 import { useEffect, useMemo, useState } from 'react';
 import { ArrowRight, BookMarked, ChevronRight, PenLine, Search, Sparkles, X } from 'lucide-react';
 import { getCatalogRecord } from '../lib/catalog';
 import {
-  createMirrorEvaluation, SINNERS, TIERS,
+  compareScores, createMirrorEvaluation, SINNERS, TIERS,
   type LibraryEntry, type MirrorEvaluation, type Tier,
 } from '../lib/library';
 import { TagPicker } from './TagPicker';
@@ -51,6 +52,7 @@ function EvaluationCard({ entry, evaluation, onOpen, onEdit }: {
   onOpen: (id: string) => void;
   onEdit: (id: string) => void;
 }) {
+  const canEdit = useAdminAccess();
   const catalog = getCatalogRecord(entry.id);
   const name = catalog?.name ?? entry.name;
   const sinner = catalog?.sinner ?? entry.sinner;
@@ -69,6 +71,7 @@ function EvaluationCard({ entry, evaluation, onOpen, onEdit }: {
         <span className="entry-body">
           <span className="entry-kicker">{sinner}{catalog && <span className="badge">{catalog.rarity}</span>}</span>
           <span className="entry-title">{name}</span>
+          {entry.kind === "identity" && <span className="score-label">{evaluation.score == null ? "점수 미입력" : `${evaluation.score}점`}</span>}
           <span className="entry-subtitle">
             {evaluation.subtitle.trim() || (noted
               ? '거울던전 평가가 기록되어 있습니다.'
@@ -85,6 +88,7 @@ function EvaluationCard({ entry, evaluation, onOpen, onEdit }: {
         <span className="mirror-evaluation-card-tier" data-tier={evaluation.tier}>{tierLabel(evaluation.tier)}</span>
       </div>
       <button
+        hidden={!canEdit}
         className="mirror-evaluation-edit"
         onClick={() => onEdit(entry.id)}
         aria-label={`${displayName} 거울던전 평가 작성/수정`}
@@ -142,7 +146,7 @@ export default function MirrorEvaluationCollection({ kind, entries, evaluations,
   }, [records, entries, query, sinner, recordFilter, filterTags]);
 
   const ordered = view === 'tiers'
-    ? [...filtered].sort((left, right) => TIERS.indexOf(left.evaluation.tier) - TIERS.indexOf(right.evaluation.tier))
+    ? [...filtered].sort((left, right) => TIERS.indexOf(left.evaluation.tier) - TIERS.indexOf(right.evaluation.tier) || (kind === 'identity' ? compareScores(left.evaluation.score, right.evaluation.score) : 0))
     : filtered;
   const visible = ordered.slice(0, visibleCounts[view]);
   const ratedCount = records.filter(({ evaluation }) => evaluation.tier !== 'unrated').length;

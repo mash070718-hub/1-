@@ -533,3 +533,13 @@ button.catalog-source { padding: 3px 0; border: 0; border-radius: 0; background:
 .tag-filter-panel > summary { color: #d4ba83; font-size: 13px; cursor: pointer; }
 .tag-filter-panel[open] > summary { margin-bottom: 12px; }
 .tag-filter-panel .game-tag-picker { --ink: #e4c99a; --muted: #b9a384; --line: #604c2e; margin-bottom: 10px; }
+
+/* Public readers share the archive; authoring controls belong to the administrator. */
+[hidden] { display: none !important; }
+.score-label { color: var(--gold, #c9a45b); font-size: .8rem; margin-top: .25rem; }
+.admin-notice { padding: 12px 24px; color: #d8bd80; border-bottom: 1px solid #59492b; }
+.mirror-tier-board { display: grid; gap: 24px; }
+.mirror-deck-tier > h3 { color: #d8bd80; border-bottom: 1px solid #59492b; padding-bottom: 12px; }
+.topbar-actions { flex-wrap: wrap; }
+.warning-banner a { color: inherit; text-decoration: underline; }
+@media (max-width: 700px) { .topbar { flex-wrap: wrap; gap: 12px; } .admin-notice { padding: 12px; } }

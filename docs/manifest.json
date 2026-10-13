@@ -3,8 +3,8 @@
   "entrypoint": "index.html",
   "language": "ko",
   "artifact": {
-    "bytes": 9010379,
-    "sha256": "0e8f95cb90f2a2f90586d97adefbe2fe5f6ac457db1826f4e45a378b0a0be895",
+    "bytes": 9023665,
+    "sha256": "acf3f52986095df4fdf1cfb92cc2712c920e2dc0ed0d222d665bc6901cc6f434",
     "embeddedArtworks": 305,
     "inlineScripts": 1
   },
@@ -22,11 +22,14 @@
   },
   "hosting": {
     "format": "static single HTML",
-    "networkAssetsRequired": false
+    "networkAssetsRequired": true,
+    "networkPurpose": "Supabase Auth and shared publication; catalog images remain embedded"
   },
   "storage": {
-    "kind": "browser localStorage",
-    "backupFormat": "JSON"
+    "kind": "Supabase PostgreSQL publication with admin-only writes; separate browser administrator drafts",
+    "backupFormat": "backward-compatible v1 JSON",
+    "legacyLocalStoragePreserved": true,
+    "configuration": "cloud-config.json"
   },
   "features": {
     "formationPositions": 7,
@@ -52,7 +55,9 @@
       "independentEditor": true,
       "independentNotesAndTiers": true,
       "independentRecommendations": true,
-      "legacyMigration": "once"
+      "legacyMigration": "once",
+      "deckTierlist": true,
+      "independentScores": true
     },
     "generalContents": [
       "story",
@@ -61,6 +66,21 @@
       "railway1",
       "railway2",
       "railway6"
-    ]
+    ],
+    "scores": {
+      "kinds": [
+        "identity",
+        "deck"
+      ],
+      "range": [
+        0,
+        100
+      ],
+      "decimals": true,
+      "perContent": true,
+      "manualTier": true,
+      "missingLast": true,
+      "stableTies": true
+    }
   }
 }

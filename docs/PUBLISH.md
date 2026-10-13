@@ -1,37 +1,22 @@
-# Library of Limbus를 웹 주소로 사용하기
+# GitHub Pages 배포
 
-`docs/index.html`은 사이트와 공식 이미지 305개를 모두 포함하는 배포 파일입니다. 외부 JavaScript, 이미지 서버, 설치 과정 없이 사용할 수 있습니다. 별도 서버나 데이터베이스는 필요하지 않습니다.
+사이트 주소: https://mash070718-hub.github.io/1-/
+관리자 설정 안내: https://mash070718-hub.github.io/1-/ADMIN_SETUP.html
 
-현재 접속 주소는 **https://mash070718-hub.github.io/1-/**이며, 거울던전 전용 화면은 **https://mash070718-hub.github.io/1-/#mirror-dungeon**입니다.
+GitHub Settings → Pages에서 Source는 Deploy from a branch, Branch는 `library-of-limbus`, Folder는 `/docs`입니다. `docs/index.html`이 사이트 코드이고 `docs/cloud-config.json`이 Supabase 공개 연결 설정입니다. `docs/ADMIN_SETUP.html`은 가입·SQL 설치·계정 등록·백업 가져오기 안내입니다.
 
-## GitHub Pages 활성화
+방문자는 공용 데이터베이스의 게시된 기록을 읽습니다. 사이트 코드 배포와 관리자 기록 게시는 별개입니다. Supabase 프로젝트가 연결되지 않으면 관리자 로그인과 공용 게시를 사용할 수 없습니다. 로그인·공용 데이터 읽기에는 인터넷이 필요합니다.
 
-저장소에 로그인한 뒤 **Settings → Pages**에서 다음을 선택합니다.
+기존 브라우저 기록은 그대로 보존합니다. 사용하던 PC 브라우저에서 백업과 복원 → 저장소 원본 다운로드로 JSON을 보관한 뒤, 프로젝트 연결 후 관리자 로그인 → 백업 가져오기 → 내용 확인 → 게시하기로 옮깁니다.
 
-1. **Source:** Deploy from a branch
-2. **Branch:** library-of-limbus
-3. **Folder:** /docs
-4. **Save**
-
-배포가 완료되면 같은 설정 화면에 표시되는 **Visit site**로 접속합니다.
-
-현재 저장소는 사용자가 공개로 전환한 상태입니다.
-
-## 기록 보관
-
-이 버전은 로그인이 없으며 개인 기록을 접속한 브라우저에 저장합니다. 공개되는 사이트 파일에는 사용자가 작성한 평가가 들어 있지 않습니다. 다른 기기로 옮기거나 브라우저 데이터를 지우기 전에는 **백업과 복원**에서 JSON 백업을 저장하세요.
-
-## 다시 빌드하기
-
-앱이나 카탈로그가 바뀌면 저장소 루트에서 다음 명령으로 배포 HTML을 갱신합니다.
+배포 HTML은 다음으로 갱신합니다:
 
 ```sh
 npm ci
 npm run build
 npm test
+npm run test:e2e -- --workers=2
 node scripts/build-standalone.mjs docs/index.html
 ```
 
-갱신한 파일을 배포 브랜치에 반영하면 GitHub Pages가 다시 배포합니다. `manifest.json`의 파일 해시와 바이트 크기는 갱신한 HTML 기준으로 함께 수정해야 합니다.
-
-공식 문자열·이미지의 출처는 [CATALOG_SOURCES.md](CATALOG_SOURCES.md)를 참고하세요.
+`manifest.json`의 해시·바이트 크기를 함께 갱신하고 브랜치에 푸시합니다. 연결된 `docs/cloud-config.json`은 빌드 때문에 빈 값으로 덮어쓰지 않습니다. 로컬 개발 설정 `public/cloud-config.json`도 실제 연결 정보와 일치하게 유지하세요. Publishable 또는 anon public 키만 사용하며 privileged 키나 관리자 비밀번호는 커밋하지 않습니다.
