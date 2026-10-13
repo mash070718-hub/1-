@@ -3,8 +3,8 @@
   "entrypoint": "index.html",
   "language": "ko",
   "artifact": {
-    "bytes": 9023665,
-    "sha256": "acf3f52986095df4fdf1cfb92cc2712c920e2dc0ed0d222d665bc6901cc6f434",
+    "bytes": 9025828,
+    "sha256": "21323368dbd911bb713078bd17b57b9db180ba8e82bebf90ae0a7bba8e14a699",
     "embeddedArtworks": 305,
     "inlineScripts": 1
   },
@@ -81,6 +81,17 @@
       "manualTier": true,
       "missingLast": true,
       "stableTies": true
+    },
+    "compactTierProfiles": {
+      "kinds": [
+        "identity",
+        "ego"
+      ],
+      "scopes": [
+        "general",
+        "mirrorDungeon"
+      ],
+      "detailsOnClick": true
     }
   }
 }

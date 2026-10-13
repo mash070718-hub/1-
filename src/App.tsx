@@ -60,6 +60,7 @@ import { CATALOG, CATALOG_METADATA, getCatalogRecord } from "./lib/catalog";
 import * as cloud from "./lib/cloud";
 import { AdminAccess, useAdminAccess } from "./components/AdminAccess";
 import ScoreInput from "./components/ScoreInput";
+import TierProfile from "./components/TierProfile";
 import DeckFormationEditor from "./components/DeckFormationEditor";
 import { TagPicker } from "./components/TagPicker";
 import MirrorDungeonPage from "./components/MirrorDungeonPage";
@@ -1847,7 +1848,7 @@ export default function App() {
                   {category
                     ? "콘텐츠에 맞춰 보관한 덱과 편성 순서를 바로 살펴보세요."
                     : view === "tiers"
-                    ? "같은 인격, 다른 무대. 콘텐츠마다 달라지는 나의 평가."
+                    ? "프로필을 누르면 상세 평가를 볼 수 있습니다."
                     : "차곡차곡 모아 둔 평가와 운용 노트를 살펴보세요."}
                 </span>
               </h2>
@@ -1984,13 +1985,14 @@ export default function App() {
           </details>
           {view === "tiers" ? (
             <div
-              className="tier-board"
+              className={`tier-board${kind !== "deck" ? " compact-tier-board" : ""}`}
               aria-label={`${contentLabel} ${kindLabel[kind]} 티어 목록`}
             >
               {TIERS.map((tier) => {
                 const records = filtered.filter(
                   (entry) => entry.tiers[content] === tier,
                 );
+                const limit = tierLimits[tier] || (kind === "deck" ? 12 : 48);
                 return (
                   <section
                     className="tier-row"
@@ -2010,7 +2012,7 @@ export default function App() {
                       </span>
                     </div>
                     <div className="tier-items">
-                      {records.slice(0, tierLimits[tier] || 12).map((entry) => (
+                      {records.slice(0, limit).map((entry) => entry.kind === "deck" ? (
                         <EntryCard
                           key={entry.id}
                           entry={entry}
@@ -2019,18 +2021,27 @@ export default function App() {
                           onOpen={setSelected}
                           onTier={changeTier}
                         />
+                      ) : (
+                        <TierProfile
+                          key={entry.id}
+                          label={`${displayName(entry)} 상세 보기`}
+                          score={entry.kind === "identity" ? entry.scores?.[content] ?? null : undefined}
+                          onClick={() => setSelected(entry.id)}
+                        >
+                          <EntryArt entry={entry} />
+                        </TierProfile>
                       ))}
-                      {records.length > (tierLimits[tier] || 12) && (
+                      {records.length > limit && (
                         <button
                           className="secondary-button show-more"
                           onClick={() =>
                             setTierLimits((old) => ({
                               ...old,
-                              [tier]: (old[tier] || 12) + 24,
+                              [tier]: limit + (kind === "deck" ? 24 : 48),
                             }))
                           }
                         >
-                          {records.length - (tierLimits[tier] || 12)}개 더 보기{" "}
+                          {records.length - limit}개 더 보기{" "}
                           <ChevronRight size={15} />
                         </button>
                       )}
@@ -2043,10 +2054,9 @@ export default function App() {
                                 ? "모든 기록의 티어를 평가했습니다."
                                 : "아직 이 티어에 기록이 없습니다."}
                           </span>
-                          <span className="subtle-text">
-                            {!query &&
-                              "카드의 티어 선택으로 기록을 옮길 수 있어요."}
-                          </span>
+                          {canEdit && !query && kind === "deck" && (
+                            <span className="subtle-text">카드의 티어 선택으로 기록을 옮길 수 있어요.</span>
+                          )}
                         </div>
                       )}
                     </div>
@@ -2254,8 +2264,8 @@ export default function App() {
           <div className="detail-section">
             <h3 className="detail-section-title">02. 무대마다 평가하기</h3>
             <p className="prose">
-              콘텐츠 탭을 바꾸면 해당 콘텐츠의 티어가 보입니다. 카드 오른쪽
-              아래에서 티어를 바꾸거나, 기록 수정에서 모든 티어를 한 번에
+              콘텐츠 탭을 바꾸면 해당 콘텐츠의 티어가 보입니다. 프로필을
+              누른 뒤 상세 화면에서 티어를 바꾸거나, 기록 수정에서 모든 티어를 한 번에
               입력하세요. 티어는 S, A, B, C, D와 미평가로 구분합니다.
             </p>
             <p className="prose">거울던전은 왼쪽 전용 메뉴에서 덱·인격·E.G.O별로 평가합니다.

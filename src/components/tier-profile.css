@@ -1,0 +1,45 @@
+.tier-board.compact-tier-board { --profile-width: 72px; --profile-height: 90px; gap: 8px; }
+.compact-tier-board .tier-items {
+  grid-template-columns: repeat(auto-fill, var(--profile-width));
+  align-content: start;
+  align-items: start;
+  gap: 8px;
+  padding: 10px;
+}
+.compact-tier-board .tier-label { width: 58px; min-height: 64px; gap: 4px; padding: 7px 0; }
+.compact-tier-board .tier-letter { font-size: 30px; }
+.compact-tier-board .tier-name { gap: 3px; }
+.compact-tier-board .empty-tier { min-height: 42px; margin: 0; }
+.tier-profile {
+  display: block;
+  width: var(--profile-width);
+  min-width: 0;
+  padding: 0;
+  border: 1px solid #8c6d43;
+  border-radius: 2px;
+  background: #2a2117;
+  color: #ecd3a6;
+  text-align: center;
+  transition: border-color .15s, box-shadow .15s;
+}
+.tier-profile:hover, .tier-profile:focus-visible { border-color: #ecd3a6; box-shadow: 0 0 0 1px #c6a260; }
+.tier-profile:focus-visible { outline: 2px solid #ecd3a6; outline-offset: 3px; }
+.tier-profile .entry-art { width: 100%; height: var(--profile-height); border: 0; box-shadow: none; }
+.tier-profile .entry-art[data-kind="ego"] img { object-position: center; }
+.tier-profile-score {
+  display: block;
+  padding: 3px 1px;
+  border-top: 1px solid #8c6d4366;
+  font-size: 12px;
+  line-height: 18px;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.tier-profile-score[data-missing="true"] { color: #bba785; font-size: 11px; }
+@media (max-width: 700px) {
+  .tier-board.compact-tier-board { --profile-width: 64px; --profile-height: 80px; gap: 6px; }
+  .compact-tier-board .tier-items { gap: 6px; padding: 6px; }
+  .compact-tier-board .tier-label { width: 42px; }
+  .compact-tier-board .tier-letter { font-size: 28px; }
+  .compact-tier-board .empty-tier { font-size: 11px; }
+}

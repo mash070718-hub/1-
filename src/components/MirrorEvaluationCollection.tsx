@@ -7,6 +7,7 @@ import {
   type LibraryEntry, type MirrorEvaluation, type Tier,
 } from '../lib/library';
 import { TagPicker } from './TagPicker';
+import TierProfile from './TierProfile';
 import './mirror-evaluation-collection.css';
 
 export interface MirrorEvaluationCollectionProps {
@@ -105,11 +106,11 @@ export default function MirrorEvaluationCollection({ kind, entries, evaluations,
   const [recordFilter, setRecordFilter] = useState('all');
   const [filterTags, setFilterTags] = useState<string[]>([]);
   const [view, setView] = useState<EvaluationView>('all');
-  const [visibleCounts, setVisibleCounts] = useState({ all: PAGE_SIZE, tiers: PAGE_SIZE });
+  const [visibleCounts, setVisibleCounts] = useState({ all: PAGE_SIZE, tiers: PAGE_SIZE * 2 });
   const kindLabel = kind === 'identity' ? '인격' : 'E.G.O';
 
   useEffect(() => {
-    setVisibleCounts({ all: PAGE_SIZE, tiers: PAGE_SIZE });
+    setVisibleCounts({ all: PAGE_SIZE, tiers: PAGE_SIZE * 2 });
   }, [kind, query, sinner, recordFilter, filterTags]);
 
   const records = useMemo(() => {
@@ -151,7 +152,16 @@ export default function MirrorEvaluationCollection({ kind, entries, evaluations,
   const visible = ordered.slice(0, visibleCounts[view]);
   const ratedCount = records.filter(({ evaluation }) => evaluation.tier !== 'unrated').length;
   const notedCount = records.filter(({ evaluation }) => hasNotes(evaluation)).length;
-  const card = ({ entry, evaluation }: typeof records[number]) => (
+  const card = ({ entry, evaluation, catalog }: typeof records[number]) => view === 'tiers' ? (
+    <TierProfile
+      key={entry.id}
+      label={`${catalog ? `${catalog.name} ${catalog.sinner}` : entry.name} 거울던전 상세 보기`}
+      score={kind === 'identity' ? evaluation.score ?? null : undefined}
+      onClick={() => onOpen(entry.id)}
+    >
+      <EvaluationArt entry={entry} />
+    </TierProfile>
+  ) : (
     <EvaluationCard key={entry.id} entry={entry} evaluation={evaluation} onOpen={onOpen} onEdit={onEdit} />
   );
 
@@ -217,7 +227,7 @@ export default function MirrorEvaluationCollection({ kind, entries, evaluations,
 
       {filtered.length > 0 ? (
         view === 'tiers' ? (
-          <div className="tier-board mirror-evaluation-board" aria-label={`거울던전 ${kindLabel} 티어 목록`}>
+          <div className="tier-board mirror-evaluation-board compact-tier-board" aria-label={`거울던전 ${kindLabel} 티어 목록`}>
             {TIERS.map((tier) => {
               const tierRecords = filtered.filter(({ evaluation }) => evaluation.tier === tier);
               const visibleTierRecords = visible.filter(({ evaluation }) => evaluation.tier === tier);
@@ -253,7 +263,7 @@ export default function MirrorEvaluationCollection({ kind, entries, evaluations,
           <button
             type="button"
             className="secondary-button"
-            onClick={() => setVisibleCounts((previous) => ({ ...previous, [view]: previous[view] + PAGE_SIZE }))}
+            onClick={() => setVisibleCounts((previous) => ({ ...previous, [view]: previous[view] + PAGE_SIZE * (view === 'tiers' ? 2 : 1) }))}
           >{kindLabel} 더 보기 <ArrowRight size={14} /></button>
         </div>
       )}
