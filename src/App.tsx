@@ -60,6 +60,7 @@ import { CATALOG, CATALOG_METADATA, getCatalogRecord } from "./lib/catalog";
 import * as cloud from "./lib/cloud";
 import { AdminAccess, useAdminAccess } from "./components/AdminAccess";
 import ScoreInput from "./components/ScoreInput";
+import IdentityScoreGuide, { IdentityScoringOverview } from "./components/IdentityScoreGuide";
 import TierProfile from "./components/TierProfile";
 import DeckFormationEditor from "./components/DeckFormationEditor";
 import { TagPicker } from "./components/TagPicker";
@@ -881,7 +882,8 @@ function Editor({
             </fieldset>
           )}
           <div className="form-field field-wide">
-            <h3 className="detail-section-title">콘텐츠별 티어</h3>
+            <h3 className="detail-section-title">{draft.kind === "ego" ? "콘텐츠별 티어" : "콘텐츠별 티어와 점수"}</h3>
+            {draft.kind === "identity" && <IdentityScoringOverview />}
             <div className="form-grid">
               {GENERAL_CONTENTS.map((item) => (
                 <div className="form-field" key={item.id}>
@@ -905,6 +907,7 @@ function Editor({
                   </select>
                 </label>
                   {draft.kind !== "ego" && <ScoreInput label={`${item.label} 점수`} value={draft.scores?.[item.id]} onChange={(score) => set("scores", { ...draft.scores, [item.id]: score })} />}
+                  {draft.kind === "identity" && <IdentityScoreGuide content={item.id} score={draft.scores?.[item.id]} />}
                 </div>
               ))}
             </div>

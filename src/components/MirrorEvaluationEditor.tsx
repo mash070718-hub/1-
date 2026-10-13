@@ -1,4 +1,5 @@
 import ScoreInput from "./ScoreInput";
+import IdentityScoreGuide, { IdentityScoringOverview } from "./IdentityScoreGuide";
 import { useState } from "react";
 import { BookMarked, Search, Sparkles, X } from "lucide-react";
 import { getCatalogRecord } from "../lib/catalog";
@@ -49,6 +50,7 @@ export default function MirrorEvaluationEditor({ entry, value, entries, onChange
         </div>
       </div>
 
+      {entry.kind === "identity" && <IdentityScoringOverview />}
       <div className="form-grid">
         <label className="form-field">
           <span className="field-label">거울던전 티어</span>
@@ -56,7 +58,12 @@ export default function MirrorEvaluationEditor({ entry, value, entries, onChange
             {TIERS.map((tier) => <option key={tier} value={tier}>{tierLabel(tier)}</option>)}
           </select>
         </label>
-        {entry.kind === "identity" && <ScoreInput label="거울던전 점수" value={value.score} onChange={(score) => set("score", score)} />}
+        {entry.kind === "identity" && (
+          <div className="form-field">
+            <ScoreInput label="거울던전 점수" value={value.score} onChange={(score) => set("score", score)} />
+            <IdentityScoreGuide content="mirror" score={value.score} />
+          </div>
+        )}
         <label className="form-field field-wide">
           <span className="field-label">거울던전 한 줄 소개</span>
           <input className="input" maxLength={300} value={value.subtitle}

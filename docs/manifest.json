@@ -3,8 +3,8 @@
   "entrypoint": "index.html",
   "language": "ko",
   "artifact": {
-    "bytes": 9025828,
-    "sha256": "21323368dbd911bb713078bd17b57b9db180ba8e82bebf90ae0a7bba8e14a699",
+    "bytes": 9036209,
+    "sha256": "c785bd3108b3bd27edef24916f8fd83346bc02a45b787553c8f1c874a8ee20ec",
     "embeddedArtworks": 305,
     "inlineScripts": 1
   },
@@ -92,6 +92,21 @@
         "mirrorDungeon"
       ],
       "detailsOnClick": true
+    },
+    "identityScoringGuide": {
+      "weights": {
+        "story": 20,
+        "luxcavation": 10,
+        "simulation": 30,
+        "railway": 10,
+        "mirror": 30
+      },
+      "simulationBenchmark": "뇌횡 12턴 이내 클리어 덱의 인격 기여도",
+      "scoreInputScale": 100,
+      "scopes": [
+        "general",
+        "mirrorDungeon"
+      ]
     }
   }
 }
