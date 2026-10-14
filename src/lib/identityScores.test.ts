@@ -5,7 +5,7 @@ import { IDENTITY_SCORE_MAX, identityScoreTotal } from './identityScores';
 
 function fixture(): LibraryData {
   const entry = { ...createEntry('identity'), id: 'scored-identity', name: '평가 인격',
-    scores: { story: 16.5, luxcavation: 8, simulation: 27, railway1: 6, railway2: 7, railway6: 8.5, mirror: 99 },
+    scores: { story: 16.5, luxcavation: 8, simulation: 27, railway1: 6, railway2: 7, railway6: 8.5, railway: 8.5, mirror: 99 },
   };
   return { version: 1, entries: [entry], mirrorArchive: {
     decks: [], evaluations: [{ ...createMirrorEvaluation(entry.id), score: 28 }],
@@ -22,24 +22,25 @@ test('existing scores remain exact across import, catalog merge, export and relo
   assert.deepEqual(restored.mirrorArchive, original.mirrorArchive);
 });
 
-test('total adds native points, counts only the selected railway and the independent mirror score', () => {
+test('total adds native points, counts the unified railway only once and the independent mirror score', () => {
   const data = fixture();
   const entry = data.entries[0];
   const mirror = data.mirrorArchive!.evaluations[0];
-  assert.deepEqual(identityScoreTotal(entry, mirror, 'railway6'), { score: 88, evaluated: 5, complete: true, invalid: 0 });
-  assert.equal(identityScoreTotal(entry, mirror, 'railway1').score, 85.5);
+  assert.deepEqual(identityScoreTotal(entry, mirror), { score: 88, evaluated: 5, complete: true, invalid: 0 });
+  entry.scores!.railway = 6;
+  assert.equal(identityScoreTotal(entry, mirror).score, 85.5);
   entry.scores = { ...IDENTITY_SCORE_MAX };
   mirror.score = 30;
-  assert.equal(identityScoreTotal(entry, mirror, 'railway6').score, 100);
+  assert.equal(identityScoreTotal(entry, mirror).score, 100);
 });
 
 test('zero is evaluated, missing is incomplete and out-of-range legacy scores never inflate totals', () => {
   const data = fixture();
   const entry = data.entries[0];
   entry.scores = { story: 0, luxcavation: null };
-  assert.deepEqual(identityScoreTotal(entry, undefined, 'railway6'), { score: 0, evaluated: 1, complete: false, invalid: 0 });
+  assert.deepEqual(identityScoreTotal(entry, undefined), { score: 0, evaluated: 1, complete: false, invalid: 0 });
   entry.scores = { story: 90, mirror: 30 };
-  assert.deepEqual(identityScoreTotal(entry, undefined, 'railway6'), { score: null, evaluated: 0, complete: false, invalid: 1 });
+  assert.deepEqual(identityScoreTotal(entry, undefined), { score: null, evaluated: 0, complete: false, invalid: 1 });
 });
 
 test('new identity scores enforce each content maximum while legacy scores and deck scales are retained', () => {
@@ -48,13 +49,16 @@ test('new identity scores enforce each content maximum while legacy scores and d
   data.entries[0].scoreRailway = 'railway2';
   data.mirrorArchive!.evaluations[0].scoreScale = 'content-v1';
   assert.deepEqual(parseLibrary(exportLibrary(data)), data);
-  for (const content of ['story', 'luxcavation', 'simulation', 'railway1', 'railway2', 'railway6'] as Content[]) {
+  for (const content of ['story', 'luxcavation', 'simulation', 'railway'] as Content[]) {
     const invalid = structuredClone(data);
     invalid.entries[0].scores![content] = IDENTITY_SCORE_MAX[content] + 0.01;
     assert.throws(() => exportLibrary(invalid), /점수/);
     delete invalid.entries[0].scoreScale;
     assert.doesNotThrow(() => exportLibrary(invalid));
   }
+  data.entries[0].scores!.railway1 = 80;
+  data.entries[0].scores!.railway2 = 95;
+  assert.deepEqual(parseLibrary(exportLibrary(data)), data);
   const invalidMirror = structuredClone(data);
   invalidMirror.mirrorArchive!.evaluations[0].score = 30.1;
   assert.throws(() => exportLibrary(invalidMirror), /0~30/);

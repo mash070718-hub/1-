@@ -898,7 +898,7 @@ function Editor({
           <div className="form-field field-wide">
             <h3 className="detail-section-title">{draft.kind === "ego" ? "콘텐츠별 티어" : "콘텐츠별 티어와 점수"}</h3>
             {draft.kind === "identity" && <IdentityScoringOverview />}
-            {draft.kind === "identity" && <IdentityScoreSummary entry={draft} mirror={previewMirror} onRailwayChange={railway => set("scoreRailway", railway)} />}
+            {draft.kind === "identity" && <IdentityScoreSummary entry={draft} mirror={previewMirror} />}
             <div className="form-grid">
               {GENERAL_CONTENTS.map((item) => (
                 <div className="form-field" key={item.id}>
@@ -1273,7 +1273,6 @@ export default function App() {
   const [content, setContent] = useState<Content>("story");
   const [view, setView] = useState<"tiers" | "all">("all");
   const [deckCategory, setDeckCategory] = useState<DeckCategory | null>(null);
-  const [railwayRoute, setRailwayRoute] = useState<Content | "all">("all");
   const [filterTags, setFilterTags] = useState<string[]>([]);
   const [sinner, setSinner] = useState("전체");
   const [recordFilter, setRecordFilter] = useState("all");
@@ -1322,7 +1321,7 @@ export default function App() {
   useEffect(() => {
     setVisibleCount(24);
     setTierLimits({});
-  }, [kind, sinner, query, recordFilter, deckCategory, railwayRoute, filterTags]);
+  }, [kind, sinner, query, recordFilter, deckCategory, filterTags]);
   const persist = (
     next: LibraryData,
     message: string,
@@ -1459,11 +1458,8 @@ export default function App() {
       setSinner(entry.kind === "deck" ? "전체" : entry.sinner || "전체");
       setFilterTags([]);
       if (section === "mirror") setMirrorRevision((old) => old + 1);
-      if (entry.kind !== "deck" ||
-          (deckCategory && !matchesDeckCategory(entry, deckCategory)) ||
-          (deckCategory === "railway" && railwayRoute !== "all" && !entry.contentIds.includes(railwayRoute))) {
+      if (entry.kind !== "deck" || (deckCategory && !matchesDeckCategory(entry, deckCategory))) {
         setDeckCategory(null);
-        setRailwayRoute("all");
       }
     }
   };
@@ -1500,9 +1496,7 @@ export default function App() {
       setBackup(false);
     }
   };
-  const isRated = (entry: LibraryEntry) => deckCategory === "railway" && railwayRoute === "all"
-    ? ["railway1", "railway2", "railway6"].some((route) => entry.tiers[route as Content] !== "unrated")
-    : entry.tiers[content] !== "unrated";
+  const isRated = (entry: LibraryEntry) => entry.tiers[content] !== "unrated";
   const mirrorArchive = getMirrorArchive(data);
   const mirrorById = new Map(mirrorArchive.evaluations.map(evaluation => [evaluation.entryId, evaluation]));
   const identityTotals = new Map(data.entries.filter(entry => entry.kind === "identity")
@@ -1512,7 +1506,6 @@ export default function App() {
     (entry) =>
       entry.kind === kind &&
       (!deckCategory || matchesDeckCategory(entry, deckCategory)) &&
-      (deckCategory !== "railway" || railwayRoute === "all" || entry.contentIds.includes(railwayRoute)) &&
       filterTags.every((tag) => entry.tags.includes(tag) || entry.affinity === tag) &&
       (sinner === "전체" ||
         (entry.kind === "deck"
@@ -1538,7 +1531,6 @@ export default function App() {
   const current = rawCurrent && withMembership(rawCurrent, data.entries);
   const contentLabel = GENERAL_CONTENTS.find((item) => item.id === content)!.label;
   const category = DECK_CATEGORIES.find((item) => item.id === deckCategory);
-  const allRailways = deckCategory === "railway" && railwayRoute === "all";
   const visibleContents = category
     ? GENERAL_CONTENTS.filter((item) => category.contents.includes(item.id))
     : GENERAL_CONTENTS;
@@ -1550,7 +1542,6 @@ export default function App() {
     setQuery("");
     setRecordFilter("all");
     setDeckCategory(null);
-    setRailwayRoute("all");
     setFilterTags([]);
   };
   const selectCategory = (next: DeckCategory) => {
@@ -1564,16 +1555,13 @@ export default function App() {
     setQuery("");
     setFilterTags([]);
     setRecordFilter("all");
-    setRailwayRoute("all");
     setContent(selectedCategory.contents[0]);
   };
   const newEntry = () => {
     const entry = createEntry(kind);
     if (sinner !== "전체" && kind !== "deck") entry.sinner = sinner;
     if (kind === "deck" && category) {
-      entry.contentIds = deckCategory === "railway" && railwayRoute !== "all"
-        ? [railwayRoute]
-        : [...category.contents];
+      entry.contentIds = [...category.contents];
     }
     return entry;
   };
@@ -1652,7 +1640,7 @@ export default function App() {
         <nav aria-label="도서관 메뉴">
           <button
             className={`nav-item ${section === "library" && view === "tiers" && !deckCategory ? "active" : ""}`}
-            onClick={() => { showLibrary(); setView("tiers"); setDeckCategory(null); setRailwayRoute("all"); }}
+            onClick={() => { showLibrary(); setView("tiers"); setDeckCategory(null); }}
           >
             <Library size={18} className="nav-icon" />
             <span>티어리스트</span>
@@ -1660,7 +1648,7 @@ export default function App() {
           </button>
           <button
             className={`nav-item ${section === "library" && view === "all" && !deckCategory ? "active" : ""}`}
-            onClick={() => { showLibrary(); setView("all"); setDeckCategory(null); setRailwayRoute("all"); }}
+            onClick={() => { showLibrary(); setView("all"); setDeckCategory(null); }}
           >
             <FileText size={18} className="nav-icon" />
             <span>전체 기록</span>
@@ -1959,19 +1947,14 @@ export default function App() {
             aria-label="콘텐츠"
             onKeyDown={navigateTabs}
           >
-            {deckCategory === "railway" && (
-              <button className={`content-tab ${allRailways ? "active" : ""}`}
-                role="tab" aria-selected={allRailways} tabIndex={allRailways ? 0 : -1}
-                onClick={() => setRailwayRoute("all")}>전체 호선</button>
-            )}
             {visibleContents.map((item) => (
               <button
                 key={item.id}
-                className={`content-tab ${content === item.id && !allRailways ? "active" : ""}`}
+                className={`content-tab ${content === item.id ? "active" : ""}`}
                 role="tab"
-                aria-selected={content === item.id && !allRailways}
-                tabIndex={content === item.id && !allRailways ? 0 : -1}
-                onClick={() => { setContent(item.id); if (deckCategory === "railway") setRailwayRoute(item.id); }}
+                aria-selected={content === item.id}
+                tabIndex={content === item.id ? 0 : -1}
+                onClick={() => setContent(item.id)}
               >
                 {item.label}
               </button>
@@ -2012,7 +1995,7 @@ export default function App() {
                 <strong>{filtered.length}</strong>개의 {kindLabel[kind]} 기록
               </span>
               <span className="view-label">
-                {allRailways ? "1 · 2 · 6호선 전체 덱" : kind === "identity" ? `${contentLabel} 티어 · 종합점수순 · ${rated}개 평가` : `${contentLabel} 기준 · ${rated}개 평가`}
+                {kind === "identity" ? `${contentLabel} 티어 · 종합점수순 · ${rated}개 평가` : `${contentLabel} 기준 · ${rated}개 평가`}
               </span>
             </div>
           </div>
@@ -2113,7 +2096,6 @@ export default function App() {
                     entry={entry}
                     entries={data.entries}
                     content={content}
-                    showTier={!allRailways}
                     total={entry.kind === "identity" ? identityTotals.get(entry.id) : undefined}
                     onOpen={setSelected}
                     onTier={changeTier}

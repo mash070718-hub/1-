@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
-  CONTENTS,
+  STORED_CONTENTS,
   DECK_CATEGORIES,
   STORAGE_KEY,
   createCatalogLibrary,
@@ -27,7 +27,7 @@ test('a new record has independent, unrated tiers for every content', () => {
   assert.equal(second.sinner, '');
   assert.deepEqual(first.contentIds, []);
   assert.deepEqual(second.contentIds, []);
-  assert.deepEqual(Object.keys(first.tiers), CONTENTS.map(({ id }) => id));
+  assert.deepEqual(Object.keys(first.tiers), STORED_CONTENTS.map(({ id }) => id));
   assert.ok(Object.values(first.tiers).every((tier) => tier === 'unrated'));
   first.tiers.story = 'S';
   assert.equal(second.tiers.story, 'unrated');
@@ -117,6 +117,7 @@ test('deck folders group each railway and match selected contents independently 
   assert.ok(matchesDeckCategory(deck, 'mirror'));
   assert.ok(matchesDeckCategory(deck, 'story'));
   assert.equal(matchesDeckCategory(deck, 'railway'), false);
+  delete (deck.tiers as Partial<typeof deck.tiers>).railway;
   for (const railway of ['railway1', 'railway2', 'railway6'] as const) {
     deck.contentIds = [railway];
     assert.ok(matchesDeckCategory(deck, 'railway'));
@@ -208,7 +209,7 @@ test('an edited old example and every linked target survive catalog migration', 
   old.entries[0].tiers.story = 'D';
   const migrated = mergeCatalog(old);
   const preserved = migrated.entries.find(({ id }) => id === old.entries[0].id);
-  assert.deepEqual(preserved, old.entries[0]);
+  assert.deepEqual(preserved, { ...old.entries[0], tiers: { ...old.entries[0].tiers, railway: old.entries[0].tiers.railway6 } });
   assert.ok(old.entries[0].deckIds.every((id) => migrated.entries.some((entry) => entry.id === id)));
   assert.ok(old.entries[0].recommendedEgoIds.every((id) => migrated.entries.some((entry) => entry.id === id)));
   assert.doesNotThrow(() => parseLibrary(exportLibrary(migrated)));

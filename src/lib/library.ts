@@ -1,6 +1,7 @@
 import { CATALOG, getCatalogRecord, type CatalogRecord } from './catalog';
 import { isGameTag } from './tags';
 import { IDENTITY_SCORE_MAX, type RailwayScoreContent } from './identityScores';
+import { LEGACY_RAILWAYS, unifyRailway } from './railway';
 
 export type Kind = 'identity' | 'ego' | 'deck';
 export type Content =
@@ -8,13 +9,14 @@ export type Content =
   | 'luxcavation'
   | 'mirror'
   | 'simulation'
+  | 'railway'
   | 'railway1'
   | 'railway2'
   | 'railway6';
 export type Tier = 'S' | 'A' | 'B' | 'C' | 'D' | 'unrated';
 export type DeckCategory = 'luxcavation' | 'railway' | 'mirror' | 'story';
 
-export const CONTENTS: { id: Content; label: string; shortLabel: string }[] = [
+const LEGACY_CONTENTS: { id: Content; label: string; shortLabel: string }[] = [
   { id: 'story', label: '스토리', shortLabel: '스토리' },
   { id: 'luxcavation', label: '경험치 · 끈 채광', shortLabel: '채광' },
   { id: 'mirror', label: '거울던전', shortLabel: '거울던전' },
@@ -24,9 +26,15 @@ export const CONTENTS: { id: Content; label: string; shortLabel: string }[] = [
   { id: 'railway6', label: '6호선', shortLabel: '6호선' },
 ];
 
+export const CONTENTS = [
+  ...LEGACY_CONTENTS.filter(({ id }) => !LEGACY_RAILWAYS.some(legacy => legacy === id)),
+  { id: 'railway' as const, label: '거울굴절철도', shortLabel: '거울굴절철도' },
+];
+export const STORED_CONTENTS = [...LEGACY_CONTENTS, CONTENTS[CONTENTS.length - 1]];
+
 export const DECK_CATEGORIES: { id: DeckCategory; label: string; contents: Content[] }[] = [
   { id: 'luxcavation', label: '채광', contents: ['luxcavation'] },
-  { id: 'railway', label: '거울굴절철도', contents: ['railway1', 'railway2', 'railway6'] },
+  { id: 'railway', label: '거울굴절철도', contents: ['railway'] },
   { id: 'mirror', label: '거울던전', contents: ['mirror'] },
   { id: 'story', label: '스토리', contents: ['story'] },
 ];
@@ -162,12 +170,15 @@ export function isMirrorDeck(entry: LibraryEntry): boolean {
 }
 
 export function matchesDeckCategory(entry: LibraryEntry, category: DeckCategory): boolean {
+  if (entry.kind === 'deck' && category === 'railway' && !Object.hasOwn(entry.tiers, 'railway')) {
+    return entry.contentIds.some(id => id === 'railway' || LEGACY_RAILWAYS.some(legacy => legacy === id));
+  }
   return entry.kind === 'deck' && DECK_CATEGORIES.some(({ id, contents }) =>
     id === category && contents.some((content) => entry.contentIds.includes(content)));
 }
 
 function emptyTiers(): Record<Content, Tier> {
-  return Object.fromEntries(CONTENTS.map(({ id }) => [id, 'unrated'])) as Record<Content, Tier>;
+  return Object.fromEntries(STORED_CONTENTS.map(({ id }) => [id, 'unrated'])) as Record<Content, Tier>;
 }
 
 export function createEntry(kind: Kind): LibraryEntry {
@@ -338,7 +349,7 @@ export function migrateMirrorArchive(data: LibraryData): LibraryData {
   const movedIds = new Set(data.entries
     .filter((entry) => isLegacyMirrorDeck(entry)
       && !entry.contentIds.some((content) => content !== 'mirror')
-      && !CONTENTS.some(({ id }) => id !== 'mirror' && entry.tiers[id] !== 'unrated'))
+      && !STORED_CONTENTS.some(({ id }) => id !== 'mirror' && entry.tiers[id] != null && entry.tiers[id] !== 'unrated'))
     .map(({ id }) => id));
   const entries = data.entries.filter(({ id }) => !movedIds.has(id)).map((entry) => ({
     ...cloneEntry(entry), deckIds: entry.deckIds.filter((id) => !movedIds.has(id)),
@@ -361,7 +372,7 @@ export function resetCatalogEntry(entry: LibraryEntry): LibraryEntry {
 
 function matchesDemo(entry: LibraryEntry, example: LibraryEntry): boolean {
   return !Object.values(entry.scores ?? {}).some((score) => score != null) && ENTRY_KEYS.every((key) => key === 'tiers'
-    ? CONTENTS.every(({ id }) => entry.tiers[id] === example.tiers[id])
+    ? STORED_CONTENTS.every(({ id }) => entry.tiers[id] === example.tiers[id])
     : key === 'mirrorPlan'
       ? (entry.mirrorPlan ?? null) === example.mirrorPlan
       : JSON.stringify(entry[key as keyof LibraryEntry]) === JSON.stringify(example[key as keyof LibraryEntry]));
@@ -404,7 +415,7 @@ export function mergeCatalog(data: LibraryData): LibraryData {
   }
   const entries = data.entries.filter(({ id }) => keep.has(id)).map((entry) => {
     const record = getCatalogRecord(entry.id);
-    const retained = cloneEntry(entry);
+    const retained = unifyRailway(cloneEntry(entry));
     return record ? { ...retained, kind: record.kind, name: record.name, sinner: record.sinner } : retained;
   });
   const existingIds = new Set(entries.map(({ id }) => id));
@@ -439,9 +450,9 @@ export function createDemoLibrary(): LibraryData {
     strengths: '예시 장점: 어떤 상황에서 선택할 만한지, 다른 기록과 비교한 장점을 적어 두세요.',
     weaknesses: '예시 단점: 주의할 점과 활용하기 어려운 상황을 적어 두세요.',
     operation: '예시 운영 메모: 첫 턴의 판단, 필요한 자원, 팀 안에서의 역할을 직접 정리해 보세요.',
-    tiers: Object.fromEntries(CONTENTS.map(({ id: content }, position) => [content, tierPatterns[index % tierPatterns.length][position]])) as Record<Content, Tier>,
+    tiers: Object.fromEntries(LEGACY_CONTENTS.map(({ id: content }, position) => [content, tierPatterns[index % tierPatterns.length][position]])) as Record<Content, Tier>,
     contentIds: kind === 'deck'
-      ? CONTENTS.filter((_, position) => tierPatterns[index % tierPatterns.length][position] !== 'unrated').map(({ id }) => id)
+      ? LEGACY_CONTENTS.filter((_, position) => tierPatterns[index % tierPatterns.length][position] !== 'unrated').map(({ id }) => id)
       : [],
     createdAt: demoDate,
     updatedAt: demoDate,
@@ -678,9 +689,11 @@ export function parseLibrary(json: string): LibraryData {
     if (Object.hasOwn(entry, 'scores')) {
       const scores = requireObject(entry.scores, `${path}.scores`);
       for (const [key, score] of Object.entries(scores)) {
-        if (!CONTENTS.some(({ id }) => id === key)) invalid(`${path}.scores`, '지원하지 않는 콘텐츠입니다.');
-        // scores.mirror is a retained legacy field; the current mirror evaluation lives in mirrorArchive.
-        requireScore(score, `${path}.scores.${key}`, entry.kind === 'identity' && entry.scoreScale === 'content-v1' && key !== 'mirror' ? IDENTITY_SCORE_MAX[key as Content] : 100);
+        if (!STORED_CONTENTS.some(({ id }) => id === key)) invalid(`${path}.scores`, '지원하지 않는 콘텐츠입니다.');
+        // Mirror and old route scores are read-only backup fields. Editing a current
+        // score must not make an older 0–100 route value impossible to save.
+        const archivedScore = key === 'mirror' || LEGACY_RAILWAYS.some(id => id === key);
+        requireScore(score, `${path}.scores.${key}`, entry.kind === 'identity' && entry.scoreScale === 'content-v1' && !archivedScore ? IDENTITY_SCORE_MAX[key as Content] : 100);
       }
     }
     requireId(entry.id, `${path}.id`);
@@ -698,15 +711,16 @@ export function parseLibrary(json: string): LibraryData {
       requireList(entry[field], `${path}.${field}`, MAX_ENTRIES, 100, true);
     }
     const tiers = requireObject(entry.tiers, `${path}.tiers`);
-    requireKeys(tiers, CONTENTS.map(({ id }) => id), `${path}.tiers`);
-    for (const { id } of CONTENTS) {
+    const storedTiers = Object.hasOwn(tiers, 'railway') ? STORED_CONTENTS : LEGACY_CONTENTS;
+    requireKeys(tiers, storedTiers.map(({ id }) => id), `${path}.tiers`);
+    for (const { id } of storedTiers) {
       if (!TIERS.includes(tiers[id] as Tier)) invalid(`${path}.tiers.${id}`, '지원하지 않는 티어입니다.');
     }
     let contentIds: Content[];
     if (hasContentIds) {
-      requireList(entry.contentIds, `${path}.contentIds`, CONTENTS.length, 100);
+      requireList(entry.contentIds, `${path}.contentIds`, STORED_CONTENTS.length, 100);
       for (const id of entry.contentIds) {
-        if (!CONTENTS.some((content) => content.id === id)) {
+        if (!STORED_CONTENTS.some((content) => content.id === id)) {
           invalid(`${path}.contentIds`, '지원하지 않는 콘텐츠입니다.');
         }
       }
@@ -715,7 +729,7 @@ export function parseLibrary(json: string): LibraryData {
       // Older version 1 notebooks had only content tiers. Preserve those hints
       // without assigning unrated decks or non-deck entries to any folders.
       contentIds = entry.kind === 'deck'
-        ? CONTENTS.filter(({ id }) => tiers[id] !== 'unrated').map(({ id }) => id)
+        ? storedTiers.filter(({ id }) => tiers[id] !== 'unrated').map(({ id }) => id)
         : [];
     }
     let mirrorPlan: MirrorPlan | null = null;

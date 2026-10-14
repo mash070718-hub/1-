@@ -9,7 +9,7 @@ function fixture() {
   const identity = data.entries.find(entry => entry.kind === 'identity')!;
   identity.description = '기존 평가 보존';
   identity.tiers.story = 'A';
-  identity.scores = { story: 16.5, luxcavation: 8, simulation: 27, railway1: 6, railway2: 7, railway6: 8.5, mirror: 99 };
+  identity.scores = { story: 16.5, luxcavation: 8, simulation: 27, railway1: 6, railway2: 7, railway6: 8.5, railway: 8.5, mirror: 99 };
   data.mirrorArchive = { decks: [], evaluations: [{ ...createMirrorEvaluation(identity.id), score: 28, tier: 'B', description: '거울던전 메모 보존' }] };
   return { data, identity, name: `${identity.name} ${identity.sinner}` };
 }
@@ -28,8 +28,12 @@ async function setup(page: Page, data: LibraryData) {
 const total = (page: Page) => page.getByRole('region', { name: '인격 종합점수', exact: true });
 const saved = (page: Page): Promise<LibraryData> => page.evaluate(key => JSON.parse(localStorage.getItem(key)!), draftKey);
 
-test('native content limits, existing points and selected railway survive save, reload and public reading', async ({ page, browser }) => {
+test('native content limits, existing points and unified railway survive save, reload and public reading', async ({ page, browser }) => {
   const { data, identity, name } = fixture();
+  delete (identity.tiers as Partial<typeof identity.tiers>).railway;
+  delete identity.scores!.railway;
+  identity.tiers.railway6 = 'A';
+  identity.scores!.railway1 = 80;
   const store = await setup(page, data);
   await page.getByPlaceholder('이름, 수감자, 태그로 검색').fill(identity.name);
   await page.getByRole('button', { name: `${name} 상세 보기`, exact: true }).click();
@@ -38,14 +42,17 @@ test('native content limits, existing points and selected railway survive save, 
   await expect(page.getByText(/배점 환산|100점으로 환산|÷/)).toHaveCount(0);
   for (const [label, max, value] of [
     ['스토리', 20, 16.5], ['경험치 · 끈 채광', 10, 8], ['사영전투', 30, 27],
-    ['1호선', 10, 6], ['2호선', 10, 7], ['6호선', 10, 8.5],
+    ['거울굴절철도', 10, 8.5],
     ['거울던전', 30, 28],
   ] as const) {
     const input = page.getByRole('spinbutton', { name: `${label} 점수`, exact: true });
     await expect(input).toHaveAttribute('max', String(max));
     await expect(input).toHaveValue(String(value));
   }
-  await page.getByRole('combobox', { name: '종합점수에 사용할 거굴철 노선', exact: true }).selectOption('railway1');
+  await expect(page.getByRole('combobox', { name: '종합점수에 사용할 거굴철 노선', exact: true })).toHaveCount(0);
+  await expect(page.getByRole('spinbutton', { name: /[126]호선 점수/ })).toHaveCount(0);
+  await expect(page.getByRole('combobox', { name: '거울굴절철도 티어', exact: true })).toHaveValue('A');
+  await page.getByRole('spinbutton', { name: '거울굴절철도 점수', exact: true }).fill('6');
   await expect(total(page)).toContainText('종합점수: 85.5 / 100점');
   const story = page.getByRole('spinbutton', { name: '스토리 점수', exact: true });
   await story.fill('20.1');
@@ -64,16 +71,15 @@ test('native content limits, existing points and selected railway survive save, 
   await expect(page.getByRole('dialog')).toHaveCount(0);
   const stored = await saved(page);
   const storedIdentity = stored.entries.find(entry => entry.id === identity.id)!;
-  expect(storedIdentity.scores).toEqual(identity.scores);
-  expect(storedIdentity.scoreRailway).toBe('railway1');
+  expect(storedIdentity.scores).toEqual({ ...identity.scores, railway: 6 });
   expect(storedIdentity.tiers.story).toBe('A');
+  expect(storedIdentity.tiers).toEqual({ ...identity.tiers, railway: 'A' });
   expect(stored.mirrorArchive?.evaluations[0]).toEqual({ ...data.mirrorArchive!.evaluations[0], score: 27.25, scoreScale: 'content-v1' });
   await expect(page.getByRole('button', { name: `${name} 상세 보기`, exact: true }).locator('.score-label')).toHaveText('종합 84.75 / 100점');
   await page.reload();
   await page.getByPlaceholder('이름, 수감자, 태그로 검색').fill(identity.name);
   await page.getByRole('button', { name: `${name} 상세 보기`, exact: true }).click();
   await expect(total(page)).toContainText('종합점수: 84.75 / 100점');
-  await expect(total(page)).toContainText('거굴철 1호선 기준');
   await page.getByRole('dialog').getByRole('button', { name: '닫기', exact: true }).click();
   await page.getByRole('button', { name: '게시하기', exact: true }).click();
   await page.getByRole('button', { name: '공개 게시 확인', exact: true }).click();
@@ -85,7 +91,6 @@ test('native content limits, existing points and selected railway survive save, 
   await visitor.getByPlaceholder('이름, 수감자, 태그로 검색').fill(identity.name);
   await visitor.getByRole('button', { name: `${name} 상세 보기`, exact: true }).click();
   await expect(total(visitor)).toContainText('종합점수: 84.75 / 100점');
-  await expect(total(visitor)).toContainText('거굴철 1호선 기준');
   await expect(visitor.getByRole('button', { name: '기록 수정', exact: true })).toHaveCount(0);
   await visitorContext.close();
 });

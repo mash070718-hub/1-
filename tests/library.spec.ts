@@ -22,7 +22,7 @@ function fixtureEntry(kind: LibraryEntry['kind'], id: string, name: string, chan
   return {
     id, kind, name, sinner: kind === 'deck' ? '' : '이상', subtitle: '', affinity: '', tags: [],
     description: '', strengths: '', weaknesses: '', operation: '', recommendedEgoIds: [], deckIds: [], memberIds: [], contentIds: [], mirrorPlan: null, formationCode: '',
-    tiers: { story: 'unrated', luxcavation: 'unrated', mirror: 'unrated', simulation: 'unrated', railway1: 'unrated', railway2: 'unrated', railway6: 'unrated' },
+    tiers: { railway: 'unrated', story: 'unrated', luxcavation: 'unrated', mirror: 'unrated', simulation: 'unrated', railway1: 'unrated', railway2: 'unrated', railway6: 'unrated' },
     createdAt: '2026-10-01T00:00:00.000Z', updatedAt: '2026-10-01T00:00:00.000Z', ...changes,
   };
 }
@@ -150,7 +150,7 @@ test('공식 인격을 평가하고 수정한 뒤 초기화해도 공식 목록�
   expect(reset.strengths).toBe('');
   expect(reset.weaknesses).toBe('');
   expect(reset.operation).toBe('');
-  expect(Object.values(reset.tiers)).toEqual(Array(7).fill('unrated'));
+  expect(Object.values(reset.tiers)).toEqual(Array(8).fill('unrated'));
   expect(reset.deckIds).toEqual([deckId]);
   await page.reload();
   await search(page).fill(record.name);
@@ -167,12 +167,14 @@ test('contentIds 없는 기존 v1 메모와 티어와 덱 편성 순서를 보�
   const memberIds = [thirdId, identityId, secondId];
   const identity = fixtureEntry('identity', identityId, '이전 개인 인격', {
     strengths: '이전 버전에서 작성한 장점', tags: ['이전 자유 태그'], deckIds: [deckId],
-    tiers: { story: 'A', luxcavation: 'unrated', mirror: 'S', simulation: 'unrated', railway1: 'B', railway2: 'unrated', railway6: 'unrated' },
+    tiers: { railway: 'unrated', story: 'A', luxcavation: 'unrated', mirror: 'S', simulation: 'unrated', railway1: 'B', railway2: 'unrated', railway6: 'unrated' },
   });
   const oldDeck = fixtureEntry('deck', deckId, '이전 개인 덱', {
     memberIds, formationCode: 'LEGACY-KEEP-01', strengths: '이전 덱의 장점 메모',
-    tiers: { story: 'A', luxcavation: 'unrated', mirror: 'S', simulation: 'unrated', railway1: 'unrated', railway2: 'unrated', railway6: 'unrated' },
+    tiers: { railway: 'unrated', story: 'A', luxcavation: 'unrated', mirror: 'S', simulation: 'unrated', railway1: 'unrated', railway2: 'unrated', railway6: 'unrated' },
   });
+  delete (identity.tiers as Partial<LibraryEntry['tiers']>).railway;
+  delete (oldDeck.tiers as Partial<LibraryEntry['tiers']>).railway;
   await setNotebook(page, [
     identity,
     fixtureEntry('identity', secondId, '이전 두 번째 인격', { deckIds: [deckId] }),
@@ -184,7 +186,7 @@ test('contentIds 없는 기존 v1 메모와 티어와 덱 편성 순서를 보�
   await search(page).fill(identity.name);
   await openTierArchive(page);
   await expect(page.getByRole('region', { name: 'A 티어', exact: true }).getByRole('button', { name: `${identity.name} 상세 보기`, exact: true })).toBeVisible();
-  await page.getByRole('tab', { name: '1호선', exact: true }).click();
+  await page.getByRole('tab', { name: '거울굴절철도', exact: true }).click();
   await expect(page.getByRole('region', { name: 'B 티어', exact: true }).getByRole('button', { name: `${identity.name} 상세 보기`, exact: true })).toBeVisible();
   await identityCard(page, identity.name).click();
   await expect(page.getByRole('dialog').getByText(identity.strengths, { exact: true })).toBeVisible();
@@ -220,7 +222,7 @@ test('개인 인격 기록과 콘텐츠별 티어는 새로고침 뒤에도 유�
   await createIdentity(page);
   await openTierArchive(page);
   await expect(page.getByRole('region', { name: 'S 티어', exact: true }).getByRole('button', { name: `${identityName} 상세 보기`, exact: true })).toBeVisible();
-  await expect(page.getByRole('tablist', { name: '콘텐츠', exact: true }).getByRole('tab')).toHaveCount(6);
+  await expect(page.getByRole('tablist', { name: '콘텐츠', exact: true }).getByRole('tab')).toHaveCount(4);
   await expect(page.getByRole('tab', { name: '거울던전', exact: true })).toHaveCount(0);
   await page.reload();
   await search(page).fill(identityName);
@@ -254,7 +256,7 @@ test('개인 기록을 수정하고 삭제 확인 후에만 지울 수 있다', 
   await expect(identityCard(page, '수정된 인격')).toHaveCount(0);
 });
 
-test('검색과 기록 종류와 여섯 일반 콘텐츠별 티어를 함께 적용한다', async ({ page }) => {
+test('검색과 기록 종류와 네 일반 콘텐츠별 티어를 함께 적용한다', async ({ page }) => {
   await createIdentity(page);
   await expect(page.getByRole('button', { name: / 상세 보기$/ })).toHaveCount(1);
   await kindTab(page, 'ego').click();
@@ -269,7 +271,7 @@ test('검색과 기록 종류와 여섯 일반 콘텐츠별 티어를 함께 적
   await expect(identityCard(page)).toHaveCount(0);
   await search(page).fill(identityName);
   await openTierArchive(page);
-  for (const [content, tier] of [['스토리', 'S'], ['경험치 · 끈 채광', '미평가'], ['사영전투', '미평가'], ['1호선', '미평가'], ['2호선', '미평가'], ['6호선', '미평가']]) {
+  for (const [content, tier] of [['스토리', 'S'], ['경험치 · 끈 채광', '미평가'], ['사영전투', '미평가'], ['거울굴절철도', '미평가']]) {
     await page.getByRole('tab', { name: content, exact: true }).click();
     await expect(page.getByRole('region', { name: `${tier} 티어`, exact: true }).getByRole('button', { name: `${identityName} 상세 보기`, exact: true })).toBeVisible();
   }
@@ -505,15 +507,13 @@ test('공식 인격의 덱 편성 순서와 1번 표지는 저장과 새로고�
   expect(backup.entries.find(entry => entry.name === name)).toMatchObject({ memberIds: ordered.map(member => member.id), contentIds: ['story'], formationCode: 'ORDER-KEEP-01' });
 });
 
-test('덱의 사용 콘텐츠를 선택하면 콘텐츠 분류와 철도 호선에 맞게 조회된다', async ({ page }) => {
+test('덱의 사용 콘텐츠를 선택하면 통합 거울굴절철도 분류에 맞게 조회된다', async ({ page }) => {
   test.setTimeout(60_000);
   const decks = [
     { name: '채광 분류 덱', contents: ['경험치 · 끈 채광'] },
     { name: '스토리 분류 덱', contents: ['스토리'] },
-    { name: '1호선 분류 덱', contents: ['1호선'] },
-    { name: '2호선 분류 덱', contents: ['2호선'] },
-    { name: '6호선 분류 덱', contents: ['6호선'] },
-    { name: '중복 콘텐츠 덱', contents: ['스토리', '1호선'] },
+    { name: '철도 분류 덱', contents: ['거울굴절철도'] },
+    { name: '중복 콘텐츠 덱', contents: ['스토리', '거울굴절철도'] },
   ];
   for (const deck of decks) {
     await kindTab(page, 'deck').click();
@@ -528,7 +528,7 @@ test('덱의 사용 콘텐츠를 선택하면 콘텐츠 분류와 철도 호선�
   for (const [category, expectedNames] of [
     ['채광', ['채광 분류 덱']],
     ['스토리', ['스토리 분류 덱', '중복 콘텐츠 덱']],
-    ['거울굴절철도', ['1호선 분류 덱', '2호선 분류 덱', '6호선 분류 덱', '중복 콘텐츠 덱']],
+    ['거울굴절철도', ['철도 분류 덱', '중복 콘텐츠 덱']],
   ] as [string, string[]][]) {
     await nav.getByRole('button', { name: category, exact: true }).click();
     await expect(kindTab(page, 'deck')).toHaveAttribute('aria-selected', 'true');
@@ -536,28 +536,23 @@ test('덱의 사용 콘텐츠를 선택하면 콘텐츠 분류와 철도 호선�
     for (const name of expectedNames) await expect(identityCard(page, name)).toBeVisible();
   }
   const contentTabs = page.getByRole('tablist', { name: '콘텐츠', exact: true });
-  await expect(contentTabs.getByRole('tab', { name: '전체 호선', exact: true })).toHaveAttribute('aria-selected', 'true');
-  for (const [line, expectedNames] of [
-    ['1호선', ['1호선 분류 덱', '중복 콘텐츠 덱']],
-    ['2호선', ['2호선 분류 덱']],
-    ['6호선', ['6호선 분류 덱']],
-  ] as [string, string[]][]) {
-    await contentTabs.getByRole('tab', { name: line, exact: true }).click();
-    await expect(page.getByRole('button', { name: / 상세 보기$/ })).toHaveCount(expectedNames.length);
-    for (const name of expectedNames) await expect(identityCard(page, name)).toBeVisible();
-  }
-  await contentTabs.getByRole('tab', { name: '전체 호선', exact: true }).click();
-  await expect(page.getByRole('button', { name: / 상세 보기$/ })).toHaveCount(4);
+  await expect(contentTabs.getByRole('tab', { name: '거울굴절철도', exact: true })).toHaveAttribute('aria-selected', 'true');
+  await expect(contentTabs.getByRole('tab', { name: /호선/ })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: / 상세 보기$/ })).toHaveCount(2);
   await page.reload();
+  await nav.getByRole('button', { name: '거울굴절철도', exact: true }).click();
+  await expect(page.getByRole('button', { name: / 상세 보기$/ })).toHaveCount(2);
   await nav.getByRole('button', { name: '채광', exact: true }).click();
   await expect(identityCard(page, '채광 분류 덱')).toBeVisible();
   await expect(page.getByRole('button', { name: / 상세 보기$/ })).toHaveCount(1);
 });
 
-test('철도 전체 호선의 평가 필터는 2호선과 6호선도 함께 확인한다', async ({ page }) => {
+test('기존 호선별 덱을 불러오면 통합 철도의 평가 필터에 반영된다', async ({ page }) => {
   const railway2 = fixtureEntry('deck', 'rated-railway2', '2호선 평가 덱', { contentIds: ['railway2'] });
   railway2.tiers.railway2 = 'S';
   const railway6 = fixtureEntry('deck', 'unrated-railway6', '6호선 미평가 덱', { contentIds: ['railway6'] });
+  delete (railway2.tiers as Partial<LibraryEntry['tiers']>).railway;
+  delete (railway6.tiers as Partial<LibraryEntry['tiers']>).railway;
   await setNotebook(page, [railway2, railway6]);
   await page.getByRole('navigation', { name: '콘텐츠별 덱' }).getByRole('button', { name: '거울굴절철도', exact: true }).click();
   await page.getByRole('combobox', { name: '기록 상태', exact: true }).selectOption('rated');

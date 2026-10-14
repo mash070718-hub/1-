@@ -29,7 +29,7 @@ function deckFixture(id: string, name: string, changes: Partial<LibraryEntry> = 
     id, kind: 'deck', name, sinner: '', subtitle: '', affinity: '', tags: [],
     description: '', strengths: '', weaknesses: '', operation: '', recommendedEgoIds: [], deckIds: [],
     memberIds: members.map(member => member.id), contentIds: ['mirror'], formationCode: '', mirrorPlan: null,
-    tiers: { story: 'unrated', luxcavation: 'unrated', mirror: 'unrated', simulation: 'unrated', railway1: 'unrated', railway2: 'unrated', railway6: 'unrated' },
+    tiers: { railway: 'unrated', story: 'unrated', luxcavation: 'unrated', mirror: 'unrated', simulation: 'unrated', railway1: 'unrated', railway2: 'unrated', railway6: 'unrated' },
     createdAt: '2026-10-01T00:00:00.000Z', updatedAt: '2026-10-01T00:00:00.000Z', ...changes,
   };
 }
@@ -215,7 +215,7 @@ test('기존 겸용 덱을 별도 거울던전 기록으로 옮긴 뒤 편성과
   await page.getByRole('checkbox', { name: memberName(egos[0]), exact: true }).uncheck();
   await page.getByRole('button', { name: '기록 저장', exact: true }).click();
   await page.reload();
-  expect((await storedNotebook(page)).entries.find(entry => entry.id === deck.id)).toMatchObject({ description: '일반 덱 화면에서 수정한 요약', memberIds: [members[0].id], recommendedEgoIds: [], tiers: { story: 'C' } });
+  expect((await storedNotebook(page)).entries.find(entry => entry.id === deck.id)).toMatchObject({ description: '일반 덱 화면에서 수정한 요약', memberIds: [members[0].id], recommendedEgoIds: [], tiers: { railway: 'unrated', story: 'C' } });
   expect((await storedNotebook(page)).mirrorArchive).toEqual(mirrorBefore);
   await openMirror(page);
   await editMirror(page, deck.name);
@@ -313,7 +313,7 @@ test('인격과 E.G.O.의 거울던전 평가와 추천을 일반 평가와 양�
     await page.getByRole('button', { name: '기록 저장', exact: true }).click();
     await page.reload();
     expect((await storedNotebook(page)).mirrorArchive).toEqual(mirrorBefore);
-    expect((await storedNotebook(page)).entries.find(entry => entry.id === record.id)).toMatchObject({ strengths: `${kind} 일반 평가의 장점`, tiers: { story: 'C', mirror: 'unrated' }, ...(kind === '인격' ? { recommendedEgoIds: [egos[0].id] } : {}) });
+    expect((await storedNotebook(page)).entries.find(entry => entry.id === record.id)).toMatchObject({ strengths: `${kind} 일반 평가의 장점`, tiers: { railway: 'unrated', story: 'C', mirror: 'unrated' }, ...(kind === '인격' ? { recommendedEgoIds: [egos[0].id] } : {}) });
     await openMirror(page);
     await mirrorKind(page, kind);
     await mirrorCard(page, memberName(record)).click();

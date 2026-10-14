@@ -1,8 +1,9 @@
 import type { Content, LibraryEntry, MirrorEvaluation } from './library';
+import { unifyRailway } from './railway';
 
 export const IDENTITY_SCORE_MAX: Record<Content, number> = {
   story: 20, luxcavation: 10, simulation: 30,
-  railway1: 10, railway2: 10, railway6: 10, mirror: 30,
+  railway: 10, railway1: 10, railway2: 10, railway6: 10, mirror: 30,
 };
 
 export function isIdentityScore(score: number | null | undefined, content: Content): score is number {
@@ -12,12 +13,12 @@ export function isIdentityScore(score: number | null | undefined, content: Conte
 export type RailwayScoreContent = 'railway1' | 'railway2' | 'railway6';
 
 /** Missing scores remain missing; a partial sum is never presented as a complete evaluation. */
-export function identityScoreTotal(entry: LibraryEntry, mirror: MirrorEvaluation | undefined, railway: RailwayScoreContent = entry.scoreRailway ?? 'railway6') {
+export function identityScoreTotal(entry: LibraryEntry, mirror: MirrorEvaluation | undefined) {
   const parts = [
     { content: 'story', score: entry.scores?.story },
     { content: 'luxcavation', score: entry.scores?.luxcavation },
     { content: 'simulation', score: entry.scores?.simulation },
-    { content: railway, score: entry.scores?.[railway] },
+    { content: 'railway', score: unifyRailway(entry).scores?.railway },
     { content: 'mirror', score: mirror?.score },
   ] as const;
   const valid = parts.filter(({ content, score }) => isIdentityScore(score, content));

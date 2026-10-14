@@ -3,8 +3,8 @@
   "entrypoint": "index.html",
   "language": "ko",
   "artifact": {
-    "bytes": 9041623,
-    "sha256": "601c30bea8a2d4bbd52e190e3ed1fac1cd77efcc0a73be15202f8142b40a227f",
+    "bytes": 9041331,
+    "sha256": "7b5cbb5a26bf3f8f89d89de2a8a90f741c8159f75fa9c7f89d9c40add0f84bc0",
     "embeddedArtworks": 305,
     "inlineScripts": 1
   },
@@ -63,9 +63,7 @@
       "story",
       "luxcavation",
       "simulation",
-      "railway1",
-      "railway2",
-      "railway6"
+      "railway"
     ],
     "scores": {
       "kinds": [
@@ -85,9 +83,7 @@
         "story": 20,
         "luxcavation": 10,
         "simulation": 30,
-        "railway1": 10,
-        "railway2": 10,
-        "railway6": 10,
+        "railway": 10,
         "mirror": 30
       }
     },
@@ -118,8 +114,10 @@
       "scoreInput": "direct content points",
       "totalMaximum": 100,
       "railwayTotal": {
-        "default": "railway6",
-        "selectablePerIdentity": true
+        "unified": true,
+        "maximum": 10,
+        "legacyRouteValuesPreserved": true,
+        "migrationPriority": "previous selection, then line 6; otherwise existing evaluation"
       },
       "existingScoreValuesPreserved": true,
       "generalListDisplaysAndSortsTotal": true,

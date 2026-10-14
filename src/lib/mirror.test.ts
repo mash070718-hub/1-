@@ -191,7 +191,9 @@ test('old and new untouched demo seeds disappear while a plan and its recommende
   deck.mirrorPlan = createMirrorPlan();
   deck.mirrorPlan.skillChanges.push({ identityId: 'demo-identity-8', skill1: null, skill2: 0, skill3: 99, notes: '과거 추천' });
   const migrated = mergeCatalog(data);
-  assert.deepEqual(migrated.entries.find(({ id }) => id === deck.id), deck);
+  assert.deepEqual(migrated.entries.find(({ id }) => id === deck.id), {
+    ...deck, tiers: { ...deck.tiers, railway: deck.tiers.railway6 }, contentIds: [...deck.contentIds, 'railway'],
+  });
   assert.ok(migrated.entries.some(({ id }) => id === 'demo-identity-8'));
   assert.doesNotThrow(() => parseLibrary(exportLibrary(migrated)));
 });

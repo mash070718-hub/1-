@@ -34,8 +34,8 @@ const simulation: Guide = {
   evidence: '사용 덱, 난이도·시작 조건, 투입 편성 순서, 클리어 턴, 성공 횟수 / 시도 횟수, 같은 역할의 실제 경쟁 인격으로 교체하기 전후의 차이',
 };
 const railway: Guide = {
-  label: '거굴철', weight: 10,
-  premise: '평가할 노선과 구간, 시작 체력·정신력·E.G.O. 자원을 고정합니다. 1·2·6호선 기록은 각각 유지하며, 종합 배점의 거굴철 10점은 세 노선에 중복 가산하는 배점이 아닙니다.',
+  label: '거울굴절철도', weight: 10,
+  premise: '평가할 구간, 시작 체력·정신력·E.G.O. 자원을 고정합니다. 거울굴절철도 전체를 하나의 기준으로 평가하며, 10점 만점의 점수 하나를 종합점수에 합산합니다.',
   criteria: [
     { title: '턴 단축 기여', points: 6, description: '이 인격을 편성했을 때 팀의 클리어 턴이 얼마나 줄어드는지 확인합니다.' },
     { title: '공략 재현성', points: 2, description: '같은 공략의 성공률과 재시도 횟수로 안정성을 평가합니다.' },
@@ -56,7 +56,7 @@ const mirror: Guide = {
 };
 
 const guides: Record<Content, Guide> = {
-  story, luxcavation, simulation, mirror, railway1: railway, railway2: railway, railway6: railway,
+  story, luxcavation, simulation, mirror, railway, railway1: railway, railway2: railway, railway6: railway,
 };
 
 export function IdentityScoringOverview() {
@@ -84,7 +84,7 @@ export function IdentityScoringOverview() {
 
 export default function IdentityScoreGuide({ content, notesHint }: { content: Content; notesHint?: string }) {
   const guide = guides[content];
-  const label = content.startsWith('railway') ? `거굴철 ${content.slice('railway'.length)}호선` : guide.label;
+  const label = guide.label;
   return (
     <div className="identity-score-guide" data-content={content}>
       <details>
