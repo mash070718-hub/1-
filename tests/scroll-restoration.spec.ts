@@ -87,7 +87,8 @@ for (const destination of ['A', 'S']) {
     await expectPosition(page, y);
     const moved = page.getByRole('button', { name: name!, exact: true });
     await expect(moved).not.toBeInViewport();
-    await expect(moved).toHaveText('20점');
+    await expect(moved).toContainText('43.7 / 100점');
+    await expect(moved).toContainText('2/5 평가');
   });
 }
 

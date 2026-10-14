@@ -39,6 +39,7 @@ test('native content limits, existing points and selected railway survive save, 
   for (const [label, max, value] of [
     ['스토리', 20, 16.5], ['경험치 · 끈 채광', 10, 8], ['사영전투', 30, 27],
     ['1호선', 10, 6], ['2호선', 10, 7], ['6호선', 10, 8.5],
+    ['거울던전', 30, 28],
   ] as const) {
     const input = page.getByRole('spinbutton', { name: `${label} 점수`, exact: true });
     await expect(input).toHaveAttribute('max', String(max));
@@ -52,6 +53,13 @@ test('native content limits, existing points and selected railway survive save, 
   await expect(page.getByRole('dialog')).toHaveCount(1);
   expect(await story.evaluate((element: HTMLInputElement) => element.validity.rangeOverflow)).toBe(true);
   await story.fill('16.5');
+  const mirrorScore = page.getByRole('spinbutton', { name: '거울던전 점수', exact: true });
+  await mirrorScore.fill('30.01');
+  await page.getByRole('button', { name: '기록 저장', exact: true }).click();
+  await expect(page.getByRole('dialog')).toHaveCount(1);
+  expect(await mirrorScore.evaluate((element: HTMLInputElement) => element.validity.rangeOverflow)).toBe(true);
+  await mirrorScore.fill('27.25');
+  await expect(total(page)).toContainText('종합점수: 84.75 / 100점');
   await page.getByRole('button', { name: '기록 저장', exact: true }).click();
   await expect(page.getByRole('dialog')).toHaveCount(0);
   const stored = await saved(page);
@@ -59,11 +67,12 @@ test('native content limits, existing points and selected railway survive save, 
   expect(storedIdentity.scores).toEqual(identity.scores);
   expect(storedIdentity.scoreRailway).toBe('railway1');
   expect(storedIdentity.tiers.story).toBe('A');
-  expect(stored.mirrorArchive).toEqual(data.mirrorArchive);
+  expect(stored.mirrorArchive?.evaluations[0]).toEqual({ ...data.mirrorArchive!.evaluations[0], score: 27.25, scoreScale: 'content-v1' });
+  await expect(page.getByRole('button', { name: `${name} 상세 보기`, exact: true }).locator('.score-label')).toHaveText('종합 84.75 / 100점');
   await page.reload();
   await page.getByPlaceholder('이름, 수감자, 태그로 검색').fill(identity.name);
   await page.getByRole('button', { name: `${name} 상세 보기`, exact: true }).click();
-  await expect(total(page)).toContainText('종합점수: 85.5 / 100점');
+  await expect(total(page)).toContainText('종합점수: 84.75 / 100점');
   await expect(total(page)).toContainText('거굴철 1호선 기준');
   await page.getByRole('dialog').getByRole('button', { name: '닫기', exact: true }).click();
   await page.getByRole('button', { name: '게시하기', exact: true }).click();
@@ -75,7 +84,7 @@ test('native content limits, existing points and selected railway survive save, 
   await visitor.goto('/');
   await visitor.getByPlaceholder('이름, 수감자, 태그로 검색').fill(identity.name);
   await visitor.getByRole('button', { name: `${name} 상세 보기`, exact: true }).click();
-  await expect(total(visitor)).toContainText('종합점수: 85.5 / 100점');
+  await expect(total(visitor)).toContainText('종합점수: 84.75 / 100점');
   await expect(total(visitor)).toContainText('거굴철 1호선 기준');
   await expect(visitor.getByRole('button', { name: '기록 수정', exact: true })).toHaveCount(0);
   await visitorContext.close();
@@ -107,4 +116,67 @@ test('mirror accepts native points and keeps zero, blank, general scores and tie
   const stored = await saved(page);
   expect(stored.entries.find(entry => entry.id === identity.id)).toEqual(identity);
   expect(stored.mirrorArchive?.evaluations[0]).toMatchObject({ score: null, tier: 'B', description: '거울던전 메모 보존' });
+});
+
+test('general cards and compact tiers display and sort totals instead of the selected content score', async ({ page }, testInfo) => {
+  const { data, identity, name } = fixture();
+  const other = data.entries.filter(entry => entry.kind === 'identity' && entry.id !== identity.id).slice(0, 4);
+  const [lowerTotal, zero, blank, tied] = other;
+  other.forEach(entry => { entry.tiers.story = 'A'; });
+  lowerTotal.scores = { story: 20 }; // Better story score, lower total than the first identity's 88.
+  zero.scores = { story: 0 };
+  tied.scores = { story: 20 };
+  await setup(page, data);
+  const expectedNames = [identity, lowerTotal, tied, zero, blank].map(entry => entry.name);
+  await expect(page.locator('.archive-grid .entry-title').first()).toHaveText(identity.name);
+  expect((await page.locator('.archive-grid .entry-title').allTextContents()).slice(0, 5)).toEqual(expectedNames);
+  await expect(page.getByRole('button', { name: `${name} 상세 보기`, exact: true }).locator('.score-label')).toHaveText('종합 88 / 100점');
+  await expect(page.getByRole('button', { name: `${lowerTotal.name} ${lowerTotal.sinner} 상세 보기`, exact: true }).locator('.score-label')).toHaveText('합계 20 / 100점 · 1/5 평가');
+  await page.locator('.archive-grid .entry-card').first().screenshot({ path: testInfo.outputPath('total-card.png') });
+  await page.getByRole('navigation', { name: '도서관 메뉴', exact: true }).getByRole('button', { name: '티어리스트', exact: true }).click();
+  const profiles = page.locator('.tier-row[data-tier="A"] .tier-profile');
+  expect(await profiles.evaluateAll(elements => elements.map(element => element.getAttribute('aria-label')))).toEqual(
+    [identity, lowerTotal, tied, zero, blank].map(entry => `${entry.name} ${entry.sinner} 상세 보기`));
+  await expect(profiles.first()).toHaveText('88 / 100점');
+  await expect(profiles.nth(3)).toContainText('0 / 100점');
+  await expect(profiles.nth(4)).toHaveText('미입력');
+  await page.locator('.tier-row[data-tier="A"]').screenshot({ path: testInfo.outputPath('total-tier.png') });
+});
+
+test('mirror-only changes in the general editor can be discarded and a new mirror score is shared both ways', async ({ page }) => {
+  const { data, identity, name } = fixture();
+  data.mirrorArchive!.evaluations = [];
+  await setup(page, data);
+  const openGeneral = async () => {
+    await page.getByRole('navigation', { name: '도서관 메뉴', exact: true }).getByRole('button', { name: /^전체 기록/ }).click();
+    await page.getByPlaceholder('이름, 수감자, 태그로 검색').fill(identity.name);
+    await page.getByRole('button', { name: `${name} 상세 보기`, exact: true }).click();
+    await page.getByRole('button', { name: '기록 수정', exact: true }).click();
+  };
+  await openGeneral();
+  const mirrorScore = page.getByRole('spinbutton', { name: '거울던전 점수', exact: true });
+  await expect(mirrorScore).toHaveValue('');
+  await mirrorScore.fill('25');
+  await page.getByRole('button', { name: '취소', exact: true }).click();
+  await expect(page.getByRole('button', { name: '저장하지 않고 닫기', exact: true })).toBeVisible();
+  await page.getByRole('button', { name: '저장하지 않고 닫기', exact: true }).click();
+  expect(await page.evaluate(key => localStorage.getItem(key), draftKey)).toBeNull();
+  await page.getByRole('button', { name: '기록 수정', exact: true }).click();
+  await expect(mirrorScore).toHaveValue('');
+  await mirrorScore.fill('0');
+  await page.getByRole('button', { name: '기록 저장', exact: true }).click();
+  expect((await saved(page)).mirrorArchive!.evaluations).toEqual([{ ...createMirrorEvaluation(identity.id), score: 0, scoreScale: 'content-v1' }]);
+  await page.getByRole('navigation', { name: '거울던전 메뉴', exact: true }).getByRole('button', { name: '거울던전', exact: true }).click();
+  await page.getByRole('tab', { name: '인격', exact: true }).click();
+  await page.getByRole('button', { name: `${name} 거울던전 평가 작성/수정`, exact: true }).click();
+  await expect(mirrorScore).toHaveValue('0');
+  await mirrorScore.fill('24.5');
+  await page.getByRole('button', { name: '기록 저장', exact: true }).click();
+  await openGeneral();
+  await expect(mirrorScore).toHaveValue('24.5');
+  await mirrorScore.fill('');
+  await page.getByRole('button', { name: '기록 저장', exact: true }).click();
+  const restored = await saved(page);
+  expect(restored.mirrorArchive?.evaluations[0].score).toBeNull();
+  expect(restored.entries.find(entry => entry.id === identity.id)?.scores).toEqual(identity.scores);
 });

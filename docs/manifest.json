@@ -3,8 +3,8 @@
   "entrypoint": "index.html",
   "language": "ko",
   "artifact": {
-    "bytes": 9040334,
-    "sha256": "e18f0439e7ff3a595345d8a5f42607113cfa5beaa1ed08f2b329fd8c926956ab",
+    "bytes": 9042126,
+    "sha256": "74025a04edb554a7349736d8cddbd0495b867e1c60ff8b529049900badf8234c",
     "embeddedArtworks": 305,
     "inlineScripts": 1
   },
@@ -121,7 +121,9 @@
         "default": "railway6",
         "selectablePerIdentity": true
       },
-      "existingScoreValuesPreserved": true
+      "existingScoreValuesPreserved": true,
+      "generalListDisplaysAndSortsTotal": true,
+      "mirrorScoreEditableInGeneralEditor": true
     },
     "recordEditingPreservesViewport": true
   }

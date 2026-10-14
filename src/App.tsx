@@ -64,7 +64,7 @@ import { AdminAccess, useAdminAccess } from "./components/AdminAccess";
 import ScoreInput from "./components/ScoreInput";
 import IdentityScoreGuide, { IdentityScoringOverview } from "./components/IdentityScoreGuide";
 import IdentityScoreSummary from "./components/IdentityScoreSummary";
-import { IDENTITY_SCORE_MAX } from "./lib/identityScores";
+import { IDENTITY_SCORE_MAX, identityScoreTotal, identityScoreLabel, identityScoreProgress, type IdentityScoreTotal } from "./lib/identityScores";
 import TierProfile from "./components/TierProfile";
 import DeckFormationEditor from "./components/DeckFormationEditor";
 import { TagPicker } from "./components/TagPicker";
@@ -274,6 +274,7 @@ function Modal({
 function EntryCard({
   entry,
   entries,
+  total,
   content,
   showTier = true,
   onOpen,
@@ -281,6 +282,7 @@ function EntryCard({
 }: {
   entry: LibraryEntry;
   entries: LibraryEntry[];
+  total?: IdentityScoreTotal;
   content: Content;
   showTier?: boolean;
   onOpen: (id: string) => void;
@@ -308,7 +310,7 @@ function EntryCard({
             {catalog && <span className="badge">{catalog.rarity}</span>}
           </span>
           <span className="entry-title">{entry.name}</span>
-          {entry.kind !== "ego" && <span className="score-label">{entry.scores?.[content] == null ? "점수 미입력" : `${entry.scores[content]}점`}</span>}
+          {entry.kind !== "ego" && <span className="score-label">{total ? identityScoreLabel(total) : entry.scores?.[content] == null ? "점수 미입력" : `${entry.scores[content]}점`}{total && identityScoreProgress(total) && ` · ${identityScoreProgress(total)}`}</span>}
           <span className="entry-subtitle">
             {entry.subtitle ||
               (hasNotes(entry)
@@ -444,8 +446,8 @@ function Detail({
         </>
       }
     >
-      {entry.kind !== "ego" && <p className="score-label">{entry.scores?.[content] == null ? "점수 미입력" : `${entry.scores[content]} / ${entry.kind === "identity" ? IDENTITY_SCORE_MAX[content] : 100}점`} · {contentLabelForScore(content)}</p>}
       {entry.kind === "identity" && <IdentityScoreSummary entry={entry} mirror={mirrorEvaluation} />}
+      {entry.kind !== "ego" && <p className="score-label">{contentLabelForScore(content)} 점수: {entry.scores?.[content] == null ? "미입력" : `${entry.scores[content]} / ${entry.kind === "identity" ? IDENTITY_SCORE_MAX[content] : 100}점`}</p>}
       <div className="detail-heading">
         <EntryArt entry={entry} entries={entries} large />
         <div className="detail-heading-copy">
@@ -664,7 +666,7 @@ function Editor({
   mirrorEvaluation?: MirrorEvaluation;
   isNew: boolean;
   onClose: () => void;
-  onSave: (entry: LibraryEntry) => void;
+  onSave: (entry: LibraryEntry, mirrorScore?: number | null) => void;
 }) {
   const catalog = getCatalogRecord(entry.id);
   const [relationQueries, setRelationQueries] = useState<
@@ -673,11 +675,14 @@ function Editor({
   const [draft, setDraft] = useState<LibraryEntry>(() =>
     structuredClone(entry),
   );
+  const [mirrorScore, setMirrorScore] = useState<number | null>(mirrorEvaluation?.score ?? null);
+  const mirrorScoreChanged = draft.kind === "identity" && mirrorScore !== (mirrorEvaluation?.score ?? null);
+  const previewMirror = { ...(mirrorEvaluation ?? createMirrorEvaluation(entry.id)), score: mirrorScore };
   const [confirmClose, setConfirmClose] = useState(false);
   const set = <K extends keyof LibraryEntry>(key: K, value: LibraryEntry[K]) =>
     setDraft((old) => ({ ...old, [key]: value }));
   const close = () => {
-    if (JSON.stringify(draft) !== JSON.stringify(entry))
+    if (JSON.stringify(draft) !== JSON.stringify(entry) || mirrorScoreChanged)
       setConfirmClose(true);
     else onClose();
   };
@@ -796,7 +801,7 @@ function Editor({
             name: draft.name.trim(),
             tags: [...new Set(draft.tags)],
             updatedAt: new Date().toISOString(),
-          });
+          }, mirrorScoreChanged ? mirrorScore : undefined);
         }}
       >
         <div className="form-grid">
@@ -893,7 +898,7 @@ function Editor({
           <div className="form-field field-wide">
             <h3 className="detail-section-title">{draft.kind === "ego" ? "콘텐츠별 티어" : "콘텐츠별 티어와 점수"}</h3>
             {draft.kind === "identity" && <IdentityScoringOverview />}
-            {draft.kind === "identity" && <IdentityScoreSummary entry={draft} mirror={mirrorEvaluation} onRailwayChange={railway => set("scoreRailway", railway)} />}
+            {draft.kind === "identity" && <IdentityScoreSummary entry={draft} mirror={previewMirror} onRailwayChange={railway => set("scoreRailway", railway)} />}
             <div className="form-grid">
               {GENERAL_CONTENTS.map((item) => (
                 <div className="form-field" key={item.id}>
@@ -920,6 +925,11 @@ function Editor({
                   {draft.kind === "identity" && <IdentityScoreGuide content={item.id} />}
                 </div>
               ))}
+              {draft.kind === "identity" && <div className="form-field">
+                <ScoreInput label="거울던전 점수" max={IDENTITY_SCORE_MAX.mirror} value={mirrorScore} onChange={setMirrorScore} />
+                <p className="field-help">거울던전 전용 화면과 같은 점수입니다. 티어와 공략은 거울던전 메뉴에서 편집합니다.</p>
+                <IdentityScoreGuide content="mirror" notesHint="거울던전 전용 화면의 ‘거울던전 설명’에 조건과 결과를 기록하세요." />
+              </div>}
             </div>
           </div>
           <label className="form-field field-wide">
@@ -1347,6 +1357,7 @@ export default function App() {
     entry: LibraryEntry,
     message: string,
     syncMembership: boolean,
+    mirrorScore?: number | null,
   ) => {
     const existing = data.entries.some((item) => item.id === entry.id);
     // An edited example becomes a personal record and survives "clear examples".
@@ -1409,6 +1420,14 @@ export default function App() {
         entryId: evaluation.entryId === entry.id ? saved.id : evaluation.entryId,
         recommendedEgoIds: remap(evaluation.recommendedEgoIds) })),
     };
+    // Save both scores in one draft write, retaining all mirror-only tiers and notes.
+    if (saved.kind === "identity" && mirrorScore !== undefined) {
+      const previous = mirrorArchive.evaluations.find(evaluation => evaluation.entryId === saved.id);
+      const updated: MirrorEvaluation = { ...(previous ?? createMirrorEvaluation(saved.id)), score: mirrorScore, scoreScale: "content-v1" };
+      mirrorArchive.evaluations = previous
+        ? mirrorArchive.evaluations.map(evaluation => evaluation.entryId === saved.id ? updated : evaluation)
+        : [...mirrorArchive.evaluations, updated];
+    }
     if (persist({ ...data, entries, mirrorArchive }, message)) {
       if (selected === entry.id) setSelected(saved.id);
       return true;
@@ -1428,8 +1447,8 @@ export default function App() {
         false,
       );
   };
-  const saveEntry = (entry: LibraryEntry) => {
-    if (putEntry(entry, "기록을 저장했습니다.", true)) {
+  const saveEntry = (entry: LibraryEntry, mirrorScore?: number | null) => {
+    if (putEntry(entry, "기록을 저장했습니다.", true, mirrorScore)) {
       setEditing(null);
       setSelected(null);
       // Existing evaluations return to the same query, filters and expanded list.
@@ -1484,6 +1503,11 @@ export default function App() {
   const isRated = (entry: LibraryEntry) => deckCategory === "railway" && railwayRoute === "all"
     ? ["railway1", "railway2", "railway6"].some((route) => entry.tiers[route as Content] !== "unrated")
     : entry.tiers[content] !== "unrated";
+  const mirrorArchive = getMirrorArchive(data);
+  const mirrorById = new Map(mirrorArchive.evaluations.map(evaluation => [evaluation.entryId, evaluation]));
+  const identityTotals = new Map(data.entries.filter(entry => entry.kind === "identity")
+    .map(entry => [entry.id, identityScoreTotal(entry, mirrorById.get(entry.id))]));
+  const listScore = (entry: LibraryEntry) => entry.kind === "identity" ? identityTotals.get(entry.id)?.score : entry.scores?.[content];
   const filtered = data.entries.filter(
     (entry) =>
       entry.kind === kind &&
@@ -1509,7 +1533,7 @@ export default function App() {
           .toLocaleLowerCase()
           .includes(query.trim().toLocaleLowerCase())),
   );
-  filtered.sort((a, b) => TIERS.indexOf(a.tiers[content]) - TIERS.indexOf(b.tiers[content]) || compareScores(a.scores?.[content], b.scores?.[content]));
+  filtered.sort((a, b) => TIERS.indexOf(a.tiers[content]) - TIERS.indexOf(b.tiers[content]) || compareScores(listScore(a), listScore(b)));
   const rawCurrent = data.entries.find((entry) => entry.id === selected);
   const current = rawCurrent && withMembership(rawCurrent, data.entries);
   const contentLabel = GENERAL_CONTENTS.find((item) => item.id === content)!.label;
@@ -1557,7 +1581,6 @@ export default function App() {
     setMirrorSelected(null);
     setMirrorEditing({ type: "deck", deck: createMirrorDeck(), isNew: true });
   };
-  const mirrorArchive = getMirrorArchive(data);
   const openMirrorDeck = (id: string) => {
     setConfirmMirrorDelete(false);
     setMirrorSelected({ type: "deck", id });
@@ -1989,7 +2012,7 @@ export default function App() {
                 <strong>{filtered.length}</strong>개의 {kindLabel[kind]} 기록
               </span>
               <span className="view-label">
-                {allRailways ? "1 · 2 · 6호선 전체 덱" : `${contentLabel} 기준 · ${rated}개 평가`}
+                {allRailways ? "1 · 2 · 6호선 전체 덱" : kind === "identity" ? `${contentLabel} 티어 · 종합점수순 · ${rated}개 평가` : `${contentLabel} 기준 · ${rated}개 평가`}
               </span>
             </div>
           </div>
@@ -2041,7 +2064,9 @@ export default function App() {
                         <TierProfile
                           key={entry.id}
                           label={`${displayName(entry)} 상세 보기`}
-                          score={entry.kind === "identity" ? entry.scores?.[content] ?? null : undefined}
+                          score={entry.kind === "identity" ? identityTotals.get(entry.id)!.score : undefined}
+                          scoreLabel={entry.kind === "identity" && identityTotals.get(entry.id)!.score != null ? `${identityTotals.get(entry.id)!.score} / 100점` : undefined}
+                          scoreNote={entry.kind === "identity" ? identityScoreProgress(identityTotals.get(entry.id)!) : undefined}
                           onClick={() => setSelected(entry.id)}
                         >
                           <EntryArt entry={entry} />
@@ -2090,6 +2115,7 @@ export default function App() {
                     entries={data.entries}
                     content={content}
                     showTier={!allRailways}
+                    total={entry.kind === "identity" ? identityTotals.get(entry.id) : undefined}
                     onOpen={setSelected}
                     onTier={changeTier}
                   />

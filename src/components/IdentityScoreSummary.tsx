@@ -20,6 +20,6 @@ export default function IdentityScoreSummary({ entry, mirror, onRailwayChange }:
       </select>
     </label> : <p>거굴철 {railway.slice('railway'.length)}호선 기준</p>}
     <p>스토리 20 + 채광 10 + 사영전투 30 + 거굴철 10 + 거울던전 30</p>
-    <p>거굴철은 선택한 노선 하나만 합산합니다. 거울던전 점수는 거울던전 전용 기록에서 가져옵니다.</p>
+    <p>거굴철은 선택한 노선 하나만 합산합니다. 거울던전 점수는 일반 인격 편집과 거울던전 전용 화면에서 함께 사용합니다.</p>
   </section>;
 }

@@ -82,7 +82,7 @@ export function IdentityScoringOverview() {
   );
 }
 
-export default function IdentityScoreGuide({ content }: { content: Content }) {
+export default function IdentityScoreGuide({ content, notesHint }: { content: Content; notesHint?: string }) {
   const guide = guides[content];
   const label = content.startsWith('railway') ? `거굴철 ${content.slice('railway'.length)}호선` : guide.label;
   return (
@@ -101,7 +101,7 @@ export default function IdentityScoreGuide({ content }: { content: Content }) {
           </dl>
           <p className="identity-score-formula">기준표의 점수를 더해 그대로 입력하세요. {guide.weight}점 만점입니다.</p>
           <p className="identity-score-evidence"><strong>평가 근거에 남길 내용</strong>{guide.evidence}</p>
-          <p className="identity-score-notes">{content === 'mirror' ? '아래 ‘거울던전 설명’에 조건과 결과를 기록하세요.' : '아래 ‘기록 요약’에 조건과 결과를 기록하세요.'}</p>
+          <p className="identity-score-notes">{notesHint ?? (content === 'mirror' ? '아래 ‘거울던전 설명’에 조건과 결과를 기록하세요.' : '아래 ‘기록 요약’에 조건과 결과를 기록하세요.')}</p>
         </div>
       </details>
     </div>

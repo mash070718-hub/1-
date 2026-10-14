@@ -12,7 +12,7 @@ export function isIdentityScore(score: number | null | undefined, content: Conte
 export type RailwayScoreContent = 'railway1' | 'railway2' | 'railway6';
 
 /** Missing scores remain missing; a partial sum is never presented as a complete evaluation. */
-export function identityScoreTotal(entry: LibraryEntry, mirror: MirrorEvaluation | undefined, railway: RailwayScoreContent) {
+export function identityScoreTotal(entry: LibraryEntry, mirror: MirrorEvaluation | undefined, railway: RailwayScoreContent = entry.scoreRailway ?? 'railway6') {
   const parts = [
     { content: 'story', score: entry.scores?.story },
     { content: 'luxcavation', score: entry.scores?.luxcavation },
@@ -27,4 +27,14 @@ export function identityScoreTotal(entry: LibraryEntry, mirror: MirrorEvaluation
     complete: valid.length === parts.length,
     invalid: parts.filter(({ content, score }) => score != null && !isIdentityScore(score, content)).length,
   };
+}
+
+export type IdentityScoreTotal = ReturnType<typeof identityScoreTotal>;
+
+export function identityScoreLabel(total: IdentityScoreTotal) {
+  return total.score == null ? '점수 미입력' : `${total.complete ? '종합' : '합계'} ${total.score} / 100점`;
+}
+
+export function identityScoreProgress(total: IdentityScoreTotal) {
+  return total.complete || total.score == null ? undefined : `${total.evaluated}/5 평가`;
 }
