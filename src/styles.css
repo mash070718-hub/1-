@@ -219,6 +219,8 @@ button.catalog-source { padding: 3px 0; border: 0; border-radius: 0; background:
 .empty-state .primary-button { margin-top: 20px; }
 .empty-state > svg { margin: 0 auto; color: #c3a16a; stroke-width: 1.2; }
 .empty-icon { margin: 0 auto; width: 32px; height: 32px; stroke-width: 1.2; color: #c3a16a; }
+/* Tier changes reorder cards. Keep the viewport instead of anchoring it to the focused select. */
+.archive-grid, .tier-board { overflow-anchor: none; }
 .archive-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .library-footer { display: flex; justify-content: space-between; align-items: center; gap: 15px; padding: 26px 0 5px; margin-top: 25px; border-top: 1px solid #75593255; color: #aa9474; font-size: 11px; letter-spacing: .3px; }
 .library-footer svg { width: 12px; height: 12px; }

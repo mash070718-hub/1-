@@ -44,6 +44,33 @@ async function expectPosition(page: Page, y: number) {
   await expect(page.locator('body')).not.toHaveCSS('position', 'fixed');
 }
 
+for (const destination of ['S', 'B']) {
+  test(`changing tier directly on a mobile list card to ${destination} preserves the viewport`, async ({ page }) => {
+    await page.getByRole('navigation', { name: '도서관 메뉴', exact: true }).getByRole('button', { name: /^전체 기록/ }).click();
+    await page.getByRole('button', { name: '다음 24개 보기', exact: true }).click();
+    await expect(page.locator('.archive-grid .entry-card')).toHaveCount(48);
+    const card = page.locator('.archive-grid .entry-card').nth(35);
+    const tier = card.getByRole('combobox');
+    const name = await tier.getAttribute('aria-label');
+    await tier.evaluate(element => element.scrollIntoView({ block: 'center', behavior: 'instant' }));
+    // A native mobile picker keeps its select focused while the card is moved.
+    await tier.focus();
+    const y = await page.evaluate(() => window.scrollY);
+    expect(y).toBeGreaterThan(1000);
+    await tier.selectOption(destination);
+    await expectPosition(page, y);
+    await expect(page.locator('.archive-grid .entry-card')).toHaveCount(48);
+    const moved = page.getByRole('combobox', { name: name!, exact: true });
+    await expect(moved).not.toBeInViewport();
+    const saved = await page.evaluate(key => JSON.parse(localStorage.getItem(key)!).entries, draftKey);
+    expect(saved.filter((entry: { kind: string; tiers: { story: string } }) =>
+      entry.kind === 'identity' && entry.tiers.story === destination)).toHaveLength(1);
+    // Verify that the viewport remains usable after restoration.
+    await page.evaluate(() => window.scrollBy({ top: 100, behavior: 'instant' }));
+    await expect.poll(() => page.evaluate(() => window.scrollY)).toBeCloseTo(y + 100, 0);
+  });
+}
+
 for (const destination of ['A', 'S']) {
   test(`saving a mobile identity keeps the list position after moving within/to tier ${destination}`, async ({ page }) => {
     await generalTierList(page);
