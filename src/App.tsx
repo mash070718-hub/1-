@@ -1,5 +1,6 @@
 import {
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
   type KeyboardEvent as ReactKeyboardEvent,
@@ -58,6 +59,7 @@ import {
 } from "./lib/library";
 import { CATALOG, CATALOG_METADATA, getCatalogRecord } from "./lib/catalog";
 import * as cloud from "./lib/cloud";
+import { lockPageScroll } from "./lib/pageScroll";
 import { AdminAccess, useAdminAccess } from "./components/AdminAccess";
 import ScoreInput from "./components/ScoreInput";
 import IdentityScoreGuide, { IdentityScoringOverview } from "./components/IdentityScoreGuide";
@@ -200,13 +202,12 @@ function Modal({
   const ref = useRef<HTMLDivElement>(null);
   const closeRef = useRef(onClose);
   closeRef.current = onClose;
-  useEffect(() => {
+  useLayoutEffect(() => {
     const previous = document.activeElement as HTMLElement | null;
-    const oldOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    const unlockPageScroll = lockPageScroll();
     ref.current
       ?.querySelector<HTMLElement>("button, input, select, textarea")
-      ?.focus();
+      ?.focus({ preventScroll: true });
     const key = (event: KeyboardEvent) => {
       if (event.key === "Escape") closeRef.current();
       if (event.key !== "Tab" || !ref.current) return;
@@ -227,9 +228,9 @@ function Modal({
     };
     document.addEventListener("keydown", key);
     return () => {
-      document.body.style.overflow = oldOverflow;
       document.removeEventListener("keydown", key);
-      previous?.focus();
+      if (previous?.isConnected) previous.focus({ preventScroll: true });
+      unlockPageScroll();
     };
   }, []);
   return (
@@ -1422,6 +1423,9 @@ export default function App() {
     if (putEntry(entry, "기록을 저장했습니다.", true)) {
       setEditing(null);
       setSelected(null);
+      // Existing evaluations return to the same query, filters and expanded list.
+      // Only newly created records need help becoming visible in the collection.
+      if (!editing?.isNew) return;
       setKind(entry.kind);
       setQuery(entry.name);
       setSinner(entry.kind === "deck" ? "전체" : entry.sinner || "전체");

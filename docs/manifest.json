@@ -3,8 +3,8 @@
   "entrypoint": "index.html",
   "language": "ko",
   "artifact": {
-    "bytes": 9036209,
-    "sha256": "c785bd3108b3bd27edef24916f8fd83346bc02a45b787553c8f1c874a8ee20ec",
+    "bytes": 9036888,
+    "sha256": "a0225efabefc94dce6a351d01c653ca26ab827e85693b6902a0f2941a1078018",
     "embeddedArtworks": 305,
     "inlineScripts": 1
   },
@@ -107,6 +107,7 @@
         "general",
         "mirrorDungeon"
       ]
-    }
+    },
+    "recordEditingPreservesViewport": true
   }
 }
