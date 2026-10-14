@@ -34,7 +34,3 @@ export type IdentityScoreTotal = ReturnType<typeof identityScoreTotal>;
 export function identityScoreLabel(total: IdentityScoreTotal) {
   return total.score == null ? '점수 미입력' : `${total.complete ? '종합' : '합계'} ${total.score} / 100점`;
 }
-
-export function identityScoreProgress(total: IdentityScoreTotal) {
-  return total.complete || total.score == null ? undefined : `${total.evaluated}/5 평가`;
-}

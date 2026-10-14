@@ -36,7 +36,6 @@
   overflow-wrap: anywhere;
 }
 .tier-profile-score[data-missing="true"] { color: #bba785; font-size: 11px; }
-.tier-profile-score-note { display: block; color: #bba785; font-size: 10px; line-height: 14px; }
 @media (max-width: 700px) {
   .tier-board.compact-tier-board { --profile-width: 64px; --profile-height: 80px; gap: 6px; }
   .compact-tier-board .tier-items { gap: 6px; padding: 6px; }

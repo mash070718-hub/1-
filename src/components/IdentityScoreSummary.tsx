@@ -11,7 +11,6 @@ export default function IdentityScoreSummary({ entry, mirror, onRailwayChange }:
   const total = identityScoreTotal(entry, mirror, railway);
   return <section className="identity-score-summary" aria-label="인격 종합점수">
     <p aria-live="polite"><strong>{total.complete ? '종합점수' : '입력한 점수 합계'}: {total.score == null ? '미입력' : `${total.score} / 100점`}</strong></p>
-    {!total.complete && <p>{total.evaluated} / 5개 콘텐츠 평가 완료 · 미입력은 0점으로 평가하지 않습니다.</p>}
     {total.invalid > 0 && <p role="alert">만점을 초과한 기존 점수 {total.invalid}개는 합계에서 제외했습니다. 해당 기록에서 점수를 확인해 주세요.</p>}
     {onRailwayChange ? <label className="form-field">
       <span className="field-label">종합점수에 사용할 거굴철 노선</span>

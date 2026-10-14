@@ -111,7 +111,6 @@ test('mirror accepts native points and keeps zero, blank, general scores and tie
   await edit.click();
   await score.fill('');
   await expect(total(page)).toContainText('입력한 점수 합계: 60 / 100점');
-  await expect(total(page)).toContainText('4 / 5개 콘텐츠 평가 완료');
   await page.getByRole('button', { name: '기록 저장', exact: true }).click();
   const stored = await saved(page);
   expect(stored.entries.find(entry => entry.id === identity.id)).toEqual(identity);
@@ -131,7 +130,7 @@ test('general cards and compact tiers display and sort totals instead of the sel
   await expect(page.locator('.archive-grid .entry-title').first()).toHaveText(identity.name);
   expect((await page.locator('.archive-grid .entry-title').allTextContents()).slice(0, 5)).toEqual(expectedNames);
   await expect(page.getByRole('button', { name: `${name} 상세 보기`, exact: true }).locator('.score-label')).toHaveText('종합 88 / 100점');
-  await expect(page.getByRole('button', { name: `${lowerTotal.name} ${lowerTotal.sinner} 상세 보기`, exact: true }).locator('.score-label')).toHaveText('합계 20 / 100점 · 1/5 평가');
+  await expect(page.getByRole('button', { name: `${lowerTotal.name} ${lowerTotal.sinner} 상세 보기`, exact: true }).locator('.score-label')).toHaveText('합계 20 / 100점');
   await page.locator('.archive-grid .entry-card').first().screenshot({ path: testInfo.outputPath('total-card.png') });
   await page.getByRole('navigation', { name: '도서관 메뉴', exact: true }).getByRole('button', { name: '티어리스트', exact: true }).click();
   const profiles = page.locator('.tier-row[data-tier="A"] .tier-profile');

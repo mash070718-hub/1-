@@ -64,7 +64,7 @@ import { AdminAccess, useAdminAccess } from "./components/AdminAccess";
 import ScoreInput from "./components/ScoreInput";
 import IdentityScoreGuide, { IdentityScoringOverview } from "./components/IdentityScoreGuide";
 import IdentityScoreSummary from "./components/IdentityScoreSummary";
-import { IDENTITY_SCORE_MAX, identityScoreTotal, identityScoreLabel, identityScoreProgress, type IdentityScoreTotal } from "./lib/identityScores";
+import { IDENTITY_SCORE_MAX, identityScoreTotal, identityScoreLabel, type IdentityScoreTotal } from "./lib/identityScores";
 import TierProfile from "./components/TierProfile";
 import DeckFormationEditor from "./components/DeckFormationEditor";
 import { TagPicker } from "./components/TagPicker";
@@ -310,7 +310,7 @@ function EntryCard({
             {catalog && <span className="badge">{catalog.rarity}</span>}
           </span>
           <span className="entry-title">{entry.name}</span>
-          {entry.kind !== "ego" && <span className="score-label">{total ? identityScoreLabel(total) : entry.scores?.[content] == null ? "점수 미입력" : `${entry.scores[content]}점`}{total && identityScoreProgress(total) && ` · ${identityScoreProgress(total)}`}</span>}
+          {entry.kind !== "ego" && <span className="score-label">{total ? identityScoreLabel(total) : entry.scores?.[content] == null ? "점수 미입력" : `${entry.scores[content]}점`}</span>}
           <span className="entry-subtitle">
             {entry.subtitle ||
               (hasNotes(entry)
@@ -2066,7 +2066,6 @@ export default function App() {
                           label={`${displayName(entry)} 상세 보기`}
                           score={entry.kind === "identity" ? identityTotals.get(entry.id)!.score : undefined}
                           scoreLabel={entry.kind === "identity" && identityTotals.get(entry.id)!.score != null ? `${identityTotals.get(entry.id)!.score} / 100점` : undefined}
-                          scoreNote={entry.kind === "identity" ? identityScoreProgress(identityTotals.get(entry.id)!) : undefined}
                           onClick={() => setSelected(entry.id)}
                         >
                           <EntryArt entry={entry} />
