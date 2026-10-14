@@ -63,6 +63,8 @@ import { lockPageScroll } from "./lib/pageScroll";
 import { AdminAccess, useAdminAccess } from "./components/AdminAccess";
 import ScoreInput from "./components/ScoreInput";
 import IdentityScoreGuide, { IdentityScoringOverview } from "./components/IdentityScoreGuide";
+import IdentityScoreSummary from "./components/IdentityScoreSummary";
+import { IDENTITY_SCORE_MAX } from "./lib/identityScores";
 import TierProfile from "./components/TierProfile";
 import DeckFormationEditor from "./components/DeckFormationEditor";
 import { TagPicker } from "./components/TagPicker";
@@ -358,6 +360,7 @@ function EntryCard({
 function Detail({
   entry,
   entries,
+  mirrorEvaluation,
   content,
   onClose,
   onEdit,
@@ -367,6 +370,7 @@ function Detail({
 }: {
   entry: LibraryEntry;
   entries: LibraryEntry[];
+  mirrorEvaluation?: MirrorEvaluation;
   content: Content;
   onClose: () => void;
   onEdit: () => void;
@@ -440,7 +444,8 @@ function Detail({
         </>
       }
     >
-      {entry.kind !== "ego" && <p className="score-label">{entry.scores?.[content] == null ? "점수 미입력" : `${entry.scores[content]}점`} · {contentLabelForScore(content)}</p>}
+      {entry.kind !== "ego" && <p className="score-label">{entry.scores?.[content] == null ? "점수 미입력" : `${entry.scores[content]} / ${entry.kind === "identity" ? IDENTITY_SCORE_MAX[content] : 100}점`} · {contentLabelForScore(content)}</p>}
+      {entry.kind === "identity" && <IdentityScoreSummary entry={entry} mirror={mirrorEvaluation} />}
       <div className="detail-heading">
         <EntryArt entry={entry} entries={entries} large />
         <div className="detail-heading-copy">
@@ -649,12 +654,14 @@ function Detail({
 function Editor({
   entry,
   entries,
+  mirrorEvaluation,
   isNew,
   onClose,
   onSave,
 }: {
   entry: LibraryEntry;
   entries: LibraryEntry[];
+  mirrorEvaluation?: MirrorEvaluation;
   isNew: boolean;
   onClose: () => void;
   onSave: (entry: LibraryEntry) => void;
@@ -785,6 +792,7 @@ function Editor({
           if (!draft.name.trim()) return;
           onSave({
             ...draft,
+            ...(draft.kind === "identity" ? { scoreScale: "content-v1" as const } : {}),
             name: draft.name.trim(),
             tags: [...new Set(draft.tags)],
             updatedAt: new Date().toISOString(),
@@ -885,6 +893,7 @@ function Editor({
           <div className="form-field field-wide">
             <h3 className="detail-section-title">{draft.kind === "ego" ? "콘텐츠별 티어" : "콘텐츠별 티어와 점수"}</h3>
             {draft.kind === "identity" && <IdentityScoringOverview />}
+            {draft.kind === "identity" && <IdentityScoreSummary entry={draft} mirror={mirrorEvaluation} onRailwayChange={railway => set("scoreRailway", railway)} />}
             <div className="form-grid">
               {GENERAL_CONTENTS.map((item) => (
                 <div className="form-field" key={item.id}>
@@ -907,8 +916,8 @@ function Editor({
                     ))}
                   </select>
                 </label>
-                  {draft.kind !== "ego" && <ScoreInput label={`${item.label} 점수`} value={draft.scores?.[item.id]} onChange={(score) => set("scores", { ...draft.scores, [item.id]: score })} />}
-                  {draft.kind === "identity" && <IdentityScoreGuide content={item.id} score={draft.scores?.[item.id]} />}
+                  {draft.kind !== "ego" && <ScoreInput label={`${item.label} 점수`} max={draft.kind === "identity" ? IDENTITY_SCORE_MAX[item.id] : 100} value={draft.scores?.[item.id]} onChange={(score) => set("scores", { ...draft.scores, [item.id]: score })} />}
+                  {draft.kind === "identity" && <IdentityScoreGuide content={item.id} />}
                 </div>
               ))}
             </div>
@@ -2147,6 +2156,7 @@ export default function App() {
           key={current.id}
           entry={current}
           entries={data.entries}
+          mirrorEvaluation={mirrorArchive.evaluations.find(item => item.entryId === current.id)}
           content={content}
           onClose={() => setSelected(null)}
           onEdit={() => setEditing({ entry: current, isNew: false })}
@@ -2167,6 +2177,7 @@ export default function App() {
           key={editing.entry.id}
           entry={editing.entry}
           entries={data.entries}
+          mirrorEvaluation={mirrorArchive.evaluations.find(item => item.entryId === editing.entry.id)}
           isNew={editing.isNew}
           onClose={() => setEditing(null)}
           onSave={saveEntry}

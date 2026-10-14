@@ -68,7 +68,7 @@ export function IdentityScoringOverview() {
           <li key={label}>{label} <b>{weight}점</b></li>
         ))}
       </ul>
-      <p>각 콘텐츠 점수는 <strong>100점 만점</strong>으로 입력합니다. 아래 기준표의 배점으로 채점했다면 100점으로 환산하세요. 예: 스토리 16 / 20점 → 입력 80점.</p>
+      <p>기준표에서 받은 점수를 <strong>그대로 입력</strong>합니다. 스토리는 20점, 채광은 10점 만점이며, 다섯 콘텐츠를 더한 종합점수만 100점 만점입니다.</p>
       <details className="identity-scoring-principles">
         <summary>공통 채점 원칙</summary>
         <ul>
@@ -82,16 +82,11 @@ export function IdentityScoringOverview() {
   );
 }
 
-export default function IdentityScoreGuide({ content, score }: { content: Content; score: number | null | undefined }) {
+export default function IdentityScoreGuide({ content }: { content: Content }) {
   const guide = guides[content];
   const label = content.startsWith('railway') ? `거굴철 ${content.slice('railway'.length)}호선` : guide.label;
-  const valid = score != null && Number.isFinite(score) && score >= 0 && score <= 100;
-  const contribution = valid ? Number((score * guide.weight / 100).toFixed(4)) : null;
   return (
     <div className="identity-score-guide" data-content={content}>
-      <p className="identity-score-conversion" aria-live="polite">
-        {score == null ? '배점 환산: 미입력' : contribution === null ? '0~100점으로 입력하세요.' : `배점 환산: ${contribution} / ${guide.weight}점`}
-      </p>
       <details>
         <summary><span>{label} 평가 기준</span><span className="identity-score-weight">{guide.weight}점 배점</span></summary>
         <div className="identity-score-guide-body">
@@ -104,7 +99,7 @@ export default function IdentityScoreGuide({ content, score }: { content: Conten
               </div>
             ))}
           </dl>
-          <p className="identity-score-formula">입력할 점수 = 기준표에서 받은 점수 합계 ÷ {guide.weight} × 100</p>
+          <p className="identity-score-formula">기준표의 점수를 더해 그대로 입력하세요. {guide.weight}점 만점입니다.</p>
           <p className="identity-score-evidence"><strong>평가 근거에 남길 내용</strong>{guide.evidence}</p>
           <p className="identity-score-notes">{content === 'mirror' ? '아래 ‘거울던전 설명’에 조건과 결과를 기록하세요.' : '아래 ‘기록 요약’에 조건과 결과를 기록하세요.'}</p>
         </div>

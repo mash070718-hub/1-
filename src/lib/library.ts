@@ -1,5 +1,6 @@
 import { CATALOG, getCatalogRecord, type CatalogRecord } from './catalog';
 import { isGameTag } from './tags';
+import { IDENTITY_SCORE_MAX, type RailwayScoreContent } from './identityScores';
 
 export type Kind = 'identity' | 'ego' | 'deck';
 export type Content =
@@ -88,6 +89,8 @@ export interface MirrorEvaluation {
   entryId: string;
   tier: Tier;
   score?: number | null;
+  /** New identity evaluations use their content's own maximum. Unmarked legacy values are retained. */
+  scoreScale?: 'content-v1';
   subtitle: string;
   description: string;
   strengths: string;
@@ -122,6 +125,8 @@ export interface LibraryEntry {
   formationCode: string;
   tiers: Record<Content, Tier>;
   scores?: Partial<Record<Content, number | null>>;
+  scoreScale?: 'content-v1';
+  scoreRailway?: RailwayScoreContent;
   createdAt: string;
   updatedAt: string;
 }
@@ -630,13 +635,14 @@ function requireMirrorArchive(value: unknown, byId: Map<string, LibraryEntry>): 
   const evaluations = (archive.evaluations as unknown[]).map((value, index): MirrorEvaluation => {
     const path = `mirrorArchive.evaluations[${index}]`;
     const evaluation = requireObject(value, path);
-    requireKeys(evaluation, ['entryId', 'tier', 'subtitle', 'description', 'strengths', 'weaknesses', 'operation', 'recommendedEgoIds'].concat(Object.hasOwn(evaluation, 'score') ? ['score'] : []), path);
-    if (Object.hasOwn(evaluation, 'score')) requireScore(evaluation.score, `${path}.score`);
+    requireKeys(evaluation, ['entryId', 'tier', 'subtitle', 'description', 'strengths', 'weaknesses', 'operation', 'recommendedEgoIds'].concat(['score', 'scoreScale'].filter(key => Object.hasOwn(evaluation, key))), path);
+    if (Object.hasOwn(evaluation, 'scoreScale') && evaluation.scoreScale !== 'content-v1') invalid(`${path}.scoreScale`, '지원하지 않는 점수 기준입니다.');
     requireId(evaluation.entryId, `${path}.entryId`);
     if (seenEvaluations.has(evaluation.entryId)) invalid('mirrorArchive.evaluations', '중복된 거울던전 평가 기록이 있습니다.');
     seenEvaluations.add(evaluation.entryId);
     const target = byId.get(evaluation.entryId);
     if (!target || target.kind === 'deck') invalid(`${path}.entryId`, '평가할 인격 또는 E.G.O. 기록이 없습니다.');
+    if (Object.hasOwn(evaluation, 'score')) requireScore(evaluation.score, `${path}.score`, target.kind === 'identity' && evaluation.scoreScale === 'content-v1' ? IDENTITY_SCORE_MAX.mirror : 100);
     requireNotes(evaluation, path);
     requireRecommendations(evaluation, path);
     return { ...evaluation } as unknown as MirrorEvaluation;
@@ -666,12 +672,15 @@ export function parseLibrary(json: string): LibraryData {
     const hasContentIds = Object.hasOwn(entry, 'contentIds');
     const hasMirrorPlan = Object.hasOwn(entry, 'mirrorPlan');
     requireKeys(entry, ENTRY_KEYS.filter((key) =>
-      (key !== 'contentIds' || hasContentIds) && (key !== 'mirrorPlan' || hasMirrorPlan)).concat(Object.hasOwn(entry, 'scores') ? ['scores'] : []), path);
+      (key !== 'contentIds' || hasContentIds) && (key !== 'mirrorPlan' || hasMirrorPlan)).concat(['scores', 'scoreScale', 'scoreRailway'].filter(key => Object.hasOwn(entry, key))), path);
+    if (Object.hasOwn(entry, 'scoreScale') && entry.scoreScale !== 'content-v1') invalid(`${path}.scoreScale`, '지원하지 않는 점수 기준입니다.');
+    if (Object.hasOwn(entry, 'scoreRailway') && !['railway1', 'railway2', 'railway6'].includes(entry.scoreRailway as string)) invalid(`${path}.scoreRailway`, '종합점수에 사용할 거굴철 노선을 선택하세요.');
     if (Object.hasOwn(entry, 'scores')) {
       const scores = requireObject(entry.scores, `${path}.scores`);
       for (const [key, score] of Object.entries(scores)) {
         if (!CONTENTS.some(({ id }) => id === key)) invalid(`${path}.scores`, '지원하지 않는 콘텐츠입니다.');
-        requireScore(score, `${path}.scores.${key}`);
+        // scores.mirror is a retained legacy field; the current mirror evaluation lives in mirrorArchive.
+        requireScore(score, `${path}.scores.${key}`, entry.kind === 'identity' && entry.scoreScale === 'content-v1' && key !== 'mirror' ? IDENTITY_SCORE_MAX[key as Content] : 100);
       }
     }
     requireId(entry.id, `${path}.id`);
@@ -773,8 +782,8 @@ export function compareScores(left: number | null | undefined, right: number | n
   return right - left;
 }
 
-function requireScore(value: unknown, path: string): void {
-  if (value !== null && (typeof value !== 'number' || !Number.isFinite(value) || value < 0 || value > 100)) {
-    invalid(path, '점수는 0~100의 숫자 또는 미입력 값이어야 합니다.');
+function requireScore(value: unknown, path: string, max = 100): void {
+  if (value !== null && (typeof value !== 'number' || !Number.isFinite(value) || value < 0 || value > max)) {
+    invalid(path, `점수는 0~${max}의 숫자 또는 미입력 값이어야 합니다.`);
   }
 }

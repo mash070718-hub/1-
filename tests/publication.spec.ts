@@ -64,14 +64,14 @@ test('admin imports old backup, scores persist and sort independently, publishes
   await admin.getByPlaceholder('이름, 수감자, 태그로 검색').fill(identity.name);
   await admin.getByRole('button', { name: `${identity.name} ${identity.sinner} 상세 보기`, exact: true }).click();
   await admin.getByRole('button', { name: '기록 수정', exact: true }).click();
-  await admin.getByRole('spinbutton', { name: '스토리 점수', exact: true }).fill('87.125');
+  await admin.getByRole('spinbutton', { name: '스토리 점수', exact: true }).fill('17.125');
   await admin.getByRole('spinbutton', { name: '경험치 · 끈 채광 점수', exact: true }).fill('0');
   await admin.getByRole('button', { name: '기록 저장', exact: true }).click();
   await expect(admin.getByRole('dialog')).toHaveCount(0);
   await admin.reload();
   await expect(admin.getByRole('button', { name: '로그아웃', exact: true })).toBeVisible();
   const saved = JSON.parse((await admin.evaluate(key => localStorage.getItem(key), draftKey))!);
-  expect(saved.entries.find((e: { id: string }) => e.id === identityId).scores).toEqual({ story: 87.125, luxcavation: 0 });
+  expect(saved.entries.find((e: { id: string }) => e.id === identityId).scores).toEqual({ story: 17.125, luxcavation: 0 });
   expect(saved.entries.find((e: { id: string }) => e.id === identityId).tiers.story).toBe('D');
   // Mirror scores and plans travel in the same publication with no overwrite.
   const mirrorDecks = [createMirrorDeck(), createMirrorDeck(), createMirrorDeck()];
@@ -96,7 +96,7 @@ test('admin imports old backup, scores persist and sort independently, publishes
   await reader.getByRole('navigation').getByRole('button', { name: '거울던전', exact: true }).click();
   await expect(reader.locator('.mirror-deck-tier[data-tier="S"] .mirror-card-title')).toHaveText(['거울 덱 2', '거울 덱 1', '거울 덱 0']);
   expect(store.data?.mirrorArchive?.decks[2].plan.floors[14].themePack).toBe('15층 보존');
-  expect(store.data?.entries.find(({ id }) => id === identityId)?.scores?.story).toBe(87.125);
+  expect(store.data?.entries.find(({ id }) => id === identityId)?.scores?.story).toBe(17.125);
   await admin.getByRole('button', { name: '로그아웃', exact: true }).click();
   await expect(admin.getByRole('button', { name: '게시하기', exact: true })).toHaveCount(0);
   await adminContext.close(); await readerContext.close();

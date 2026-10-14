@@ -3,6 +3,7 @@ import { ArrowRight, BookMarked, FileText, Layers3, Sparkles, Swords } from "luc
 import { getCatalogRecord } from "../lib/catalog";
 import type { LibraryEntry, MirrorDeck, MirrorEvaluation } from "../lib/library";
 import "./mirror-evaluation.css";
+import IdentityScoreSummary from "./IdentityScoreSummary";
 
 export interface MirrorEvaluationDetailsProps {
   entry: LibraryEntry;
@@ -63,10 +64,11 @@ export default function MirrorEvaluationDetails({ entry, evaluation, entries, de
 
       <div className="mirror-evaluation-tier" data-tier={evaluation.tier} aria-label="거울던전 티어">
         <span>거울던전 티어</span>
-        {entry.kind === "identity" && <span className="score-label">{evaluation.score == null ? "점수 미입력" : `${evaluation.score}점`}</span>}
+        {entry.kind === "identity" && <span className="score-label">{evaluation.score == null ? "점수 미입력" : `${evaluation.score} / 30점`}</span>}
         <strong>{evaluation.tier === "unrated" ? "미평가" : evaluation.tier}</strong>
       </div>
 
+      {entry.kind === "identity" && <IdentityScoreSummary entry={entry} mirror={evaluation} />}
       <section className="detail-section" aria-label="거울던전 설명">
         <h3 className="detail-section-title"><FileText size={17} /> 거울던전 설명</h3>
         <p className={evaluation.description.trim() ? "prose" : "detail-empty"}>

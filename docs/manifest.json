@@ -3,8 +3,8 @@
   "entrypoint": "index.html",
   "language": "ko",
   "artifact": {
-    "bytes": 9036935,
-    "sha256": "db8d17f3801f5e9d091c532b5eaddb80d0195a87614be1cf75cedb5d588524cc",
+    "bytes": 9040334,
+    "sha256": "e18f0439e7ff3a595345d8a5f42607113cfa5beaa1ed08f2b329fd8c926956ab",
     "embeddedArtworks": 305,
     "inlineScripts": 1
   },
@@ -72,15 +72,24 @@
         "identity",
         "deck"
       ],
-      "range": [
-        0,
-        100
-      ],
       "decimals": true,
       "perContent": true,
       "manualTier": true,
       "missingLast": true,
-      "stableTies": true
+      "stableTies": true,
+      "deckRange": [
+        0,
+        100
+      ],
+      "identityMaximums": {
+        "story": 20,
+        "luxcavation": 10,
+        "simulation": 30,
+        "railway1": 10,
+        "railway2": 10,
+        "railway6": 10,
+        "mirror": 30
+      }
     },
     "compactTierProfiles": {
       "kinds": [
@@ -102,11 +111,17 @@
         "mirror": 30
       },
       "simulationBenchmark": "뇌횡 12턴 이내 클리어 덱의 인격 기여도",
-      "scoreInputScale": 100,
       "scopes": [
         "general",
         "mirrorDungeon"
-      ]
+      ],
+      "scoreInput": "direct content points",
+      "totalMaximum": 100,
+      "railwayTotal": {
+        "default": "railway6",
+        "selectablePerIdentity": true
+      },
+      "existingScoreValuesPreserved": true
     },
     "recordEditingPreservesViewport": true
   }

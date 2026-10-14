@@ -8,7 +8,9 @@
 .identity-scoring-principles ul { margin: 4px 0 0; padding-left: 18px; }
 .identity-scoring-principles li + li { margin-top: 5px; }
 .identity-score-guide { min-width: 0; color: #62492f; font-size: 12px; line-height: 1.8; }
-.identity-score-conversion { margin: 0 0 7px; color: #713741; font-variant-numeric: tabular-nums; }
+.identity-score-summary { margin: 12px 0; padding: 14px; border: 1px solid #bea477; background: #f5ead4; color: #62492f; font-size: 12px; line-height: 1.8; }
+.identity-score-summary strong { font-size: 15px; color: #713741; font-variant-numeric: tabular-nums; }
+.identity-score-summary .form-field { margin: 10px 0; max-width: 320px; }
 .identity-score-guide > details { border: 1px solid #bea477; border-radius: 2px; background: #f5ead4; }
 .identity-score-guide summary { min-height: 44px; padding: 10px; color: #5a412a; cursor: pointer; overflow-wrap: anywhere; }
 .identity-score-guide summary > span:first-of-type { font-weight: 600; }

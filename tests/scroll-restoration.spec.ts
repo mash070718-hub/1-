@@ -8,11 +8,11 @@ test.beforeEach(async ({ page }) => {
   const data = createCatalogLibrary();
   const identities = data.entries.filter(entry => entry.kind === 'identity');
   identities.forEach((entry, index) => {
-    entry.tiers.story = 'A'; entry.scores = { story: 99 - index / 2 };
+    entry.tiers.story = 'A'; entry.scores = { story: 19.8 - index / 10 };
     entry.description = '스크롤 보존 평가';
   });
   data.mirrorArchive = { decks: [], evaluations: identities.map((entry, index) => ({
-    ...createMirrorEvaluation(entry.id), tier: 'A', score: 99 - index / 2, description: '거울던전 스크롤 보존 평가',
+    ...createMirrorEvaluation(entry.id), tier: 'A', score: 29.7 - index / 10, description: '거울던전 스크롤 보존 평가',
   })) };
   await mockCloud(page.context(), { data, revision: 1 });
   await page.addInitScript(() => sessionStorage.setItem('library-of-limbus:admin-session', JSON.stringify({
@@ -78,7 +78,7 @@ for (const destination of ['A', 'S']) {
     const name = await original.getAttribute('aria-label');
     const y = await openAtCurrentPosition(page, original);
     await page.getByRole('button', { name: '기록 수정', exact: true }).click();
-    await page.getByRole('spinbutton', { name: '스토리 점수', exact: true }).fill('100');
+    await page.getByRole('spinbutton', { name: '스토리 점수', exact: true }).fill('20');
     await page.getByRole('combobox', { name: '스토리 티어', exact: true }).selectOption(destination);
     await page.getByRole('button', { name: '기록 저장', exact: true }).click();
     await expect(page.getByPlaceholder('이름, 수감자, 태그로 검색')).toHaveValue('');
@@ -87,7 +87,7 @@ for (const destination of ['A', 'S']) {
     await expectPosition(page, y);
     const moved = page.getByRole('button', { name: name!, exact: true });
     await expect(moved).not.toBeInViewport();
-    await expect(moved).toHaveText('100점');
+    await expect(moved).toHaveText('20점');
   });
 }
 
@@ -104,7 +104,7 @@ test('detail close, editor cancel, discard and direct tier changes return to the
   await expectPosition(page, y);
   await button.click();
   await page.getByRole('button', { name: '기록 수정', exact: true }).click();
-  await page.getByRole('spinbutton', { name: '스토리 점수', exact: true }).fill('100');
+  await page.getByRole('spinbutton', { name: '스토리 점수', exact: true }).fill('20');
   await page.keyboard.press('Escape');
   await page.getByRole('button', { name: '저장하지 않고 닫기', exact: true }).click();
   await page.keyboard.press('Escape');
@@ -126,7 +126,7 @@ test('mirror evaluation saves without following the reordered identity or collap
   const name = await button.getAttribute('aria-label');
   const y = await openAtCurrentPosition(page, button);
   await page.getByRole('button', { name: '기록 수정', exact: true }).click();
-  await page.getByRole('spinbutton', { name: '거울던전 점수', exact: true }).fill('100');
+  await page.getByRole('spinbutton', { name: '거울던전 점수', exact: true }).fill('30');
   await page.getByRole('button', { name: '기록 저장', exact: true }).click();
   await expect(page.locator('.tier-profile')).toHaveCount(96);
   await expectPosition(page, y);
