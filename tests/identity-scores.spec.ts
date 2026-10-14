@@ -38,6 +38,10 @@ test('native content limits, existing points and unified railway survive save, r
   await page.getByPlaceholder('이름, 수감자, 태그로 검색').fill(identity.name);
   await page.getByRole('button', { name: `${name} 상세 보기`, exact: true }).click();
   await expect(total(page)).toContainText('종합점수: 88 / 100점');
+  await expect(total(page)).not.toContainText(/호선|선택한 노선/);
+  const tierStrip = page.locator('.detail-tier-strip');
+  await expect(tierStrip.locator('.detail-tier-cell > span')).toHaveText(['스토리', '채광', '사영전투', '거굴철']);
+  await expect(tierStrip.locator('.detail-tier-cell').last()).toContainText('A');
   await page.getByRole('button', { name: '기록 수정', exact: true }).click();
   await expect(page.getByText(/배점 환산|100점으로 환산|÷/)).toHaveCount(0);
   for (const [label, max, value] of [

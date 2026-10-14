@@ -28,7 +28,7 @@ const LEGACY_CONTENTS: { id: Content; label: string; shortLabel: string }[] = [
 
 export const CONTENTS = [
   ...LEGACY_CONTENTS.filter(({ id }) => !LEGACY_RAILWAYS.some(legacy => legacy === id)),
-  { id: 'railway' as const, label: '거울굴절철도', shortLabel: '거울굴절철도' },
+  { id: 'railway' as const, label: '거울굴절철도', shortLabel: '거굴철' },
 ];
 export const STORED_CONTENTS = [...LEGACY_CONTENTS, CONTENTS[CONTENTS.length - 1]];
 
