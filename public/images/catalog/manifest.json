@@ -1,7 +1,7 @@
 {
   "sourceRepository": "https://github.com/eldritchtools/limbus-assets",
-  "sourceCommit": "1927003ef3a2254c08d6eceea92289305519de7e",
-  "sourceMetadataTimestamp": "2026-10-12T06:50:44Z",
+  "sourceCommit": "3d598c39012252a9a54ab63d2cfd0b4d30e67dec",
+  "sourceMetadataTimestamp": "2026-10-15T08:16:05Z",
   "copyright": "Artwork © Project Moon. Source repository: All rights reserved to Project Moon.",
   "provenance": "Official game artwork converted to WebP and distributed through a third-party mirror; not official hosting.",
   "images": [
@@ -6032,6 +6032,28 @@
       "width": 1920,
       "height": 1080,
       "size": 331874
+    },
+    {
+      "kind": "identity",
+      "gameId": "11016",
+      "role": "thumbnail",
+      "file": "identity-11016-thumb.webp",
+      "sourceUrl": "https://raw.githubusercontent.com/eldritchtools/limbus-assets/3d598c39012252a9a54ab63d2cfd0b4d30e67dec/assets/identities/11016_gacksung_profile.webp",
+      "sha256": "cd057a8c935a5f6ba8c12b56d43c7270805a2fa4fdc10081022ff8761fc77d97",
+      "width": 256,
+      "height": 256,
+      "size": 24586
+    },
+    {
+      "kind": "identity",
+      "gameId": "11016",
+      "role": "artwork",
+      "file": "identity-11016.webp",
+      "sourceUrl": "https://raw.githubusercontent.com/eldritchtools/limbus-assets/3d598c39012252a9a54ab63d2cfd0b4d30e67dec/assets/identities/11016_gacksung.webp",
+      "sha256": "234044d8431319e7227a26ea5bea4b303145c4053473ce2c7ead2c7aaea43ed8",
+      "width": 1920,
+      "height": 1080,
+      "size": 283884
     },
     {
       "kind": "identity",

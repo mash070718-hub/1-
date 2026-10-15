@@ -1,14 +1,14 @@
 {
   "metadata": {
-    "verifiedAt": "2026-10-15T04:03:10.188939Z",
+    "verifiedAt": "2026-10-15T08:51:11.927239Z",
     "asOf": "2026-10-15",
-    "sourceUpdatedAt": "2026-10-12T06:50:44Z",
-    "sourceCommit": "1927003ef3a2254c08d6eceea92289305519de7e",
+    "sourceUpdatedAt": "2026-10-15T08:16:05Z",
+    "sourceCommit": "3d598c39012252a9a54ab63d2cfd0b4d30e67dec",
     "localizationCommit": "9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f",
-    "latestReleaseDate": "2026-10-01",
+    "latestReleaseDate": "2026-10-15",
     "gameVersion": "공개 자료에 버전 번호 미표기",
     "counts": {
-      "identity": 189,
+      "identity": 190,
       "ego": 116
     },
     "coverageNote": "공개 게임 데이터 미러의 출시 목록을 공식 한국어 로컬라이징 및 이미지와 대조했습니다. 미출시·테스트·적·연출 전용 기록은 제외하며, 평가는 사용자가 직접 작성합니다.",
@@ -19,12 +19,10 @@
       },
       {
         "label": "출시 목록 및 공식 게임 이미지 공개 미러",
-        "url": "https://github.com/eldritchtools/limbus-assets/tree/1927003ef3a2254c08d6eceea92289305519de7e"
+        "url": "https://github.com/eldritchtools/limbus-assets/tree/3d598c39012252a9a54ab63d2cfd0b4d30e67dec"
       }
     ],
-    "excludedUpcomingIds": [
-      "11016"
-    ],
+    "excludedUpcomingIds": [],
     "sinnerCounts": [
       {
         "sinner": "이상",
@@ -73,7 +71,7 @@
       },
       {
         "sinner": "싱클레어",
-        "identity": 15,
+        "identity": 16,
         "ego": 9
       },
       {
@@ -2846,6 +2844,24 @@
       ],
       "image": "/images/catalog/identity-11015.webp",
       "thumbnail": "/images/catalog/identity-11015-thumb.webp",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
+    },
+    {
+      "id": "catalog-identity-11016",
+      "gameId": "11016",
+      "kind": "identity",
+      "name": "오트쿠튀르:: 르루주 붉은 신",
+      "sinner": "싱클레어",
+      "sinnerId": 10,
+      "rarity": "000",
+      "releaseDate": "2026-10-15",
+      "season": 8,
+      "tags": [
+        "출혈",
+        "충전"
+      ],
+      "image": "/images/catalog/identity-11016.webp",
+      "thumbnail": "/images/catalog/identity-11016-thumb.webp",
       "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
