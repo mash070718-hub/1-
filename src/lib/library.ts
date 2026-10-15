@@ -132,6 +132,8 @@ export interface LibraryEntry {
   mirrorPlan: MirrorPlan | null;
   formationCode: string;
   tiers: Record<Content, Tier>;
+  /** Manual identity rating, independent of every content tier and score. */
+  overallTier?: Tier;
   scores?: Partial<Record<Content, number | null>>;
   scoreScale?: 'content-v1';
   scoreRailway?: RailwayScoreContent;
@@ -204,6 +206,7 @@ export function createEntry(kind: Kind): LibraryEntry {
     mirrorPlan: null,
     formationCode: '',
     tiers: emptyTiers(),
+    ...(kind === 'identity' ? { overallTier: 'unrated' as const } : {}),
     createdAt: now,
     updatedAt: now,
   };
@@ -371,7 +374,7 @@ export function resetCatalogEntry(entry: LibraryEntry): LibraryEntry {
 }
 
 function matchesDemo(entry: LibraryEntry, example: LibraryEntry): boolean {
-  return !Object.values(entry.scores ?? {}).some((score) => score != null) && ENTRY_KEYS.every((key) => key === 'tiers'
+  return (entry.overallTier == null || entry.overallTier === 'unrated') && !Object.values(entry.scores ?? {}).some((score) => score != null) && ENTRY_KEYS.every((key) => key === 'tiers'
     ? STORED_CONTENTS.every(({ id }) => entry.tiers[id] === example.tiers[id])
     : key === 'mirrorPlan'
       ? (entry.mirrorPlan ?? null) === example.mirrorPlan
@@ -416,6 +419,11 @@ export function mergeCatalog(data: LibraryData): LibraryData {
   const entries = data.entries.filter(({ id }) => keep.has(id)).map((entry) => {
     const record = getCatalogRecord(entry.id);
     const retained = unifyRailway(cloneEntry(entry));
+    // Keep the former default list's classification once; never derive a later
+    // overall rating from scores or overwrite an explicitly cleared rating.
+    if ((record?.kind ?? retained.kind) === 'identity' && retained.overallTier === undefined) {
+      retained.overallTier = retained.tiers.story;
+    }
     return record ? { ...retained, kind: record.kind, name: record.name, sinner: record.sinner } : retained;
   });
   const existingIds = new Set(entries.map(({ id }) => id));
@@ -683,7 +691,10 @@ export function parseLibrary(json: string): LibraryData {
     const hasContentIds = Object.hasOwn(entry, 'contentIds');
     const hasMirrorPlan = Object.hasOwn(entry, 'mirrorPlan');
     requireKeys(entry, ENTRY_KEYS.filter((key) =>
-      (key !== 'contentIds' || hasContentIds) && (key !== 'mirrorPlan' || hasMirrorPlan)).concat(['scores', 'scoreScale', 'scoreRailway'].filter(key => Object.hasOwn(entry, key))), path);
+      (key !== 'contentIds' || hasContentIds) && (key !== 'mirrorPlan' || hasMirrorPlan)).concat(['scores', 'scoreScale', 'scoreRailway', 'overallTier'].filter(key => Object.hasOwn(entry, key))), path);
+    if (Object.hasOwn(entry, 'overallTier') && (entry.kind !== 'identity' || !TIERS.includes(entry.overallTier as Tier))) {
+      invalid(`${path}.overallTier`, '인격의 종합 티어는 S·A·B·C·D·미평가 중 하나여야 합니다.');
+    }
     if (Object.hasOwn(entry, 'scoreScale') && entry.scoreScale !== 'content-v1') invalid(`${path}.scoreScale`, '지원하지 않는 점수 기준입니다.');
     if (Object.hasOwn(entry, 'scoreRailway') && !['railway1', 'railway2', 'railway6'].includes(entry.scoreRailway as string)) invalid(`${path}.scoreRailway`, '종합점수에 사용할 거굴철 노선을 선택하세요.');
     if (Object.hasOwn(entry, 'scores')) {

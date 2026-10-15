@@ -8,7 +8,7 @@ test.beforeEach(async ({ page }) => {
   const data = createCatalogLibrary();
   const identities = data.entries.filter(entry => entry.kind === 'identity');
   identities.forEach((entry, index) => {
-    entry.tiers.story = 'A'; entry.scores = { story: 19.8 - index / 10 };
+    entry.tiers.story = 'A'; entry.overallTier = 'A'; entry.scores = { story: 19.8 - index / 10 };
     entry.description = '스크롤 보존 평가';
   });
   data.mirrorArchive = { decks: [], evaluations: identities.map((entry, index) => ({
@@ -63,8 +63,10 @@ for (const destination of ['S', 'B']) {
     const moved = page.getByRole('combobox', { name: name!, exact: true });
     await expect(moved).not.toBeInViewport();
     const saved = await page.evaluate(key => JSON.parse(localStorage.getItem(key)!).entries, draftKey);
+    expect(saved.filter((entry: { kind: string; overallTier: string }) =>
+      entry.kind === 'identity' && entry.overallTier === destination)).toHaveLength(1);
     expect(saved.filter((entry: { kind: string; tiers: { story: string } }) =>
-      entry.kind === 'identity' && entry.tiers.story === destination)).toHaveLength(1);
+      entry.kind === 'identity').every((entry: { tiers: { story: string } }) => entry.tiers.story === 'A')).toBe(true);
     // Verify that the viewport remains usable after restoration.
     await page.evaluate(() => window.scrollBy({ top: 100, behavior: 'instant' }));
     await expect.poll(() => page.evaluate(() => window.scrollY)).toBeCloseTo(y + 100, 0);
@@ -79,7 +81,7 @@ for (const destination of ['A', 'S']) {
     const y = await openAtCurrentPosition(page, original);
     await page.getByRole('button', { name: '기록 수정', exact: true }).click();
     await page.getByRole('spinbutton', { name: '스토리 점수', exact: true }).fill('20');
-    await page.getByRole('combobox', { name: '스토리 티어', exact: true }).selectOption(destination);
+    await page.getByRole('combobox', { name: '종합 티어', exact: true }).selectOption(destination);
     await page.getByRole('button', { name: '기록 저장', exact: true }).click();
     await expect(page.getByPlaceholder('이름, 수감자, 태그로 검색')).toHaveValue('');
     await expect(page.getByRole('tab', { name: '전체 수감자', exact: true })).toHaveAttribute('aria-selected', 'true');
@@ -111,7 +113,7 @@ test('detail close, editor cancel, discard and direct tier changes return to the
   await expectPosition(page, y);
   expect(await page.evaluate(key => localStorage.getItem(key), draftKey)).toBeNull();
   await button.click();
-  await page.getByRole('combobox', { name: '스토리 티어', exact: true }).selectOption('S');
+  await page.getByRole('combobox', { name: '종합 티어', exact: true }).selectOption('S');
   await page.keyboard.press('Escape');
   await expectPosition(page, y);
 });

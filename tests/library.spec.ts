@@ -54,6 +54,7 @@ async function createIdentity(page: Page, name = identityName) {
   await page.getByRole('textbox', { name: '장점', exact: true }).fill('장점 기록');
   await page.getByRole('textbox', { name: '단점', exact: true }).fill('단점 기록');
   await page.getByRole('textbox', { name: '운용 방법', exact: true }).fill('운용 기록');
+  await page.getByRole('combobox', { name: '종합 티어', exact: true }).selectOption('S');
   await page.getByRole('combobox', { name: '스토리 티어', exact: true }).selectOption('S');
   await expect(page.getByRole('combobox', { name: '거울던전 티어', exact: true })).toHaveCount(0);
   await page.getByRole('button', { name: '기록 저장', exact: true }).click();
@@ -222,7 +223,7 @@ test('개인 인격 기록과 콘텐츠별 티어는 새로고침 뒤에도 유�
   await createIdentity(page);
   await openTierArchive(page);
   await expect(page.getByRole('region', { name: 'S 티어', exact: true }).getByRole('button', { name: `${identityName} 상세 보기`, exact: true })).toBeVisible();
-  await expect(page.getByRole('tablist', { name: '콘텐츠', exact: true }).getByRole('tab')).toHaveCount(4);
+  await expect(page.getByRole('tablist', { name: '콘텐츠', exact: true }).getByRole('tab')).toHaveCount(5);
   await expect(page.getByRole('tab', { name: '거울던전', exact: true })).toHaveCount(0);
   await page.reload();
   await search(page).fill(identityName);
@@ -243,6 +244,8 @@ test('개인 기록을 수정하고 삭제 확인 후에만 지울 수 있다', 
   await search(page).fill('수정된 인격');
   await expect(identityCard(page)).toHaveCount(0);
   await openTierArchive(page);
+  await expect(page.getByRole('region', { name: 'S 티어', exact: true }).getByRole('button', { name: '수정된 인격 상세 보기', exact: true })).toBeVisible();
+  await page.getByRole('tab', { name: '스토리', exact: true }).click();
   await expect(page.getByRole('region', { name: 'B 티어', exact: true }).getByRole('button', { name: '수정된 인격 상세 보기', exact: true })).toBeVisible();
   await identityCard(page, '수정된 인격').click();
   await expect(page.getByRole('dialog').getByText('수정된 장점 기록', { exact: true })).toBeVisible();

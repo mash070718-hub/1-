@@ -80,6 +80,8 @@ const kindIcon = { identity: BookMarked, ego: Sparkles, deck: Layers3 };
 const kindLabel = { identity: "인격", ego: "E.G.O", deck: "덱" };
 const tierLabel = (tier: Tier) =>
   tier === "unrated" ? "미평가" : `${tier} 티어`;
+const displayedTier = (entry: LibraryEntry, content: Content, overall: boolean) =>
+  overall && entry.kind === "identity" ? entry.overallTier ?? "unrated" : entry.tiers[content];
 const hasNotes = (entry: LibraryEntry) =>
   Boolean(
     entry.description ||
@@ -276,6 +278,7 @@ function EntryCard({
   entries,
   total,
   content,
+  overall = false,
   showTier = true,
   onOpen,
   onTier,
@@ -284,6 +287,7 @@ function EntryCard({
   entries: LibraryEntry[];
   total?: IdentityScoreTotal;
   content: Content;
+  overall?: boolean;
   showTier?: boolean;
   onOpen: (id: string) => void;
   onTier: (id: string, tier: Tier) => void;
@@ -340,17 +344,17 @@ function EntryCard({
             <span className="subtle-text">{entry.affinity || "개인 기록"}</span>
           )}
         </span>
-        {showTier && !canEdit && <span>{tierLabel(entry.tiers[content])}</span>}
+        {showTier && !canEdit && <span>{overall ? "종합 " : ""}{tierLabel(displayedTier(entry, content, overall))}</span>}
         {showTier && canEdit && <select
           className="card-tier-select"
-          aria-label={`${displayName(entry)} ${GENERAL_CONTENTS.find((item) => item.id === content)?.label} 티어`}
+          aria-label={`${displayName(entry)} ${overall ? "종합" : GENERAL_CONTENTS.find((item) => item.id === content)?.label} 티어`}
           disabled={!canEdit}
-          value={entry.tiers[content]}
+          value={displayedTier(entry, content, overall)}
           onChange={(event) => onTier(entry.id, event.target.value as Tier)}
         >
           {TIERS.map((tier) => (
             <option key={tier} value={tier}>
-              {tierLabel(tier)}
+              {overall ? "종합 " : ""}{tierLabel(tier)}
             </option>
           ))}
         </select>}
@@ -364,6 +368,7 @@ function Detail({
   entries,
   mirrorEvaluation,
   content,
+  overall = false,
   onClose,
   onEdit,
   onDelete,
@@ -374,6 +379,7 @@ function Detail({
   entries: LibraryEntry[];
   mirrorEvaluation?: MirrorEvaluation;
   content: Content;
+  overall?: boolean;
   onClose: () => void;
   onEdit: () => void;
   onDelete: () => void;
@@ -446,8 +452,11 @@ function Detail({
         </>
       }
     >
-      {entry.kind === "identity" && <IdentityScoreSummary entry={entry} mirror={mirrorEvaluation} />}
-      {entry.kind !== "ego" && <p className="score-label">{contentLabelForScore(content)} 점수: {entry.scores?.[content] == null ? "미입력" : `${entry.scores[content]} / ${entry.kind === "identity" ? IDENTITY_SCORE_MAX[content] : 100}점`}</p>}
+      {entry.kind === "identity" && <>
+        <p className="detail-overall-tier"><strong>종합 티어: {tierLabel(entry.overallTier ?? "unrated")}</strong><span>콘텐츠별 티어와 별도로 지정합니다.</span></p>
+        <IdentityScoreSummary entry={entry} mirror={mirrorEvaluation} />
+      </>}
+      {entry.kind !== "ego" && !overall && <p className="score-label">{contentLabelForScore(content)} 점수: {entry.scores?.[content] == null ? "미입력" : `${entry.scores[content]} / ${entry.kind === "identity" ? IDENTITY_SCORE_MAX[content] : 100}점`}</p>}
       <div className="detail-heading">
         <EntryArt entry={entry} entries={entries} large />
         <div className="detail-heading-copy">
@@ -484,7 +493,7 @@ function Detail({
           <div
             className="detail-tier-cell"
             key={item.id}
-            data-active={item.id === content}
+            data-active={!overall && item.id === content}
           >
             <span>{item.shortLabel}</span>
             <strong>
@@ -495,13 +504,13 @@ function Detail({
       </div>
       <div className="detail-toolbar" hidden={!canEdit}>
         <label className="field-label" htmlFor="detail-tier">
-          {GENERAL_CONTENTS.find((item) => item.id === content)?.label} 티어
+          {overall ? "종합" : GENERAL_CONTENTS.find((item) => item.id === content)?.label} 티어
         </label>
         <select
           id="detail-tier"
           className="select"
           disabled={!canEdit}
-          value={entry.tiers[content]}
+          value={displayedTier(entry, content, overall)}
           onChange={(event) => onTier(entry.id, event.target.value as Tier)}
         >
           {TIERS.map((tier) => (
@@ -895,6 +904,13 @@ function Editor({
               </div>
             </fieldset>
           )}
+          {draft.kind === "identity" && <label className="form-field field-wide overall-tier-field">
+            <span className="field-label">종합 티어</span>
+            <select className="select" aria-label="종합 티어" value={draft.overallTier ?? "unrated"} onChange={event => set("overallTier", event.target.value as Tier)}>
+              {TIERS.map(tier => <option key={tier} value={tier}>{tierLabel(tier)}</option>)}
+            </select>
+            <span className="field-help">기본 목록과 종합 티어리스트에 표시합니다. 콘텐츠별 티어와 종합점수는 별도로 유지됩니다.</span>
+          </label>}
           <div className="form-field field-wide">
             <h3 className="detail-section-title">{draft.kind === "ego" ? "콘텐츠별 티어" : "콘텐츠별 티어와 점수"}</h3>
             {draft.kind === "identity" && <IdentityScoringOverview />}
@@ -1271,6 +1287,8 @@ export default function App() {
   const [confirmMirrorDelete, setConfirmMirrorDelete] = useState(false);
   const [kind, setKind] = useState<Kind>("identity");
   const [content, setContent] = useState<Content>("story");
+  const [identityOverall, setIdentityOverall] = useState(true);
+  const overallView = kind === "identity" && identityOverall;
   const [view, setView] = useState<"tiers" | "all">("all");
   const [deckCategory, setDeckCategory] = useState<DeckCategory | null>(null);
   const [filterTags, setFilterTags] = useState<string[]>([]);
@@ -1439,7 +1457,9 @@ export default function App() {
       putEntry(
         {
           ...entry,
-          tiers: { ...entry.tiers, [content]: tier },
+          ...(entry.kind === "identity" && identityOverall
+            ? { overallTier: tier }
+            : { tiers: { ...entry.tiers, [content]: tier } }),
           updatedAt: new Date().toISOString(),
         },
         "티어를 저장했습니다.",
@@ -1496,7 +1516,8 @@ export default function App() {
       setBackup(false);
     }
   };
-  const isRated = (entry: LibraryEntry) => entry.tiers[content] !== "unrated";
+  const listTier = (entry: LibraryEntry) => displayedTier(entry, content, overallView);
+  const isRated = (entry: LibraryEntry) => listTier(entry) !== "unrated";
   const mirrorArchive = getMirrorArchive(data);
   const mirrorById = new Map(mirrorArchive.evaluations.map(evaluation => [evaluation.entryId, evaluation]));
   const identityTotals = new Map(data.entries.filter(entry => entry.kind === "identity")
@@ -1526,10 +1547,10 @@ export default function App() {
           .toLocaleLowerCase()
           .includes(query.trim().toLocaleLowerCase())),
   );
-  filtered.sort((a, b) => TIERS.indexOf(a.tiers[content]) - TIERS.indexOf(b.tiers[content]) || compareScores(listScore(a), listScore(b)));
+  filtered.sort((a, b) => TIERS.indexOf(listTier(a)) - TIERS.indexOf(listTier(b)) || compareScores(listScore(a), listScore(b)));
   const rawCurrent = data.entries.find((entry) => entry.id === selected);
   const current = rawCurrent && withMembership(rawCurrent, data.entries);
-  const contentLabel = GENERAL_CONTENTS.find((item) => item.id === content)!.label;
+  const contentLabel = overallView ? "종합" : GENERAL_CONTENTS.find((item) => item.id === content)!.label;
   const category = DECK_CATEGORIES.find((item) => item.id === deckCategory);
   const visibleContents = category
     ? GENERAL_CONTENTS.filter((item) => category.contents.includes(item.id))
@@ -1539,6 +1560,7 @@ export default function App() {
   const selectKind = (next: Kind) => {
     showLibrary();
     setKind(next);
+    if (next === "identity") setIdentityOverall(true);
     setQuery("");
     setRecordFilter("all");
     setDeckCategory(null);
@@ -1947,14 +1969,19 @@ export default function App() {
             aria-label="콘텐츠"
             onKeyDown={navigateTabs}
           >
+            {kind === "identity" && <button
+              className={`content-tab ${overallView ? "active" : ""}`}
+              role="tab" aria-selected={overallView} tabIndex={overallView ? 0 : -1}
+              onClick={() => setIdentityOverall(true)}
+            >종합</button>}
             {visibleContents.map((item) => (
               <button
                 key={item.id}
-                className={`content-tab ${content === item.id ? "active" : ""}`}
+                className={`content-tab ${!overallView && content === item.id ? "active" : ""}`}
                 role="tab"
-                aria-selected={content === item.id}
-                tabIndex={content === item.id ? 0 : -1}
-                onClick={() => setContent(item.id)}
+                aria-selected={!overallView && content === item.id}
+                tabIndex={!overallView && content === item.id ? 0 : -1}
+                onClick={() => { setIdentityOverall(false); setContent(item.id); }}
               >
                 {item.label}
               </button>
@@ -2012,7 +2039,7 @@ export default function App() {
             >
               {TIERS.map((tier) => {
                 const records = filtered.filter(
-                  (entry) => entry.tiers[content] === tier,
+                  (entry) => listTier(entry) === tier,
                 );
                 const limit = tierLimits[tier] || (kind === "deck" ? 12 : 48);
                 return (
@@ -2097,6 +2124,7 @@ export default function App() {
                     entries={data.entries}
                     content={content}
                     total={entry.kind === "identity" ? identityTotals.get(entry.id) : undefined}
+                    overall={overallView}
                     onOpen={setSelected}
                     onTier={changeTier}
                   />
@@ -2165,6 +2193,7 @@ export default function App() {
           entries={data.entries}
           mirrorEvaluation={mirrorArchive.evaluations.find(item => item.entryId === current.id)}
           content={content}
+          overall={current.kind === "identity" && identityOverall}
           onClose={() => setSelected(null)}
           onEdit={() => setEditing({ entry: current, isNew: false })}
           onDelete={() =>

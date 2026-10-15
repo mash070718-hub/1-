@@ -298,7 +298,9 @@ test('인격과 E.G.O.의 거울던전 평가와 추천을 일반 평가와 양�
     if (kind === '인격') await page.getByRole('checkbox', { name: memberName(egos[1]), exact: true }).check();
     await page.getByRole('button', { name: '기록 저장', exact: true }).click();
     const afterMirror = await storedNotebook(page);
-    expect(afterMirror.entries.find(entry => entry.id === record.id)).toEqual(entries.find(entry => entry.id === record.id));
+    expect(afterMirror.entries.find(entry => entry.id === record.id)).toEqual({
+      ...entries.find(entry => entry.id === record.id), ...(kind === '인격' ? { overallTier: 'unrated' } : {}),
+    });
     expect(afterMirror.mirrorArchive?.evaluations.find(evaluation => evaluation.entryId === record.id)).toMatchObject({ tier: 'S', subtitle: `${kind} 거울던전 한 줄 소개 기록`, description: `${kind} 거울던전 설명 기록`, strengths: `${kind} 거울던전 장점 기록`, weaknesses: `${kind} 거울던전 단점 기록`, operation: `${kind} 거울던전 운용 방법 기록`, ...(kind === '인격' ? { recommendedEgoIds: [egos[1].id] } : {}) });
     const mirrorBefore = afterMirror.mirrorArchive;
     await openGeneral(page, kind);

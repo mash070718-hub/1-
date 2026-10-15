@@ -45,6 +45,7 @@ test('zero is retained and old deck membership joins the unified railway folder'
 test('cleared unified scores, tiers and folder membership stay cleared after export and reload', () => {
   const original = legacyEntry();
   original.kind = 'deck'; original.contentIds = ['railway6'];
+  delete original.overallTier;
   const unified = unifyRailway(original);
   unified.scores!.railway = null;
   unified.tiers.railway = 'unrated';

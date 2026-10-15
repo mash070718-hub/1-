@@ -9,6 +9,7 @@ function fixture() {
   const identity = data.entries.find(entry => entry.kind === 'identity')!;
   identity.description = '기존 평가 보존';
   identity.tiers.story = 'A';
+  identity.overallTier = 'A';
   identity.scores = { story: 16.5, luxcavation: 8, simulation: 27, railway1: 6, railway2: 7, railway6: 8.5, railway: 8.5, mirror: 99 };
   data.mirrorArchive = { decks: [], evaluations: [{ ...createMirrorEvaluation(identity.id), score: 28, tier: 'B', description: '거울던전 메모 보존' }] };
   return { data, identity, name: `${identity.name} ${identity.sinner}` };
@@ -130,7 +131,7 @@ test('general cards and compact tiers display and sort totals instead of the sel
   const { data, identity, name } = fixture();
   const other = data.entries.filter(entry => entry.kind === 'identity' && entry.id !== identity.id).slice(0, 4);
   const [lowerTotal, zero, blank, tied] = other;
-  other.forEach(entry => { entry.tiers.story = 'A'; });
+  other.forEach(entry => { entry.tiers.story = 'A'; entry.overallTier = 'A'; });
   lowerTotal.scores = { story: 20 }; // Better story score, lower total than the first identity's 88.
   zero.scores = { story: 0 };
   tied.scores = { story: 20 };

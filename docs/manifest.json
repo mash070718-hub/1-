@@ -3,8 +3,8 @@
   "entrypoint": "index.html",
   "language": "ko",
   "artifact": {
-    "bytes": 9041150,
-    "sha256": "21b6455a37ca091c18649c5bdc9bdc5b2f291533b775c7b487c7759830f7c9e3",
+    "bytes": 9043082,
+    "sha256": "c2f3a66d9fac7ec7bb71b8605d4e425686fc535eea222488cccf4505e838bc1c",
     "embeddedArtworks": 305,
     "inlineScripts": 1
   },
@@ -123,6 +123,14 @@
       "generalListDisplaysAndSortsTotal": true,
       "mirrorScoreEditableInGeneralEditor": true
     },
-    "recordEditingPreservesViewport": true
+    "recordEditingPreservesViewport": true,
+    "identityOverallTier": {
+      "manual": true,
+      "independentOfContentTiers": true,
+      "independentOfScores": true,
+      "defaultListAndTierBoard": true,
+      "legacyMigration": "copy the previous default story tier once, preserve original content tiers",
+      "contentTabsPreserved": true
+    }
   }
 }
