@@ -2,6 +2,7 @@ import { CATALOG, getCatalogRecord, type CatalogRecord } from './catalog';
 import { isGameTag } from './tags';
 import { IDENTITY_SCORE_MAX, type RailwayScoreContent } from './identityScores';
 import { LEGACY_RAILWAYS, unifyRailway } from './railway';
+import { MAX_DECK_SCREENSHOTS, isScreenshotPath, type DeckScreenshot } from './screenshots';
 
 export type Kind = 'identity' | 'ego' | 'deck';
 export type Content =
@@ -89,6 +90,7 @@ export interface MirrorDeck {
   memberIds: string[];
   formationCode: string;
   plan: MirrorPlan;
+  screenshots?: DeckScreenshot[];
   createdAt: string;
   updatedAt: string;
 }
@@ -297,6 +299,7 @@ function cloneMirrorArchive(archive: MirrorArchive): MirrorArchive {
       recommendedEgoIds: [...deck.recommendedEgoIds],
       memberIds: [...deck.memberIds],
       plan: cloneMirrorPlan(deck.plan),
+      ...(deck.screenshots ? { screenshots: deck.screenshots.map((image) => ({ ...image })) } : {}),
     })),
     evaluations: archive.evaluations.map((evaluation) => ({
       ...evaluation, recommendedEgoIds: [...evaluation.recommendedEgoIds],
@@ -630,11 +633,31 @@ function requireMirrorArchive(value: unknown, byId: Map<string, LibraryEntry>): 
     requireKeys(deck, [
       'id', 'name', 'subtitle', 'affinity', 'tags', 'tier', 'description', 'strengths',
       'weaknesses', 'operation', 'recommendedEgoIds', 'memberIds', 'formationCode', 'plan', 'createdAt', 'updatedAt',
-    ].concat(Object.hasOwn(deck, 'score') ? ['score'] : []), path);
+    ].concat(['score', 'screenshots'].filter(key => Object.hasOwn(deck, key))), path);
     if (Object.hasOwn(deck, 'score')) requireScore(deck.score, `${path}.score`);
     requireId(deck.id, `${path}.id`);
     if (seenDecks.has(deck.id)) invalid('mirrorArchive.decks', '중복된 거울던전 덱 ID가 있습니다.');
     seenDecks.add(deck.id);
+    if (Object.hasOwn(deck, 'screenshots')) {
+      if (!Array.isArray(deck.screenshots) || deck.screenshots.length > MAX_DECK_SCREENSHOTS) {
+        invalid(`${path}.screenshots`, '스크린샷은 덱마다 최대 3장까지 첨부할 수 있습니다.');
+      }
+      const paths = new Set<string>();
+      deck.screenshots = deck.screenshots.map((value, imageIndex) => {
+        const imagePath = `${path}.screenshots[${imageIndex}]`;
+        const image = requireObject(value, imagePath);
+        requireKeys(image, ['path', 'caption', 'width', 'height'], imagePath);
+        if (!isScreenshotPath(image.path) || paths.has(image.path)) invalid(imagePath, '스크린샷 경로가 올바르지 않거나 중복되었습니다.');
+        paths.add(image.path);
+        requireString(image.caption, `${imagePath}.caption`, 300);
+        for (const dimension of ['width', 'height']) {
+          if (!Number.isInteger(image[dimension]) || (image[dimension] as number) < 1 || (image[dimension] as number) > 4096) {
+            invalid(imagePath, '스크린샷 크기가 올바르지 않습니다.');
+          }
+        }
+        return { ...image };
+      });
+    }
     requireString(deck.name, `${path}.name`, 200);
     requireString(deck.affinity, `${path}.affinity`, 100);
     requireString(deck.formationCode, `${path}.formationCode`, 2_000);

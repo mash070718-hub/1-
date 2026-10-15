@@ -3,8 +3,8 @@
   "entrypoint": "index.html",
   "language": "ko",
   "artifact": {
-    "bytes": 9077013,
-    "sha256": "b50bf199c72e30789b82d9883fc9860d20859d488f6d33cf906dac355c6ce4a3",
+    "bytes": 9089769,
+    "sha256": "a6d197cc391eb784daa213037285777bd1fc5dbc51a869b017b9dc86df08934e",
     "embeddedArtworks": 306,
     "inlineScripts": 1
   },
@@ -23,7 +23,7 @@
   "hosting": {
     "format": "static single HTML",
     "networkAssetsRequired": true,
-    "networkPurpose": "Supabase Auth and shared publication; catalog images remain embedded"
+    "networkPurpose": "Supabase Auth, shared publication and private screenshot storage; catalog images remain embedded"
   },
   "storage": {
     "kind": "Supabase PostgreSQL publication with admin-only writes; separate browser administrator drafts",
@@ -57,7 +57,16 @@
       "independentRecommendations": true,
       "legacyMigration": "once",
       "deckTierlist": true,
-      "independentScores": true
+      "independentScores": true,
+      "screenshots": {
+        "maximumPerDeck": 3,
+        "storage": "Supabase Storage private bucket",
+        "administratorUploadOnly": true,
+        "publicAfterPublication": true,
+        "captions": true,
+        "expand": true,
+        "backup": "references and captions; retain storage files"
+      }
     },
     "generalContents": [
       "story",

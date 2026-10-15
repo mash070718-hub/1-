@@ -1,4 +1,5 @@
 import { exportLibrary, mergeCatalog, parseLibrary, type LibraryData } from './library';
+import { SCREENSHOT_BUCKET, MAX_SCREENSHOT_BYTES, isScreenshotPath } from './screenshots';
 
 export interface CloudConfig { url: string; publishableKey: string }
 interface Session { access_token: string; refresh_token: string; expires_at: number }
@@ -31,23 +32,51 @@ function storeSession(value: Session | null) {
   else sessionStorage.removeItem(SESSION_KEY);
 }
 
-async function request(path: string, options: RequestInit = {}, authenticated = false): Promise<unknown> {
+async function request(path: string, options: RequestInit = {}, authenticated = false, responseType: 'json' | 'image' = 'json'): Promise<unknown> {
   if (!config) throw new Error('공용 저장소 연결 설정이 필요합니다.');
   if (authenticated) await refreshSession();
   if (authenticated && !session) throw new Error('관리자로 다시 로그인해 주세요.');
   const response = await fetch(`${config.url}${path}`, {
-    ...options, signal: AbortSignal.timeout(15000),
+    ...options, signal: AbortSignal.timeout(path.startsWith('/storage/') ? 90000 : 15000),
     headers: { apikey: config.publishableKey,
       ...(authenticated ? { Authorization: `Bearer ${session!.access_token}` } : {}),
       'Content-Type': 'application/json', ...options.headers },
   });
+  if (response.ok && responseType === 'image') return response.blob();
   const body = await response.json().catch(() => null);
   if (!response.ok) {
+    if (path.startsWith('/storage/')) {
+      if (/bucket.*not found/i.test(`${body?.message ?? ''} ${body?.error ?? ''}`)) {
+        throw new ScreenshotStorageError('사진 저장소 설정이 아직 필요합니다. 아래 설정 안내에서 한 번만 설치해 주세요.');
+      }
+      if (response.status === 401 || response.status === 403 || body?.statusCode === '403') {
+        throw new Error('사진 접근 권한이 없습니다. 관리자 로그인을 확인하고, 첫 첨부라면 사진 저장소 설정을 확인해 주세요.');
+      }
+      throw new Error(responseType === 'image' ? '사진을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.' : '사진 업로드에 실패했습니다. 연결을 확인하고 다시 시도해 주세요. 기존 사진과 기록은 유지됩니다.');
+    }
     if (body?.code === '40001') throw new Error('다른 화면에서 이미 게시했습니다. 공개 기록을 다시 불러온 뒤 변경 내용을 합쳐 게시하세요. 현재 편집본은 유지됩니다.');
     if (response.status === 401 || response.status === 403) throw new Error('로그인 또는 관리자 권한을 확인해 주세요.');
     throw new Error(`공용 저장소 요청 실패 (${response.status}). 연결 설정과 데이터베이스 설치를 확인해 주세요.`);
   }
   return body;
+}
+
+export class ScreenshotStorageError extends Error {}
+
+export async function uploadScreenshot(path: string, blob: Blob): Promise<void> {
+  if (!isScreenshotPath(path) || blob.type !== 'image/webp' || !blob.size || blob.size > MAX_SCREENSHOT_BYTES) {
+    throw new Error('저장할 스크린샷 형식이나 크기가 올바르지 않습니다.');
+  }
+  await request(`/storage/v1/object/${SCREENSHOT_BUCKET}/${path}`, {
+    method: 'POST', body: blob,
+    headers: { 'Content-Type': 'image/webp', 'x-upsert': 'false', 'cache-control': '3600' },
+  }, true);
+}
+
+export async function readScreenshot(path: string, admin = false): Promise<Blob> {
+  if (!isScreenshotPath(path)) throw new Error('스크린샷 경로가 올바르지 않습니다.');
+  // A private bucket: anonymous reads are allowed only for photos in the published document.
+  return await request(`/storage/v1/object/authenticated/${SCREENSHOT_BUCKET}/${path}`, {}, admin, 'image') as Blob;
 }
 
 async function refreshSession() {

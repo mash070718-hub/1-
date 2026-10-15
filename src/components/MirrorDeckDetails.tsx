@@ -3,6 +3,7 @@ import { ArrowRight, BookMarked, FileText, Layers3, Sparkles, Swords } from "luc
 import { getCatalogRecord } from "../lib/catalog";
 import type { LibraryEntry, MirrorDeck } from "../lib/library";
 import MirrorPlanDetails from "./MirrorPlanDetails";
+import { DeckScreenshotGallery } from "./DeckScreenshots";
 import "./mirror-dungeon.css";
 
 export interface MirrorDeckDetailsProps {
@@ -56,6 +57,8 @@ export default function MirrorDeckDetails({ deck, entries, onOpenIdentity, onOpe
         <h3 className="detail-section-title"><FileText size={17} /> 거울던전 설명</h3>
         <p className={deck.description.trim() ? "prose" : "detail-empty"}>{deck.description.trim() ? deck.description : "거울던전 설명을 기록해 주세요."}</p>
       </section>
+
+      <DeckScreenshotGallery screenshots={deck.screenshots} />
 
       <section className="detail-section mirror-deck-formation">
         <h3 className="detail-section-title"><Layers3 size={17} /> 거울던전 편성</h3>

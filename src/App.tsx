@@ -213,6 +213,7 @@ function Modal({
       ?.querySelector<HTMLElement>("button, input, select, textarea")
       ?.focus({ preventScroll: true });
     const key = (event: KeyboardEvent) => {
+      if (event.isComposing || event.keyCode === 229 || event.defaultPrevented) return;
       if (event.key === "Escape") closeRef.current();
       if (event.key !== "Tab" || !ref.current) return;
       const nodes = Array.from(
@@ -1154,11 +1155,13 @@ function MirrorRecordEditor<T extends MirrorDeck | MirrorEvaluation>({ value, ti
   title: string;
   onClose: () => void;
   onSave: (value: T) => void;
-  render: (draft: T, onChange: (value: T) => void) => ReactNode;
+  render: (draft: T, onChange: (value: T) => void, onBusyChange: (busy: boolean) => void) => ReactNode;
 }) {
   const [draft, setDraft] = useState<T>(() => structuredClone(value));
   const [confirmClose, setConfirmClose] = useState(false);
+  const [busy, setBusy] = useState(false);
   const close = () => {
+    if (busy) return;
     if (JSON.stringify(draft) !== JSON.stringify(value)) setConfirmClose(true);
     else onClose();
   };
@@ -1171,15 +1174,16 @@ function MirrorRecordEditor<T extends MirrorDeck | MirrorEvaluation>({ value, ti
           <button className="danger-button" onClick={onClose}>저장하지 않고 닫기</button>
         </div>
       </div> : <>
-        <button className="secondary-button" onClick={close}>취소</button>
-        <button type="submit" form="mirror-record-form" className="primary-button"><Check size={16} />기록 저장</button>
+        <button className="secondary-button" disabled={busy} onClick={close}>취소</button>
+        <button type="submit" form="mirror-record-form" className="primary-button" disabled={busy}><Check size={16} />{busy ? "사진 업로드 중…" : "기록 저장"}</button>
       </>
     }>
       <form id="mirror-record-form" onSubmit={(event) => {
         event.preventDefault();
+        if (busy) return;
         if ("name" in draft && !draft.name.trim()) return;
         onSave(draft);
-      }}>{render(draft, setDraft)}</form>
+      }}>{render(draft, setDraft, setBusy)}</form>
     </Modal>
   );
 }
@@ -2241,7 +2245,7 @@ export default function App() {
         <MirrorRecordEditor key={mirrorEditing.deck.id} value={mirrorEditing.deck}
           title={mirrorEditing.isNew ? "새 거울던전 덱 기록" : "거울던전 덱 편집"}
           onClose={() => setMirrorEditing(null)} onSave={saveMirrorDeck}
-          render={(draft, onChange) => <MirrorDeckEditor deck={draft} entries={data.entries} onChange={onChange} />} />
+          render={(draft, onChange, onBusyChange) => <MirrorDeckEditor deck={draft} entries={data.entries} onChange={onChange} onBusyChange={onBusyChange} />} />
       )}
       {canEdit && mirrorEditing?.type === "evaluation" && (
         <MirrorRecordEditor key={mirrorEditing.entry.id} value={mirrorEditing.evaluation}

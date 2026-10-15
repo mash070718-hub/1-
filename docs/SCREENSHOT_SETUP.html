@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>거울던전 사진 저장소 설정 · Library of Limbus</title><style>
+body{margin:32px auto;padding:0 20px;max-width:820px;background:#171410;color:#eadfc8;font:16px/1.8 sans-serif}h1,h2,a{color:#dfba76}h1{font-size:27px}section{padding:18px 0;border-top:1px solid #79613b}button{padding:12px 18px;border:1px solid #c5a064;background:#c5a064;color:#21190f;cursor:pointer;font-size:16px}textarea{box-sizing:border-box;width:100%;margin:14px 0;background:#251e15;color:#efe0c2;border:1px solid #79613b;padding:12px;font:13px/1.6 monospace}li{margin:10px 0}.note{padding:14px;border-left:3px solid #c5a064;background:#302619}a{overflow-wrap:anywhere}</style></head><body>
+<a href="./#mirror-dungeon">← 거울던전으로 돌아가기</a><h1>거울던전 사진 저장소 설정</h1>
+<p>처음 한 번만 설정하면 덱마다 직접 플레이한 데미지 스크린샷을 최대 3장까지 첨부할 수 있습니다. 기존 Supabase 프로젝트를 그대로 사용합니다.</p>
+<section><h2>1. Supabase SQL Editor 열기</h2><p><a id="sql-link" href="https://supabase.com/dashboard" target="_blank" rel="noreferrer">Supabase 설정 화면 열기 ↗</a></p><p>현재 사이트와 연결한 프로젝트의 <b>SQL Editor → New query</b>를 엽니다.</p></section>
+<section><h2>2. 아래 SQL을 복사해서 실행</h2><button id="copy" type="button">사진 저장소 설정 SQL 복사</button><p id="copy-status" role="status"></p><textarea id="sql" readonly rows="12" aria-label="사진 저장소 설정 SQL">-- Run once in the existing project&#x27;s SQL Editor, after setup.sql.
+-- This adds image storage and permissions; it never changes evaluations or admin membership.
+begin;
+
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values (&#x27;mirror-deck-screenshots&#x27;, &#x27;mirror-deck-screenshots&#x27;, false, 2097152, array[&#x27;image/webp&#x27;])
+on conflict (id) do update set public = false,
+  file_size_limit = excluded.file_size_limit, allowed_mime_types = excluded.allowed_mime_types;
+
+create or replace function public.is_published_library_screenshot(object_name text)
+returns boolean language sql stable security invoker set search_path = &#x27;&#x27; as $$
+  select exists (
+    select 1 from public.library_publication
+    where id = &#x27;library&#x27; and data @&gt; jsonb_build_object(&#x27;mirrorArchive&#x27;,
+      jsonb_build_object(&#x27;decks&#x27;, jsonb_build_array(jsonb_build_object(&#x27;screenshots&#x27;,
+        jsonb_build_array(jsonb_build_object(&#x27;path&#x27;, object_name))))))
+  );
+$$;
+revoke all on function public.is_published_library_screenshot(text) from public;
+grant execute on function public.is_published_library_screenshot(text) to anon, authenticated;
+
+drop policy if exists library_screenshot_admin_insert on storage.objects;
+create policy library_screenshot_admin_insert on storage.objects
+for insert to authenticated with check (
+  bucket_id = &#x27;mirror-deck-screenshots&#x27; and public.is_library_admin()
+  and name ~ &#x27;^mirror-decks/[a-zA-Z0-9_-]{1,100}/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}\.webp$&#x27;
+);
+
+drop policy if exists library_screenshot_admin_read on storage.objects;
+create policy library_screenshot_admin_read on storage.objects
+for select to authenticated using (
+  bucket_id = &#x27;mirror-deck-screenshots&#x27; and public.is_library_admin()
+);
+
+drop policy if exists library_screenshot_published_read on storage.objects;
+create policy library_screenshot_published_read on storage.objects
+for select to anon, authenticated using (
+  bucket_id = &#x27;mirror-deck-screenshots&#x27; and public.is_published_library_screenshot(name)
+);
+
+-- No overwrite/delete policies: editing a draft must not break the currently
+-- published photos or old backups. Removing an attachment only removes its reference.
+commit;
+</textarea><p>새 쿼리에 전체를 붙여넣고 <b>Run</b>을 누르세요. <b>Success. No rows returned</b>가 나오면 완료입니다.</p><p class="note">사진 저장소와 접근 규칙만 추가합니다. 기존 평가·덱·관리자 계정은 지우거나 변경하지 않습니다. 같은 SQL을 다시 실행해도 기록은 보존됩니다.</p></section>
+<section><h2>3. 사진 첨부하고 게시하기</h2><ol><li>사이트를 새로고침하고 <b>관리자 로그인</b>합니다.</li><li><b>거울던전 → 덱 선택 → 기록 수정</b>으로 들어갑니다. 새 덱이면 <b>새 거울던전 기록</b>을 누릅니다.</li><li><b>데미지 스크린샷 → 스크린샷 파일 선택</b>에서 사진을 최대 3장 선택합니다. PNG·JPG·WebP 파일을 지원하며 한 장의 원본 크기는 20MB 이하여야 합니다.</li><li>업로드가 끝나면 사진마다 층수·기프트·피해량 등 설명을 적을 수 있습니다.</li><li><b>기록 저장 → 게시하기 → 공개 게시 확인</b>을 누릅니다. 방문자는 덱 상세 화면에서 사진을 눌러 확대해서 볼 수 있습니다.</li></ol></section>
+<section><h2>저장과 공개 범위</h2><p>사진 파일은 Supabase에 저장되며 브라우저 용량을 차지하는 평가 백업에는 사진 연결 정보와 설명만 넣습니다. 게시 전 사진은 관리자만 볼 수 있습니다. 게시된 덱에 포함된 사진만 방문자에게 공개됩니다.</p><p>‘첨부 제거’는 편집 중인 덱에서 사진을 뺍니다. 게시하기 전까지 기존 공개 사진은 유지됩니다. 기존 백업 복원을 위해 원본 저장소의 사진 파일은 자동 삭제하지 않습니다. Supabase 저장소에서 파일을 직접 지우면 그 사진이 들어 있는 백업도 복원할 수 없습니다.</p><p>유료 기능 가입은 필요하지 않으며 기존 Supabase 무료 플랜의 저장 공간과 전송량 한도 안에서 사용합니다.</p></section>
+<script>
+document.getElementById('copy').addEventListener('click',async()=>{const field=document.getElementById('sql');try{await navigator.clipboard.writeText(field.value);document.getElementById('copy-status').textContent='복사했습니다. SQL Editor의 새 쿼리에 붙여넣고 Run을 누르세요.';}catch{field.focus();field.select();document.getElementById('copy-status').textContent='선택된 SQL을 직접 복사해 주세요.';}});
+fetch('./cloud-config.json',{cache:'no-store'}).then(r=>r.json()).then(config=>{const host=new URL(config.url).hostname;if(/^[a-z0-9-]+\.supabase\.co$/.test(host))document.getElementById('sql-link').href='https://supabase.com/dashboard/project/'+host.split('.')[0]+'/sql/new';}).catch(()=>{});
+</script></body></html>

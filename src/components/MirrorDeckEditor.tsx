@@ -5,6 +5,7 @@ import { getCatalogRecord } from "../lib/catalog";
 import { AFFINITIES, TIERS, type LibraryEntry, type MirrorDeck, type Tier } from "../lib/library";
 import DeckFormationEditor from "./DeckFormationEditor";
 import MirrorPlanEditor from "./MirrorPlanEditor";
+import { DeckScreenshotEditor } from "./DeckScreenshots";
 import { TagPicker } from "./TagPicker";
 import "./mirror-dungeon.css";
 
@@ -12,13 +13,14 @@ export interface MirrorDeckEditorProps {
   deck: MirrorDeck;
   entries: LibraryEntry[];
   onChange: (deck: MirrorDeck) => void;
+  onBusyChange: (busy: boolean) => void;
 }
 
 const displayName = (entry: LibraryEntry) =>
   getCatalogRecord(entry.id) ? `${entry.name} ${entry.sinner}` : entry.name;
 
 /** The parent owns the form, submission, and draft lifecycle. */
-export default function MirrorDeckEditor({ deck, entries, onChange }: MirrorDeckEditorProps) {
+export default function MirrorDeckEditor({ deck, entries, onChange, onBusyChange }: MirrorDeckEditorProps) {
   const fieldId = useId();
   const [egoQuery, setEgoQuery] = useState("");
   const egoOptions = useMemo(() => {
@@ -81,6 +83,7 @@ export default function MirrorDeckEditor({ deck, entries, onChange }: MirrorDeck
         </div>
 
         <ScoreInput label="거울던전 점수" value={deck.score} onChange={(score) => set("score", score)} />
+        <DeckScreenshotEditor deckId={deck.id} screenshots={deck.screenshots} onChange={(screenshots) => set("screenshots", screenshots)} onBusyChange={onBusyChange} />
         <label className="form-field field-wide" htmlFor={`${fieldId}-description`}>
           <span className="field-label">거울던전 설명</span>
           <textarea id={`${fieldId}-description`} className="textarea" rows={3} maxLength={30000} value={deck.description} onChange={(event) => set("description", event.currentTarget.value)} placeholder="이 편성을 선택하는 이유와 공략의 목표를 기록하세요" />
