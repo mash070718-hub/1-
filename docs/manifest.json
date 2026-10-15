@@ -3,8 +3,8 @@
   "entrypoint": "index.html",
   "language": "ko",
   "artifact": {
-    "bytes": 9043082,
-    "sha256": "c2f3a66d9fac7ec7bb71b8605d4e425686fc535eea222488cccf4505e838bc1c",
+    "bytes": 9043827,
+    "sha256": "e0ff033c3deb27fb2a303d2aeb0572b8811ccb13f6d8db3fa849a1f0fec61bb4",
     "embeddedArtworks": 305,
     "inlineScripts": 1
   },
@@ -131,6 +131,12 @@
       "defaultListAndTierBoard": true,
       "legacyMigration": "copy the previous default story tier once, preserve original content tiers",
       "contentTabsPreserved": true
+    },
+    "automaticCatalogUpdates": {
+      "intervalHours": 2,
+      "policy": null,
+      "personalEvaluationsUntouched": true,
+      "newEntriesUnrated": true
     }
   }
 }

@@ -19,6 +19,7 @@ export interface CatalogRecord {
 }
 
 export interface CatalogMetadata {
+  automaticUpdatePolicy?: string;
   verifiedAt: string;
   asOf: string;
   sourceUpdatedAt: string;

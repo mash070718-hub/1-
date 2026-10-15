@@ -83,12 +83,11 @@ async function downloadNotebook(page: Page, path: string): Promise<LibraryData> 
 
 test.beforeEach(async ({ page }) => { await prepareAdmin(page); await page.goto('/'); await expect(page.getByRole('button', { name: '로그아웃', exact: true })).toBeVisible(); });
 
-test('공식 목록은 인격 189개와 E.G.O 116개이며 모든 수감자의 이름과 이미지를 보여준다', async ({ page }) => {
+test('공식 목록은 최신 카탈로그 수와 일치하며 모든 수감자의 이름과 이미지를 보여준다', async ({ page }) => {
   test.setTimeout(60_000);
   await expect(page.getByRole('heading', { name: 'Library of Limbus', exact: true })).toBeVisible();
-  expect(catalog.metadata.counts).toEqual({ identity: 189, ego: 116 });
-  expect(catalog.entries).toHaveLength(305);
-  expect(new Set(catalog.entries.map(record => record.id)).size).toBe(305);
+  expect(catalog.entries).toHaveLength(catalog.metadata.counts.identity + catalog.metadata.counts.ego);
+  expect(new Set(catalog.entries.map(record => record.id)).size).toBe(catalog.entries.length);
   await expect(kindTab(page, 'identity')).toContainText(String(catalog.metadata.counts.identity));
   await expect(kindTab(page, 'ego')).toContainText(String(catalog.metadata.counts.ego));
   const sinnerTabs = page.getByRole('tablist', { name: '수감자', exact: true });
@@ -100,6 +99,7 @@ test('공식 목록은 인격 189개와 E.G.O 116개이며 모든 수감자의 �
       await sinnerTabs.getByRole('tab', { name: sinner, exact: true }).click();
       const records = catalog.entries.filter(record => record.kind === kind && record.sinner === sinner);
       expect(records.length).toBeGreaterThan(0);
+      while (await page.getByRole('button', { name: /^다음 \d+개 보기$/ }).count()) await page.getByRole('button', { name: /^다음 \d+개 보기$/ }).click();
       await expect(page.getByRole('button', { name: / 상세 보기$/ })).toHaveCount(records.length);
       for (const record of records) {
         const card = catalogCard(page, record);
@@ -182,8 +182,8 @@ test('contentIds 없는 기존 v1 메모와 티어와 덱 편성 순서를 보�
     fixtureEntry('identity', thirdId, '이전 세 번째 인격', { deckIds: [deckId] }),
     oldDeck,
   ].map(legacyEntry));
-  await expect(kindTab(page, 'identity')).toContainText('192');
-  await expect(kindTab(page, 'ego')).toContainText('116');
+  await expect(kindTab(page, 'identity')).toContainText(String(catalog.metadata.counts.identity + 3));
+  await expect(kindTab(page, 'ego')).toContainText(String(catalog.metadata.counts.ego));
   await search(page).fill(identity.name);
   await openTierArchive(page);
   await expect(page.getByRole('region', { name: 'A 티어', exact: true }).getByRole('button', { name: `${identity.name} 상세 보기`, exact: true })).toBeVisible();
@@ -348,7 +348,7 @@ test('백업 복원은 확인 뒤 실행하고 잘못된 JSON은 기존 기록�
   const backup: LibraryData = JSON.parse(await readFile(backupPath, 'utf8'));
   expect(backup.entries).toHaveLength(306);
   expect(backup.entries.some(entry => entry.name === identityName)).toBe(true);
-  expect(backup.entries.filter(entry => entry.id.startsWith('catalog-'))).toHaveLength(305);
+  expect(backup.entries.filter(entry => entry.id.startsWith('catalog-'))).toHaveLength(catalog.entries.length);
   await closeDialog(page);
   await createIdentity(page, '백업 이후의 기록');
   await page.getByRole('button', { name: '백업과 복원', exact: true }).click();
@@ -377,7 +377,7 @@ test('백업 복원은 확인 뒤 실행하고 잘못된 JSON은 기존 기록�
   await page.getByRole('button', { name: '가져오기 확인', exact: true }).click();
   if (await page.getByRole('dialog').count()) await closeDialog(page);
   await expect(identityCard(page)).toBeVisible();
-  expect((await storedNotebook(page)).entries.filter(entry => entry.id.startsWith('catalog-'))).toHaveLength(305);
+  expect((await storedNotebook(page)).entries.filter(entry => entry.id.startsWith('catalog-'))).toHaveLength(catalog.entries.length);
 });
 
 test('손상된 저장소 원본을 보존하고 정상 백업으로 복구할 수 있다', async ({ page }, testInfo) => {

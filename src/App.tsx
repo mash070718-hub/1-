@@ -2368,6 +2368,11 @@ export default function App() {
             버전은 {CATALOG_METADATA.gameVersion}, 최신 수록 출시일은{" "}
             {CATALOG_METADATA.latestReleaseDate}입니다.
           </p>
+          {CATALOG_METADATA.automaticUpdatePolicy && <section className="detail-section">
+            <h3 className="detail-section-title">신규 인격·E.G.O 자동 추가</h3>
+            <p className="prose">2시간 간격으로 새 자료를 확인합니다. 출시 목록·한국어 이름·이미지가 확인되면 미평가 상태로 추가합니다. 자료 미러의 반영 시점에 따라 게임 출시보다 늦게 표시될 수 있습니다. 작성한 점수·티어·메모·덱 편성은 유지됩니다.</p>
+            <a className="catalog-source" href="https://github.com/mash070718-hub/1-/actions/workflows/update-catalog.yml" target="_blank" rel="noreferrer">자동 갱신 실행 기록 <ArrowRight size={12} /></a>
+          </section>}
           <section className="detail-section">
             <h3 className="detail-section-title">공식 게임 이름과 이미지</h3>
             <p className="prose">

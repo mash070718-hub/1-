@@ -7,3 +7,5 @@ playwright-report/
 .env.*
 !.env.example
 downloads/
+__pycache__/
+*.pyc

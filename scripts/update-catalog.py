@@ -18,6 +18,7 @@ import struct
 import subprocess
 import tempfile
 from urllib.request import Request, urlopen
+from zoneinfo import ZoneInfo
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -27,6 +28,7 @@ ASSET_COMMIT = "045dbb7679792fc4e5397fa53ecaf7e7ca0405b7"
 LOCALE_COMMIT = "1924dfa59154736cd07a1e7d27ed7dd2e45f2391"
 SNAPSHOT_DATE = "2026-10-06"
 GAME_VERSION = "1.116.0"
+AUTO_POLICY = "released-and-verified-v1"
 KEYWORD_IDS = {
     "Bleed": "Laceration", "Burn": "Burn", "Charge": "Charge",
     "Poise": "Breath", "Rupture": "Burst", "Sinking": "Sinking",
@@ -118,19 +120,41 @@ def image_requests(entry: dict, asset_data: dict, asset_commit: str) -> list[dic
     ]
 
 
-def save_image(item: dict, image_dir: Path, old_images: dict) -> dict:
-    path = image_dir / item["file"]
+def save_image(item: dict, image_dir: Path, old_images: dict, existing_dir: Path | None = None, reuse_verified: bool = False) -> dict:
+    path = (existing_dir or image_dir) / item["file"]
     previous = old_images.get(item["file"], {})
     data = path.read_bytes() if path.exists() else b""
-    reusable = previous.get("sourceUrl") == item["sourceUrl"] and previous.get("sha256") == hashlib.sha256(data).hexdigest()
+    same_artwork = previous.get("sourceUrl", "").split("/assets/")[-1] == item["sourceUrl"].split("/assets/")[-1]
+    reusable = (previous.get("sourceUrl") == item["sourceUrl"] or (reuse_verified and same_artwork)) and previous.get("sha256") == hashlib.sha256(data).hexdigest()
     if not reusable:
         data = get_bytes(item["sourceUrl"])
     width, height = webp_dimensions(data)
     if width < 200 or height < 200:
         raise ValueError(f"Unexpected image dimensions: {item['file']}")
     if not reusable:
-        atomic_write(path, data)
-    return {**item, "sha256": hashlib.sha256(data).hexdigest(), "width": width, "height": height, "size": len(data)}
+        atomic_write(image_dir / item["file"], data)
+    # Keep the actual pinned source of reused artwork, not the newly checked head.
+    return {**item, "sourceUrl": previous["sourceUrl"] if reusable else item["sourceUrl"], "sha256": hashlib.sha256(data).hexdigest(), "width": width, "height": height, "size": len(data)}
+
+
+def validate_transition(previous: dict, entries: list[dict]) -> None:
+    """A temporarily incomplete mirror must never remove a shipped catalog ID."""
+    old_ids = {entry["id"] for entry in previous.get("entries", [])}
+    new_ids = {entry["id"] for entry in entries}
+    if not entries or len(new_ids) != len(entries):
+        raise ValueError("Empty catalog or duplicate catalog IDs")
+    removed = old_ids - new_ids
+    if removed:
+        raise ValueError(f"Source is missing existing records; keeping the current catalog: {sorted(removed)}")
+
+
+def catalog_changed(previous: dict, candidate: dict) -> bool:
+    def content(catalog):
+        return [{key: value for key, value in entry.items() if key != "sourceUrl"}
+                for entry in catalog.get("entries", [])]
+    # Mirror heartbeat commits and timestamps alone do not cause site deployments.
+    return (content(previous) != content(candidate)
+            or previous.get("metadata", {}).get("automaticUpdatePolicy") != candidate["metadata"].get("automaticUpdatePolicy"))
 
 
 def check_existing() -> None:
@@ -167,6 +191,9 @@ def main() -> None:
     parser.add_argument("--game-version", help="Verified official game version for this snapshot")
     parser.add_argument("--workers", type=int, default=8)
     parser.add_argument("--check", action="store_true", help="Verify saved data and image hashes without network")
+    parser.add_argument("--if-changed", action="store_true", help="Skip unchanged catalogs and reuse verified existing artwork")
+    parser.add_argument("--automatic", action="store_true", help="Record the automatic release validation policy")
+    parser.add_argument("--dry-run", action="store_true", help="Check release and localization candidates without writing files")
     args = parser.parse_args()
     if args.check:
         check_existing()
@@ -177,9 +204,9 @@ def main() -> None:
     for commit in (asset_commit, locale_commit):
         if not re.fullmatch(r"[0-9a-f]{40}", commit):
             parser.error("Source commits must be complete 40-character Git hashes")
-    as_of = args.as_of or (date.today().isoformat() if args.latest else SNAPSHOT_DATE)
+    as_of = args.as_of or (datetime.now(ZoneInfo("Asia/Seoul")).date().isoformat() if args.latest else SNAPSHOT_DATE)
     date.fromisoformat(as_of)
-    game_version = args.game_version or (GAME_VERSION if locale_commit == LOCALE_COMMIT else "업데이트 후 확인 필요")
+    game_version = args.game_version or (GAME_VERSION if locale_commit == LOCALE_COMMIT else "공개 자료에 버전 번호 미표기")
     identities = get_json(ASSET_REPO, asset_commit, "data/identities.json")
     egos = get_json(ASSET_REPO, asset_commit, "data/egos.json")
     upcoming = get_json(ASSET_REPO, asset_commit, "data/upcoming.json")
@@ -193,11 +220,12 @@ def main() -> None:
     entries, requests, excluded = [], [], []
     for kind, data, upcoming_kind in (("identity", identities, "identities"), ("ego", egos, "egos")):
         for game_id, item in sorted(data.items()):
-            if not re.fullmatch(r"[12]\d{4}", game_id) or item.get("sinnerId") not in sinners:
+            if not re.fullmatch(r"1\d{4}" if kind == "identity" else r"2\d{4}", game_id) or item.get("sinnerId") not in sinners:
                 raise ValueError(f"Unexpected player record: {kind}/{game_id}")
             release = item.get("date", "")
             if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", release):
                 raise ValueError(f"Missing verified release date: {game_id}")
+            date.fromisoformat(release)
             if release > as_of or game_id in upcoming.get(upcoming_kind, {}) or item.get("upcoming"):
                 excluded.append(game_id)
                 continue
@@ -205,10 +233,14 @@ def main() -> None:
                 raise ValueError(f"Missing official Korean localization: {kind}/{game_id}")
             localization = names[kind][game_id]
             official_name = normalize_name(localization["title"] if kind == "identity" else localization["name"])
+            if not official_name:
+                raise ValueError(f"Empty official name: {kind}/{game_id}")
             sinner = sinners[item["sinnerId"]]
             if kind == "identity" and localization["name"] != sinner:
                 raise ValueError(f"Sinner localization mismatch: {game_id}")
-            tags = [keyword_names[KEYWORD_IDS[key]] for key in item.get("skillKeywordList", [])]
+            if kind == "identity" and item.get("rank") not in (1, 2, 3):
+                raise ValueError(f"Invalid identity rarity: {game_id}")
+            tags = [keyword_names[KEYWORD_IDS.get(key, key)] for key in item.get("skillKeywordList", []) if KEYWORD_IDS.get(key, key) in keyword_names]
             if kind == "ego":
                 tags = [str(item["rank"])]
             entry = {
@@ -240,16 +272,40 @@ def main() -> None:
         "sinnerCounts": [{"sinner": sinners[i], "identity": sum(e["kind"] == "identity" and e["sinnerId"] == i for e in entries), "ego": sum(e["kind"] == "ego" and e["sinnerId"] == i for e in entries)} for i in range(1, 13)],
         "copyright": "게임 이미지 및 원문 © Project Moon. 커뮤니티 미러에서 가져온 공식 게임 자료이며 공식 호스팅이 아닙니다.",
     }
+    if args.automatic:
+        metadata["automaticUpdatePolicy"] = AUTO_POLICY
+    catalog_path = ROOT / "src/data/catalog.json"
+    previous = json.loads(catalog_path.read_text()) if catalog_path.exists() else {}
+    validate_transition(previous, entries)
+    candidate = {"metadata": metadata, "entries": entries}
+    changed = catalog_changed(previous, candidate)
+    previous_ids = {entry["id"] for entry in previous.get("entries", [])}
+    added = [entry for entry in entries if entry["id"] not in previous_ids]
+    print(f"Release check ({as_of}, Asia/Seoul): {counts}; {len(added)} new records; {len(metadata['excludedUpcomingIds'])} upcoming records excluded.")
+    for entry in added:
+        print(f"New: {entry['sinner']} {entry['name']} ({entry['releaseDate']})")
+    if args.dry_run:
+        print(f"Dry run: catalog change required = {changed}; no files written.")
+        return
+    if args.if_changed and not changed:
+        check_existing()
+        print("Catalog unchanged; no files written and no deployment needed.")
+        return
     image_dir = ROOT / "public/images/catalog"
     image_dir.mkdir(parents=True, exist_ok=True)
     manifest_path = image_dir / "manifest.json"
     old_manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {}
     old_images = {item["file"]: item for item in old_manifest.get("images", [])}
     images = []
-    with ThreadPoolExecutor(max_workers=max(1, min(args.workers, 16))) as pool:
-        futures = [pool.submit(save_image, item, image_dir, old_images) for item in requests]
-        for future in as_completed(futures):
-            images.append(future.result())
+    # Validate every download in a temporary directory before replacing any file.
+    with tempfile.TemporaryDirectory(prefix="limbus-catalog-") as temporary:
+        staged = Path(temporary)
+        with ThreadPoolExecutor(max_workers=max(1, min(args.workers, 16))) as pool:
+            futures = [pool.submit(save_image, item, staged, old_images, image_dir, args.if_changed) for item in requests]
+            for future in as_completed(futures):
+                images.append(future.result())
+        for path in staged.iterdir():
+            atomic_write(image_dir / path.name, path.read_bytes())
     manifest = {
         "sourceRepository": f"https://github.com/{ASSET_REPO}", "sourceCommit": asset_commit,
         "sourceMetadataTimestamp": source_meta["datetime"],
@@ -258,7 +314,7 @@ def main() -> None:
         "images": sorted(images, key=lambda item: item["file"]),
     }
     atomic_write(manifest_path, encode_json(manifest))
-    atomic_write(ROOT / "src/data/catalog.json", encode_json({"metadata": metadata, "entries": entries}))
+    atomic_write(catalog_path, encode_json(candidate))
     print(f"Saved {len(entries)} entries ({counts}) and verified {len(images)} images.")
     check_existing()
 

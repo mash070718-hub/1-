@@ -1,0 +1,79 @@
+name: Update Limbus catalog
+
+on:
+  schedule:
+    - cron: '17 */2 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [.github/workflows/update-catalog.yml]
+
+# Scheduled workflows must also exist on the repository's default branch (main).
+# Always read and update the real site branch, without merging main into it.
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: limbus-catalog-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: library-of-limbus
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Test release and data preservation guards
+        run: python3 -m unittest discover -s scripts -p 'test_update_catalog.py'
+      - name: Check released catalog data
+        id: catalog
+        run: |
+          python3 scripts/update-catalog.py --latest --automatic --if-changed
+          if git diff --quiet -- src/data/catalog.json public/images/catalog; then
+            echo 'changed=false' >> "$GITHUB_OUTPUT"
+            echo 'No released catalog changes. The existing site and evaluations are unchanged.' >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/setup-node@v4
+        if: steps.catalog.outputs.changed == 'true'
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install and validate the updated site
+        if: steps.catalog.outputs.changed == 'true'
+        run: |
+          npm ci
+          npm test
+          npm run build
+          npx playwright install --with-deps chromium
+          CHROMIUM_EXECUTABLE_PATH="$(node --input-type=module -e 'import { chromium } from "@playwright/test"; console.log(chromium.executablePath())')" \
+            npx playwright test tests/catalog-update.spec.ts --workers=2
+      - name: Build the Pages site and provenance
+        if: steps.catalog.outputs.changed == 'true'
+        run: |
+          npm run build:standalone -- docs/index.html
+          python3 scripts/update-catalog-docs.py
+          python3 scripts/update-catalog.py --check
+          git diff --check
+      - name: Publish verified catalog to the site branch
+        if: steps.catalog.outputs.changed == 'true'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add src/data/catalog.json public/images/catalog docs/index.html docs/manifest.json docs/CATALOG_SOURCES.md
+          git commit -m 'Update verified released Limbus catalog'
+          # A concurrent edit rejects this ordinary push; it is retried next run.
+          git push origin HEAD:refs/heads/library-of-limbus
+          echo 'Verified catalog committed. Cloudflare Pages builds the library-of-limbus branch automatically.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Request the legacy GitHub Pages rebuild
+        if: steps.catalog.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds"
