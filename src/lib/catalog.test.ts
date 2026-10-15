@@ -43,7 +43,9 @@ test('source provenance and release dates identify the catalog coverage without 
   assert.ok(CATALOG_METADATA.sourceCommit.length >= 7);
   assert.ok(CATALOG_METADATA.sources.length >= 1);
   assert.ok(CATALOG_METADATA.coverageNote.trim().length > 0);
-  const verifiedDate = CATALOG_METADATA.verifiedAt.slice(0, 10);
+  // Release cutoffs use the Korean calendar date, including runs before 09:00 KST.
+  const verifiedDate = CATALOG_METADATA.asOf;
+  assert.ok(Number.isFinite(Date.parse(CATALOG_METADATA.verifiedAt)));
   assert.match(verifiedDate, /^\d{4}-\d{2}-\d{2}$/);
   const releaseDates = CATALOG.map(({ releaseDate, sourceUrl }) => {
     assert.match(releaseDate, /^\d{4}-\d{2}-\d{2}$/);
