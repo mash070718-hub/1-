@@ -3,22 +3,22 @@
   "entrypoint": "index.html",
   "language": "ko",
   "artifact": {
-    "bytes": 9043827,
-    "sha256": "e0ff033c3deb27fb2a303d2aeb0572b8811ccb13f6d8db3fa849a1f0fec61bb4",
+    "bytes": 9043834,
+    "sha256": "a2fe57a9f50693b64c5f9eca01a11975d2b4fd876b5fbd211bdc6dde41af4b17",
     "embeddedArtworks": 305,
     "inlineScripts": 1
   },
   "catalog": {
-    "asOf": "2026-10-06",
-    "verifiedAt": "2026-10-06T12:22:11.485757Z",
+    "asOf": "2026-10-15",
+    "verifiedAt": "2026-10-15T04:03:10.188939Z",
     "latestReleaseDate": "2026-10-01",
-    "gameVersion": "1.116.0",
+    "gameVersion": "공개 자료에 버전 번호 미표기",
     "counts": {
       "identity": 189,
       "ego": 116
     },
-    "sourceCommit": "045dbb7679792fc4e5397fa53ecaf7e7ca0405b7",
-    "localizationCommit": "1924dfa59154736cd07a1e7d27ed7dd2e45f2391"
+    "sourceCommit": "1927003ef3a2254c08d6eceea92289305519de7e",
+    "localizationCommit": "9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f"
   },
   "hosting": {
     "format": "static single HTML",
@@ -134,7 +134,7 @@
     },
     "automaticCatalogUpdates": {
       "intervalHours": 2,
-      "policy": null,
+      "policy": "released-and-verified-v1",
       "personalEvaluationsUntouched": true,
       "newEntriesUnrated": true
     }

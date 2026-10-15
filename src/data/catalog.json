@@ -1,12 +1,12 @@
 {
   "metadata": {
-    "verifiedAt": "2026-10-06T12:22:11.485757Z",
-    "asOf": "2026-10-06",
-    "sourceUpdatedAt": "2026-10-06T12:08:41Z",
-    "sourceCommit": "045dbb7679792fc4e5397fa53ecaf7e7ca0405b7",
-    "localizationCommit": "1924dfa59154736cd07a1e7d27ed7dd2e45f2391",
+    "verifiedAt": "2026-10-15T04:03:10.188939Z",
+    "asOf": "2026-10-15",
+    "sourceUpdatedAt": "2026-10-12T06:50:44Z",
+    "sourceCommit": "1927003ef3a2254c08d6eceea92289305519de7e",
+    "localizationCommit": "9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f",
     "latestReleaseDate": "2026-10-01",
-    "gameVersion": "1.116.0",
+    "gameVersion": "공개 자료에 버전 번호 미표기",
     "counts": {
       "identity": 189,
       "ego": 116
@@ -15,11 +15,11 @@
     "sources": [
       {
         "label": "공식 게임 한국어 로컬라이징 공개 미러",
-        "url": "https://github.com/x1bViolet/Limbus-Localization-Files/tree/1924dfa59154736cd07a1e7d27ed7dd2e45f2391"
+        "url": "https://github.com/x1bViolet/Limbus-Localization-Files/tree/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f"
       },
       {
         "label": "출시 목록 및 공식 게임 이미지 공개 미러",
-        "url": "https://github.com/eldritchtools/limbus-assets/tree/045dbb7679792fc4e5397fa53ecaf7e7ca0405b7"
+        "url": "https://github.com/eldritchtools/limbus-assets/tree/1927003ef3a2254c08d6eceea92289305519de7e"
       }
     ],
     "excludedUpcomingIds": [
@@ -87,7 +87,8 @@
         "ego": 10
       }
     ],
-    "copyright": "게임 이미지 및 원문 © Project Moon. 커뮤니티 미러에서 가져온 공식 게임 자료이며 공식 호스팅이 아닙니다."
+    "copyright": "게임 이미지 및 원문 © Project Moon. 커뮤니티 미러에서 가져온 공식 게임 자료이며 공식 호스팅이 아닙니다.",
+    "automaticUpdatePolicy": "released-and-verified-v1"
   },
   "entries": [
     {
@@ -105,7 +106,7 @@
       ],
       "image": "/images/catalog/identity-10101.webp",
       "thumbnail": "/images/catalog/identity-10101-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10102",
@@ -122,7 +123,7 @@
       ],
       "image": "/images/catalog/identity-10102.webp",
       "thumbnail": "/images/catalog/identity-10102-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10103",
@@ -139,7 +140,7 @@
       ],
       "image": "/images/catalog/identity-10103.webp",
       "thumbnail": "/images/catalog/identity-10103-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10104",
@@ -156,7 +157,7 @@
       ],
       "image": "/images/catalog/identity-10104.webp",
       "thumbnail": "/images/catalog/identity-10104-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10105",
@@ -173,7 +174,7 @@
       ],
       "image": "/images/catalog/identity-10105.webp",
       "thumbnail": "/images/catalog/identity-10105-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10106",
@@ -191,7 +192,7 @@
       ],
       "image": "/images/catalog/identity-10106.webp",
       "thumbnail": "/images/catalog/identity-10106-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10107",
@@ -209,7 +210,7 @@
       ],
       "image": "/images/catalog/identity-10107.webp",
       "thumbnail": "/images/catalog/identity-10107-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10108",
@@ -226,7 +227,7 @@
       ],
       "image": "/images/catalog/identity-10108.webp",
       "thumbnail": "/images/catalog/identity-10108-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10109",
@@ -243,7 +244,7 @@
       ],
       "image": "/images/catalog/identity-10109.webp",
       "thumbnail": "/images/catalog/identity-10109-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10110",
@@ -260,7 +261,7 @@
       ],
       "image": "/images/catalog/identity-10110.webp",
       "thumbnail": "/images/catalog/identity-10110-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10111",
@@ -277,7 +278,7 @@
       ],
       "image": "/images/catalog/identity-10111.webp",
       "thumbnail": "/images/catalog/identity-10111-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10112",
@@ -294,7 +295,7 @@
       ],
       "image": "/images/catalog/identity-10112.webp",
       "thumbnail": "/images/catalog/identity-10112-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10113",
@@ -312,7 +313,7 @@
       ],
       "image": "/images/catalog/identity-10113.webp",
       "thumbnail": "/images/catalog/identity-10113-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10114",
@@ -330,7 +331,7 @@
       ],
       "image": "/images/catalog/identity-10114.webp",
       "thumbnail": "/images/catalog/identity-10114-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10115",
@@ -348,7 +349,7 @@
       ],
       "image": "/images/catalog/identity-10115.webp",
       "thumbnail": "/images/catalog/identity-10115-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10116",
@@ -366,7 +367,7 @@
       ],
       "image": "/images/catalog/identity-10116.webp",
       "thumbnail": "/images/catalog/identity-10116-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10201",
@@ -381,7 +382,7 @@
       "tags": [],
       "image": "/images/catalog/identity-10201.webp",
       "thumbnail": "/images/catalog/identity-10201-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10202",
@@ -398,7 +399,7 @@
       ],
       "image": "/images/catalog/identity-10202.webp",
       "thumbnail": "/images/catalog/identity-10202-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10203",
@@ -416,7 +417,7 @@
       ],
       "image": "/images/catalog/identity-10203.webp",
       "thumbnail": "/images/catalog/identity-10203-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10204",
@@ -433,7 +434,7 @@
       ],
       "image": "/images/catalog/identity-10204.webp",
       "thumbnail": "/images/catalog/identity-10204-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10205",
@@ -448,7 +449,7 @@
       "tags": [],
       "image": "/images/catalog/identity-10205.webp",
       "thumbnail": "/images/catalog/identity-10205-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10206",
@@ -465,7 +466,7 @@
       ],
       "image": "/images/catalog/identity-10206.webp",
       "thumbnail": "/images/catalog/identity-10206-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10207",
@@ -482,7 +483,7 @@
       ],
       "image": "/images/catalog/identity-10207.webp",
       "thumbnail": "/images/catalog/identity-10207-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10208",
@@ -500,7 +501,7 @@
       ],
       "image": "/images/catalog/identity-10208.webp",
       "thumbnail": "/images/catalog/identity-10208-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10209",
@@ -517,7 +518,7 @@
       ],
       "image": "/images/catalog/identity-10209.webp",
       "thumbnail": "/images/catalog/identity-10209-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10210",
@@ -534,7 +535,7 @@
       ],
       "image": "/images/catalog/identity-10210.webp",
       "thumbnail": "/images/catalog/identity-10210-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10211",
@@ -551,7 +552,7 @@
       ],
       "image": "/images/catalog/identity-10211.webp",
       "thumbnail": "/images/catalog/identity-10211-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10212",
@@ -568,7 +569,7 @@
       ],
       "image": "/images/catalog/identity-10212.webp",
       "thumbnail": "/images/catalog/identity-10212-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10213",
@@ -586,7 +587,7 @@
       ],
       "image": "/images/catalog/identity-10213.webp",
       "thumbnail": "/images/catalog/identity-10213-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10214",
@@ -604,7 +605,7 @@
       ],
       "image": "/images/catalog/identity-10214.webp",
       "thumbnail": "/images/catalog/identity-10214-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10215",
@@ -622,7 +623,7 @@
       ],
       "image": "/images/catalog/identity-10215.webp",
       "thumbnail": "/images/catalog/identity-10215-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10216",
@@ -640,7 +641,7 @@
       ],
       "image": "/images/catalog/identity-10216.webp",
       "thumbnail": "/images/catalog/identity-10216-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10301",
@@ -657,7 +658,7 @@
       ],
       "image": "/images/catalog/identity-10301.webp",
       "thumbnail": "/images/catalog/identity-10301-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10302",
@@ -675,7 +676,7 @@
       ],
       "image": "/images/catalog/identity-10302.webp",
       "thumbnail": "/images/catalog/identity-10302-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10303",
@@ -692,7 +693,7 @@
       ],
       "image": "/images/catalog/identity-10303.webp",
       "thumbnail": "/images/catalog/identity-10303-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10304",
@@ -710,7 +711,7 @@
       ],
       "image": "/images/catalog/identity-10304.webp",
       "thumbnail": "/images/catalog/identity-10304-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10305",
@@ -725,7 +726,7 @@
       "tags": [],
       "image": "/images/catalog/identity-10305.webp",
       "thumbnail": "/images/catalog/identity-10305-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10306",
@@ -742,7 +743,7 @@
       ],
       "image": "/images/catalog/identity-10306.webp",
       "thumbnail": "/images/catalog/identity-10306-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10307",
@@ -759,7 +760,7 @@
       ],
       "image": "/images/catalog/identity-10307.webp",
       "thumbnail": "/images/catalog/identity-10307-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10308",
@@ -776,7 +777,7 @@
       ],
       "image": "/images/catalog/identity-10308.webp",
       "thumbnail": "/images/catalog/identity-10308-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10309",
@@ -793,7 +794,7 @@
       ],
       "image": "/images/catalog/identity-10309.webp",
       "thumbnail": "/images/catalog/identity-10309-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10310",
@@ -810,7 +811,7 @@
       ],
       "image": "/images/catalog/identity-10310.webp",
       "thumbnail": "/images/catalog/identity-10310-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10311",
@@ -828,7 +829,7 @@
       ],
       "image": "/images/catalog/identity-10311.webp",
       "thumbnail": "/images/catalog/identity-10311-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10312",
@@ -847,7 +848,7 @@
       ],
       "image": "/images/catalog/identity-10312.webp",
       "thumbnail": "/images/catalog/identity-10312-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10313",
@@ -865,7 +866,7 @@
       ],
       "image": "/images/catalog/identity-10313.webp",
       "thumbnail": "/images/catalog/identity-10313-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10314",
@@ -883,7 +884,7 @@
       ],
       "image": "/images/catalog/identity-10314.webp",
       "thumbnail": "/images/catalog/identity-10314-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10315",
@@ -901,7 +902,7 @@
       ],
       "image": "/images/catalog/identity-10315.webp",
       "thumbnail": "/images/catalog/identity-10315-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10401",
@@ -918,7 +919,7 @@
       ],
       "image": "/images/catalog/identity-10401.webp",
       "thumbnail": "/images/catalog/identity-10401-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10402",
@@ -935,7 +936,7 @@
       ],
       "image": "/images/catalog/identity-10402.webp",
       "thumbnail": "/images/catalog/identity-10402-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10403",
@@ -952,7 +953,7 @@
       ],
       "image": "/images/catalog/identity-10403.webp",
       "thumbnail": "/images/catalog/identity-10403-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10404",
@@ -969,7 +970,7 @@
       ],
       "image": "/images/catalog/identity-10404.webp",
       "thumbnail": "/images/catalog/identity-10404-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10405",
@@ -986,7 +987,7 @@
       ],
       "image": "/images/catalog/identity-10405.webp",
       "thumbnail": "/images/catalog/identity-10405-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10406",
@@ -1005,7 +1006,7 @@
       ],
       "image": "/images/catalog/identity-10406.webp",
       "thumbnail": "/images/catalog/identity-10406-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10407",
@@ -1022,7 +1023,7 @@
       ],
       "image": "/images/catalog/identity-10407.webp",
       "thumbnail": "/images/catalog/identity-10407-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10408",
@@ -1039,7 +1040,7 @@
       ],
       "image": "/images/catalog/identity-10408.webp",
       "thumbnail": "/images/catalog/identity-10408-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10409",
@@ -1056,7 +1057,7 @@
       ],
       "image": "/images/catalog/identity-10409.webp",
       "thumbnail": "/images/catalog/identity-10409-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10410",
@@ -1074,7 +1075,7 @@
       ],
       "image": "/images/catalog/identity-10410.webp",
       "thumbnail": "/images/catalog/identity-10410-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10411",
@@ -1091,7 +1092,7 @@
       ],
       "image": "/images/catalog/identity-10411.webp",
       "thumbnail": "/images/catalog/identity-10411-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10412",
@@ -1109,7 +1110,7 @@
       ],
       "image": "/images/catalog/identity-10412.webp",
       "thumbnail": "/images/catalog/identity-10412-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10413",
@@ -1127,7 +1128,7 @@
       ],
       "image": "/images/catalog/identity-10413.webp",
       "thumbnail": "/images/catalog/identity-10413-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10414",
@@ -1145,7 +1146,7 @@
       ],
       "image": "/images/catalog/identity-10414.webp",
       "thumbnail": "/images/catalog/identity-10414-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10415",
@@ -1164,7 +1165,7 @@
       ],
       "image": "/images/catalog/identity-10415.webp",
       "thumbnail": "/images/catalog/identity-10415-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10416",
@@ -1182,7 +1183,7 @@
       ],
       "image": "/images/catalog/identity-10416.webp",
       "thumbnail": "/images/catalog/identity-10416-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10501",
@@ -1199,7 +1200,7 @@
       ],
       "image": "/images/catalog/identity-10501.webp",
       "thumbnail": "/images/catalog/identity-10501-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10502",
@@ -1216,7 +1217,7 @@
       ],
       "image": "/images/catalog/identity-10502.webp",
       "thumbnail": "/images/catalog/identity-10502-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10503",
@@ -1234,7 +1235,7 @@
       ],
       "image": "/images/catalog/identity-10503.webp",
       "thumbnail": "/images/catalog/identity-10503-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10504",
@@ -1251,7 +1252,7 @@
       ],
       "image": "/images/catalog/identity-10504.webp",
       "thumbnail": "/images/catalog/identity-10504-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10505",
@@ -1269,7 +1270,7 @@
       ],
       "image": "/images/catalog/identity-10505.webp",
       "thumbnail": "/images/catalog/identity-10505-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10506",
@@ -1287,7 +1288,7 @@
       ],
       "image": "/images/catalog/identity-10506.webp",
       "thumbnail": "/images/catalog/identity-10506-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10507",
@@ -1304,7 +1305,7 @@
       ],
       "image": "/images/catalog/identity-10507.webp",
       "thumbnail": "/images/catalog/identity-10507-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10508",
@@ -1321,7 +1322,7 @@
       ],
       "image": "/images/catalog/identity-10508.webp",
       "thumbnail": "/images/catalog/identity-10508-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10509",
@@ -1338,7 +1339,7 @@
       ],
       "image": "/images/catalog/identity-10509.webp",
       "thumbnail": "/images/catalog/identity-10509-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10510",
@@ -1355,7 +1356,7 @@
       ],
       "image": "/images/catalog/identity-10510.webp",
       "thumbnail": "/images/catalog/identity-10510-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10511",
@@ -1373,7 +1374,7 @@
       ],
       "image": "/images/catalog/identity-10511.webp",
       "thumbnail": "/images/catalog/identity-10511-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10512",
@@ -1391,7 +1392,7 @@
       ],
       "image": "/images/catalog/identity-10512.webp",
       "thumbnail": "/images/catalog/identity-10512-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10513",
@@ -1409,7 +1410,7 @@
       ],
       "image": "/images/catalog/identity-10513.webp",
       "thumbnail": "/images/catalog/identity-10513-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10514",
@@ -1427,7 +1428,7 @@
       ],
       "image": "/images/catalog/identity-10514.webp",
       "thumbnail": "/images/catalog/identity-10514-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10515",
@@ -1445,7 +1446,7 @@
       ],
       "image": "/images/catalog/identity-10515.webp",
       "thumbnail": "/images/catalog/identity-10515-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10601",
@@ -1463,7 +1464,7 @@
       ],
       "image": "/images/catalog/identity-10601.webp",
       "thumbnail": "/images/catalog/identity-10601-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10602",
@@ -1480,7 +1481,7 @@
       ],
       "image": "/images/catalog/identity-10602.webp",
       "thumbnail": "/images/catalog/identity-10602-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10603",
@@ -1497,7 +1498,7 @@
       ],
       "image": "/images/catalog/identity-10603.webp",
       "thumbnail": "/images/catalog/identity-10603-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10604",
@@ -1514,7 +1515,7 @@
       ],
       "image": "/images/catalog/identity-10604.webp",
       "thumbnail": "/images/catalog/identity-10604-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10605",
@@ -1531,7 +1532,7 @@
       ],
       "image": "/images/catalog/identity-10605.webp",
       "thumbnail": "/images/catalog/identity-10605-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10606",
@@ -1549,7 +1550,7 @@
       ],
       "image": "/images/catalog/identity-10606.webp",
       "thumbnail": "/images/catalog/identity-10606-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10607",
@@ -1566,7 +1567,7 @@
       ],
       "image": "/images/catalog/identity-10607.webp",
       "thumbnail": "/images/catalog/identity-10607-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10608",
@@ -1583,7 +1584,7 @@
       ],
       "image": "/images/catalog/identity-10608.webp",
       "thumbnail": "/images/catalog/identity-10608-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10609",
@@ -1600,7 +1601,7 @@
       ],
       "image": "/images/catalog/identity-10609.webp",
       "thumbnail": "/images/catalog/identity-10609-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10610",
@@ -1617,7 +1618,7 @@
       ],
       "image": "/images/catalog/identity-10610.webp",
       "thumbnail": "/images/catalog/identity-10610-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10611",
@@ -1634,7 +1635,7 @@
       ],
       "image": "/images/catalog/identity-10611.webp",
       "thumbnail": "/images/catalog/identity-10611-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10612",
@@ -1652,7 +1653,7 @@
       ],
       "image": "/images/catalog/identity-10612.webp",
       "thumbnail": "/images/catalog/identity-10612-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10613",
@@ -1670,7 +1671,7 @@
       ],
       "image": "/images/catalog/identity-10613.webp",
       "thumbnail": "/images/catalog/identity-10613-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10614",
@@ -1688,7 +1689,7 @@
       ],
       "image": "/images/catalog/identity-10614.webp",
       "thumbnail": "/images/catalog/identity-10614-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10615",
@@ -1706,7 +1707,7 @@
       ],
       "image": "/images/catalog/identity-10615.webp",
       "thumbnail": "/images/catalog/identity-10615-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10616",
@@ -1724,7 +1725,7 @@
       ],
       "image": "/images/catalog/identity-10616.webp",
       "thumbnail": "/images/catalog/identity-10616-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10701",
@@ -1741,7 +1742,7 @@
       ],
       "image": "/images/catalog/identity-10701.webp",
       "thumbnail": "/images/catalog/identity-10701-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10702",
@@ -1758,7 +1759,7 @@
       ],
       "image": "/images/catalog/identity-10702.webp",
       "thumbnail": "/images/catalog/identity-10702-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10703",
@@ -1777,7 +1778,7 @@
       ],
       "image": "/images/catalog/identity-10703.webp",
       "thumbnail": "/images/catalog/identity-10703-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10704",
@@ -1794,7 +1795,7 @@
       ],
       "image": "/images/catalog/identity-10704.webp",
       "thumbnail": "/images/catalog/identity-10704-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10705",
@@ -1812,7 +1813,7 @@
       ],
       "image": "/images/catalog/identity-10705.webp",
       "thumbnail": "/images/catalog/identity-10705-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10706",
@@ -1829,7 +1830,7 @@
       ],
       "image": "/images/catalog/identity-10706.webp",
       "thumbnail": "/images/catalog/identity-10706-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10707",
@@ -1847,7 +1848,7 @@
       ],
       "image": "/images/catalog/identity-10707.webp",
       "thumbnail": "/images/catalog/identity-10707-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10708",
@@ -1864,7 +1865,7 @@
       ],
       "image": "/images/catalog/identity-10708.webp",
       "thumbnail": "/images/catalog/identity-10708-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10709",
@@ -1881,7 +1882,7 @@
       ],
       "image": "/images/catalog/identity-10709.webp",
       "thumbnail": "/images/catalog/identity-10709-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10710",
@@ -1898,7 +1899,7 @@
       ],
       "image": "/images/catalog/identity-10710.webp",
       "thumbnail": "/images/catalog/identity-10710-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10711",
@@ -1915,7 +1916,7 @@
       ],
       "image": "/images/catalog/identity-10711.webp",
       "thumbnail": "/images/catalog/identity-10711-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10712",
@@ -1932,7 +1933,7 @@
       ],
       "image": "/images/catalog/identity-10712.webp",
       "thumbnail": "/images/catalog/identity-10712-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10713",
@@ -1950,7 +1951,7 @@
       ],
       "image": "/images/catalog/identity-10713.webp",
       "thumbnail": "/images/catalog/identity-10713-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10714",
@@ -1968,7 +1969,7 @@
       ],
       "image": "/images/catalog/identity-10714.webp",
       "thumbnail": "/images/catalog/identity-10714-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10715",
@@ -1986,7 +1987,7 @@
       ],
       "image": "/images/catalog/identity-10715.webp",
       "thumbnail": "/images/catalog/identity-10715-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10716",
@@ -2004,7 +2005,7 @@
       ],
       "image": "/images/catalog/identity-10716.webp",
       "thumbnail": "/images/catalog/identity-10716-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10801",
@@ -2021,7 +2022,7 @@
       ],
       "image": "/images/catalog/identity-10801.webp",
       "thumbnail": "/images/catalog/identity-10801-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10802",
@@ -2039,7 +2040,7 @@
       ],
       "image": "/images/catalog/identity-10802.webp",
       "thumbnail": "/images/catalog/identity-10802-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10803",
@@ -2056,7 +2057,7 @@
       ],
       "image": "/images/catalog/identity-10803.webp",
       "thumbnail": "/images/catalog/identity-10803-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10804",
@@ -2074,7 +2075,7 @@
       ],
       "image": "/images/catalog/identity-10804.webp",
       "thumbnail": "/images/catalog/identity-10804-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10805",
@@ -2092,7 +2093,7 @@
       ],
       "image": "/images/catalog/identity-10805.webp",
       "thumbnail": "/images/catalog/identity-10805-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10806",
@@ -2109,7 +2110,7 @@
       ],
       "image": "/images/catalog/identity-10806.webp",
       "thumbnail": "/images/catalog/identity-10806-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10807",
@@ -2127,7 +2128,7 @@
       ],
       "image": "/images/catalog/identity-10807.webp",
       "thumbnail": "/images/catalog/identity-10807-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10808",
@@ -2146,7 +2147,7 @@
       ],
       "image": "/images/catalog/identity-10808.webp",
       "thumbnail": "/images/catalog/identity-10808-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10809",
@@ -2164,7 +2165,7 @@
       ],
       "image": "/images/catalog/identity-10809.webp",
       "thumbnail": "/images/catalog/identity-10809-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10810",
@@ -2181,7 +2182,7 @@
       ],
       "image": "/images/catalog/identity-10810.webp",
       "thumbnail": "/images/catalog/identity-10810-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10811",
@@ -2198,7 +2199,7 @@
       ],
       "image": "/images/catalog/identity-10811.webp",
       "thumbnail": "/images/catalog/identity-10811-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10812",
@@ -2216,7 +2217,7 @@
       ],
       "image": "/images/catalog/identity-10812.webp",
       "thumbnail": "/images/catalog/identity-10812-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10813",
@@ -2234,7 +2235,7 @@
       ],
       "image": "/images/catalog/identity-10813.webp",
       "thumbnail": "/images/catalog/identity-10813-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10814",
@@ -2252,7 +2253,7 @@
       ],
       "image": "/images/catalog/identity-10814.webp",
       "thumbnail": "/images/catalog/identity-10814-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10815",
@@ -2270,7 +2271,7 @@
       ],
       "image": "/images/catalog/identity-10815.webp",
       "thumbnail": "/images/catalog/identity-10815-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10816",
@@ -2288,7 +2289,7 @@
       ],
       "image": "/images/catalog/identity-10816.webp",
       "thumbnail": "/images/catalog/identity-10816-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10901",
@@ -2305,7 +2306,7 @@
       ],
       "image": "/images/catalog/identity-10901.webp",
       "thumbnail": "/images/catalog/identity-10901-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10902",
@@ -2323,7 +2324,7 @@
       ],
       "image": "/images/catalog/identity-10902.webp",
       "thumbnail": "/images/catalog/identity-10902-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10903",
@@ -2338,7 +2339,7 @@
       "tags": [],
       "image": "/images/catalog/identity-10903.webp",
       "thumbnail": "/images/catalog/identity-10903-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10904",
@@ -2355,7 +2356,7 @@
       ],
       "image": "/images/catalog/identity-10904.webp",
       "thumbnail": "/images/catalog/identity-10904-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10905",
@@ -2373,7 +2374,7 @@
       ],
       "image": "/images/catalog/identity-10905.webp",
       "thumbnail": "/images/catalog/identity-10905-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10906",
@@ -2390,7 +2391,7 @@
       ],
       "image": "/images/catalog/identity-10906.webp",
       "thumbnail": "/images/catalog/identity-10906-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10907",
@@ -2407,7 +2408,7 @@
       ],
       "image": "/images/catalog/identity-10907.webp",
       "thumbnail": "/images/catalog/identity-10907-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10908",
@@ -2424,7 +2425,7 @@
       ],
       "image": "/images/catalog/identity-10908.webp",
       "thumbnail": "/images/catalog/identity-10908-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10909",
@@ -2441,7 +2442,7 @@
       ],
       "image": "/images/catalog/identity-10909.webp",
       "thumbnail": "/images/catalog/identity-10909-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10910",
@@ -2458,7 +2459,7 @@
       ],
       "image": "/images/catalog/identity-10910.webp",
       "thumbnail": "/images/catalog/identity-10910-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10911",
@@ -2476,7 +2477,7 @@
       ],
       "image": "/images/catalog/identity-10911.webp",
       "thumbnail": "/images/catalog/identity-10911-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10912",
@@ -2494,7 +2495,7 @@
       ],
       "image": "/images/catalog/identity-10912.webp",
       "thumbnail": "/images/catalog/identity-10912-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10913",
@@ -2512,7 +2513,7 @@
       ],
       "image": "/images/catalog/identity-10913.webp",
       "thumbnail": "/images/catalog/identity-10913-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10914",
@@ -2530,7 +2531,7 @@
       ],
       "image": "/images/catalog/identity-10914.webp",
       "thumbnail": "/images/catalog/identity-10914-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10915",
@@ -2548,7 +2549,7 @@
       ],
       "image": "/images/catalog/identity-10915.webp",
       "thumbnail": "/images/catalog/identity-10915-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10916",
@@ -2566,7 +2567,7 @@
       ],
       "image": "/images/catalog/identity-10916.webp",
       "thumbnail": "/images/catalog/identity-10916-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-10917",
@@ -2584,7 +2585,7 @@
       ],
       "image": "/images/catalog/identity-10917.webp",
       "thumbnail": "/images/catalog/identity-10917-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11001",
@@ -2601,7 +2602,7 @@
       ],
       "image": "/images/catalog/identity-11001.webp",
       "thumbnail": "/images/catalog/identity-11001-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11002",
@@ -2619,7 +2620,7 @@
       ],
       "image": "/images/catalog/identity-11002.webp",
       "thumbnail": "/images/catalog/identity-11002-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11003",
@@ -2636,7 +2637,7 @@
       ],
       "image": "/images/catalog/identity-11003.webp",
       "thumbnail": "/images/catalog/identity-11003-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11004",
@@ -2654,7 +2655,7 @@
       ],
       "image": "/images/catalog/identity-11004.webp",
       "thumbnail": "/images/catalog/identity-11004-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11005",
@@ -2672,7 +2673,7 @@
       ],
       "image": "/images/catalog/identity-11005.webp",
       "thumbnail": "/images/catalog/identity-11005-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11006",
@@ -2689,7 +2690,7 @@
       ],
       "image": "/images/catalog/identity-11006.webp",
       "thumbnail": "/images/catalog/identity-11006-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11007",
@@ -2706,7 +2707,7 @@
       ],
       "image": "/images/catalog/identity-11007.webp",
       "thumbnail": "/images/catalog/identity-11007-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11008",
@@ -2723,7 +2724,7 @@
       ],
       "image": "/images/catalog/identity-11008.webp",
       "thumbnail": "/images/catalog/identity-11008-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11009",
@@ -2740,7 +2741,7 @@
       ],
       "image": "/images/catalog/identity-11009.webp",
       "thumbnail": "/images/catalog/identity-11009-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11010",
@@ -2757,7 +2758,7 @@
       ],
       "image": "/images/catalog/identity-11010.webp",
       "thumbnail": "/images/catalog/identity-11010-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11011",
@@ -2774,7 +2775,7 @@
       ],
       "image": "/images/catalog/identity-11011.webp",
       "thumbnail": "/images/catalog/identity-11011-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11012",
@@ -2791,7 +2792,7 @@
       ],
       "image": "/images/catalog/identity-11012.webp",
       "thumbnail": "/images/catalog/identity-11012-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11013",
@@ -2809,7 +2810,7 @@
       ],
       "image": "/images/catalog/identity-11013.webp",
       "thumbnail": "/images/catalog/identity-11013-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11014",
@@ -2827,7 +2828,7 @@
       ],
       "image": "/images/catalog/identity-11014.webp",
       "thumbnail": "/images/catalog/identity-11014-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11015",
@@ -2845,7 +2846,7 @@
       ],
       "image": "/images/catalog/identity-11015.webp",
       "thumbnail": "/images/catalog/identity-11015-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11101",
@@ -2862,7 +2863,7 @@
       ],
       "image": "/images/catalog/identity-11101.webp",
       "thumbnail": "/images/catalog/identity-11101-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11102",
@@ -2879,7 +2880,7 @@
       ],
       "image": "/images/catalog/identity-11102.webp",
       "thumbnail": "/images/catalog/identity-11102-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11103",
@@ -2896,7 +2897,7 @@
       ],
       "image": "/images/catalog/identity-11103.webp",
       "thumbnail": "/images/catalog/identity-11103-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11104",
@@ -2913,7 +2914,7 @@
       ],
       "image": "/images/catalog/identity-11104.webp",
       "thumbnail": "/images/catalog/identity-11104-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11105",
@@ -2930,7 +2931,7 @@
       ],
       "image": "/images/catalog/identity-11105.webp",
       "thumbnail": "/images/catalog/identity-11105-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11106",
@@ -2947,7 +2948,7 @@
       ],
       "image": "/images/catalog/identity-11106.webp",
       "thumbnail": "/images/catalog/identity-11106-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11107",
@@ -2964,7 +2965,7 @@
       ],
       "image": "/images/catalog/identity-11107.webp",
       "thumbnail": "/images/catalog/identity-11107-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11108",
@@ -2981,7 +2982,7 @@
       ],
       "image": "/images/catalog/identity-11108.webp",
       "thumbnail": "/images/catalog/identity-11108-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11109",
@@ -2998,7 +2999,7 @@
       ],
       "image": "/images/catalog/identity-11109.webp",
       "thumbnail": "/images/catalog/identity-11109-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11110",
@@ -3016,7 +3017,7 @@
       ],
       "image": "/images/catalog/identity-11110.webp",
       "thumbnail": "/images/catalog/identity-11110-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11111",
@@ -3033,7 +3034,7 @@
       ],
       "image": "/images/catalog/identity-11111.webp",
       "thumbnail": "/images/catalog/identity-11111-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11112",
@@ -3050,7 +3051,7 @@
       ],
       "image": "/images/catalog/identity-11112.webp",
       "thumbnail": "/images/catalog/identity-11112-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11113",
@@ -3067,7 +3068,7 @@
       ],
       "image": "/images/catalog/identity-11113.webp",
       "thumbnail": "/images/catalog/identity-11113-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11114",
@@ -3085,7 +3086,7 @@
       ],
       "image": "/images/catalog/identity-11114.webp",
       "thumbnail": "/images/catalog/identity-11114-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11115",
@@ -3103,7 +3104,7 @@
       ],
       "image": "/images/catalog/identity-11115.webp",
       "thumbnail": "/images/catalog/identity-11115-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11201",
@@ -3120,7 +3121,7 @@
       ],
       "image": "/images/catalog/identity-11201.webp",
       "thumbnail": "/images/catalog/identity-11201-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11202",
@@ -3137,7 +3138,7 @@
       ],
       "image": "/images/catalog/identity-11202.webp",
       "thumbnail": "/images/catalog/identity-11202-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11203",
@@ -3154,7 +3155,7 @@
       ],
       "image": "/images/catalog/identity-11203.webp",
       "thumbnail": "/images/catalog/identity-11203-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11204",
@@ -3171,7 +3172,7 @@
       ],
       "image": "/images/catalog/identity-11204.webp",
       "thumbnail": "/images/catalog/identity-11204-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11205",
@@ -3190,7 +3191,7 @@
       ],
       "image": "/images/catalog/identity-11205.webp",
       "thumbnail": "/images/catalog/identity-11205-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11206",
@@ -3205,7 +3206,7 @@
       "tags": [],
       "image": "/images/catalog/identity-11206.webp",
       "thumbnail": "/images/catalog/identity-11206-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11207",
@@ -3223,7 +3224,7 @@
       ],
       "image": "/images/catalog/identity-11207.webp",
       "thumbnail": "/images/catalog/identity-11207-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11208",
@@ -3240,7 +3241,7 @@
       ],
       "image": "/images/catalog/identity-11208.webp",
       "thumbnail": "/images/catalog/identity-11208-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11209",
@@ -3257,7 +3258,7 @@
       ],
       "image": "/images/catalog/identity-11209.webp",
       "thumbnail": "/images/catalog/identity-11209-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11210",
@@ -3275,7 +3276,7 @@
       ],
       "image": "/images/catalog/identity-11210.webp",
       "thumbnail": "/images/catalog/identity-11210-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11211",
@@ -3292,7 +3293,7 @@
       ],
       "image": "/images/catalog/identity-11211.webp",
       "thumbnail": "/images/catalog/identity-11211-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11212",
@@ -3310,7 +3311,7 @@
       ],
       "image": "/images/catalog/identity-11212.webp",
       "thumbnail": "/images/catalog/identity-11212-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11213",
@@ -3328,7 +3329,7 @@
       ],
       "image": "/images/catalog/identity-11213.webp",
       "thumbnail": "/images/catalog/identity-11213-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11214",
@@ -3346,7 +3347,7 @@
       ],
       "image": "/images/catalog/identity-11214.webp",
       "thumbnail": "/images/catalog/identity-11214-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11215",
@@ -3364,7 +3365,7 @@
       ],
       "image": "/images/catalog/identity-11215.webp",
       "thumbnail": "/images/catalog/identity-11215-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-identity-11216",
@@ -3382,7 +3383,7 @@
       ],
       "image": "/images/catalog/identity-11216.webp",
       "thumbnail": "/images/catalog/identity-11216-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Personalities.json"
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Personalities.json"
     },
     {
       "id": "catalog-ego-20101",
@@ -3399,7 +3400,7 @@
       ],
       "image": "/images/catalog/ego-20101.webp",
       "thumbnail": "/images/catalog/ego-20101-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "나태"
     },
     {
@@ -3417,7 +3418,7 @@
       ],
       "image": "/images/catalog/ego-20102.webp",
       "thumbnail": "/images/catalog/ego-20102-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "분노"
     },
     {
@@ -3435,7 +3436,7 @@
       ],
       "image": "/images/catalog/ego-20103.webp",
       "thumbnail": "/images/catalog/ego-20103-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "나태"
     },
     {
@@ -3453,7 +3454,7 @@
       ],
       "image": "/images/catalog/ego-20104.webp",
       "thumbnail": "/images/catalog/ego-20104-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "오만"
     },
     {
@@ -3471,7 +3472,7 @@
       ],
       "image": "/images/catalog/ego-20105.webp",
       "thumbnail": "/images/catalog/ego-20105-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "나태"
     },
     {
@@ -3489,7 +3490,7 @@
       ],
       "image": "/images/catalog/ego-20106.webp",
       "thumbnail": "/images/catalog/ego-20106-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "우울"
     },
     {
@@ -3507,7 +3508,7 @@
       ],
       "image": "/images/catalog/ego-20107.webp",
       "thumbnail": "/images/catalog/ego-20107-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "오만"
     },
     {
@@ -3525,7 +3526,7 @@
       ],
       "image": "/images/catalog/ego-20108.webp",
       "thumbnail": "/images/catalog/ego-20108-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "분노"
     },
     {
@@ -3543,7 +3544,7 @@
       ],
       "image": "/images/catalog/ego-20109.webp",
       "thumbnail": "/images/catalog/ego-20109-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "우울"
     },
     {
@@ -3561,7 +3562,7 @@
       ],
       "image": "/images/catalog/ego-20201.webp",
       "thumbnail": "/images/catalog/ego-20201-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "오만"
     },
     {
@@ -3579,7 +3580,7 @@
       ],
       "image": "/images/catalog/ego-20202.webp",
       "thumbnail": "/images/catalog/ego-20202-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "우울"
     },
     {
@@ -3597,7 +3598,7 @@
       ],
       "image": "/images/catalog/ego-20203.webp",
       "thumbnail": "/images/catalog/ego-20203-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "질투"
     },
     {
@@ -3615,7 +3616,7 @@
       ],
       "image": "/images/catalog/ego-20204.webp",
       "thumbnail": "/images/catalog/ego-20204-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "질투"
     },
     {
@@ -3633,7 +3634,7 @@
       ],
       "image": "/images/catalog/ego-20205.webp",
       "thumbnail": "/images/catalog/ego-20205-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "색욕"
     },
     {
@@ -3651,7 +3652,7 @@
       ],
       "image": "/images/catalog/ego-20206.webp",
       "thumbnail": "/images/catalog/ego-20206-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "나태"
     },
     {
@@ -3669,7 +3670,7 @@
       ],
       "image": "/images/catalog/ego-20207.webp",
       "thumbnail": "/images/catalog/ego-20207-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "탐식"
     },
     {
@@ -3687,7 +3688,7 @@
       ],
       "image": "/images/catalog/ego-20208.webp",
       "thumbnail": "/images/catalog/ego-20208-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "오만"
     },
     {
@@ -3705,7 +3706,7 @@
       ],
       "image": "/images/catalog/ego-20209.webp",
       "thumbnail": "/images/catalog/ego-20209-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "탐식"
     },
     {
@@ -3723,7 +3724,7 @@
       ],
       "image": "/images/catalog/ego-20210.webp",
       "thumbnail": "/images/catalog/ego-20210-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "분노"
     },
     {
@@ -3741,7 +3742,7 @@
       ],
       "image": "/images/catalog/ego-20211.webp",
       "thumbnail": "/images/catalog/ego-20211-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "오만"
     },
     {
@@ -3759,7 +3760,7 @@
       ],
       "image": "/images/catalog/ego-20301.webp",
       "thumbnail": "/images/catalog/ego-20301-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "색욕"
     },
     {
@@ -3777,7 +3778,7 @@
       ],
       "image": "/images/catalog/ego-20302.webp",
       "thumbnail": "/images/catalog/ego-20302-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "우울"
     },
     {
@@ -3795,7 +3796,7 @@
       ],
       "image": "/images/catalog/ego-20303.webp",
       "thumbnail": "/images/catalog/ego-20303-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "질투"
     },
     {
@@ -3813,7 +3814,7 @@
       ],
       "image": "/images/catalog/ego-20304.webp",
       "thumbnail": "/images/catalog/ego-20304-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "색욕"
     },
     {
@@ -3831,7 +3832,7 @@
       ],
       "image": "/images/catalog/ego-20305.webp",
       "thumbnail": "/images/catalog/ego-20305-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "나태"
     },
     {
@@ -3849,7 +3850,7 @@
       ],
       "image": "/images/catalog/ego-20306.webp",
       "thumbnail": "/images/catalog/ego-20306-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "질투"
     },
     {
@@ -3867,7 +3868,7 @@
       ],
       "image": "/images/catalog/ego-20307.webp",
       "thumbnail": "/images/catalog/ego-20307-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "색욕"
     },
     {
@@ -3885,7 +3886,7 @@
       ],
       "image": "/images/catalog/ego-20308.webp",
       "thumbnail": "/images/catalog/ego-20308-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "탐식"
     },
     {
@@ -3903,7 +3904,7 @@
       ],
       "image": "/images/catalog/ego-20309.webp",
       "thumbnail": "/images/catalog/ego-20309-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "질투"
     },
     {
@@ -3921,7 +3922,7 @@
       ],
       "image": "/images/catalog/ego-20310.webp",
       "thumbnail": "/images/catalog/ego-20310-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "질투"
     },
     {
@@ -3939,7 +3940,7 @@
       ],
       "image": "/images/catalog/ego-20401.webp",
       "thumbnail": "/images/catalog/ego-20401-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "색욕"
     },
     {
@@ -3957,7 +3958,7 @@
       ],
       "image": "/images/catalog/ego-20402.webp",
       "thumbnail": "/images/catalog/ego-20402-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "분노"
     },
     {
@@ -3975,7 +3976,7 @@
       ],
       "image": "/images/catalog/ego-20403.webp",
       "thumbnail": "/images/catalog/ego-20403-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "색욕"
     },
     {
@@ -3993,7 +3994,7 @@
       ],
       "image": "/images/catalog/ego-20404.webp",
       "thumbnail": "/images/catalog/ego-20404-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "질투"
     },
     {
@@ -4011,7 +4012,7 @@
       ],
       "image": "/images/catalog/ego-20405.webp",
       "thumbnail": "/images/catalog/ego-20405-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "우울"
     },
     {
@@ -4029,7 +4030,7 @@
       ],
       "image": "/images/catalog/ego-20406.webp",
       "thumbnail": "/images/catalog/ego-20406-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "오만"
     },
     {
@@ -4047,7 +4048,7 @@
       ],
       "image": "/images/catalog/ego-20407.webp",
       "thumbnail": "/images/catalog/ego-20407-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "색욕"
     },
     {
@@ -4065,7 +4066,7 @@
       ],
       "image": "/images/catalog/ego-20408.webp",
       "thumbnail": "/images/catalog/ego-20408-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "오만"
     },
     {
@@ -4083,7 +4084,7 @@
       ],
       "image": "/images/catalog/ego-20409.webp",
       "thumbnail": "/images/catalog/ego-20409-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "분노"
     },
     {
@@ -4101,7 +4102,7 @@
       ],
       "image": "/images/catalog/ego-20501.webp",
       "thumbnail": "/images/catalog/ego-20501-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "오만"
     },
     {
@@ -4119,7 +4120,7 @@
       ],
       "image": "/images/catalog/ego-20502.webp",
       "thumbnail": "/images/catalog/ego-20502-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "질투"
     },
     {
@@ -4137,7 +4138,7 @@
       ],
       "image": "/images/catalog/ego-20503.webp",
       "thumbnail": "/images/catalog/ego-20503-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "나태"
     },
     {
@@ -4155,7 +4156,7 @@
       ],
       "image": "/images/catalog/ego-20504.webp",
       "thumbnail": "/images/catalog/ego-20504-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "분노"
     },
     {
@@ -4173,7 +4174,7 @@
       ],
       "image": "/images/catalog/ego-20505.webp",
       "thumbnail": "/images/catalog/ego-20505-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "분노"
     },
     {
@@ -4191,7 +4192,7 @@
       ],
       "image": "/images/catalog/ego-20506.webp",
       "thumbnail": "/images/catalog/ego-20506-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "질투"
     },
     {
@@ -4209,7 +4210,7 @@
       ],
       "image": "/images/catalog/ego-20507.webp",
       "thumbnail": "/images/catalog/ego-20507-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "색욕"
     },
     {
@@ -4227,7 +4228,7 @@
       ],
       "image": "/images/catalog/ego-20508.webp",
       "thumbnail": "/images/catalog/ego-20508-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "나태"
     },
     {
@@ -4245,7 +4246,7 @@
       ],
       "image": "/images/catalog/ego-20509.webp",
       "thumbnail": "/images/catalog/ego-20509-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "오만"
     },
     {
@@ -4263,7 +4264,7 @@
       ],
       "image": "/images/catalog/ego-20510.webp",
       "thumbnail": "/images/catalog/ego-20510-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "오만"
     },
     {
@@ -4281,7 +4282,7 @@
       ],
       "image": "/images/catalog/ego-20601.webp",
       "thumbnail": "/images/catalog/ego-20601-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "우울"
     },
     {
@@ -4299,7 +4300,7 @@
       ],
       "image": "/images/catalog/ego-20602.webp",
       "thumbnail": "/images/catalog/ego-20602-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "색욕"
     },
     {
@@ -4317,7 +4318,7 @@
       ],
       "image": "/images/catalog/ego-20603.webp",
       "thumbnail": "/images/catalog/ego-20603-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "오만"
     },
     {
@@ -4335,7 +4336,7 @@
       ],
       "image": "/images/catalog/ego-20604.webp",
       "thumbnail": "/images/catalog/ego-20604-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "질투"
     },
     {
@@ -4353,7 +4354,7 @@
       ],
       "image": "/images/catalog/ego-20605.webp",
       "thumbnail": "/images/catalog/ego-20605-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "탐식"
     },
     {
@@ -4371,7 +4372,7 @@
       ],
       "image": "/images/catalog/ego-20606.webp",
       "thumbnail": "/images/catalog/ego-20606-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "나태"
     },
     {
@@ -4389,7 +4390,7 @@
       ],
       "image": "/images/catalog/ego-20607.webp",
       "thumbnail": "/images/catalog/ego-20607-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "탐식"
     },
     {
@@ -4407,7 +4408,7 @@
       ],
       "image": "/images/catalog/ego-20608.webp",
       "thumbnail": "/images/catalog/ego-20608-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "탐식"
     },
     {
@@ -4425,7 +4426,7 @@
       ],
       "image": "/images/catalog/ego-20609.webp",
       "thumbnail": "/images/catalog/ego-20609-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "오만"
     },
     {
@@ -4443,7 +4444,7 @@
       ],
       "image": "/images/catalog/ego-20610.webp",
       "thumbnail": "/images/catalog/ego-20610-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "질투"
     },
     {
@@ -4461,7 +4462,7 @@
       ],
       "image": "/images/catalog/ego-20701.webp",
       "thumbnail": "/images/catalog/ego-20701-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "질투"
     },
     {
@@ -4479,7 +4480,7 @@
       ],
       "image": "/images/catalog/ego-20702.webp",
       "thumbnail": "/images/catalog/ego-20702-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "질투"
     },
     {
@@ -4497,7 +4498,7 @@
       ],
       "image": "/images/catalog/ego-20703.webp",
       "thumbnail": "/images/catalog/ego-20703-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "우울"
     },
     {
@@ -4515,7 +4516,7 @@
       ],
       "image": "/images/catalog/ego-20704.webp",
       "thumbnail": "/images/catalog/ego-20704-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "색욕"
     },
     {
@@ -4533,7 +4534,7 @@
       ],
       "image": "/images/catalog/ego-20705.webp",
       "thumbnail": "/images/catalog/ego-20705-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "탐식"
     },
     {
@@ -4551,7 +4552,7 @@
       ],
       "image": "/images/catalog/ego-20706.webp",
       "thumbnail": "/images/catalog/ego-20706-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "우울"
     },
     {
@@ -4569,7 +4570,7 @@
       ],
       "image": "/images/catalog/ego-20707.webp",
       "thumbnail": "/images/catalog/ego-20707-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "오만"
     },
     {
@@ -4587,7 +4588,7 @@
       ],
       "image": "/images/catalog/ego-20708.webp",
       "thumbnail": "/images/catalog/ego-20708-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "나태"
     },
     {
@@ -4605,7 +4606,7 @@
       ],
       "image": "/images/catalog/ego-20709.webp",
       "thumbnail": "/images/catalog/ego-20709-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "질투"
     },
     {
@@ -4623,7 +4624,7 @@
       ],
       "image": "/images/catalog/ego-20801.webp",
       "thumbnail": "/images/catalog/ego-20801-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "우울"
     },
     {
@@ -4641,7 +4642,7 @@
       ],
       "image": "/images/catalog/ego-20802.webp",
       "thumbnail": "/images/catalog/ego-20802-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "색욕"
     },
     {
@@ -4659,7 +4660,7 @@
       ],
       "image": "/images/catalog/ego-20803.webp",
       "thumbnail": "/images/catalog/ego-20803-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "분노"
     },
     {
@@ -4677,7 +4678,7 @@
       ],
       "image": "/images/catalog/ego-20804.webp",
       "thumbnail": "/images/catalog/ego-20804-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "분노"
     },
     {
@@ -4695,7 +4696,7 @@
       ],
       "image": "/images/catalog/ego-20805.webp",
       "thumbnail": "/images/catalog/ego-20805-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "오만"
     },
     {
@@ -4713,7 +4714,7 @@
       ],
       "image": "/images/catalog/ego-20806.webp",
       "thumbnail": "/images/catalog/ego-20806-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "탐식"
     },
     {
@@ -4731,7 +4732,7 @@
       ],
       "image": "/images/catalog/ego-20807.webp",
       "thumbnail": "/images/catalog/ego-20807-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "우울"
     },
     {
@@ -4749,7 +4750,7 @@
       ],
       "image": "/images/catalog/ego-20808.webp",
       "thumbnail": "/images/catalog/ego-20808-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "나태"
     },
     {
@@ -4767,7 +4768,7 @@
       ],
       "image": "/images/catalog/ego-20809.webp",
       "thumbnail": "/images/catalog/ego-20809-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "우울"
     },
     {
@@ -4785,7 +4786,7 @@
       ],
       "image": "/images/catalog/ego-20810.webp",
       "thumbnail": "/images/catalog/ego-20810-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "우울"
     },
     {
@@ -4803,7 +4804,7 @@
       ],
       "image": "/images/catalog/ego-20901.webp",
       "thumbnail": "/images/catalog/ego-20901-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "오만"
     },
     {
@@ -4821,7 +4822,7 @@
       ],
       "image": "/images/catalog/ego-20902.webp",
       "thumbnail": "/images/catalog/ego-20902-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "분노"
     },
     {
@@ -4839,7 +4840,7 @@
       ],
       "image": "/images/catalog/ego-20903.webp",
       "thumbnail": "/images/catalog/ego-20903-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "우울"
     },
     {
@@ -4857,7 +4858,7 @@
       ],
       "image": "/images/catalog/ego-20904.webp",
       "thumbnail": "/images/catalog/ego-20904-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "탐식"
     },
     {
@@ -4875,7 +4876,7 @@
       ],
       "image": "/images/catalog/ego-20905.webp",
       "thumbnail": "/images/catalog/ego-20905-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "나태"
     },
     {
@@ -4893,7 +4894,7 @@
       ],
       "image": "/images/catalog/ego-20906.webp",
       "thumbnail": "/images/catalog/ego-20906-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "색욕"
     },
     {
@@ -4911,7 +4912,7 @@
       ],
       "image": "/images/catalog/ego-20907.webp",
       "thumbnail": "/images/catalog/ego-20907-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "질투"
     },
     {
@@ -4929,7 +4930,7 @@
       ],
       "image": "/images/catalog/ego-20908.webp",
       "thumbnail": "/images/catalog/ego-20908-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "분노"
     },
     {
@@ -4947,7 +4948,7 @@
       ],
       "image": "/images/catalog/ego-20909.webp",
       "thumbnail": "/images/catalog/ego-20909-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "색욕"
     },
     {
@@ -4965,7 +4966,7 @@
       ],
       "image": "/images/catalog/ego-20910.webp",
       "thumbnail": "/images/catalog/ego-20910-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "나태"
     },
     {
@@ -4983,7 +4984,7 @@
       ],
       "image": "/images/catalog/ego-21001.webp",
       "thumbnail": "/images/catalog/ego-21001-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "탐식"
     },
     {
@@ -5001,7 +5002,7 @@
       ],
       "image": "/images/catalog/ego-21002.webp",
       "thumbnail": "/images/catalog/ego-21002-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "분노"
     },
     {
@@ -5019,7 +5020,7 @@
       ],
       "image": "/images/catalog/ego-21003.webp",
       "thumbnail": "/images/catalog/ego-21003-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "색욕"
     },
     {
@@ -5037,7 +5038,7 @@
       ],
       "image": "/images/catalog/ego-21004.webp",
       "thumbnail": "/images/catalog/ego-21004-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "탐식"
     },
     {
@@ -5055,7 +5056,7 @@
       ],
       "image": "/images/catalog/ego-21005.webp",
       "thumbnail": "/images/catalog/ego-21005-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "색욕"
     },
     {
@@ -5073,7 +5074,7 @@
       ],
       "image": "/images/catalog/ego-21006.webp",
       "thumbnail": "/images/catalog/ego-21006-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "우울"
     },
     {
@@ -5091,7 +5092,7 @@
       ],
       "image": "/images/catalog/ego-21007.webp",
       "thumbnail": "/images/catalog/ego-21007-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "질투"
     },
     {
@@ -5109,7 +5110,7 @@
       ],
       "image": "/images/catalog/ego-21008.webp",
       "thumbnail": "/images/catalog/ego-21008-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "탐식"
     },
     {
@@ -5127,7 +5128,7 @@
       ],
       "image": "/images/catalog/ego-21009.webp",
       "thumbnail": "/images/catalog/ego-21009-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "분노"
     },
     {
@@ -5145,7 +5146,7 @@
       ],
       "image": "/images/catalog/ego-21101.webp",
       "thumbnail": "/images/catalog/ego-21101-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "오만"
     },
     {
@@ -5163,7 +5164,7 @@
       ],
       "image": "/images/catalog/ego-21102.webp",
       "thumbnail": "/images/catalog/ego-21102-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "탐식"
     },
     {
@@ -5181,7 +5182,7 @@
       ],
       "image": "/images/catalog/ego-21103.webp",
       "thumbnail": "/images/catalog/ego-21103-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "색욕"
     },
     {
@@ -5199,7 +5200,7 @@
       ],
       "image": "/images/catalog/ego-21104.webp",
       "thumbnail": "/images/catalog/ego-21104-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "탐식"
     },
     {
@@ -5217,7 +5218,7 @@
       ],
       "image": "/images/catalog/ego-21105.webp",
       "thumbnail": "/images/catalog/ego-21105-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "분노"
     },
     {
@@ -5235,7 +5236,7 @@
       ],
       "image": "/images/catalog/ego-21106.webp",
       "thumbnail": "/images/catalog/ego-21106-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "오만"
     },
     {
@@ -5253,7 +5254,7 @@
       ],
       "image": "/images/catalog/ego-21107.webp",
       "thumbnail": "/images/catalog/ego-21107-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "질투"
     },
     {
@@ -5271,7 +5272,7 @@
       ],
       "image": "/images/catalog/ego-21108.webp",
       "thumbnail": "/images/catalog/ego-21108-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "오만"
     },
     {
@@ -5289,7 +5290,7 @@
       ],
       "image": "/images/catalog/ego-21109.webp",
       "thumbnail": "/images/catalog/ego-21109-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "질투"
     },
     {
@@ -5307,7 +5308,7 @@
       ],
       "image": "/images/catalog/ego-21201.webp",
       "thumbnail": "/images/catalog/ego-21201-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "나태"
     },
     {
@@ -5325,7 +5326,7 @@
       ],
       "image": "/images/catalog/ego-21202.webp",
       "thumbnail": "/images/catalog/ego-21202-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "탐식"
     },
     {
@@ -5343,7 +5344,7 @@
       ],
       "image": "/images/catalog/ego-21203.webp",
       "thumbnail": "/images/catalog/ego-21203-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "탐식"
     },
     {
@@ -5361,7 +5362,7 @@
       ],
       "image": "/images/catalog/ego-21204.webp",
       "thumbnail": "/images/catalog/ego-21204-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "우울"
     },
     {
@@ -5379,7 +5380,7 @@
       ],
       "image": "/images/catalog/ego-21205.webp",
       "thumbnail": "/images/catalog/ego-21205-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "색욕"
     },
     {
@@ -5397,7 +5398,7 @@
       ],
       "image": "/images/catalog/ego-21206.webp",
       "thumbnail": "/images/catalog/ego-21206-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "우울"
     },
     {
@@ -5415,7 +5416,7 @@
       ],
       "image": "/images/catalog/ego-21207.webp",
       "thumbnail": "/images/catalog/ego-21207-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "우울"
     },
     {
@@ -5433,7 +5434,7 @@
       ],
       "image": "/images/catalog/ego-21208.webp",
       "thumbnail": "/images/catalog/ego-21208-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "나태"
     },
     {
@@ -5451,7 +5452,7 @@
       ],
       "image": "/images/catalog/ego-21209.webp",
       "thumbnail": "/images/catalog/ego-21209-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "나태"
     },
     {
@@ -5469,7 +5470,7 @@
       ],
       "image": "/images/catalog/ego-21210.webp",
       "thumbnail": "/images/catalog/ego-21210-thumb.webp",
-      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/1924dfa59154736cd07a1e7d27ed7dd2e45f2391/Egos.json",
+      "sourceUrl": "https://github.com/x1bViolet/Limbus-Localization-Files/blob/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f/Egos.json",
       "affinity": "질투"
     }
   ]

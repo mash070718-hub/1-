@@ -1,8 +1,8 @@
 # Library of Limbus 자료 출처
 
-2026-10-06 기준 **인격 189개, E.G.O 116개**를 수록했습니다.
-최신 수록 출시일은 2026-10-01이며 한국어 자료 버전 표기는 `1.116.0`입니다.
-자료 확인 시각: `2026-10-06T12:22:11.485757Z`. 미러 자료 갱신 시각: `2026-10-06T12:08:41Z`.
+2026-10-15 기준 **인격 189개, E.G.O 116개**를 수록했습니다.
+최신 수록 출시일은 2026-10-01이며 한국어 자료 버전 표기는 `공개 자료에 버전 번호 미표기`입니다.
+자료 확인 시각: `2026-10-15T04:03:10.188939Z`. 미러 자료 갱신 시각: `2026-10-12T06:50:44Z`.
 
 | 수감자 | 인격 | E.G.O |
 |---|---:|---:|
@@ -21,8 +21,8 @@
 
 ## 확인한 자료
 
-- [공식 게임 한국어 로컬라이징 공개 미러](https://github.com/x1bViolet/Limbus-Localization-Files/tree/1924dfa59154736cd07a1e7d27ed7dd2e45f2391)
-- [출시 목록 및 공식 게임 이미지 공개 미러](https://github.com/eldritchtools/limbus-assets/tree/045dbb7679792fc4e5397fa53ecaf7e7ca0405b7)
+- [공식 게임 한국어 로컬라이징 공개 미러](https://github.com/x1bViolet/Limbus-Localization-Files/tree/9b1fe18879f1b1ab6b63f654f56bc38392c9bf1f)
+- [출시 목록 및 공식 게임 이미지 공개 미러](https://github.com/eldritchtools/limbus-assets/tree/1927003ef3a2254c08d6eceea92289305519de7e)
 
 한국어 이름은 `Characters.json`, `Personalities.json`, `Egos.json`을 사용하며 게임 UI의 줄바꿈만 공백으로 바꿉니다.
 출시 여부는 `data/identities.json`, `data/egos.json`, `data/upcoming.json`을 함께 확인합니다.
