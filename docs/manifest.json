@@ -3,14 +3,14 @@
   "entrypoint": "index.html",
   "language": "ko",
   "artifact": {
-    "bytes": 9090557,
-    "sha256": "a070be0b474d1d16679a63e0013af4d9522efc6d2e22d64934f007a721b9cd14",
-    "embeddedArtworks": 306,
+    "bytes": 13667667,
+    "sha256": "eeba561f192f529195b37b3a369bc16c9dd36100cfb28012120aad6064a19fe3",
+    "embeddedArtworks": 484,
     "inlineScripts": 1
   },
   "catalog": {
     "asOf": "2026-10-15",
-    "verifiedAt": "2026-10-15T08:51:11.927239Z",
+    "verifiedAt": "2026-10-23T14:57:06.473482Z",
     "latestReleaseDate": "2026-10-15",
     "gameVersion": "공개 자료에 버전 번호 미표기",
     "counts": {
@@ -146,6 +146,17 @@
       "policy": "released-and-verified-v1",
       "personalEvaluationsUntouched": true,
       "newEntriesUnrated": true
+    },
+    "identityArtwork": {
+      "choices": [
+        "uptie1",
+        "uptie3"
+      ],
+      "administratorSelection": true,
+      "publishedAndBackedUp": true,
+      "legacyAppearancePreserved": true,
+      "sharedAcrossListsDetailsFormationsAndDeckCovers": true,
+      "baseIdentitiesShareArtwork": true
     }
   }
 }

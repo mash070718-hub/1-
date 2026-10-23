@@ -1,4 +1,4 @@
-import { CATALOG, getCatalogRecord, type CatalogRecord } from './catalog';
+import { CATALOG, getCatalogRecord, type CatalogRecord, type IdentityArtwork } from './catalog';
 import { isGameTag } from './tags';
 import { IDENTITY_SCORE_MAX, type RailwayScoreContent } from './identityScores';
 import { LEGACY_RAILWAYS, unifyRailway } from './railway';
@@ -136,6 +136,8 @@ export interface LibraryEntry {
   tiers: Record<Content, Tier>;
   /** Manual identity rating, independent of every content tier and score. */
   overallTier?: Tier;
+  /** Display preference only; never changes tiers, scores, stats or formation order. */
+  artwork?: IdentityArtwork;
   scores?: Partial<Record<Content, number | null>>;
   scoreScale?: 'content-v1';
   scoreRailway?: RailwayScoreContent;
@@ -369,6 +371,7 @@ export function resetCatalogEntry(entry: LibraryEntry): LibraryEntry {
   if (!record) return cloneEntry(entry);
   return {
     ...createCatalogEntry(record),
+    ...(entry.artwork ? { artwork: entry.artwork } : {}),
     recommendedEgoIds: [...entry.recommendedEgoIds],
     deckIds: [...entry.deckIds],
     memberIds: [...entry.memberIds],
@@ -377,7 +380,7 @@ export function resetCatalogEntry(entry: LibraryEntry): LibraryEntry {
 }
 
 function matchesDemo(entry: LibraryEntry, example: LibraryEntry): boolean {
-  return (entry.overallTier == null || entry.overallTier === 'unrated') && !Object.values(entry.scores ?? {}).some((score) => score != null) && ENTRY_KEYS.every((key) => key === 'tiers'
+  return entry.artwork === undefined && (entry.overallTier == null || entry.overallTier === 'unrated') && !Object.values(entry.scores ?? {}).some((score) => score != null) && ENTRY_KEYS.every((key) => key === 'tiers'
     ? STORED_CONTENTS.every(({ id }) => entry.tiers[id] === example.tiers[id])
     : key === 'mirrorPlan'
       ? (entry.mirrorPlan ?? null) === example.mirrorPlan
@@ -714,7 +717,10 @@ export function parseLibrary(json: string): LibraryData {
     const hasContentIds = Object.hasOwn(entry, 'contentIds');
     const hasMirrorPlan = Object.hasOwn(entry, 'mirrorPlan');
     requireKeys(entry, ENTRY_KEYS.filter((key) =>
-      (key !== 'contentIds' || hasContentIds) && (key !== 'mirrorPlan' || hasMirrorPlan)).concat(['scores', 'scoreScale', 'scoreRailway', 'overallTier'].filter(key => Object.hasOwn(entry, key))), path);
+      (key !== 'contentIds' || hasContentIds) && (key !== 'mirrorPlan' || hasMirrorPlan)).concat(['scores', 'scoreScale', 'scoreRailway', 'overallTier', 'artwork'].filter(key => Object.hasOwn(entry, key))), path);
+    if (Object.hasOwn(entry, 'artwork') && (entry.kind !== 'identity' || !['uptie1', 'uptie3'].includes(entry.artwork as string))) {
+      invalid(`${path}.artwork`, '인격 일러스트는 1동기화 또는 3동기화 중 하나여야 합니다.');
+    }
     if (Object.hasOwn(entry, 'overallTier') && (entry.kind !== 'identity' || !TIERS.includes(entry.overallTier as Tier))) {
       invalid(`${path}.overallTier`, '인격의 종합 티어는 S·A·B·C·D·미평가 중 하나여야 합니다.');
     }

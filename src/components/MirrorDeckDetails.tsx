@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ArrowRight, BookMarked, FileText, Layers3, Sparkles, Swords } from "lucide-react";
-import { getCatalogRecord } from "../lib/catalog";
+import { getCatalogRecord, getEntryArtwork } from "../lib/catalog";
 import type { LibraryEntry, MirrorDeck } from "../lib/library";
 import MirrorPlanDetails from "./MirrorPlanDetails";
 import { DeckScreenshotGallery } from "./DeckScreenshots";
@@ -17,8 +17,7 @@ const displayName = (entry: LibraryEntry) =>
   getCatalogRecord(entry.id) ? `${entry.name} ${entry.sinner}` : entry.name;
 
 function MirrorIdentityArt({ entry, large = false }: { entry: LibraryEntry | undefined; large?: boolean }) {
-  const record = entry ? getCatalogRecord(entry.id) : undefined;
-  const image = large ? record?.image : record?.thumbnail;
+  const image = getEntryArtwork(entry, large);
   const [failedImage, setFailedImage] = useState<string | undefined>();
   return (
     <span className={large ? "mirror-deck-detail-cover" : "mirror-deck-member-art"}>

@@ -61,7 +61,8 @@ test('source provenance and release dates identify the catalog coverage without 
 
 test('every catalog illustration and thumbnail is bundled locally as a valid WebP', () => {
   for (const record of CATALOG) {
-    for (const image of [record.image, record.thumbnail]) {
+    if (record.kind === 'identity') assert.deepEqual(Object.keys(record.artworks ?? {}).sort(), ['uptie1', 'uptie3']);
+    for (const image of new Set([record.image, record.thumbnail, ...Object.values(record.artworks ?? {}).flatMap(art => [art.image, art.thumbnail])])) {
       assert.match(image, /^\/images\/catalog\/[a-z0-9-]+\.webp$/);
       const path = fileURLToPath(new URL(`../../public${image}`, import.meta.url));
       const bytes = readFileSync(path);

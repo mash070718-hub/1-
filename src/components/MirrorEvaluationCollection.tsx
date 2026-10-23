@@ -1,7 +1,7 @@
 import { useAdminAccess } from "./AdminAccess";
 import { useEffect, useMemo, useState } from 'react';
 import { ArrowRight, BookMarked, ChevronRight, PenLine, Search, Sparkles, X } from 'lucide-react';
-import { getCatalogRecord } from '../lib/catalog';
+import { getCatalogRecord, getEntryArtwork } from '../lib/catalog';
 import {
   compareScores, createMirrorEvaluation, SINNERS, TIERS,
   type LibraryEntry, type MirrorEvaluation, type Tier,
@@ -29,7 +29,7 @@ const hasNotes = (evaluation: MirrorEvaluation) => Boolean(
 
 function EvaluationArt({ entry }: { entry: LibraryEntry }) {
   const catalog = getCatalogRecord(entry.id);
-  const image = catalog?.thumbnail;
+  const image = getEntryArtwork(entry);
   const [failedImage, setFailedImage] = useState<string>();
   const Icon = entry.kind === 'identity' ? BookMarked : Sparkles;
   return (

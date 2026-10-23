@@ -13,11 +13,20 @@ def refresh(root: Path = ROOT) -> None:
     path = root / "docs/manifest.json"
     manifest = json.loads(path.read_text())
     html = (root / "docs/index.html").read_bytes()
-    manifest["artifact"].update(bytes=len(html), sha256=hashlib.sha256(html).hexdigest(), embeddedArtworks=len(catalog["entries"]))
+    thumbnails = {entry["thumbnail"] for entry in catalog["entries"]}
+    thumbnails.update(art["thumbnail"] for entry in catalog["entries"] for art in entry.get("artworks", {}).values())
+    image_count = len(json.loads((root / "public/images/catalog/manifest.json").read_text())["images"])
+    manifest["artifact"].update(bytes=len(html), sha256=hashlib.sha256(html).hexdigest(), embeddedArtworks=len(thumbnails))
     manifest["catalog"] = {key: meta[key] for key in ["asOf", "verifiedAt", "latestReleaseDate", "gameVersion", "counts", "sourceCommit", "localizationCommit"]}
     manifest["features"]["automaticCatalogUpdates"] = {
         "intervalHours": 2, "policy": meta.get("automaticUpdatePolicy"),
         "personalEvaluationsUntouched": True, "newEntriesUnrated": True,
+    }
+    manifest["features"]["identityArtwork"] = {
+        "choices": ["uptie1", "uptie3"], "administratorSelection": True,
+        "publishedAndBackedUp": True, "legacyAppearancePreserved": True,
+        "sharedAcrossListsDetailsFormationsAndDeckCovers": True,
+        "baseIdentitiesShareArtwork": True,
     }
     path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n")
     table = "\n".join(f"| {row['sinner']} | {row['identity']} | {row['ego']} |" for row in meta["sinnerCounts"])
@@ -43,7 +52,8 @@ def refresh(root: Path = ROOT) -> None:
 
 ## 이미지와 평가 보존
 
-{len(catalog['entries']) * 2}개의 원화·썸네일은 공식 게임 원화의 WebP 변환본이며 커뮤니티 미러에서 가져왔습니다.
+{image_count}개의 원화·썸네일은 공식 게임 원화의 WebP 변환본이며 커뮤니티 미러에서 가져왔습니다.
+인격별 1동기화·3동기화 일러스트를 함께 수록합니다. 별도 3동기화 원화가 없는 기본 인격은 같은 이미지를 사용합니다.
 `public/images/catalog/manifest.json`에 각 파일의 실제 원본 URL, SHA-256, 치수와 크기를 기록합니다.
 이미 검증된 기존 이미지는 고정된 원본 출처와 함께 재사용하고, 새 이미지는 내려받아 검사합니다.
 {meta['copyright']}

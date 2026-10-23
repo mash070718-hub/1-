@@ -1,5 +1,8 @@
 import catalog from '../data/catalog.json' with { type: 'json' };
 
+export type IdentityArtwork = 'uptie1' | 'uptie3';
+export interface CatalogArtwork { image: string; thumbnail: string }
+
 /** Official game metadata stays separate from personal, version 1 notebook records. */
 export interface CatalogRecord {
   id: string;
@@ -14,6 +17,7 @@ export interface CatalogRecord {
   tags: string[];
   image: string;
   thumbnail: string;
+  artworks?: Record<IdentityArtwork, CatalogArtwork>;
   sourceUrl: string;
   affinity?: string;
 }
@@ -43,4 +47,16 @@ export const CATALOG_BY_ID: ReadonlyMap<string, CatalogRecord> = new Map(
 
 export function getCatalogRecord(id: string): CatalogRecord | undefined {
   return CATALOG_BY_ID.get(id);
+}
+
+export function getArtworkChoice(entry: { id: string; artwork?: IdentityArtwork }): IdentityArtwork {
+  return entry.artwork ?? (getCatalogRecord(entry.id)?.rarity === '0' ? 'uptie1' : 'uptie3');
+}
+
+/** The same saved choice drives lists, details, formations and first-member deck covers. */
+export function getEntryArtwork(entry: { id: string; artwork?: IdentityArtwork } | undefined, large = false): string | undefined {
+  if (!entry) return undefined;
+  const record = getCatalogRecord(entry.id);
+  const art = record?.kind === 'identity' ? record.artworks?.[getArtworkChoice(entry)] ?? record : record;
+  return large ? art?.image : art?.thumbnail;
 }

@@ -112,12 +112,19 @@ def image_requests(entry: dict, asset_data: dict, asset_commit: str) -> list[dic
                  f"assets/identities/{game_id}_gacksung_profile.webp"]
     else:
         paths = [f"assets/egos/{game_id}_cg.webp", f"assets/egos/{game_id}_awaken_profile.webp"]
-    return [
+    requests = [
         {"kind": kind, "gameId": game_id, "role": "artwork" if i == 0 else "thumbnail",
          "file": f"{kind}-{game_id}{'' if i == 0 else '-thumb'}.webp",
          "sourceUrl": raw_url(ASSET_REPO, asset_commit, path)}
         for i, path in enumerate(paths)
     ]
+    if kind == "identity" and not base:
+        requests.extend([
+            {"kind": kind, "gameId": game_id, "role": role, "file": f"identity-{game_id}-uptie1{suffix}.webp",
+             "sourceUrl": raw_url(ASSET_REPO, asset_commit, f"assets/identities/{game_id}_{source}.webp")}
+            for role, suffix, source in [("uptie1-artwork", "", "normal"), ("uptie1-thumbnail", "-thumb", "normal_profile")]
+        ])
+    return requests
 
 
 def save_image(item: dict, image_dir: Path, old_images: dict, existing_dir: Path | None = None, reuse_verified: bool = False) -> dict:
@@ -163,6 +170,7 @@ def check_existing() -> None:
     manifest = json.loads((image_dir / "manifest.json").read_text())
     images = {item["file"]: item for item in manifest["images"]}
     seen = set()
+    checked_images = set()
     counts = {"identity": 0, "ego": 0}
     for entry in catalog["entries"]:
         if entry["id"] in seen or not re.search(r"[가-힣]", entry["sinner"]):
@@ -171,15 +179,21 @@ def check_existing() -> None:
         if not entry["name"] or entry["releaseDate"] > catalog["metadata"]["asOf"]:
             raise ValueError("Missing official name or future release")
         counts[entry["kind"]] += 1
-        for key in ("image", "thumbnail"):
-            path = ROOT / "public" / entry[key].lstrip("/")
+        art_paths = {entry[key] for key in ("image", "thumbnail")}
+        if entry["kind"] == "identity":
+            if set(entry.get("artworks", {})) != {"uptie1", "uptie3"}:
+                raise ValueError(f"Missing identity artwork choices: {entry['id']}")
+            art_paths.update(art[key] for art in entry["artworks"].values() for key in ("image", "thumbnail"))
+        for image in art_paths:
+            path = ROOT / "public" / image.lstrip("/")
             info = images[path.name]
             data = path.read_bytes()
             if hashlib.sha256(data).hexdigest() != info["sha256"] or webp_dimensions(data) != (info["width"], info["height"]):
                 raise ValueError(f"Invalid local artwork: {path}")
+            checked_images.add(path.name)
     if counts != catalog["metadata"]["counts"]:
         raise ValueError("Catalog counts do not match metadata")
-    print(f"Verified {len(seen)} catalog entries and {len(seen) * 2} local images: {counts}")
+    print(f"Verified {len(seen)} catalog entries and {len(checked_images)} local images: {counts}")
 
 
 def main() -> None:
@@ -254,6 +268,15 @@ def main() -> None:
             }
             if kind == "ego":
                 entry["affinity"] = AFFINITIES[item["awakeningType"]["affinity"]]
+            else:
+                current = {"image": entry["image"], "thumbnail": entry["thumbnail"]}
+                entry["artworks"] = {
+                    "uptie1": current.copy() if item["rank"] == 1 else {
+                        "image": f"/images/catalog/identity-{game_id}-uptie1.webp",
+                        "thumbnail": f"/images/catalog/identity-{game_id}-uptie1-thumb.webp",
+                    },
+                    "uptie3": current.copy(),
+                }
             entries.append(entry)
             requests.extend(image_requests(entry, item, asset_commit))
     counts = {kind: sum(entry["kind"] == kind for entry in entries) for kind in ("identity", "ego")}

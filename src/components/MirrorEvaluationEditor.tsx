@@ -4,7 +4,7 @@ import IdentityScoreSummary from "./IdentityScoreSummary";
 import { IDENTITY_SCORE_MAX } from "../lib/identityScores";
 import { useState } from "react";
 import { BookMarked, Search, Sparkles, X } from "lucide-react";
-import { getCatalogRecord } from "../lib/catalog";
+import { getCatalogRecord, getEntryArtwork } from "../lib/catalog";
 import { TIERS, type LibraryEntry, type MirrorEvaluation, type Tier } from "../lib/library";
 import "./mirror-evaluation.css";
 
@@ -27,7 +27,7 @@ export default function MirrorEvaluationEditor({ entry, value, entries, onChange
   const sinner = catalog?.sinner ?? entry.sinner;
   const [query, setQuery] = useState("");
   const [failedImage, setFailedImage] = useState<string | null>(null);
-  const image = catalog?.thumbnail;
+  const image = getEntryArtwork(entry);
   const Icon = entry.kind === "ego" ? Sparkles : BookMarked;
   const egoEntries = entries.filter((item) => item.kind === "ego");
   const normalizedQuery = query.trim().toLocaleLowerCase();

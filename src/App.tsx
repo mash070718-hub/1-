@@ -57,11 +57,12 @@ import {
   type MirrorEvaluation,
   type Tier,
 } from "./lib/library";
-import { CATALOG, CATALOG_METADATA, getCatalogRecord } from "./lib/catalog";
+import { CATALOG, CATALOG_METADATA, getCatalogRecord, getEntryArtwork } from "./lib/catalog";
 import * as cloud from "./lib/cloud";
 import { lockPageScroll } from "./lib/pageScroll";
 import { AdminAccess, useAdminAccess } from "./components/AdminAccess";
 import ScoreInput from "./components/ScoreInput";
+import IdentityArtworkPicker from "./components/IdentityArtworkPicker";
 import IdentityScoreGuide, { IdentityScoringOverview } from "./components/IdentityScoreGuide";
 import IdentityScoreSummary from "./components/IdentityScoreSummary";
 import { IDENTITY_SCORE_MAX, identityScoreTotal, identityScoreLabel, type IdentityScoreTotal } from "./lib/identityScores";
@@ -106,10 +107,9 @@ function EntryArt({
   const cover = entry.kind === "deck"
     ? entries.find((item) => item.id === entry.memberIds[0])
     : entry;
-  const record = getCatalogRecord(cover?.id ?? entry.id);
   const [failed, setFailed] = useState(false);
   const Icon = kindIcon[entry.kind];
-  const image = large ? record?.image : record?.thumbnail;
+  const image = getEntryArtwork(cover ?? entry, large);
   useEffect(() => setFailed(false), [image]);
   return (
     <span className={large ? "detail-art" : "entry-art"} data-kind={entry.kind}>
@@ -837,6 +837,7 @@ function Editor({
               </span>
             )}
           </label>
+          <IdentityArtworkPicker entry={draft} onChange={(artwork) => set("artwork", artwork)} />
           {entry.kind !== "deck" && (
             <label className="form-field">
               <span className="field-label">수감자</span>

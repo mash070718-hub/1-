@@ -12,6 +12,7 @@ test('a newer catalog appears for visitors and old admin drafts without publishi
   const evaluated = old.entries.find(entry => entry.kind === 'identity')!;
   evaluated.overallTier = 'A'; evaluated.tiers.story = 'S'; evaluated.tiers.railway = 'B';
   evaluated.scores = { story: 18, railway: 7.5 };
+  evaluated.artwork = 'uptie1';
   evaluated.description = '공개된 기존 평가';
   const deck = { ...createEntry('deck'), name: '기존 덱', memberIds: [evaluated.id], formationCode: 'KEEP-1' };
   old.entries.push(deck); evaluated.deckIds = [deck.id];
@@ -53,7 +54,7 @@ test('a newer catalog appears for visitors and old admin drafts without publishi
   await admin.getByRole('button', { name: '기록 수정', exact: true }).click();
   await admin.getByRole('button', { name: '기록 저장', exact: true }).click();
   const saved = await admin.evaluate(key => JSON.parse(localStorage.getItem(key)!), draftKey);
-  expect(saved.entries.find((entry: { id: string }) => entry.id === evaluated.id)).toMatchObject({ scores: evaluated.scores, overallTier: 'A', tiers: evaluated.tiers, deckIds: [deck.id], description: '아직 게시하지 않은 내 메모' });
+  expect(saved.entries.find((entry: { id: string }) => entry.id === evaluated.id)).toMatchObject({ artwork: 'uptie1', scores: evaluated.scores, overallTier: 'A', tiers: evaluated.tiers, deckIds: [deck.id], description: '아직 게시하지 않은 내 메모' });
   expect(saved.entries.find((entry: { id: string }) => entry.id === deck.id)).toEqual(deck);
   expect(saved.mirrorArchive).toEqual(old.mirrorArchive);
   expect(addedIds.every(id => saved.entries.some((entry: { id: string }) => entry.id === id))).toBe(true);

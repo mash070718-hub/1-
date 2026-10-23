@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ArrowRight, BookMarked, FileText, Layers3, Sparkles, Swords } from "lucide-react";
-import { getCatalogRecord } from "../lib/catalog";
+import { getCatalogRecord, getEntryArtwork } from "../lib/catalog";
 import type { LibraryEntry, MirrorDeck, MirrorEvaluation } from "../lib/library";
 import "./mirror-evaluation.css";
 import IdentityScoreSummary from "./IdentityScoreSummary";
@@ -23,7 +23,7 @@ export default function MirrorEvaluationDetails({ entry, evaluation, entries, de
   const catalog = getCatalogRecord(entry.id);
   const name = catalog?.name ?? entry.name;
   const sinner = catalog?.sinner ?? entry.sinner;
-  const image = catalog?.image;
+  const image = getEntryArtwork(entry, true);
   const [failedImage, setFailedImage] = useState<string | null>(null);
   const Icon = entry.kind === "ego" ? Sparkles : BookMarked;
   const entryById = new Map(entries.map((item) => [item.id, item]));

@@ -55,10 +55,13 @@ class UpdateTests(unittest.TestCase):
         self.add_identity()
         self.sources["data/egos.json"]["20202"] = {**self.sources["data/egos.json"]["20101"], "sinnerId": 2, "date": "2026-10-15"}
         self.sources["Egos.json"]["dataList"].append({"id": 20202, "name": "새 E.G.O"})
-        self.assertEqual(self.run_update(), 4)
+        self.assertEqual(self.run_update(), 6)
         self.assertEqual(self.catalog()["metadata"]["counts"], {"identity": 2, "ego": 2})
         self.assertEqual(self.catalog()["entries"][1]["name"], "새 인격 공식 이름")
         self.assertEqual((self.root / "personal-evaluations.json").read_bytes(), before)
+        identity = self.catalog()["entries"][1]
+        self.assertNotEqual(identity["artworks"]["uptie1"], identity["artworks"]["uptie3"])
+        self.assertEqual(self.catalog()["entries"][0]["artworks"]["uptie1"], self.catalog()["entries"][0]["artworks"]["uptie3"])
         for entry in self.catalog()["entries"]:
             self.assertNotIn("tiers", entry)
             self.assertNotIn("scores", entry)

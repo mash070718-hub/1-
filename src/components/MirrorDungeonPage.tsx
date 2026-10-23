@@ -1,7 +1,7 @@
 import { useAdminAccess } from "./AdminAccess";
 import { useMemo, useState } from "react";
 import { ArrowRight, BookMarked, Compass, Gift, Layers3, PenLine, Plus, Search, SlidersHorizontal, X } from "lucide-react";
-import { getCatalogRecord } from "../lib/catalog";
+import { getEntryArtwork } from "../lib/catalog";
 import { compareScores, TIERS, type LibraryEntry, type MirrorArchive, type MirrorDeck, type MirrorSkillChange } from "../lib/library";
 import { TagPicker } from "./TagPicker";
 import MirrorEvaluationCollection from "./MirrorEvaluationCollection";
@@ -32,7 +32,7 @@ const hasPlanRecord = (entry: MirrorDeck) => Boolean(
 
 function MirrorCover({ entry, entries }: { entry: MirrorDeck; entries: LibraryEntry[] }) {
   const cover = entries.find((item) => item.id === entry.memberIds[0]);
-  const image = cover ? getCatalogRecord(cover.id)?.thumbnail : undefined;
+  const image = getEntryArtwork(cover);
   const [failedImage, setFailedImage] = useState<string | undefined>();
   return (
     <span className="mirror-card-cover">

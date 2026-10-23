@@ -1,0 +1,9 @@
+.identity-artwork-picker { min-width: 0; padding: 15px; margin: 0; border: 1px solid #c2aa7f; background: #e9dcc0; }
+.identity-artwork-picker legend { padding: 0 8px; }
+.identity-artwork-options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-bottom: 12px; }
+.identity-artwork-option { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 0; padding: 12px; border: 1px solid #b79b6a; background: #f5edd9; cursor: pointer; }
+.identity-artwork-option[data-selected="true"] { border-color: #722d35; box-shadow: inset 0 0 0 1px #722d35; background: #e7d7b6; }
+.identity-artwork-option:focus-within { outline: 2px solid #722d35; outline-offset: 2px; }
+.identity-artwork-option img { width: 92px; height: 116px; max-width: 100%; object-fit: cover; object-position: center 25%; border: 1px solid #a1814b; }
+.identity-artwork-option > span { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 6px; color: #4d3824; font-size: 13px; }
+.identity-artwork-option input { margin: 0; accent-color: #722d35; }

@@ -11,9 +11,8 @@ const outputPath = process.argv[2]
   ? path.resolve(process.cwd(), process.argv[2])
   : path.resolve(root, '../library-files/Library-of-Limbus.html');
 
-// Use the official thumbnail once for each artwork. The source catalog and the
-// normal website retain their full-resolution images; only this offline build
-// uses the smaller art so the complete library fits in one downloadable file.
+// Embed each official profile once, including both selectable identity artworks.
+// Keep the standalone Pages file below the host's per-file size limit.
 const catalog = JSON.parse(await readFile(catalogPath, 'utf8'));
 if (!Array.isArray(catalog.entries) || !catalog.entries.length) {
   throw new Error('The official catalog must contain entries before building the offline library.');
@@ -21,32 +20,44 @@ if (!Array.isArray(catalog.entries) || !catalog.entries.length) {
 const embeddedImages = [];
 const imageIndexes = new Map();
 const bundledEntries = [];
-for (const entry of catalog.entries) {
-  if (typeof entry.thumbnail !== 'string' || !entry.thumbnail.startsWith('/images/catalog/')) {
-    throw new Error(`Missing local catalog thumbnail: ${entry.id}`);
+async function embedThumbnail(thumbnail) {
+  if (typeof thumbnail !== 'string' || !thumbnail.startsWith('/images/catalog/')) {
+    throw new Error(`Missing local catalog thumbnail: ${thumbnail}`);
   }
-  let index = imageIndexes.get(entry.thumbnail);
+  let index = imageIndexes.get(thumbnail);
   if (index === undefined) {
-    const imagePath = path.resolve(root, 'public', entry.thumbnail.slice(1));
+    const imagePath = path.resolve(root, 'public', thumbnail.slice(1));
     const allowedDirectory = `${path.resolve(root, 'public/images/catalog')}${path.sep}`;
     if (!imagePath.startsWith(allowedDirectory)) {
-      throw new Error(`Catalog thumbnail is outside the supported directory: ${entry.id}`);
+      throw new Error(`Catalog thumbnail is outside the supported directory: ${thumbnail}`);
     }
     const mime = { '.webp': 'image/webp', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg' }[path.extname(imagePath).toLowerCase()];
-    if (!mime) throw new Error(`Unsupported thumbnail format: ${entry.thumbnail}`);
+    if (!mime) throw new Error(`Unsupported thumbnail format: ${thumbnail}`);
     const bytes = await readFile(imagePath);
     index = embeddedImages.length;
-    imageIndexes.set(entry.thumbnail, index);
+    imageIndexes.set(thumbnail, index);
     embeddedImages.push(`data:${mime};base64,${bytes.toString('base64')}`);
   }
-  bundledEntries.push({ ...entry, image: index, thumbnail: index });
+  return index;
+}
+for (const entry of catalog.entries) {
+  const index = await embedThumbnail(entry.thumbnail);
+  const artworks = entry.artworks && {};
+  if (artworks) {
+    for (const [choice, art] of Object.entries(entry.artworks)) {
+      const variant = await embedThumbnail(art.thumbnail);
+      artworks[choice] = { image: variant, thumbnail: variant };
+    }
+  }
+  bundledEntries.push({ ...entry, image: index, thumbnail: index, ...(artworks ? { artworks } : {}) });
 }
 
 const transformedCatalog = JSON.stringify({ ...catalog, entries: bundledEntries });
 const catalogModule = `
 const catalog = ${transformedCatalog};
 const images = ${JSON.stringify(embeddedImages)};
-catalog.entries = catalog.entries.map(entry => ({ ...entry, image: images[entry.image], thumbnail: images[entry.thumbnail] }));
+catalog.entries = catalog.entries.map(entry => ({ ...entry, image: images[entry.image], thumbnail: images[entry.thumbnail],
+  ...(entry.artworks ? { artworks: Object.fromEntries(Object.entries(entry.artworks).map(([choice, art]) => [choice, { image: images[art.image], thumbnail: images[art.thumbnail] }])) } : {}) }));
 export const entries = catalog.entries;
 export const metadata = catalog.metadata;
 export default catalog;

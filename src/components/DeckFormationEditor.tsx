@@ -1,6 +1,6 @@
 import { useId, useMemo, useState } from "react";
 import { ArrowDown, ArrowUp, BookMarked, Search, X } from "lucide-react";
-import { getCatalogRecord } from "../lib/catalog";
+import { getCatalogRecord, getEntryArtwork } from "../lib/catalog";
 import { SINNERS, type LibraryEntry } from "../lib/library";
 import "./deck-formation.css";
 
@@ -15,17 +15,17 @@ const identityName = (entry: LibraryEntry) =>
   getCatalogRecord(entry.id) ? `${entry.name} ${entry.sinner}` : entry.name;
 
 function FormationArt({ entry }: { entry: LibraryEntry | undefined }) {
-  const record = entry ? getCatalogRecord(entry.id) : undefined;
+  const image = getEntryArtwork(entry);
   const [failedImage, setFailedImage] = useState<string | undefined>();
   return (
     <span className="deck-formation-art" aria-hidden="true">
-      {record && failedImage !== record.thumbnail ? (
+      {image && failedImage !== image ? (
         <img
-          src={record.thumbnail}
+          src={image}
           alt=""
           loading="lazy"
           decoding="async"
-          onError={() => setFailedImage(record.thumbnail)}
+          onError={() => setFailedImage(image)}
         />
       ) : (
         <BookMarked size={22} />
