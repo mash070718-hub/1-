@@ -3,8 +3,8 @@
   "entrypoint": "index.html",
   "language": "ko",
   "artifact": {
-    "bytes": 9089769,
-    "sha256": "a6d197cc391eb784daa213037285777bd1fc5dbc51a869b017b9dc86df08934e",
+    "bytes": 9090557,
+    "sha256": "a070be0b474d1d16679a63e0013af4d9522efc6d2e22d64934f007a721b9cd14",
     "embeddedArtworks": 306,
     "inlineScripts": 1
   },

@@ -64,8 +64,8 @@ test('admin imports old backup, scores persist and sort independently, publishes
   await admin.getByPlaceholder('이름, 수감자, 태그로 검색').fill(identity.name);
   await admin.getByRole('button', { name: `${identity.name} ${identity.sinner} 상세 보기`, exact: true }).click();
   await admin.getByRole('button', { name: '기록 수정', exact: true }).click();
-  await admin.getByRole('spinbutton', { name: '스토리 점수', exact: true }).fill('17.125');
-  await admin.getByRole('spinbutton', { name: '경험치 · 끈 채광 점수', exact: true }).fill('0');
+  await admin.getByRole('textbox', { name: '스토리 점수', exact: true }).fill('17.125');
+  await admin.getByRole('textbox', { name: '경험치 · 끈 채광 점수', exact: true }).fill('0');
   await admin.getByRole('button', { name: '기록 저장', exact: true }).click();
   await expect(admin.getByRole('dialog')).toHaveCount(0);
   await admin.reload();

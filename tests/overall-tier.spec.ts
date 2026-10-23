@@ -33,7 +33,7 @@ test('overall A and story S stay independent through editing, backup, reload and
   await page.getByRole('button', { name: '기록 수정', exact: true }).click();
   await page.getByRole('combobox', { name: '종합 티어', exact: true }).selectOption('A');
   await page.getByRole('combobox', { name: '스토리 티어', exact: true }).selectOption('S');
-  await page.getByRole('spinbutton', { name: '스토리 점수', exact: true }).fill('20');
+  await page.getByRole('textbox', { name: '스토리 점수', exact: true }).fill('20');
   await page.getByRole('button', { name: '기록 저장', exact: true }).click();
   await page.reload();
   await page.getByPlaceholder('이름, 수감자, 태그로 검색').fill(name);

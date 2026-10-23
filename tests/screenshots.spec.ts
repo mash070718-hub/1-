@@ -74,7 +74,7 @@ test('three real images survive draft, reload and backup; publication exposes th
   await expect(page.getByRole('button', { name: '기록 저장', exact: true })).toBeEnabled();
   await expect(page.locator('.screenshot-editor .screenshot-preview img')).toHaveCount(3);
   await page.getByRole('textbox', { name: '사진 1 설명', exact: true }).fill('15층 · 출혈 기프트 완성 · 총 피해량 1234만');
-  await page.getByRole('spinbutton', { name: '거울던전 점수', exact: true }).fill('93.5');
+  await page.getByRole('textbox', { name: '거울던전 점수', exact: true }).fill('93.5');
   await page.getByRole('button', { name: '기록 저장', exact: true }).click();
   expect(store.data).toBeNull();
   const draft = await saved(page); const photos = draft.mirrorArchive!.decks[0].screenshots!;

@@ -29,7 +29,59 @@ async function setup(page: Page, data: LibraryData) {
 const total = (page: Page) => page.getByRole('region', { name: '인격 종합점수', exact: true });
 const saved = (page: Page): Promise<LibraryData> => page.evaluate(key => JSON.parse(localStorage.getItem(key)!), draftKey);
 
-test('native content limits, existing points and unified railway survive save, reload and public reading', async ({ page, browser }) => {
+test('plain text score fields keep decimal typing and Korean composition intact while rejecting invalid saved scores', async ({ page }) => {
+  const { data, identity, name } = fixture();
+  await setup(page, data);
+  await page.getByPlaceholder('이름, 수감자, 태그로 검색').fill(identity.name);
+  await page.getByRole('button', { name: `${name} 상세 보기`, exact: true }).click();
+  await page.getByRole('button', { name: '기록 수정', exact: true }).click();
+  const score = page.getByRole('textbox', { name: '스토리 점수', exact: true });
+  await expect(score).toHaveAttribute('type', 'text');
+  await expect(score).toHaveAttribute('inputmode', 'text');
+  await expect(page.locator('#record-form input[type="number"], #record-form input[inputmode="decimal"]')).toHaveCount(0);
+  const original = await score.elementHandle();
+  await score.fill('');
+  await score.pressSequentially('18.');
+  await expect(score).toHaveValue('18.');
+  await score.pressSequentially('25');
+  await expect(score).toHaveValue('18.25');
+  await expect(score).toBeFocused();
+  expect(await score.evaluate((node, previous) => node === previous, original)).toBe(true);
+  await expect(total(page)).toContainText('89.75 / 100점');
+  await score.dispatchEvent('compositionstart', { data: '' });
+  await score.fill('ㅇ');
+  await expect(score).toHaveValue('ㅇ');
+  await expect(score).toBeFocused();
+  await expect(score.locator('..').getByRole('alert')).toHaveCount(0);
+  await score.fill('영');
+  await score.dispatchEvent('compositionend', { data: '영' });
+  await expect(score).toHaveValue('영');
+  for (const invalid of ['영', '-1', '20.01', '18..5', '1e1', 'Infinity']) {
+    await score.fill(invalid);
+    await page.getByRole('button', { name: '기록 저장', exact: true }).click();
+    await expect(page.getByRole('dialog')).toHaveCount(1);
+    await expect(score).toHaveAttribute('aria-invalid', 'true');
+    expect(await score.evaluate((input: HTMLInputElement) => input.checkValidity())).toBe(false);
+    expect(await page.evaluate(key => localStorage.getItem(key), draftKey)).toBeNull();
+  }
+  await score.fill('0');
+  await expect(score).toHaveAttribute('aria-invalid', 'false');
+  await expect(total(page)).toContainText('종합점수: 71.5 / 100점');
+  await score.fill('');
+  await expect(total(page)).toContainText('입력한 점수 합계: 71.5 / 100점');
+  await score.pressSequentially('.5');
+  await expect(score).toHaveValue('.5');
+  await score.fill('18.25');
+  await page.getByRole('textbox', { name: '장점', exact: true }).fill('점수 입력 뒤에도 한글 평가를 계속 작성');
+  await page.getByRole('button', { name: '기록 저장', exact: true }).click();
+  const stored = (await saved(page)).entries.find(entry => entry.id === identity.id)!;
+  expect(stored.scores?.story).toBe(18.25);
+  expect(stored.strengths).toBe('점수 입력 뒤에도 한글 평가를 계속 작성');
+  expect(stored.overallTier).toBe('A');
+  expect(stored.tiers.story).toBe('A');
+});
+
+test('content limits, existing points and unified railway survive save, reload and public reading', async ({ page, browser }) => {
   const { data, identity, name } = fixture();
   delete (identity.tiers as Partial<typeof identity.tiers>).railway;
   delete identity.scores!.railway;
@@ -50,26 +102,28 @@ test('native content limits, existing points and unified railway survive save, r
     ['거울굴절철도', 10, 8.5],
     ['거울던전', 30, 28],
   ] as const) {
-    const input = page.getByRole('spinbutton', { name: `${label} 점수`, exact: true });
-    await expect(input).toHaveAttribute('max', String(max));
+    const input = page.getByRole('textbox', { name: `${label} 점수`, exact: true });
+    await expect(input.locator('..')).toContainText(`/ ${max}점`);
+    await expect(input).toHaveAttribute('type', 'text');
+    await expect(input).toHaveAttribute('inputmode', 'text');
     await expect(input).toHaveValue(String(value));
   }
   await expect(page.getByRole('combobox', { name: '종합점수에 사용할 거굴철 노선', exact: true })).toHaveCount(0);
-  await expect(page.getByRole('spinbutton', { name: /[126]호선 점수/ })).toHaveCount(0);
+  await expect(page.getByRole('textbox', { name: /[126]호선 점수/ })).toHaveCount(0);
   await expect(page.getByRole('combobox', { name: '거울굴절철도 티어', exact: true })).toHaveValue('A');
-  await page.getByRole('spinbutton', { name: '거울굴절철도 점수', exact: true }).fill('6');
+  await page.getByRole('textbox', { name: '거울굴절철도 점수', exact: true }).fill('6');
   await expect(total(page)).toContainText('종합점수: 85.5 / 100점');
-  const story = page.getByRole('spinbutton', { name: '스토리 점수', exact: true });
+  const story = page.getByRole('textbox', { name: '스토리 점수', exact: true });
   await story.fill('20.1');
   await page.getByRole('button', { name: '기록 저장', exact: true }).click();
   await expect(page.getByRole('dialog')).toHaveCount(1);
-  expect(await story.evaluate((element: HTMLInputElement) => element.validity.rangeOverflow)).toBe(true);
+  expect(await story.evaluate((element: HTMLInputElement) => element.validity.customError)).toBe(true);
   await story.fill('16.5');
-  const mirrorScore = page.getByRole('spinbutton', { name: '거울던전 점수', exact: true });
+  const mirrorScore = page.getByRole('textbox', { name: '거울던전 점수', exact: true });
   await mirrorScore.fill('30.01');
   await page.getByRole('button', { name: '기록 저장', exact: true }).click();
   await expect(page.getByRole('dialog')).toHaveCount(1);
-  expect(await mirrorScore.evaluate((element: HTMLInputElement) => element.validity.rangeOverflow)).toBe(true);
+  expect(await mirrorScore.evaluate((element: HTMLInputElement) => element.validity.customError)).toBe(true);
   await mirrorScore.fill('27.25');
   await expect(total(page)).toContainText('종합점수: 84.75 / 100점');
   await page.getByRole('button', { name: '기록 저장', exact: true }).click();
@@ -107,13 +161,13 @@ test('mirror accepts native points and keeps zero, blank, general scores and tie
   await page.getByRole('tab', { name: '인격', exact: true }).click();
   const edit = page.getByRole('button', { name: `${name} 거울던전 평가 작성/수정`, exact: true });
   await edit.click();
-  const score = page.getByRole('spinbutton', { name: '거울던전 점수', exact: true });
-  await expect(score).toHaveAttribute('max', '30');
+  const score = page.getByRole('textbox', { name: '거울던전 점수', exact: true });
+  await expect(score.locator('..')).toContainText('/ 30점');
   await expect(score).toHaveValue('28');
   await score.fill('30.5');
   await page.getByRole('button', { name: '기록 저장', exact: true }).click();
   await expect(page.getByRole('dialog')).toHaveCount(1);
-  expect(await score.evaluate((element: HTMLInputElement) => element.validity.rangeOverflow)).toBe(true);
+  expect(await score.evaluate((element: HTMLInputElement) => element.validity.customError)).toBe(true);
   await score.fill('0');
   await expect(total(page)).toContainText('종합점수: 60 / 100점');
   await page.getByRole('button', { name: '기록 저장', exact: true }).click();
@@ -163,7 +217,7 @@ test('mirror-only changes in the general editor can be discarded and a new mirro
     await page.getByRole('button', { name: '기록 수정', exact: true }).click();
   };
   await openGeneral();
-  const mirrorScore = page.getByRole('spinbutton', { name: '거울던전 점수', exact: true });
+  const mirrorScore = page.getByRole('textbox', { name: '거울던전 점수', exact: true });
   await expect(mirrorScore).toHaveValue('');
   await mirrorScore.fill('25');
   await page.getByRole('button', { name: '취소', exact: true }).click();
