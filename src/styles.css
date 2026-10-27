@@ -280,6 +280,7 @@ button.catalog-source { padding: 3px 0; border: 0; border-radius: 0; background:
 .detail-tier-cell { display: flex; flex-direction: column; align-items: center; gap: 9px; padding: 13px 5px; font-size: 12px; line-height: 1.7; color: #72593a; text-align: center; }
 .detail-tier-cell + .detail-tier-cell { border-left: 1px solid #c9b48f; }
 .detail-tier-cell strong { font-family: Georgia, serif; color: #744b26; font-size: 23px; font-weight: 400; }
+.detail-tier-score { max-width: 100%; font-size: 12px; font-variant-numeric: tabular-nums; color: #694c2c; word-break: keep-all; overflow-wrap: anywhere; }
 .detail-tier-cell.active, .detail-tier-cell[data-active="true"] { background: #dcca9f; }
 .detail-section { margin-top: 23px; }
 .detail-section-title { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: #493827; margin-bottom: 12px; }

@@ -500,6 +500,13 @@ function Detail({
             <strong>
               {entry.tiers[item.id] === "unrated" ? "—" : entry.tiers[item.id]}
             </strong>
+            {entry.kind !== "ego" && (
+              <small className="detail-tier-score">
+                {entry.scores?.[item.id] == null
+                  ? "점수 미입력"
+                  : `${entry.scores[item.id]} / ${entry.kind === "identity" ? IDENTITY_SCORE_MAX[item.id] : 100}점`}
+              </small>
+            )}
           </div>
         ))}
       </div>
