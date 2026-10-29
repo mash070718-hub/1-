@@ -1,7 +1,7 @@
 {
   "sourceRepository": "https://github.com/eldritchtools/limbus-assets",
-  "sourceCommit": "3d598c39012252a9a54ab63d2cfd0b4d30e67dec",
-  "sourceMetadataTimestamp": "2026-10-15T08:16:05Z",
+  "sourceCommit": "aad3c48c2c822f0cd098fff02d64d812d2360ec1",
+  "sourceMetadataTimestamp": "2026-10-29T09:01:09Z",
   "copyright": "Artwork © Project Moon. Source repository: All rights reserved to Project Moon.",
   "provenance": "Official game artwork converted to WebP and distributed through a third-party mirror; not official hosting.",
   "images": [
@@ -6563,6 +6563,50 @@
     },
     {
       "kind": "identity",
+      "gameId": "10617",
+      "role": "thumbnail",
+      "file": "identity-10617-thumb.webp",
+      "sourceUrl": "https://raw.githubusercontent.com/eldritchtools/limbus-assets/aad3c48c2c822f0cd098fff02d64d812d2360ec1/assets/identities/10617_gacksung_profile.webp",
+      "sha256": "3a17c7de1547571f461a42355789b555e0bf5524b638891c80124bfea3723b1d",
+      "width": 256,
+      "height": 256,
+      "size": 16942
+    },
+    {
+      "kind": "identity",
+      "gameId": "10617",
+      "role": "uptie1-thumbnail",
+      "file": "identity-10617-uptie1-thumb.webp",
+      "sourceUrl": "https://raw.githubusercontent.com/eldritchtools/limbus-assets/aad3c48c2c822f0cd098fff02d64d812d2360ec1/assets/identities/10617_normal_profile.webp",
+      "sha256": "0f5c382f09470e69708de13cbc0ac8dbf463cf82eee0c4e37d7830141cc7381c",
+      "width": 256,
+      "height": 256,
+      "size": 19934
+    },
+    {
+      "kind": "identity",
+      "gameId": "10617",
+      "role": "uptie1-artwork",
+      "file": "identity-10617-uptie1.webp",
+      "sourceUrl": "https://raw.githubusercontent.com/eldritchtools/limbus-assets/aad3c48c2c822f0cd098fff02d64d812d2360ec1/assets/identities/10617_normal.webp",
+      "sha256": "5eeb818d1ef17a552d6ec331419bfc85c2bcaf4240ca75ff9f59ca6c044aec80",
+      "width": 1920,
+      "height": 1080,
+      "size": 271398
+    },
+    {
+      "kind": "identity",
+      "gameId": "10617",
+      "role": "artwork",
+      "file": "identity-10617.webp",
+      "sourceUrl": "https://raw.githubusercontent.com/eldritchtools/limbus-assets/aad3c48c2c822f0cd098fff02d64d812d2360ec1/assets/identities/10617_gacksung.webp",
+      "sha256": "b372dc9ae5aa13da4a2eb2982a48d67353d86eb1db1cf4ad2d585d18bed1ace6",
+      "width": 1920,
+      "height": 1080,
+      "size": 261534
+    },
+    {
+      "kind": "identity",
       "gameId": "10701",
       "role": "thumbnail",
       "file": "identity-10701-thumb.webp",
@@ -7242,6 +7286,50 @@
       "width": 1920,
       "height": 1080,
       "size": 276944
+    },
+    {
+      "kind": "identity",
+      "gameId": "10717",
+      "role": "thumbnail",
+      "file": "identity-10717-thumb.webp",
+      "sourceUrl": "https://raw.githubusercontent.com/eldritchtools/limbus-assets/aad3c48c2c822f0cd098fff02d64d812d2360ec1/assets/identities/10717_gacksung_profile.webp",
+      "sha256": "aad6ed7c3fa3e1870d5b278bf1a078491ba328627cbf83f0884ce71b6cc05964",
+      "width": 256,
+      "height": 256,
+      "size": 22196
+    },
+    {
+      "kind": "identity",
+      "gameId": "10717",
+      "role": "uptie1-thumbnail",
+      "file": "identity-10717-uptie1-thumb.webp",
+      "sourceUrl": "https://raw.githubusercontent.com/eldritchtools/limbus-assets/aad3c48c2c822f0cd098fff02d64d812d2360ec1/assets/identities/10717_normal_profile.webp",
+      "sha256": "944fe588ae9410329ac2cc10ca91032701ca5bb56ffca1da26060599f59cf608",
+      "width": 256,
+      "height": 256,
+      "size": 24622
+    },
+    {
+      "kind": "identity",
+      "gameId": "10717",
+      "role": "uptie1-artwork",
+      "file": "identity-10717-uptie1.webp",
+      "sourceUrl": "https://raw.githubusercontent.com/eldritchtools/limbus-assets/aad3c48c2c822f0cd098fff02d64d812d2360ec1/assets/identities/10717_normal.webp",
+      "sha256": "77e06a02a5807980029ae560a2902c94e557a0326096dd439b60969cd282c2f8",
+      "width": 1920,
+      "height": 1080,
+      "size": 289548
+    },
+    {
+      "kind": "identity",
+      "gameId": "10717",
+      "role": "artwork",
+      "file": "identity-10717.webp",
+      "sourceUrl": "https://raw.githubusercontent.com/eldritchtools/limbus-assets/aad3c48c2c822f0cd098fff02d64d812d2360ec1/assets/identities/10717_gacksung.webp",
+      "sha256": "bfc6b0711d79ddf53373e5b743bb81544dbd2375981237bb5c30869b004ce5a2",
+      "width": 1920,
+      "height": 1080,
+      "size": 337644
     },
     {
       "kind": "identity",
