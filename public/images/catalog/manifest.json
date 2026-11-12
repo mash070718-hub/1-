@@ -1,7 +1,7 @@
 {
   "sourceRepository": "https://github.com/eldritchtools/limbus-assets",
-  "sourceCommit": "aad3c48c2c822f0cd098fff02d64d812d2360ec1",
-  "sourceMetadataTimestamp": "2026-10-29T09:01:09Z",
+  "sourceCommit": "5bc0888e81fdb427f5530a150456d44c132135a2",
+  "sourceMetadataTimestamp": "2026-11-12T08:25:34Z",
   "copyright": "Artwork © Project Moon. Source repository: All rights reserved to Project Moon.",
   "provenance": "Official game artwork converted to WebP and distributed through a third-party mirror; not official hosting.",
   "images": [
@@ -1302,6 +1302,28 @@
       "width": 1024,
       "height": 1024,
       "size": 205660
+    },
+    {
+      "kind": "ego",
+      "gameId": "20611",
+      "role": "thumbnail",
+      "file": "ego-20611-thumb.webp",
+      "sourceUrl": "https://raw.githubusercontent.com/eldritchtools/limbus-assets/5bc0888e81fdb427f5530a150456d44c132135a2/assets/egos/20611_awaken_profile.webp",
+      "sha256": "d41408c2798dd891d57b76beac244b8578790566ed6e2594baa974a6d8fa1205",
+      "width": 256,
+      "height": 256,
+      "size": 22888
+    },
+    {
+      "kind": "ego",
+      "gameId": "20611",
+      "role": "artwork",
+      "file": "ego-20611.webp",
+      "sourceUrl": "https://raw.githubusercontent.com/eldritchtools/limbus-assets/5bc0888e81fdb427f5530a150456d44c132135a2/assets/egos/20611_cg.webp",
+      "sha256": "469a6edf5c49fbe4787d5ff0a14deb47be9b7f734c772726fd4074a12c35c3c3",
+      "width": 1024,
+      "height": 1024,
+      "size": 159142
     },
     {
       "kind": "ego",
@@ -4558,6 +4580,50 @@
       "width": 1920,
       "height": 1080,
       "size": 364968
+    },
+    {
+      "kind": "identity",
+      "gameId": "10316",
+      "role": "thumbnail",
+      "file": "identity-10316-thumb.webp",
+      "sourceUrl": "https://raw.githubusercontent.com/eldritchtools/limbus-assets/5bc0888e81fdb427f5530a150456d44c132135a2/assets/identities/10316_gacksung_profile.webp",
+      "sha256": "a3851ea5bd3c1406ce5f6b8acfef79da92f6b792dc944c03315032fdcab5a484",
+      "width": 256,
+      "height": 256,
+      "size": 21380
+    },
+    {
+      "kind": "identity",
+      "gameId": "10316",
+      "role": "uptie1-thumbnail",
+      "file": "identity-10316-uptie1-thumb.webp",
+      "sourceUrl": "https://raw.githubusercontent.com/eldritchtools/limbus-assets/5bc0888e81fdb427f5530a150456d44c132135a2/assets/identities/10316_normal_profile.webp",
+      "sha256": "31650d1401619d2005478c46d2e5a5f85ea96e9084722f8485f36befa4dd1d3a",
+      "width": 256,
+      "height": 256,
+      "size": 21164
+    },
+    {
+      "kind": "identity",
+      "gameId": "10316",
+      "role": "uptie1-artwork",
+      "file": "identity-10316-uptie1.webp",
+      "sourceUrl": "https://raw.githubusercontent.com/eldritchtools/limbus-assets/5bc0888e81fdb427f5530a150456d44c132135a2/assets/identities/10316_normal.webp",
+      "sha256": "b4ee6422bd710350b98f103ad7b546efd2fc1c2136a3c9655490e91cbd5bdec1",
+      "width": 1920,
+      "height": 1080,
+      "size": 316166
+    },
+    {
+      "kind": "identity",
+      "gameId": "10316",
+      "role": "artwork",
+      "file": "identity-10316.webp",
+      "sourceUrl": "https://raw.githubusercontent.com/eldritchtools/limbus-assets/5bc0888e81fdb427f5530a150456d44c132135a2/assets/identities/10316_gacksung.webp",
+      "sha256": "3f23074d581f5286b74c1c99c108655801d7a2e8eae11b7dbcb3a3875605c105",
+      "width": 1920,
+      "height": 1080,
+      "size": 335764
     },
     {
       "kind": "identity",
@@ -9423,6 +9489,50 @@
     },
     {
       "kind": "identity",
+      "gameId": "11017",
+      "role": "thumbnail",
+      "file": "identity-11017-thumb.webp",
+      "sourceUrl": "https://raw.githubusercontent.com/eldritchtools/limbus-assets/5bc0888e81fdb427f5530a150456d44c132135a2/assets/identities/11017_gacksung_profile.webp",
+      "sha256": "c2d5b57fa81600c3d6c124f71eb1adefdd25af72f0c4e6f888f9861e281b7605",
+      "width": 256,
+      "height": 256,
+      "size": 19464
+    },
+    {
+      "kind": "identity",
+      "gameId": "11017",
+      "role": "uptie1-thumbnail",
+      "file": "identity-11017-uptie1-thumb.webp",
+      "sourceUrl": "https://raw.githubusercontent.com/eldritchtools/limbus-assets/5bc0888e81fdb427f5530a150456d44c132135a2/assets/identities/11017_normal_profile.webp",
+      "sha256": "cd16612de6f37fb45e92dd66095a0325fb1bdc438508a7106cb386dba8bfee2b",
+      "width": 256,
+      "height": 256,
+      "size": 20658
+    },
+    {
+      "kind": "identity",
+      "gameId": "11017",
+      "role": "uptie1-artwork",
+      "file": "identity-11017-uptie1.webp",
+      "sourceUrl": "https://raw.githubusercontent.com/eldritchtools/limbus-assets/5bc0888e81fdb427f5530a150456d44c132135a2/assets/identities/11017_normal.webp",
+      "sha256": "b4ee6422bd710350b98f103ad7b546efd2fc1c2136a3c9655490e91cbd5bdec1",
+      "width": 1920,
+      "height": 1080,
+      "size": 316166
+    },
+    {
+      "kind": "identity",
+      "gameId": "11017",
+      "role": "artwork",
+      "file": "identity-11017.webp",
+      "sourceUrl": "https://raw.githubusercontent.com/eldritchtools/limbus-assets/5bc0888e81fdb427f5530a150456d44c132135a2/assets/identities/11017_gacksung.webp",
+      "sha256": "3f23074d581f5286b74c1c99c108655801d7a2e8eae11b7dbcb3a3875605c105",
+      "width": 1920,
+      "height": 1080,
+      "size": 335764
+    },
+    {
+      "kind": "identity",
       "gameId": "11101",
       "role": "thumbnail",
       "file": "identity-11101-thumb.webp",
@@ -10058,6 +10168,50 @@
       "width": 1920,
       "height": 1080,
       "size": 354764
+    },
+    {
+      "kind": "identity",
+      "gameId": "11116",
+      "role": "thumbnail",
+      "file": "identity-11116-thumb.webp",
+      "sourceUrl": "https://raw.githubusercontent.com/eldritchtools/limbus-assets/5bc0888e81fdb427f5530a150456d44c132135a2/assets/identities/11116_gacksung_profile.webp",
+      "sha256": "39d5638305f517dac175e9e9a1f2b09597089433d2d88ae36842c8a1faab4611",
+      "width": 256,
+      "height": 256,
+      "size": 20352
+    },
+    {
+      "kind": "identity",
+      "gameId": "11116",
+      "role": "uptie1-thumbnail",
+      "file": "identity-11116-uptie1-thumb.webp",
+      "sourceUrl": "https://raw.githubusercontent.com/eldritchtools/limbus-assets/5bc0888e81fdb427f5530a150456d44c132135a2/assets/identities/11116_normal_profile.webp",
+      "sha256": "50ca78ddb9a183c77cb93d88a92b59c08eb733f0113267d5c8ea39899157c056",
+      "width": 256,
+      "height": 256,
+      "size": 18942
+    },
+    {
+      "kind": "identity",
+      "gameId": "11116",
+      "role": "uptie1-artwork",
+      "file": "identity-11116-uptie1.webp",
+      "sourceUrl": "https://raw.githubusercontent.com/eldritchtools/limbus-assets/5bc0888e81fdb427f5530a150456d44c132135a2/assets/identities/11116_normal.webp",
+      "sha256": "147f23a71205f47029427feb629b2ee9ceae9a6708e4252f31c506e2d731fcd1",
+      "width": 1920,
+      "height": 1080,
+      "size": 319132
+    },
+    {
+      "kind": "identity",
+      "gameId": "11116",
+      "role": "artwork",
+      "file": "identity-11116.webp",
+      "sourceUrl": "https://raw.githubusercontent.com/eldritchtools/limbus-assets/5bc0888e81fdb427f5530a150456d44c132135a2/assets/identities/11116_gacksung.webp",
+      "sha256": "1c1fd7e66a2cfa48b00b976cd2c0c54bb43dff66d8cb3efe4120dee2580fcf93",
+      "width": 1920,
+      "height": 1080,
+      "size": 281552
     },
     {
       "kind": "identity",

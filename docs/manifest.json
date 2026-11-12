@@ -3,22 +3,22 @@
   "entrypoint": "index.html",
   "language": "ko",
   "artifact": {
-    "bytes": 13780584,
-    "sha256": "b3a4acc84f302796106076d3277f9dd40d9db7821f222d6498606b110335fddb",
-    "embeddedArtworks": 488,
+    "bytes": 13975541,
+    "sha256": "f27d2a249d3633dd551a2bd7a11190da3303c721df63e5ee0da74ddf3273ec90",
+    "embeddedArtworks": 495,
     "inlineScripts": 1
   },
   "catalog": {
-    "asOf": "2026-10-29",
-    "verifiedAt": "2026-10-29T09:04:45.364571Z",
-    "latestReleaseDate": "2026-10-29",
+    "asOf": "2026-11-12",
+    "verifiedAt": "2026-11-12T09:52:34.403815Z",
+    "latestReleaseDate": "2026-11-12",
     "gameVersion": "공개 자료에 버전 번호 미표기",
     "counts": {
-      "identity": 192,
-      "ego": 116
+      "identity": 195,
+      "ego": 117
     },
-    "sourceCommit": "aad3c48c2c822f0cd098fff02d64d812d2360ec1",
-    "localizationCommit": "6d970eb655369e6018afd8f720d347f6379da2d2"
+    "sourceCommit": "5bc0888e81fdb427f5530a150456d44c132135a2",
+    "localizationCommit": "6a9fcae4b13515e394e145c68a4e2177125e1dd0"
   },
   "hosting": {
     "format": "static single HTML",
